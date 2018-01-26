@@ -110,6 +110,7 @@
       {% endblock content %}
     </div>
 
+    {% block footer %}
     <footer class="footer">
       <nav class="navbar navbar-default navbar-fixed-bottom">
         <div class="container-fluid">
@@ -125,6 +126,7 @@
         </div>
       </nav>
     </footer>
+    {% endblock %}
 
     <!-- Third-party javascript libraries go here -->
     <script src="{% static 'jquery/jquery.min.js' %}"></script>
