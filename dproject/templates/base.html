@@ -65,6 +65,19 @@
           </form>
           <ul class="nav navbar-nav navbar-right">
             {% if request.user.is_authenticated %}
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Caisse
+                       <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url "inventory:articles" %}" title="Liste des articles">Liste des articles</a></li>
+                        <li><a href="{% url "cart:cart_content" %}">Contenu du panier</a></li>
+                        <li><a href="{% url "cart:ventes"  %}">Ventes</a></li>
+                        <li><a href="{% url "cart:clients" %}">Clients</a></li>
+                        <li><a href="{% url "cart:client_create" %}">Ajouter un client</a></li>
+                    </ul>
+                </li>
+
               <li class="dropdown">
                 <a class="dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <span><i class="fa fa-user fa-fw" aria-hidden="true"></i>{{ request.user }}</span>

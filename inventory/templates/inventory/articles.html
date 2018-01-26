@@ -1,0 +1,69 @@
+{% extends "inventex.html" %}
+{% load static %}
+{% load humanize %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+<p>
+    <form action="" method="get">
+        {{ filter.form|crispy}}<br>
+    <button type="submit" class="btn btn-success">Filtrer</button>
+</form>
+</p>
+
+<h3>{{articles|length}} articles trouvés.</h3>
+
+
+    <table class="table table-light">
+      <thead class="thead-light">
+      <tr>
+          <th>Nr.</th>
+          <th>ID</th>
+          <th>Aperçu</th>
+          <th>Type de client</th>
+          <th>Genre d'article</th>
+          <th>Date d'ajout</th>
+          <th>Nom</th>
+          <th>Marque</th>
+          <th>Quantité</th>
+          <th>Prix total</th>
+      </tr>
+      </thead>
+
+
+      <tbody>
+      {% for a in articles %}
+      <tr>
+          <td>{{forloop.counter}}</td>
+          <td>{{ a.pk }}</td>
+          {% if a.photo_set.all %}
+          {% thumbnail a.photo_set.first.photo  "50x50" crop="center" as im %}
+          <td><a href="{{ a.photo_set.first.photo.url }}" alt="image de {{a.nom}}-ID: {{a.pk}}">
+              <img src="{{ im.url }}" alt="The thumbnail" style="width: {{ im.width }}">
+              </a>
+          </td>
+          {% endthumbnail %}
+          {% else %}
+          <td>pas photo</td>
+          {% endif %}
+          <td>{{ a.get_type_client_display}}</td>
+          <td>{{ a.get_genre_article_display }}</td>
+          <td>{{ a.date_ajout }} {% if a.notes %}
+              <br><span class="badge">Possède une note</span>
+              {% endif %}
+          </td>
+           <td> <a title="Cliquer pour voir les détails" href="/inventory/article_detail/{{a.pk}}">{{ a.nom }}</a>  </td>
+          <td>{{ a.marque }}</td>
+          {% if a.quantite > 0 %}
+           <td><span class="badge">{{ a.quantite }}</span></td>
+          {% else %}
+          <td><span class="badge badge-danger">{{ a.quantite }}</span></td>
+          {% endif %}
+          <td>{{a.prix_total|intcomma|default_if_none:"<em>à renseigner</em>"}}</td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    </div>
+{% endblock %}

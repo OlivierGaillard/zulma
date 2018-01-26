@@ -1,0 +1,26 @@
+{% extends "inventex.html" %}
+{% load static %}
+{% block content %}
+
+    <table class="table table-light">
+      <tbody>
+      <tr>
+          <th>ID</th>
+          <td>{{ client.pk }}</td>
+      </tr>
+      <tr>
+          <th>Nom</th>
+          <td>{{ client.nom }}</td>
+      </tr>
+      <tr>
+          <th>Prénom</th>
+          <td>{{ client.prenom }}</td>
+      </tr>
+      <tr>
+          <th>Téléphone</th>
+          <td>{{ client.tel }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+{% endblock %}

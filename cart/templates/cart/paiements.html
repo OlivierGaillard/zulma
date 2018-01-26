@@ -1,0 +1,27 @@
+{% extends "inventex.html" %}
+{% load static %}
+{% block content %}
+
+    <table class="table table-light">
+      <thead class="thead-light">
+      <tr>
+          <th>Nr</th>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Montant</th>
+          <th>Vente</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      {% for p in paiements %}
+      <tr>
+          <td>{{ forloop.counter }}</td>
+          <td>{{ p.pk }}</td>
+          <td>{{ p.date }}</td>
+          <td>{{ p.montant }}</td>
+          <td><a title="Cliquer pour voir les détails" href="/cart/vente/{{p.vente.pk}}">{{ p.vente.pk }}</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+{% endblock %}

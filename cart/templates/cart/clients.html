@@ -1,0 +1,25 @@
+{% extends "inventex.html" %}
+{% load static %}
+{% block content %}
+
+    <table class="table table-light">
+      <thead class="thead-light">
+      <tr>
+          <th>ID</th>
+          <th>Nom</th>
+          <th>Prénom</th>
+          <th>Téléphone</th>
+      </tr>
+      </thead>
+
+      <tbody>
+      {% for a in clients %}
+      <tr>
+          <td><a href="{% url "cart:client" a.pk %}">{{a.pk}}</a></td>
+          <td>{{ a.nom }}</td>
+          <td>{{ a.prenom }}</td>
+          <td>{{ a.tel }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+{% endblock %}

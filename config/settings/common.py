@@ -41,11 +41,16 @@ DJANGO_APPS = (
 
 THIRD_PARTY_APPS = (
     'crispy_forms',
+    'django_filters',
+    'django.contrib.humanize',
+    'sorl.thumbnail',
 )
 
 # Apps specific for this project go here.
 LOCAL_APPS = (
     'imprint',
+    'inventory',
+    'cart',
 )
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -107,27 +112,17 @@ DATABASES = {
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
 # although not all choices may be available on all operating systems.
 # In a Windows environment this must be set to your system time zone.
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Zurich'
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#language-code
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'fr-CH'
 
 LANGUAGES = [
-    ('en', 'English'),
-    ('es', 'Spanish'),
-    ('de', 'German'),
+ #    ('en', 'English'),
+    #('de', 'German'),
     ('fr', 'French'),
-    ('it', 'Italian'),
-    ('pt', 'Portuguese'),
-    ('zh-hans', 'Simplified Chinese'),
-    ('zh-hant', 'Traditional Chinese'),
-    ('ja', 'Japanese'),
-    ('hi', 'Hindi'),
-    ('ar', 'Arabic'),
-    ('bn', 'Bengali'),
-    ('ru', 'Russian'),
-    ('vi', 'Vietnamese'),
-    ('ko', 'Korean'),
+    #('it', 'Italian'),
+    #('pt', 'Portuguese'),
 ]
 
 # See: https://docs.djangoproject.com/en/dev/ref/settings/#site-id
@@ -178,9 +173,9 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 #'dproject.context_processors.site_processor',
             ],
-            #'libraries': {
-            #    'sorl_thumbnail': 'sorl.thumbnail.templatetags.thumbnail',
-            #},
+            'libraries': {
+                'sorl_thumbnail': 'sorl.thumbnail.templatetags.thumbnail',
+            },
         },
     },
 ]

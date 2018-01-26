@@ -1,0 +1,39 @@
+{% extends "inventex.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+<table class="table">
+      <thead>
+         <tr>
+            <th>No</th>
+             <th>Vente-ID</th>
+             <th>Date d'ajout</th>
+            <th>Titre</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+            <th>Total</th>
+         </tr>
+      </thead>
+
+      <tbody>
+      {% for item in cart %}
+      <tr><td>{{ forloop.counter }}</td>
+          <td>{{ item.vente.pk }}</td>
+          <td>{{ item.date_added }}</td>
+          <td><a href="{% url "inventory:article_detail" item.article.pk %}">{{ item.article.nom }}</a></td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.prix }}</td>
+          <td>{{ item.total }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+          <th colspan="6">Total de votre panier:</th>
+          <td id="amount"><strong>{{ cart_total|floatformat:2 }}</strong></td>
+      </tr>
+
+    </table>
+
+
+{% crispy form %}
+</div>
+{% endblock %}

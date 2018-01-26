@@ -1,0 +1,54 @@
+{% extends "inventex.html" %}
+{% load humanize %}
+{% block content %}
+
+<table class="table">
+      <thead>
+         <tr>
+            <th>No</th>
+             <th>Vente-ID</th>
+             <th>Panier validé?</th>
+             <th>Date d'ajout</th>
+             <th>Action</th>
+            <th>Titre</th>
+            <th>Quantité</th>
+            <th>Prix</th>
+            <th>Total</th>
+         </tr>
+      </thead>
+
+      <tbody>
+      {% for item in cart %}
+      <tr><td>{{ forloop.counter }}</td>
+          <td>{{ item.vente.pk}}</td>
+          <td>{{ item.cart_complete }}</td>
+          <td>{{ item.date_added }}</td>
+          <td>
+              <form method="POST" action="{% url "cart:remove_item" item.article.pk  %}">
+                {% csrf_token %}
+                <input type="submit" class="btn btn-warning" value="Supprimer"/>
+              </form>
+          </td>
+          <td><a href="{% url "inventory:article_detail" item.article.pk %}">{{ item.article.nom }}</a></td>
+          <td>{{ item.quantity }}</td>
+          <td>{{ item.prix|intcomma }}</td>
+          <td><form method="POST" action="{% url "cart:edit_price" item.pk %}">
+              {% csrf_token %}
+              <input id="new_price" type="number" value="{{ item.prix }}" name="new_price">
+              <input type="submit" class="btn btn-success" value="Modifier"/>
+              </form> </td>
+          <td>{{ item.total }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+          <th colspan="6">Total de votre panier:</th>
+          <td id="amount"><strong>{{ cart_total|intcomma }}</strong></td>
+      </tr>
+
+    </table>
+{% if cart_total %}
+<h3>Vente-ID: {{vente_pk}}</h3>
+<p><a class="btn btn-success" href="{% url "cart:checkout"  vente_pk %}">Passer la commande</a> </p>
+{% endif %}
+
+{% endblock %}

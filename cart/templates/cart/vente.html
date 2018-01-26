@@ -1,0 +1,106 @@
+{% extends "inventex.html" %}
+{% load static %}
+{% load thumbnail %}
+{% load humanize %}
+{% block content %}
+
+<p>
+<div class="container">
+  {% if vente.reglement_termine == True %}
+    <h1>Merci de votre achat!</h1>
+  {% endif %}
+
+  <table class="table">
+    <tbody>
+    <tr>
+        <th>No-de vente</th>
+        <td>{{vente.pk}}</td>
+    </tr>
+
+    <tr>
+
+        {% if vente.client %}
+        <th>Client</th>
+        <td>{{vente.client.prenom}} {{vente.client.nom}}</td>
+        {% endif %}
+    </tr>
+
+      <tr>
+        <th>Date</th><td>{{vente.date|date:"d/m/y"}}</td>
+      </tr>
+       <tr>
+        <th>Montant</th><td>{{vente.montant|intcomma}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <table class="table">
+      <thead>
+      <tr>
+          <th>Article-ID</th>
+          <th>Nom</th>
+          <th>Aperçu</th>
+          <th>Prix</th>
+          <th>Quantité</th>
+      </tr>
+      </thead>
+      <tbody>
+          {% for a in vente.cartitem_set.all %}
+          <tr>
+              <td>{{a.article.pk}}</td>
+              <td>{{a.article.nom}}</td>
+              {% if a.article.photo_set.all %}
+              {% thumbnail a.article.photo_set.first.photo.path  "50x50" crop="center" as thumbnail %}
+              <td><a href="{{ a.article.photo_set.first.photo.url }}" alt="image">
+                  <img src="{{ thumbnail.url }}" alt="The thumbnail" style="width: {{ thumbnail.width }}">
+                  </a>
+              </td>
+              {% endthumbnail %}
+              {% else %}
+              <td>pas d'aperçu</td>
+              {% endif %}
+              <td>{{a.prix|intcomma}}</td>
+              <td>{{a.quantity}}</td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+
+    <h3>Paiements</h3>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Nr</th>
+            <th>Date</th>
+            <th>Montant</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for p in vente.paiement_set.all %}
+        <tr><td>{{forloop.counter}}</td>  <td>{{p.date|date:"D d/m/y"}}</td><td>{{p.montant|intcomma}}</td></tr>
+        {% endfor %}
+        <tr>
+            <th colspan="2">Total</th>
+            <td colspan="2">{{ vente.total_paiements|intcomma }}</td>
+        </tr>
+        <tr>
+            <th colspan="2">Solde</th>
+            <td colspan="2">{{ vente.solde_paiements|intcomma }}</td>
+        </tr>
+        </tbody>
+    </table>
+    {% if vente.reglement_termine == True %}
+    <h1>Merci de votre achat!</h1>
+    {% else %}
+    <form method="GET" action="{% url "cart:paiement_add" vente.pk  %}">
+       {% csrf_token %}
+       <input type="submit" class="btn btn-warning" value="Ajouter un paiement"/>
+    </form>
+    {% endif %}
+</div>
+
+{% endblock %}
+
+{% block footernav %}
+
+{% endblock %}

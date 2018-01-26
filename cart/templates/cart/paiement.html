@@ -1,0 +1,26 @@
+{% extends "inventex.html" %}
+{% load static %}
+{% block content %}
+
+    <table class="table table-light">
+      <tbody>
+      <tr>
+          <th>ID</th>
+          <td>{{ paiement.pk }}</td>
+      </tr>
+      <tr>
+          <th>Date</th>
+          <td>{{ paiement.date }}</td>
+      </tr>
+      <tr>
+          <th>Vente</th>
+          <td>{{ paiement.vente }}</td>
+      </tr>
+      <tr>
+          <th>Montant</th>
+          <td>{{ paiement.montant }}</td>
+      </tr>
+      </tbody>
+    </table>
+
+{% endblock %}
