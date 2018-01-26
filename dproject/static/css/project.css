@@ -1,0 +1,14 @@
+body
+{
+    color: black;
+    /* box-shadow: 6px 6px 6px; */
+    /* text-decoration: underline; */
+    /* background-image: url('images/logindoor.jpg'); */
+    background-color: blanchedalmond;
+    opacity: 1.0;
+    margin: auto;
+}
+
+#submit-id-submit {
+    margin-top: 10pt;
+}

@@ -4,11 +4,65 @@
 {% block title %}{{ site_name }}{% endblock %}
 
 {% block content %}
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h1>{% trans 'Django successfully installed' %}</h1>
-    </div>
-  </div>
+<div id="bienvenue" class="container">
+    {% if request.user.is_authenticated %}
+    <h1>Bienvenue {{ user.first_name|default:user.username }}!</h1>
+       {% if employee %}
+       <p>Votre employeur: {{employee.enterprise}}</p>
+       {% else %}
+       <div class="container">
+         <div class="jumbotron">
+
+         <h2>Pas un employé/e? Alors pas de contenu visible!</h2>
+           <p>
+             Le compte que vous utilisez n'est pas relié à un employé. Vous n'avez donc pas accès
+             au contenu de ce site. Mais peut-être avez-vous un autre compte?
+           </p>
+
+           <p>Dans ce cas veuillez vous déconnecter puis vous
+             annoncez avec un autre nom d'utilisateur/trice, ou
+           adressez vous à votre administrateur/trice pour qu'il vous enregistre comme employé/e.
+           </p>
+         </div>
+       </div>
+       {% endif %}
+    {% else %}
+    <h1>Bienvenue!</h1>
+    {% endif %}
+
+    <h2>Ce qu'offre ce site</h2>
+
+
+
+    <p class="alert alert-info">Le but du site est de permettre l'établissement d'inventaires afin d'informer sur
+        la quantité d'articles en stock, de quel arrivage ils proviennent,
+        et leur coût de revient. Il permet aussi de saisir les ventes; les quantités en stocks sont alors mises
+        à jour. On peut réaliser des ventes anonymes ou renseigner un client.
+    </p>
+
+
+<h2>Comment commencer?</h2>
+    <p>
+        Vous pouvez procéder de la façon suivante:
+    </p>
+
+
+    <dl class="dl-horizontal">
+        <dt>Créer un arrivage</dt>
+          <dd>Lors de la création les informations à saisir sont minimales. Il est
+      toujours possible d'y revenir plus tard. Pour créer un arrivage, cliquer
+          <a href="#">ici.</a>
+          </dd>
+
+        <dt>Saisir les articles</dt>
+        <dd>Utiliser le site d'administration de <a href="admin/">Django</a>. Il est important en cas de photographies des
+        articles de suivre un ordre strict: 1 photo / 1 article, voire plusieurs photos du même article.
+        Car ceci permet de jouer un sript pour lier les photos aux articles. Il est précieux aussi
+        de renseigner le no de photo dans le champ correspondant.</dd>
+
+    </dl>
+
+
+
 </div>
 {% endblock %}

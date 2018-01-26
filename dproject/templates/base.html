@@ -25,7 +25,7 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-default navbar-static-top">
+    <nav class="navbar navbar-default navbar-inverse navbar-static-top">
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false">
@@ -115,10 +115,11 @@
         <div class="container-fluid">
           <div class="container">
             <div class="navbar-header">
-              <a class="navbar-brand" href="https://djangoeurope.com/">{% trans 'Installed by' %} <b>djangoeurope</b> {% trans 'one click installer' %}</a>
+              <a class="navbar-brand" href="http://metacoherence.ch/">{% trans 'créé par' %} <b>Metacoherence</b>
+              </a>
             </div>
             <ul class="nav navbar-nav navbar-right">
-              <li><a>Version 0.0.1</a></li>
+              <li><a>Version 0.0.2</a></li>
             </ul>
           </div>
         </div>
@@ -137,7 +138,7 @@
     {% block javascript %}
     <script src="{% static 'js/project.js' %}"></script>
     {% endblock javascript %}
-      
+
   </body>
 </html>
 
