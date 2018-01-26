@@ -1,0 +1,44 @@
+[
+{
+    "model": "sites.site",
+    "pk": 1,
+    "fields": {
+        "name": "prestigemikafric",
+        "domain": "prestigemikafric.com"
+    }
+},
+{
+    "model": "imprint.ownership",
+    "pk": 1,
+    "fields": {
+        "company_name": "",
+        "first_name": "Olivier",
+        "last_name": "Gaillard",
+        "email": "info@metacoherence.ch",
+        "street": "Hohle Gasse 12",
+        "postal_code": "3095",
+        "place": "Spiegel b. Bern",
+        "country_code": "CH",
+        "country_name": "Switzerland",
+        "vat_number": "",
+        "logo": ""
+    }
+},
+{
+    "model": "imprint.bankaccount",
+    "pk": 2,
+    "fields": {
+        "owner": 1,
+        "name": "UBS Switzerland",
+        "street": "Bahnhofstrasse 45",
+        "postal_code": "8001",
+        "place": "Zurich",
+        "country_code": "CH",
+        "country_name": "Switzerland",
+        "iban": "CH92 0000 0000 0000 0000 01",
+        "number": "0.00.001",
+        "bic": "UBSWCHZH80A",
+        "currency_code": "CHF"
+    }
+}
+]
