@@ -28,5 +28,10 @@
           <td>{{ a.reglement_termine|yesno:"Oui,Non" }}</td>
       </tr>
       {% endfor %}
+      <tr>
+        <th colspan="4">Total</th>
+        <td colspan="4"><b>{{total|intcomma}}</b></td>
+      </tr>
     </table>
+
 {% endblock %}

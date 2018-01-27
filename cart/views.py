@@ -1,4 +1,5 @@
 from django.shortcuts import render, reverse
+import datetime
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
 from crispy_forms.bootstrap import PrependedText
@@ -81,9 +82,7 @@ class CartView(ListView):
     def get_queryset(self):
         if is_cart_id_session_set(self.request):
             qs = CartItem.objects.filter(cart_id = get_cart_id_session(self.request))
-            print("Lenght of qs before filtering by cart_complete: %s" % len(qs))
             qs = qs.exclude(cart_complete=True)
-            print("length after filtering: %s" % len(qs))
             return qs #CartItem.objects.filter(cart_id = get_cart_id_session(self.request))
         else:
             return []
@@ -147,6 +146,17 @@ class VenteListView(ListView):
     model = Vente
     template_name = 'cart/ventes.html'
     context_object_name = 'ventes'
+
+    def get_context_data(self, **kwargs):
+        ctx = super(VenteListView, self).get_context_data(**kwargs)
+        li = Vente.objects.all()
+        total = 0
+        for v in li:
+            total += v.montant
+        ctx['total'] = total
+        return ctx
+
+
 
 
 class VenteDeleteView(DeleteView):
@@ -216,7 +226,10 @@ def add_paiement(request, vente_pk):
         # initial data = vente.pk
         vente = Vente.objects.get(pk=vente_pk)
         vente_solde = vente.solde_paiements()
-        form = PaiementCreateForm(initial={'vente': vente, 'montant' : vente_solde})
+
+        date_vente = datetime.datetime(year=vente.date.year, month=vente.date.month, day=vente.date.day,
+                                       hour=vente.date.hour, minute=vente.date.minute)
+        form = PaiementCreateForm(initial={'vente': vente, 'date' : date_vente, 'montant' : vente_solde})
         # add prepended text here
         form.helper.layout.append(PrependedText('montant', 'Max: ' + str(vente_solde)))
         form.helper.layout.append(
