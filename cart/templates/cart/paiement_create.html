@@ -4,5 +4,25 @@
 {% block content %}
 <div class="container">
 {% crispy form %}
+
+{% block javascript %}
+<script type="text/javascript">
+
+$( function() {
+     $.datepicker.setDefaults(
+       $.datepicker.regional["fr-CH"]);
+     $( '[id="datetimepicker_vente"]' ).datepicker({
+       dateFormat: "dd.mm.yy"});
+}
+);
+
+$(function() {
+  $('[id="id_montant"]').html('3333333');
+});
+
+
+ </script>
+{% endblock %}
+
 </div>
 {% endblock %}

@@ -5,5 +5,23 @@
 <div class="container">
     <h4>Solde actuel: {{solde}}</h4>
 {% crispy form %}
+
+{% block javascript %}
+<script type="text/javascript">
+
+$( function() {
+     $.datepicker.setDefaults(
+       $.datepicker.regional["fr-CH"]);
+     $( '[id="datetimepicker_vente"]' ).datepicker({
+       dateFormat: "dd.mm.yy" });
+}
+);
+
+$(function() {
+  $('[id="test"]').html('3333333');
+});
+ </script>
+{% endblock %}
+
 </div>
 {% endblock %}

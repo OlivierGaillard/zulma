@@ -18,6 +18,9 @@
     <link href="{% static 'css/bootstrap-datetimepicker.min.css' %}" rel="stylesheet">
     <link href="{% static 'font-awesome/css/font-awesome.min.css' %}" rel="stylesheet">
 
+    <!--ajouté par moi pour datepicker jquery-->
+    <link rel="stylesheet" href="/static/conciergerie/jqueryui/jquery-ui.min.css">
+
     <!-- Project specific CSS -->
     {% block css %}
     <link href="{% static 'css/project.css' %}" rel="stylesheet">
@@ -132,14 +135,24 @@
     <!-- Third-party javascript libraries go here -->
     <script src="{% static 'jquery/jquery.min.js' %}"></script>
     <script src="{% static 'jquery/js.cookie.js' %}"></script>
+    <!--mon ajout-->
+    <script src="/static/jqueryui/jquery-ui.min.js"></script>
     <script src="{% static 'bootstrap3/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'bootstrap3/js/bootstrap-dialog.min.js' %}"></script>
     <script src="{% static 'js/moment-with-locales.min.js' %}"></script>
     <script src="{% static 'js/bootstrap-datetimepicker.min.js' %}"></script>
 
+
+    <!--ajouté par moi-->
+    <script src="{% static 'js/project.js' %}"></script>
+    <script src="/static/jquery/jqueryhello.js"></script>
+    <script src="/static/jqueryui/external/jquery/jquery-3.2.1.min.js"></script>
+    <script src="/static/jqueryui/jquery-ui.min.js"></script>
+    <script src="/static/jqueryui/i18n/datepicker-fr-CH.js"></script>
+
+
     <!-- Project specific javascript -->
     {% block javascript %}
-    <script src="{% static 'js/project.js' %}"></script>
     {% endblock javascript %}
 
   </body>

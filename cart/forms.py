@@ -11,8 +11,8 @@ class VenteCreateForm(forms.ModelForm):
         model = Vente
         fields = ('date', 'client', )
         widgets = {
-            'date': forms.TextInput(
-                attrs={'type': 'datetime'}
+            'date': forms.DateTimeInput(
+                attrs={'id': 'datetimepicker_vente'}
             ),
         }
 
@@ -76,10 +76,12 @@ class PaiementCreateForm(forms.ModelForm):
                 attrs={'readonly': 'True'} # attr 'disabled' causes field is removed from "cleaned_data"
                 # which is used in method "clean".
             ),
-            'date' : forms.TextInput(
-                attrs={'type' : 'date'}
-            )
+
+            'date': forms.DateTimeInput(
+                attrs={'id': 'datetimepicker_vente'}
+            ),
         }
+
 
     def __init__(self, *args, **kwargs):
         super(PaiementCreateForm, self).__init__(*args, **kwargs)

@@ -1,11 +1,13 @@
 {% extends "inventex.html" %}
 {% load crispy_forms_tags %}
 {% block content %}
+
 <div class="container">
+
 <table class="table">
       <thead>
          <tr>
-            <th>No</th>
+            <th id="hello">No</th>
              <th>Vente-ID</th>
              <th>Date d'ajout</th>
             <th>Titre</th>
@@ -36,4 +38,25 @@
 
 {% crispy form %}
 </div>
+{% endblock %}
+
+{% block javascript %}
+<script type="text/javascript">
+
+$( function() {
+     $.datepicker.setDefaults(
+       $.datepicker.regional["fr-CH"]);
+     $( '[id="datetimepicker_vente"]' ).datepicker({
+       dateFormat: "dd.mm.yy"});
+}
+);
+
+
+
+$(function () {
+     $('[id="sss-datetimepicker_vente"]').datetimepicker();
+});
+
+
+  </script>
 {% endblock %}
