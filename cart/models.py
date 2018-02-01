@@ -10,7 +10,8 @@ class Client(models.Model):
     prenom = models.CharField(max_length=80)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,20}$',
                                  message="Format: '+999999999'. Maximum 20 chiffres.")
-    tel = models.CharField(max_length=20, validators=[phone_regex], help_text="pas d'espaces entre les chiffres svp")
+    tel = models.CharField(max_length=20, validators=[phone_regex], help_text="pas d'espaces entre les chiffres svp",
+                           null=True, blank=True)
 
     class Meta:
         unique_together = ['nom', 'prenom']

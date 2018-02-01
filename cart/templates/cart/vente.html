@@ -99,7 +99,18 @@
        {% csrf_token %}
        <input type="submit" class="btn btn-warning" value="Ajouter un paiement"/>
     </form>
+
     {% endif %}
+
+<h3>Modifier la vente</h3>
+
+  <p>
+  <form method="GET" action="{% url "cart:vente_update" vente.pk  %}">
+       {% csrf_token %}
+       <input type="submit" class="btn btn-danger" value="Modifier la vente"/>
+    </form>
+</p>
+
 </div>
 
 {% endblock %}

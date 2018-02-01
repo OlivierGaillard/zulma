@@ -47,8 +47,19 @@
 
     </table>
 {% if cart_total %}
+
 <h3>Vente-ID: {{vente_pk}}</h3>
-<p><a class="btn btn-success" href="{% url "cart:checkout"  vente_pk %}">Passer la commande</a> </p>
+<div class="container">
+         <div class="jumbotron">
+
+         <h2>Besoin d'ajouter un client?</h2>
+           <p>Avant de passer la commande vérifiez svp si votre client est dans la
+           <a href="{% url "cart:clients" %}">liste</a>. </p>
+         </div>
+  <p><a class="btn btn-success" href="{% url "cart:checkout"  vente_pk %}">Passer la commande</a> </p>
+</div>
+
+
 {% endif %}
 
 {% endblock %}

@@ -13,6 +13,7 @@
           <th>Montant total</th>
           <th>Solde à payer</th>
           <th>Règlement terminé?</th>
+          <th>Modifier?</th>
       </tr>
       </thead>
 
@@ -26,6 +27,7 @@
           <td>{{ a.montant|intcomma }}</td>
           <td>{{ a.solde_paiements|intcomma}}</td>
           <td>{{ a.reglement_termine|yesno:"Oui,Non" }}</td>
+          <td> <a title="Cliquer pour modifier" href="/cart/vente_update/{{a.pk}}">Modifier {{ a.pk }}</a> </td>
       </tr>
       {% endfor %}
       <tr>

@@ -6,7 +6,7 @@ from crispy_forms.bootstrap import PrependedText
 from crispy_forms.bootstrap import TabHolder, Tab, FormActions
 from crispy_forms.layout import Submit, Layout, Fieldset, Field
 from .models import CartItem, Vente, Client, Paiement
-from .forms import VenteCreateForm, ClientCreateForm, PaiementCreateForm, VenteDeleteForm
+from .forms import VenteCreateForm, ClientCreateForm, PaiementCreateForm, VenteDeleteForm, VenteUpdateForm, ClientUpdateForm
 from inventory.models import Article
 from .cartutils import is_cart_id_session_set, _set_or_get_session_id, get_cart_items, get_cart_id_session
 from .cartutils import  get_cart_item_of_book, article_already_in_cart, get_cart_counter, _remove_cart_item, cart_not_complete
@@ -141,6 +141,12 @@ class VenteDetail(DetailView):
     template_name = 'cart/vente.html'
     context_object_name = 'vente'
 
+class VenteUpdateView(UpdateView):
+    model = Vente
+    template_name = 'cart/vente_update.html'
+    context_object_name = 'vente'
+    form_class = VenteUpdateForm
+
 
 class VenteListView(ListView):
     model = Vente
@@ -179,6 +185,12 @@ class ClientCreateView(CreateView):
     model = Client
     template_name = 'cart/client_create.html'
     form_class = ClientCreateForm
+
+
+class ClientUpdateView(UpdateView):
+    model = Client
+    template_name = 'cart/client_update.html'
+    form_class = ClientUpdateForm
 
 
 class PaiementListView(ListView):

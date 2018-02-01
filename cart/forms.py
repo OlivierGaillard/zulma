@@ -29,6 +29,30 @@ class VenteCreateForm(forms.ModelForm):
             )
         )
 
+class VenteUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Vente
+        fields = ('date', 'client', 'montant', 'reglement_termine')
+        widgets = {
+            'date': forms.DateTimeInput(
+                attrs={'id': 'datetimepicker_vente'}
+            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(VenteUpdateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-lg-2'
+        self.helper.field_class = 'col-lg-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
+
 class VenteDeleteForm(forms.ModelForm):
     class Meta:
         model = Vente
@@ -65,6 +89,24 @@ class ClientCreateForm(forms.ModelForm):
                 Submit('save', 'Submit'),
             )
         )
+
+class ClientUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Client
+        fields = ('nom', 'prenom', 'tel')
+    def __init__(self, *args, **kwargs):
+        super(ClientUpdateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-lg-2'
+        self.helper.field_class = 'col-lg-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
 
 class PaiementCreateForm(forms.ModelForm):
     class Meta:
