@@ -55,11 +55,30 @@ def remove_cart_item(request, pk):
         raise ValueError('Should not be called with GET')
 
 
+def remove_article_from_vente_and_update_article_quantity(request, pk):
+    """pk is the one of cart_item, its ID."""
+    if request.method == 'GET':
+        cart_item = CartItem.objects.get(pk=pk)
+        vente = cart_item.vente
+        article = Article.objects.get(pk=cart_item.article.pk)
+        article.quantite += cart_item.quantity
+        article.save()
+        cart_item.delete()
+#        url_redirect = reverse('cart:vente_update', kwargs={'pk':vente.pk})
+        return HttpResponseRedirect("/cart/vente_update/%s" % vente.pk)
+
+
 def edit_price(request, pk):
     if request.method == 'POST':
         cart_item = CartItem.objects.get(pk=pk)
         price = request.POST.get('new_price', '')
         cart_item.prix = float(price)
+        cart_item.save()
+        if cart_item.prix == 0:
+            return render(request, 'cart/cart_content.html',
+                          {'error_message' : "Le montant de l'article est zéro!",
+                           'cart' : get_cart_items(request), 'new_price' : price,
+                           })
         cart_item.save()
         url_redirect = reverse('cart:cart_content')
         return HttpResponseRedirect(url_redirect)
@@ -163,12 +182,19 @@ class VenteListView(ListView):
         return ctx
 
 
+# class VenteDeleteView(DeleteView):
+#     model = Vente
+#     template_name = 'cart/vente_delete.html'
+#     form_class = VenteDeleteForm
 
+def vente_delete(request, pk):
+    if request.method == "GET":
+        vente = Vente.objects.get(pk=pk)
+        vente.delete()
+        return HttpResponseRedirect("/cart/ventes/")
+    else:
+        print('POST? strange')
 
-class VenteDeleteView(DeleteView):
-    model = Vente
-    template_name = 'cart/vente_delete.html'
-    form_class = VenteDeleteForm
 
 
 class ClientListView(ListView):

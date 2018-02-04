@@ -1,10 +1,67 @@
 {% extends "inventex.html" %}
 {% load static %}
+{% load thumbnail %}
+{% load humanize %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
 {% crispy form %}
+
+<table class="table">
+      <thead>
+      <tr>
+          <th>Article-ID</th>
+          <th>Nom</th>
+          <th>Aperçu</th>
+          <th>Prix</th>
+          <th>Quantité</th>
+          <th>Supprimer</th>
+      </tr>
+      </thead>
+      <tbody>
+          {% for a in vente.cartitem_set.all %}
+          <tr>
+              <td><a title="Cliquer pour voir les détails" href="/inventory/article_detail/{{a.article.pk}}">{{ a.article.pk }}</td>
+              <td>{{a.article.nom}}</td>
+              {% if a.article.photo_set.all %}
+              {% thumbnail a.article.photo_set.first.photo.path  "50x50" crop="center" as thumbnail %}
+              <td><a href="{{ a.article.photo_set.first.photo.url }}" alt="image">
+                  <img src="{{ thumbnail.url }}" alt="The thumbnail" style="width: {{ thumbnail.width }}">
+                  </a>
+              </td>
+              {% endthumbnail %}
+              {% else %}
+              <td>pas d'aperçu</td>
+              {% endif %}
+              <td>{{a.prix|intcomma}}</td>
+              <td>{{a.quantity}}</td>
+              <td><a href="{% url "cart:remove_article_from_vente" a.pk %}">Supprimer</a> </td>
+          </tr>
+          {% endfor %}
+      </tbody>
+  </table>
+
+  {% if vente.cartitem_set.all|length == 0 %}
+
+
+  <h3>Supprimer la vente ID {{vente.pk}}</h3>
+
+  <p>
+  <form method="GET" action="{% url "cart:vente_delete" vente.pk  %}">
+       {% csrf_token %}
+       <input type="submit" class="btn btn-danger" value="Effacer la vente"/>
+    </form>
+</p>
+  {% endif %}
+
+
+
 </div>
+
+
+
+
+
 {% block javascript %}
 <script type="text/javascript">
 

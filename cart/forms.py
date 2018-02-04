@@ -56,7 +56,7 @@ class VenteUpdateForm(forms.ModelForm):
 class VenteDeleteForm(forms.ModelForm):
     class Meta:
         model = Vente
-        fields = ('date', 'client')
+        fields = ('date', 'client', 'montant', 'reglement_termine')
 
     def __init__(self, *args, **kwargs):
         super(VenteDeleteForm, self).__init__(*args, **kwargs)

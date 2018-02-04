@@ -7,12 +7,12 @@
          <tr>
             <th>No</th>
              <th>Vente-ID</th>
-             <th>Panier validé?</th>
              <th>Date d'ajout</th>
              <th>Action</th>
             <th>Titre</th>
             <th>Quantité</th>
             <th>Prix</th>
+           <th>Modifier</th>
             <th>Total</th>
          </tr>
       </thead>
@@ -21,7 +21,6 @@
       {% for item in cart %}
       <tr><td>{{ forloop.counter }}</td>
           <td>{{ item.vente.pk}}</td>
-          <td>{{ item.cart_complete }}</td>
           <td>{{ item.date_added }}</td>
           <td>
               <form method="POST" action="{% url "cart:remove_item" item.article.pk  %}">
@@ -34,7 +33,14 @@
           <td>{{ item.prix|intcomma }}</td>
           <td><form method="POST" action="{% url "cart:edit_price" item.pk %}">
               {% csrf_token %}
+              {% if error_message %}
+              <label onerror="{{ error_message }}" >{{error_message}}</label>
+              <input id="new_price" type="number" value="{{ new_price }}" name="new_price">
+              {% else %}
               <input id="new_price" type="number" value="{{ item.prix }}" name="new_price">
+              {% endif %}
+
+
               <input type="submit" class="btn btn-success" value="Modifier"/>
               </form> </td>
           <td>{{ item.total }}</td>
