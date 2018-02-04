@@ -72,6 +72,9 @@ def edit_price(request, pk):
     if request.method == 'POST':
         cart_item = CartItem.objects.get(pk=pk)
         price = request.POST.get('new_price', '')
+        if len(price) == 0:
+            # assuming zero
+            price = "0"
         cart_item.prix = float(price)
         cart_item.save()
         if cart_item.prix == 0:
