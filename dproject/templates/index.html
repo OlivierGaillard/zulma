@@ -9,28 +9,8 @@
     <h1>Bienvenue {{ user.first_name|default:user.username }}!</h1>
        {% if employee %}
        <p>Votre employeur: {{employee.enterprise}}</p>
-       {% else %}
-       <div class="container">
-         <div class="jumbotron">
 
-         <h2>Pas un employé/e? Alors pas de contenu visible!</h2>
-           <p>
-             Le compte que vous utilisez n'est pas relié à un employé. Vous n'avez donc pas accès
-             au contenu de ce site. Mais peut-être avez-vous un autre compte?
-           </p>
-
-           <p>Dans ce cas veuillez vous déconnecter puis vous
-             <a href="{% url 'login' %}">annoncez</a> avec un autre nom d'utilisateur/trice, ou
-           adressez vous à votre administrateur/trice pour qu'il vous enregistre comme employé/e.
-           </p>
-         </div>
-       </div>
-       {% endif %}
-    {% else %}
-    <h1>Bienvenue!</h1>
-    {% endif %}
-
-    <h2>Comment saisir une vente</h2>
+  <h2>Comment saisir une vente</h2>
 
 <p>
     <ol>
@@ -54,6 +34,39 @@
 
   <p>Lorsque le client paie par avances, vous devez afficher la liste des ventes, puis
   cliquer sur le vente-ID afin d'ajouter le paiement.</p>
+
+
+       {% else %}
+       <div class="container">
+         <div class="jumbotron">
+
+         <h2>Pas un employé/e? Alors pas de contenu visible!</h2>
+           <p>
+             Le compte que vous utilisez n'est pas relié à un employé. Vous n'avez donc pas accès
+             au contenu de ce site. Mais peut-être avez-vous un autre compte?
+           </p>
+
+           <p>Dans ce cas veuillez vous déconnecter puis vous
+             <a href="{% url 'login' %}">annoncez</a> avec un autre nom d'utilisateur/trice, ou
+           adressez vous à votre administrateur/trice pour qu'il vous enregistre comme employé/e.
+           </p>
+         </div>
+       </div>
+       {% endif %}
+    {% else %}
+  <div class="container">
+         <div class="jumbotron">
+           <h1>Bienvenue sur notre site!</h1>
+
+           <p>Tout prochainement nous présenterons nos soldes pour nos visiteurs.</p>
+
+           <p>A tout bientôt!</p>
+         </div>
+       </div>
+
+
+
+    {% endif %}
 
 
 
