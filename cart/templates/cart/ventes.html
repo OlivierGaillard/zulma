@@ -19,12 +19,22 @@
       <tbody>
       {% for a in ventes %}
       <tr>
-          <td> <a title="Cliquer pour ajouter un paiement ou voir les détails de la vente" href="/cart/vente/{{a.pk}}">{{ a.pk }} paiement++ </a> </td>
+          <td> <a title="Cliquer pour ajouter un paiement ou voir les détails de la vente" href="/cart/vente/{{a.pk}}">{{ a.pk }}</a> </td>
           <td>{{ a.date|date:"D d/m/y" }}</td>
           <td>{{ a.cartitem_set.first.article.nom }}</td>
           <td>{{ a.client.nom|default_if_none:"anonyme" }}</td>
           <td>{{ a.montant|intcomma }}</td>
+          {% if a.solde_paiements > 0 %}
+          <td>
+            <form method="GET" action="{% url "cart:paiement_add" a.pk  %}" >
+            {% csrf_token %}
+            <input type="submit" class="btn btn-success" value="Ajouter un paiement" />
+            <small class="form-text text-muted">solde: {{a.solde_paiements|intcomma}}</small>
+            </form>
+          </td>
+          {% else %}
           <td>{{ a.solde_paiements|intcomma}}</td>
+          {% endif %}
           <td>{{ a.reglement_termine|yesno:"Oui,Non" }}</td>
       </tr>
       {% endfor %}
