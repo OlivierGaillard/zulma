@@ -48,18 +48,18 @@
           <ul class="nav navbar-nav">
             <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
             <li><a href="{% url 'about' %}">{% trans 'About' %}</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ LANGUAGE_CODE }}</a>
-              <ul class="dropdown-menu" aria-labelledby="dropdown02">{% for lang in LANGUAGES %}
-                <form id="formsetLang{{ lang.0 }}" action="{% url 'set_language' %}" method="POST">
-                  {% csrf_token %}
-                  <input type="hidden" name="language" value="{{ lang.0 }}" />
-                  <input type="hidden" name="next" value="{{ request.get_full_path }}" />
-                </form>
-                <li><a class="language_changer" id="{{ lang.0 }}" href="#">{{ lang.1 }}</a></li>
-              {% endfor %}
-              </ul>
-            </li>
+            <!--<li class="nav-item dropdown">-->
+              <!--<a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ LANGUAGE_CODE }}</a>-->
+              <!--<ul class="dropdown-menu" aria-labelledby="dropdown02">{% for lang in LANGUAGES %}-->
+                <!--<form id="formsetLang{{ lang.0 }}" action="{% url 'set_language' %}" method="POST">-->
+                  <!--{% csrf_token %}-->
+                  <!--<input type="hidden" name="language" value="{{ lang.0 }}" />-->
+                  <!--<input type="hidden" name="next" value="{{ request.get_full_path }}" />-->
+                <!--</form>-->
+                <!--<li><a class="language_changer" id="{{ lang.0 }}" href="#">{{ lang.1 }}</a></li>-->
+              <!--{% endfor %}-->
+              <!--</ul>-->
+            <!--</li>-->
           </ul>
           <!--<form class="navbar-form navbar-left" action="/search/" method="GET">-->
             <!--<div class="input-group">-->
