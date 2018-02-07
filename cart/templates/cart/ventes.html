@@ -28,7 +28,13 @@
           <td>
             <form method="GET" action="{% url "cart:paiement_add" a.pk  %}" >
             {% csrf_token %}
-            <input type="submit" class="btn btn-success" value="Ajouter un paiement" />
+            <input type="submit"
+                   {% if a.solde_paiements == a.montant %}
+                   class="btn btn-warning"
+                   {% else %}
+                   class="btn btn-success"
+                   {% endif %}
+                   value="Ajouter un paiement" />
             <small class="form-text text-muted">solde: {{a.solde_paiements|intcomma}}</small>
             </form>
           </td>
