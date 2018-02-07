@@ -32,6 +32,7 @@ def add_cart_item(request, pk):
                 cart_item.article = article
                 cart_item.quantity = 1
                 if cart_items.count() == 0:
+                    # Pourquoi créer une vente maintenant et pas lors de la commande?
                     vente = Vente.objects.create()
                     cart_item.vente = vente
                 else:
@@ -47,8 +48,16 @@ def add_cart_item(request, pk):
 
 def remove_cart_item(request, pk):
     if request.method == 'POST':
+        cart_items = get_cart_items(request)
+        vente = cart_items[0].vente
         article = Article.objects.get(pk=pk)
         _remove_cart_item(request, article)
+        # If the cart is empty then the Vente is deleted. Because
+        # a new instance of "Vente" is created.
+        if len(cart_items) == 0:
+            vente = Vente.objects.get(pk=vente.pk)
+            vente.delete()
+
         url_redirect = reverse('cart:cart_content')
         return HttpResponseRedirect(url_redirect)
     else:
@@ -150,6 +159,7 @@ class CheckoutView(UpdateView):
             self.object.montant = CartItem.get_total_of_cart(cart_id)
 
         cart_items = CartItem.objects.filter(vente=self.object)
+        cart_item2 = get_cart_items(request=self.request)
         for cart in cart_items:
             cart.cart_complete = True
             cart.save()
