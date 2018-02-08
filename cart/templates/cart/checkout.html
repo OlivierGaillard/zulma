@@ -8,7 +8,6 @@
       <thead>
          <tr>
             <th>No</th>
-             <th>Vente-ID</th>
              <th>Date d'ajout</th>
             <th>Titre</th>
             <th>Quantité</th>
@@ -20,7 +19,6 @@
       <tbody>
       {% for item in cart %}
       <tr><td>{{ forloop.counter }}</td>
-          <td>{{ item.vente.pk }}</td>
           <td>{{ item.date_added }}</td>
           <td><a href="{% url "inventory:article_detail" item.article.pk %}">{{ item.article.nom }}</a></td>
           <td>{{ item.quantity }}</td>

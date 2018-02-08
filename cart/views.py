@@ -32,13 +32,6 @@ def add_cart_item(request, pk):
                 cart_item.article = article
                 cart_item.quantity = 1
                 cart_item.save()
-                # if cart_items.count() == 0:
-                #     # Pourquoi créer une vente maintenant et pas lors de la commande?
-                #     vente = Vente.objects.create()
-                #     cart_item.vente = vente
-                # else:
-                #     cart_item.vente = cart_items[0].vente
-                # cart_item.save()
             else:
                 return HttpResponse("Quantite en stock insuffisante!")
         url_redirect = reverse('cart:cart_content')
@@ -53,12 +46,6 @@ def remove_cart_item(request, pk):
         vente = cart_items[0].vente
         article = Article.objects.get(pk=pk)
         _remove_cart_item(request, article)
-        # If the cart is empty then the Vente is deleted. Because
-        # a new instance of "Vente" is created.
-        if len(cart_items) == 0:
-            vente = Vente.objects.get(pk=vente.pk)
-            vente.delete()
-
         url_redirect = reverse('cart:cart_content')
         return HttpResponseRedirect(url_redirect)
     else:
@@ -165,26 +152,14 @@ class CheckoutView(CreateView):
 
     def form_valid(self, form):
         self.object = form.save()
-        montant = form['montant'].value()
-        print('self.object: ', self.object)
-        if is_cart_id_session_set(self.request):
-            cart_id = get_cart_id_session(self.request)
-#            montant_paiement = self.object.montant # le formulaire permet d'entrer le 1er paiement (ou final)
-            # facture total
-            #self.object.montant = CartItem.get_total_of_cart(cart_id)
-
-        #cart_items = CartItem.objects.filter(vente=self.object)
         cart_items = get_cart_items(request=self.request)
         for cart in cart_items:
-            print(cart)
             cart.cart_complete = True
             cart.vente = self.object
             cart.save()
             cart.update_article_quantity()
         remove_cart_id_from_session(self.request)
         return super(CheckoutView, self).form_valid(form)
-
-
 
 
 class VenteDetail(DetailView):

@@ -73,3 +73,7 @@ staticfiles/
 
 # core dumps
 core
+
+config/settings/common.py
+config/settings/local.py
+config/settings/production.py
