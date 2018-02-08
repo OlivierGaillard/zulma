@@ -94,13 +94,20 @@
   {% endif %}
     {% if vente.reglement_termine == True %}
     <h1>Merci de votre achat!</h1>
+    {% elif vente.paiement_set.all|length == 0 %}
+  <div class="alert alert-info">
+    <strong>Rappel!</strong> N'oubliez pas d'ajouter le <strong>paiement! </strong>
+  </div>
+  <form method="GET" action="{% url "cart:paiement_add" vente.pk  %}">
+  {% csrf_token %}
+  <input type="submit" class="btn btn-warning" value="Ajouter un paiement"/>
+  </form>
     {% else %}
-    <form method="GET" action="{% url "cart:paiement_add" vente.pk  %}">
-       {% csrf_token %}
-       <input type="submit" class="btn btn-warning" value="Ajouter un paiement"/>
-    </form>
-
-    {% endif %}
+  <form method="GET" action="{% url "cart:paiement_add" vente.pk  %}">
+  {% csrf_token %}
+  <input type="submit" class="btn btn-warning" value="Ajouter un paiement"/>
+  </form>
+  {% endif %}
 
 <h3>Modifier la vente</h3>
 

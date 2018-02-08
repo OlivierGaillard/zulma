@@ -31,13 +31,14 @@ def add_cart_item(request, pk):
                 cart_item.cart_id = _set_or_get_session_id(request)
                 cart_item.article = article
                 cart_item.quantity = 1
-                if cart_items.count() == 0:
-                    # Pourquoi créer une vente maintenant et pas lors de la commande?
-                    vente = Vente.objects.create()
-                    cart_item.vente = vente
-                else:
-                    cart_item.vente = cart_items[0].vente
                 cart_item.save()
+                # if cart_items.count() == 0:
+                #     # Pourquoi créer une vente maintenant et pas lors de la commande?
+                #     vente = Vente.objects.create()
+                #     cart_item.vente = vente
+                # else:
+                #     cart_item.vente = cart_items[0].vente
+                # cart_item.save()
             else:
                 return HttpResponse("Quantite en stock insuffisante!")
         url_redirect = reverse('cart:cart_content')
@@ -126,14 +127,19 @@ class CartView(ListView):
         if  is_cart_id_session_set(self.request): # and not cart_not_complete(self.request):
             cart_id = get_cart_id_session(self.request)
             ctx['cart_total'] = CartItem.get_total_of_cart(cart_id)
-            ctx['vente_pk']   = CartItem.get_vente_id(cart_id)
+            #ctx['vente_pk']   = CartItem.get_vente_id(cart_id)
             ctx['cart'] = get_cart_items(self.request)
+            carts = get_cart_items(self.request)
+            print(carts)
+            print('cart')
             return ctx
         else:
             return ctx
 
 
-class CheckoutView(UpdateView):
+class CheckoutView(CreateView):
+    """Crée le formulaire de la vente avec la liste des articles mis dans le panier.
+    Le montant est pré-renseigné. """
     model = Vente
     template_name = 'cart/checkout.html'
     context_object_name = 'cart'
@@ -145,27 +151,40 @@ class CheckoutView(UpdateView):
         if is_cart_id_session_set(self.request):
             cart_id = get_cart_id_session(self.request)
             ctx['cart_total'] = CartItem.get_total_of_cart(cart_id)
-            ctx['vente_pk'] = CartItem.get_vente_id(cart_id)
+            #ctx['vente_pk'] = CartItem.get_vente_id(cart_id)
             ctx['cart'] = get_cart_items(self.request)
             return ctx
         else:
             return ctx
 
+    def get_initial(self):
+        initial = super(CheckoutView, self).get_initial()
+        session_id = get_cart_id_session(self.request)
+        initial['montant'] = CartItem.get_total_of_cart(session_id)
+        return  initial
+
     def form_valid(self, form):
+        self.object = form.save()
+        montant = form['montant'].value()
+        print('self.object: ', self.object)
         if is_cart_id_session_set(self.request):
             cart_id = get_cart_id_session(self.request)
 #            montant_paiement = self.object.montant # le formulaire permet d'entrer le 1er paiement (ou final)
             # facture total
-            self.object.montant = CartItem.get_total_of_cart(cart_id)
+            #self.object.montant = CartItem.get_total_of_cart(cart_id)
 
-        cart_items = CartItem.objects.filter(vente=self.object)
-        cart_item2 = get_cart_items(request=self.request)
+        #cart_items = CartItem.objects.filter(vente=self.object)
+        cart_items = get_cart_items(request=self.request)
         for cart in cart_items:
+            print(cart)
             cart.cart_complete = True
+            cart.vente = self.object
             cart.save()
             cart.update_article_quantity()
         remove_cart_id_from_session(self.request)
         return super(CheckoutView, self).form_valid(form)
+
+
 
 
 class VenteDetail(DetailView):

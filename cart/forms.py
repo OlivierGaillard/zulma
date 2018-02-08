@@ -9,7 +9,7 @@ from .models import Vente, Client, Paiement
 class VenteCreateForm(forms.ModelForm):
     class Meta:
         model = Vente
-        fields = ('date', 'client', )
+        fields = ('date', 'client', 'montant')
         widgets = {
             'date': forms.DateTimeInput(
                 attrs={'id': 'datetimepicker_vente'}

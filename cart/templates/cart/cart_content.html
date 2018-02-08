@@ -6,7 +6,6 @@
       <thead>
          <tr>
             <th>No</th>
-             <th>Vente-ID</th>
              <th>Date d'ajout</th>
              <th>Action</th>
             <th>Titre</th>
@@ -20,7 +19,6 @@
       <tbody>
       {% for item in cart %}
       <tr><td>{{ forloop.counter }}</td>
-          <td>{{ item.vente.pk}}</td>
           <td>{{ item.date_added }}</td>
           <td>
               <form method="POST" action="{% url "cart:remove_item" item.article.pk  %}">
@@ -54,9 +52,9 @@
     </table>
 {% if cart_total %}
 
-<h3>Vente-ID: {{vente_pk}}</h3>
+
 <div class="container">
-  <p><a class="btn btn-success" href="{% url "cart:checkout"  vente_pk %}">Passer la commande</a> </p>
+  <p><a class="btn btn-success" href="{% url "cart:checkout" %}">Passer la commande</a> </p>
 </div>
 
 

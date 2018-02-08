@@ -110,12 +110,12 @@ class CartItem(models.Model):
         cart_total_list = [cart_item.total() for cart_item in cart_items]
         return sum(cart_total_list)
 
-    def get_vente_id(session_id):
-        cart_items = CartItem.objects.filter(cart_id=session_id)
-        if cart_items:
-            return cart_items[0].vente.pk
-        else:
-            return None
+    # def get_vente_id(session_id):
+    #     cart_items = CartItem.objects.filter(cart_id=session_id)
+    #     if cart_items:
+    #         return cart_items[0].vente.pk
+    #     else:
+    #         return None
 
 
 
