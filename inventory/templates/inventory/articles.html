@@ -3,14 +3,55 @@
 {% load humanize %}
 {% load thumbnail %}
 {% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
 {% block content %}
 <div class="container">
-<p>
-    <form action="" method="get">
-        {{ filter.form|crispy}}<br>
-    <button type="submit" class="btn btn-success">Filtrer</button>
-</form>
-</p>
+<!--<p>-->
+    <!--<form action="" method="get">-->
+        <!--{{ filter.form|crispy}}<br>-->
+    <!--<button type="submit" class="btn btn-success">Filtrer</button>-->
+<!--</form>-->
+<!--</p>-->
+
+  <form action="" method="get">
+        <div class="well">
+          <h4 style="margin-top: 0">Filtre</h4>
+          <div class="row">
+            <div class="form-group col-sm-4 col-md-3">
+              {{filter.form.id.label_tag}}
+              {% render_field filter.form.id class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+              {{filter.form.nom__icontains.label_tag}}
+              {% render_field filter.form.nom__icontains  class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+              {{filter.form.marque__nom__icontains.label_tag}}
+              {% render_field filter.form.marque__nom__icontains  class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+              {{filter.form.genre_article.label_tag}}
+              {% render_field filter.form.genre_article  class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+              {{filter.form.type_client.label_tag}}
+              {% render_field filter.form.type_client  class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+              {{filter.form.solde.label_tag}}
+              {% render_field filter.form.solde  class="form-control" %}
+            </div>
+
+
+          </div>
+        </div>
+    <button type="submit" class="btn btn-success">
+        <span class="glyphicon glyphicon-search"></span> Filtrer
+      </button>
+    <!--<button type="submit" class="btn btn-success">Filtrer</button>-->
+  </form>
+
 
 <h3>{{count}} articles trouvés.</h3>
   <!--{% if q %}-->
