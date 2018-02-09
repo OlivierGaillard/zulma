@@ -6,7 +6,7 @@ from django.contrib.auth.decorators import login_required, permission_required
 #from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse
-from django_filters import FilterSet, CharFilter, ChoiceFilter
+from django_filters import FilterSet, CharFilter, ChoiceFilter, NumberFilter
 from django_filters.views import FilterView
 from django.views.generic import ListView, TemplateView, CreateView, DetailView
 from django.contrib.auth.models import User
@@ -36,11 +36,14 @@ class ArticleFilter(FilterSet):
     genre_article = ChoiceFilter(choices=genre_choices)
     type_client = ChoiceFilter(choices=clients_choices)
     solde = ChoiceFilter(choices=solde_choices)
+    quantite__gt = NumberFilter(name='quantite', lookup_expr='gt')
+
     class Meta:
         model = Article
         fields = {'marque__nom' : ['icontains'],
                   'nom': ['icontains'],
                   'id' : ['exact'],
+                  'quantite' : ['exact'],
                   }
 
 

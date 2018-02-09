@@ -15,7 +15,7 @@
 <!--</p>-->
 
   <form action="" method="get">
-        <div class="well">
+        <div class="well well-sm" id="filtre_articles">
           <h4 style="margin-top: 0">Filtre</h4>
           <div class="row">
             <div class="form-group col-sm-4 col-md-3">
@@ -23,11 +23,11 @@
               {% render_field filter.form.id class="form-control" %}
             </div>
             <div class="form-group col-sm-4 col-md-3">
-              {{filter.form.nom__icontains.label_tag}}
+              <strong>Partie du nom:</strong>
               {% render_field filter.form.nom__icontains  class="form-control" %}
             </div>
             <div class="form-group col-sm-4 col-md-3">
-              {{filter.form.marque__nom__icontains.label_tag}}
+              <strong>Partie de la marque:</strong>
               {% render_field filter.form.marque__nom__icontains  class="form-control" %}
             </div>
             <div class="form-group col-sm-4 col-md-3">
@@ -41,6 +41,10 @@
             <div class="form-group col-sm-4 col-md-3">
               {{filter.form.solde.label_tag}}
               {% render_field filter.form.solde  class="form-control" %}
+            </div>
+            <div class="form-group col-sm-4 col-md-3">
+              <strong>Quantité en stock supérieure à:</strong>
+              {% render_field filter.form.quantite__gt  class="form-control" placeholder="0" %}
             </div>
 
 
