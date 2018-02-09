@@ -12,14 +12,18 @@
 </form>
 </p>
 
-<h3>{{articles|length}} articles trouvés.</h3>
+<h3>{{count}} articles trouvés.</h3>
+  <!--{% if q %}-->
+  <!--<p>Requête: {{q}}</p>-->
+  <!--{% else %}-->
+  <!--<p>Pas de filtre</p>-->
+  <!--{% endif %}-->
 
 
     <table class="table table-light">
       <thead class="thead-light">
       <tr>
           <th>Nr.</th>
-          <th>ID</th>
           <th>Aperçu</th>
           <th>Type de client</th>
           <th>Genre d'article</th>
@@ -35,8 +39,7 @@
       <tbody>
       {% for a in articles %}
       <tr>
-          <td>{{forloop.counter}}</td>
-          <td>{{ a.pk }}</td>
+        <td>{{ forloop.counter0|add:start_index}} </td>
           {% if a.photo_set.all %}
           {% thumbnail a.photo_set.first.photo  "50x50" crop="center" as im %}
           <td><a href="{{ a.photo_set.first.photo.url }}" alt="image de {{a.nom}}-ID: {{a.pk}}">
@@ -62,9 +65,35 @@
           {% endif %}
           <td>{{a.prix_total|intcomma|default_if_none:"<em>à renseigner</em>"}}</td>
       </tr>
+
       {% endfor %}
       </tbody>
     </table>
+
+  {% if articles.has_other_pages %}
+  <ul class="pagination">
+    {% if articles.has_previous %}
+      <li><a href="?page={{ articles.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in articles.paginator.page_range %}
+      {% if articles.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <!--<li><a href="?page={{ i }}">{{ i }}</a></li>-->
+        <li><a href="?{{ q }}&page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if articles.has_next %}
+
+    <li><a href="?{{ q }}&page={{ articles.next_page_number }}">&raquo;</a></li>
+    <!--<li><a href="?marque__nom__icontains=&nom__icontains=&id=&genre_article=&type_client=&solde=S">&raquo;</a></li>-->
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
     </div>
 {% endblock %}
 {% block footer %}

@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.conf.urls import url
-from .views import ArticleCreateView, ArticleDetailView, upload_pic, ArticleFilteredView
+from .views import ArticleCreateView, ArticleDetailView, upload_pic, ArticleFilteredView, articles
 
 
 app_name = 'inventory'
@@ -23,7 +23,8 @@ app_name = 'inventory'
 
 urlpatterns = [
     #url('articles/', ArticlesListView.as_view(), name='articles'),
-    url('articles/', ArticleFilteredView.as_view(), name='articles'),
+    #url('articles/', ArticleFilteredView.as_view(), name='articles'),
+    url('articles/', articles, name='articles'),
     url('article_create', ArticleCreateView.as_view(), name='article_create'),
     url(r'^article_detail/(?P<pk>[0-9]+)$', ArticleDetailView.as_view(), name='article_detail'),
     url(r'^upload_pic/(?P<pk>[0-9]+)$', upload_pic, name='upload_pic'),

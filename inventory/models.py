@@ -171,15 +171,3 @@ class Photo(models.Model):
     @property
     def article_ID(self):
         return str(self.article.id)
-
-
-# class BasketItem(models.Model):
-#     """Un élément à vendre.
-#     Un ou plusieurs élément de vente constitue une vente.
-#     """
-#     vente = models.ForeignKey(Vente, on_delete=models.CASCADE)
-#     article = models.ForeignKey(Article)
-#     quantite = models.PositiveSmallIntegerField(default=1)
-#     montant  = models.DecimalField(max_digits=20, decimal_places=2, default=25000)
-#
-#

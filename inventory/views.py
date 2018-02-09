@@ -14,17 +14,6 @@ from .models import Article, Employee, Photo
 from .forms import  ArticleCreateForm, AddPhotoForm
 from cart.cartutils import article_already_in_cart, get_cart_items
 
-# class ProductView(ListView):
-#     model = Product
-#     template_name = 'products/products.html'
-#     paginate_by = 5
-#
-#     def get_context_data(self, **kwargs):
-#         context = super().get_context_data()
-#         context['product_list'] = ProductFilter(self.request.GET, queryset=Product.objects.order_by('id'))
-#         return context
-
-
 class ArticleFilter(FilterSet):
     genre_choices = (
         ('A', 'Accessoire'),
@@ -54,19 +43,20 @@ class ArticleFilter(FilterSet):
                   'nom': ['icontains'],
                   'id' : ['exact'],
                   }
-    @property
-    def qs(self):
-        parent = super(ArticleFilter, self).qs
-        enterprise_of_current_user = Employee.get_enterprise_of_current_user(self.request.user)
-        return parent.filter(entreprise=enterprise_of_current_user)
-
 
 
 @method_decorator(login_required, name='dispatch')
-class ArticleFilteredView(FilterView):
+class ArticleFilteredView(ListView):
     filterset_class = ArticleFilter
     template_name = 'inventory/articles.html' # filtered list
     context_object_name = 'articles'
+
+    def get_queryset(self):
+        enterprise_of_current_user = Employee.get_enterprise_of_current_user(self.request.user)
+        queryset = Article.objects.filter(entreprise=enterprise_of_current_user)
+        filtered_qs = ArticleFilter(self.request.GET,
+                                 queryset=queryset).qs
+        return filtered_qs
 
     def test_func(self):
         return  Employee.is_current_user_employee(self.request.user)
@@ -76,11 +66,68 @@ class ArticleFilteredView(FilterView):
         enterprise_of_current_user = Employee.get_enterprise_of_current_user(self.request.user)
         context['enterprise'] = enterprise_of_current_user
 
-        # paginator = Paginator(entreprise=enterprise_of_current_user), 25)
-        # page = self.request.GET.get('page')
-        # articles = paginator._get_page(page)
-
+        if 'filter' in context.keys():
+            print('filter in context')
+        else:
+            print('filter not in context')
+        qs = self.get_queryset()
+        f = ArticleFilter(self.request.GET,
+                               queryset=qs)
+        page = self.request.GET.get('page', 1)
+        paginator = Paginator(qs, 50)
+        try:
+            articles = paginator.page(page)
+        except PageNotAnInteger:
+            articles = paginator.page(1)
+        except EmptyPage:
+            articles = paginator.page(paginator.num_pages)
+        context['articles'] = articles
+        context['count'] = qs.count()
+        context['filter'] = f
         return context
+
+
+@login_required()
+def articles(request):
+    enterprise_of_current_user = Employee.get_enterprise_of_current_user(request.user)
+    qs = Article.objects.filter(entreprise=enterprise_of_current_user)
+    article_filter = ArticleFilter(request.GET,
+                                   queryset=qs)
+    context = {}
+    # Extracting the filter parameters
+    meta = request.META
+    q = meta['QUERY_STRING']
+    # the whole url is .e.g. "marque__nom__icontains=&nom__icontains=&id=&genre_article=&type_client=H&solde=S&page=2"
+    if q.find('nom') > 0: # checking if a filter param exist?
+        # it contains a filter
+         try:
+            idx = q.index('page')
+            q = q[:idx-1] # removing the page part of the url:
+            #print('filter part:', q)
+            context['q'] = q
+         except ValueError:
+            #print('no page or page 1, setting the filter')
+            context['q'] = q
+
+    paginator = Paginator(article_filter.qs, 25)
+    page = request.GET.get('page')
+    start_index = 1
+    try:
+        articles = paginator.page(page)
+        start_index = articles.start_index()
+    except PageNotAnInteger:
+        articles = paginator.page(1)
+    except EmptyPage:
+        articles = paginator.page(paginator.num_pages) # last page
+        start_index = articles.start_index()
+    context['articles'] = articles
+    context['count'] = article_filter.qs.count()
+    context['filter'] = article_filter
+    context['start_index'] = start_index
+    return render(request, 'inventory/articles.html', context)
+
+
+
 
 
 @method_decorator(login_required, name='dispatch')
