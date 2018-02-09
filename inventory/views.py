@@ -30,7 +30,6 @@ class ArticleFilter(FilterSet):
     )
 
     solde_choices = (
-        ('N', '-'),
         ('S', 'en solde'),
     )
 
