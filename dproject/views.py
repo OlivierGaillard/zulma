@@ -1,4 +1,5 @@
 from django.views.generic import TemplateView
+from django.conf import settings
 from inventory.models import Employee
 
 
@@ -7,6 +8,8 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
+        if '.dev.prestigemikafric.com' in settings.ALLOWED_HOSTS:
+            context['DEV'] = 'DEV'
         user = self.request.user
         if user.is_authenticated:
             try:

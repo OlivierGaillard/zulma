@@ -77,11 +77,11 @@
                        <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url "inventory:articles" %}" title="Liste des articles">Liste des articles</a></li>
-                        <li><a href="{% url "cart:cart_content" %}">Contenu du panier</a></li>
-                        <li><a href="{% url "cart:ventes"  %}">Ventes</a></li>
-                        <li><a href="{% url "cart:clients" %}">Clients</a></li>
-                        <li><a href="{% url "cart:client_create" %}">Ajouter un client</a></li>
+                        <li><a href="{% url "inventory:articles" %}" title="{% trans 'Liste des articles' %}">{% trans 'Liste des articles' %}</a></li>
+                        <li><a href="{% url "cart:cart_content" %}">{%trans 'Contenu du panier' %}</a></li>
+                        <li><a href="{% url "cart:ventes"  %}">{% trans 'Ventes' %}</a></li>
+                        <li><a href="{% url "cart:clients" %}">{% trans 'Clients' %}</a></li>
+                        <li><a href="{% url "cart:client_create" %}">{% trans 'Ajouter un client' %}</a></li>
                     </ul>
                 </li>
 

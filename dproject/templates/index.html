@@ -50,14 +50,23 @@
        {% endif %}
     {% else %}
   <div class="container">
-         <div class="jumbotron">
+         <div class="jumbotron alert-info">
            <h1>{% trans "Bienvenue sur notre site!" %}</h1>
 
            <p>{% trans "Tout prochainement nous présenterons nos soldes pour nos visiteurs" %}.</p>
 
-           <p>{% trans "A tout bientôt" %}!</p>
          </div>
+
+       {% if DEV %}
+       <div class="info alert-success">
+         <h3>{% trans "Info de connexion pour ce site de test" %}</h3>
+         <ul>
+           <li>Login: test</li>
+           <li>Password: blacksnow</li>
+         </ul>
        </div>
+       {% endif %}
+  </div>
 
 
 
