@@ -1,18 +1,44 @@
 {% extends "inventex.html" %}
 {% load humanize %}
+{% load i18n %}
 {% block content %}
+
+<div class="container">
+  <h3>{% trans "3ème étape" %}  <small>{% trans "step-by-step guide" %}</small></h3>
+  <h4>{% trans "Saisir le prix de vente de l'article" %}</h4>
+
+
+  <ol>
+    <li>{% trans "Entrez le prix en éditant le champ de la colonne 'Modifier'" %}</li>
+    <li>{% trans "Validez en cliquant sur le bouton 'Modifier'" %}</li>
+    <li>[{% trans "S'il y a d'autres articles à ajouter au panier, recommencez à chercher ces articles." %}]</li>
+    <li>{% trans "Allez au formulaire de vente en cliquant sur le bouton" %} </li>
+  </ol>
+
+
+  <div class="progress">
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+         style="width:60%">
+    60% {% trans "de la vente achevée" %}
+    </div>
+  </div>
+
+
+
+
+
 
 <table class="table">
       <thead>
          <tr>
-            <th>No</th>
-             <th>Date d'ajout</th>
-             <th>Action</th>
-            <th>Titre</th>
-            <th>Quantité</th>
-            <th>Prix</th>
-           <th>Modifier</th>
-            <th>Total</th>
+            <th>{% trans 'No' %}</th>
+             <th>{% trans "Date d'ajout" %}</th>
+             <th>{% trans "Action" %}</th>
+            <th>{% trans "Titre" %}</th>
+            <th>{% trans 'Quantité' %}</th>
+            <th>{% trans 'Prix' %}</th>
+           <th>{% trans "Modifier" %}</th>
+            <th>{% trans "Total" %}</th>
          </tr>
       </thead>
 
@@ -23,7 +49,7 @@
           <td>
               <form method="POST" action="{% url "cart:remove_item" item.article.pk  %}">
                 {% csrf_token %}
-                <input type="submit" class="btn btn-warning" value="Supprimer"/>
+                <input type="submit" class="btn btn-warning" value="{% trans "Supprimer du panier"%}"/>
               </form>
           </td>
           <td><a href="{% url "inventory:article_detail" item.article.pk %}">{{ item.article.nom }}</a></td>
@@ -39,13 +65,13 @@
               {% endif %}
 
 
-              <input type="submit" class="btn btn-success" value="Modifier"/>
+              <input type="submit" class="btn btn-success" value="{% trans "Modifier" %}"/>
               </form> </td>
           <td>{{ item.total }}</td>
       </tr>
       {% endfor %}
       <tr>
-          <th colspan="6">Total de votre panier:</th>
+          <th colspan="6">{% trans "Total de votre panier:" %}</th>
           <td id="amount"><strong>{{ cart_total|intcomma }}</strong></td>
       </tr>
 
@@ -54,7 +80,7 @@
 
 
 <div class="container">
-  <p><a class="btn btn-success" href="{% url "cart:checkout" %}">Passer la commande</a> </p>
+  <p><a class="btn btn-success" href="{% url "cart:checkout" %}">{% trans "Aller à la vente" %}</a> </p>
 </div>
 
 

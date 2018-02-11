@@ -2,6 +2,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import TabHolder, Tab, FormActions
 from crispy_forms.layout import Submit, Layout, Fieldset, Field
 from django import forms
+
 from django.shortcuts import reverse
 from inventory.models import Article
 from .models import Vente, Client, Paiement

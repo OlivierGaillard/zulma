@@ -2,6 +2,7 @@ from django.db import models
 from django.utils import timezone
 from django.shortcuts import reverse
 from django.core.validators import RegexValidator
+from django.utils.translation import ugettext_lazy as _
 from inventory.models import Article
 
 
@@ -30,7 +31,7 @@ class Vente(models.Model):
     - un lien sur une cliente
     """
     date = models.DateTimeField(default=timezone.now)
-    montant = models.DecimalField(max_digits=20, decimal_places=0, default=0)
+    montant = models.DecimalField(_('montant'), max_digits=20, decimal_places=0, default=0)
     client  = models.ForeignKey(Client, null=True, blank=True, help_text="Laisser le champ vide (---) si le client n'est pas enregistré.")
     reglement_termine = models.BooleanField(default=False)
 
@@ -56,8 +57,8 @@ class Vente(models.Model):
 
 class Paiement(models.Model):
     date    = models.DateTimeField(default=timezone.now)
-    montant = models.DecimalField(max_digits=20, decimal_places=0, default=0)
-    vente   = models.ForeignKey(Vente)
+    montant = models.DecimalField(_('Montant'), max_digits=20, decimal_places=0, default=0)
+    vente   = models.ForeignKey(Vente, verbose_name=_('Vente'))
 
     def __str__(self):
         return "Montant: %s / Vente-ID: %s" % (self.montant, self.vente.pk)

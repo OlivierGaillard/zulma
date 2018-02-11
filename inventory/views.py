@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -33,7 +34,7 @@ class ArticleFilter(FilterSet):
         ('S', 'en solde'),
     )
 
-    genre_article = ChoiceFilter(choices=genre_choices)
+    genre_article = ChoiceFilter(choices=genre_choices, label=_(u"Genre d'article"))
     type_client = ChoiceFilter(choices=clients_choices)
     solde = ChoiceFilter(choices=solde_choices)
     quantite__gt = NumberFilter(name='quantite', lookup_expr='gt')
@@ -47,53 +48,58 @@ class ArticleFilter(FilterSet):
                   }
 
 
-@method_decorator(login_required, name='dispatch')
-class ArticleFilteredView(ListView):
-    filterset_class = ArticleFilter
-    template_name = 'inventory/articles.html' # filtered list
-    context_object_name = 'articles'
-
-    def get_queryset(self):
-        enterprise_of_current_user = Employee.get_enterprise_of_current_user(self.request.user)
-        queryset = Article.objects.filter(entreprise=enterprise_of_current_user)
-        filtered_qs = ArticleFilter(self.request.GET,
-                                 queryset=queryset).qs
-        return filtered_qs
-
-    def test_func(self):
-        return  Employee.is_current_user_employee(self.request.user)
-
-    def get_context_data(self, **kwargs):
-        context = super(ArticleFilteredView, self).get_context_data(**kwargs)
-        enterprise_of_current_user = Employee.get_enterprise_of_current_user(self.request.user)
-        context['enterprise'] = enterprise_of_current_user
-
-        if 'filter' in context.keys():
-            print('filter in context')
-        else:
-            print('filter not in context')
-        qs = self.get_queryset()
-        f = ArticleFilter(self.request.GET,
-                               queryset=qs)
-        page = self.request.GET.get('page', 1)
-        paginator = Paginator(qs, 50)
-        try:
-            articles = paginator.page(page)
-        except PageNotAnInteger:
-            articles = paginator.page(1)
-        except EmptyPage:
-            articles = paginator.page(paginator.num_pages)
-        context['articles'] = articles
-        context['count'] = qs.count()
-        context['filter'] = f
-        return context
-
+# @method_decorator(login_required, name='dispatch')
+# class ArticleFilteredView(ListView):
+#     filterset_class = ArticleFilter
+#     template_name = 'inventory/articles.html' # filtered list
+#     context_object_name = 'articles'
+#
+#     def get_queryset(self):
+#         enterprise_of_current_user = Employee.get_enterprise_of_current_user(self.request.user)
+#         queryset = Article.objects.filter(entreprise=enterprise_of_current_user)
+#         filtered_qs = ArticleFilter(self.request.GET,
+#                                  queryset=queryset).qs
+#         return filtered_qs
+#
+#     def test_func(self):
+#         return  Employee.is_current_user_employee(self.request.user)
+#
+#     def get_context_data(self, **kwargs):
+#         context = super(ArticleFilteredView, self).get_context_data(**kwargs)
+#         enterprise_of_current_user = Employee.get_enterprise_of_current_user(self.request.user)
+#         context['enterprise'] = enterprise_of_current_user
+#
+#         if 'filter' in context.keys():
+#             print('filter in context')
+#         else:
+#             print('filter not in context')
+#         qs = self.get_queryset()
+#         f = ArticleFilter(self.request.GET,
+#                                queryset=qs)
+#         page = self.request.GET.get('page', 1)
+#         paginator = Paginator(qs, 50)
+#         try:
+#             articles = paginator.page(page)
+#         except PageNotAnInteger:
+#             articles = paginator.page(1)
+#         except EmptyPage:
+#             articles = paginator.page(paginator.num_pages)
+#         context['articles'] = articles
+#         context['count'] = qs.count()
+#         context['filter'] = f
+#         return context
+#
 
 @login_required()
 def articles(request):
     enterprise_of_current_user = Employee.get_enterprise_of_current_user(request.user)
     qs = Article.objects.filter(entreprise=enterprise_of_current_user)
-    article_filter = ArticleFilter(request.GET,
+    get_query = request.GET.copy()
+    if 'quantite__gt' not in get_query:
+        get_query['quantite__gt'] = '0'
+
+
+    article_filter = ArticleFilter(get_query,
                                    queryset=qs)
     context = {}
     # Extracting the filter parameters

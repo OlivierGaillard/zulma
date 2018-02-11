@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.conf.urls import url
-from .views import ArticleCreateView, ArticleDetailView, upload_pic, ArticleFilteredView, articles
+from .views import ArticleCreateView, ArticleDetailView, upload_pic, articles
 
 
 app_name = 'inventory'

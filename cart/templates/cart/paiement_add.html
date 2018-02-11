@@ -1,10 +1,39 @@
 {% extends "inventex.html" %}
 {% load static %}
+{% load i18n %}
+{% load humanize %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
-    <h4>Solde actuel: {{solde}}</h4>
-{% crispy form %}
+
+<h3>{% trans "Etape 6" %}  <small>{% trans "step-by-step guide" %}</small></h3>
+
+  {% if solde > 0 %}
+  <h4>{% trans "Ajoutez un paiement" %} <small>{% trans "solde restant"%}: {{solde|intcomma}}</small></h4>
+  {% else %}
+  <h4>{% trans "Vente terminée!" %} <small>{% trans "solde restant"%}: {{solde|intcomma}}</small></h4>
+  
+  {% endif %}
+
+
+ <div class="progress">
+    {% if solde > 0 %}
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+         style="width:90%">
+    90% {% trans "de la vente achevée" %}
+    </div>
+    {% else %}
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+         style="width:100%">
+    100% {% trans "de la vente achevée" %}
+   {% endif %}
+ </div>
+
+{% if solde > 0 %}
+   {% crispy form %}
+{% else %}
+   <h3>Vente terminée</h3>
+{% endif %}
 
 {% block javascript %}
 <script type="text/javascript">

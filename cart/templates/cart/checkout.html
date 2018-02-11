@@ -1,18 +1,50 @@
 {% extends "inventex.html" %}
 {% load crispy_forms_tags %}
+{% load i18n %}
 {% block content %}
 
 <div class="container">
 
+
+
+  <h3>{% trans "Etape 4" %}  <small>{% trans "step-by-step guide" %}</small></h3>
+  <h4>{% trans "Création de la vente" %}</h4>
+
+<ol>
+    <li>{% trans "Au besoin ajustez le prix de vente global en éditant le champ 'Montant'" %}</li>
+    <li>{% trans "Au besoin ajustez la date de vente" %}</li>
+    <li>{% trans "Si votre client est enregistré sélectionnez le dans la liste." %}</li>
+    <li>{% trans "Préparez la vente en cliquant sur le bouton" %} </li>
+  </ol>
+
+
+
+  <div class="progress">
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+         style="width:80%">
+    80% {% trans "de la vente achevée" %}
+    </div>
+  </div>
+
+
+
+  <h4>{% trans "Client pas enregistré" %}?</h4>
+
+  <p>{% blocktrans %}
+    Si votre client n'est pas enregistré vous pourrez modifier la vente plus tard,
+    une fois que vous l'aurez enregistré.
+    {% endblocktrans %}
+  </p>
+
 <table class="table">
       <thead>
          <tr>
-            <th>No</th>
-             <th>Date d'ajout</th>
-            <th>Titre</th>
-            <th>Quantité</th>
-            <th>Prix</th>
-            <th>Total</th>
+            <th>{% trans "No" %}</th>
+             <th>{% trans "Date d'ajout" %}</th>
+            <th>{% trans 'Titre' %}</th>
+            <th>{% trans 'Quantité' %}</th>
+            <th>{% trans 'Prix' %}</th>
+            <th>{% trans 'Total' %}</th>
          </tr>
       </thead>
 
@@ -27,7 +59,7 @@
       </tr>
       {% endfor %}
       <tr>
-          <th colspan="6">Total de votre panier:</th>
+          <th colspan="6">{% trans "Total de votre panier:" %}</th>
           <td id="amount"><strong>{{ cart_total|floatformat:2 }}</strong></td>
       </tr>
 

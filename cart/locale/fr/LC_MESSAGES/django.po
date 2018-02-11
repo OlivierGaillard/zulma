@@ -1,0 +1,74 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-10 12:20+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+#: cart/templates/cart/cart_content.html:9 cart/templates/cart/checkout.html:11
+msgid "de la vente achevée"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:13
+msgid "Enregistrement du prix de vente"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:13
+#: cart/templates/cart/checkout.html:15
+msgid "step-by-step guide"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:15
+msgid "Entrez le prix en éditant le champ de la colonne 'Modifier'"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:16
+msgid "Validez en cliquant sur le bouton 'Modifier'"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:17
+msgid ""
+"S'il y a d'autres articles à ajouter au panier, recommencez à chercher ces "
+"articles."
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:18
+#: cart/templates/cart/checkout.html:20
+msgid "Préparez la vente en cliquant sur le bouton"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:75
+msgid "Préparer la vente"
+msgstr ""
+
+#: cart/templates/cart/checkout.html:15
+msgid "Création de la vente"
+msgstr ""
+
+#: cart/templates/cart/checkout.html:17
+msgid "Au besoin ajustez le prix de vente global en éditant le champ 'Montant'"
+msgstr ""
+
+#: cart/templates/cart/checkout.html:18
+msgid "Au besoin ajustez la date de vente"
+msgstr ""
+
+#: cart/templates/cart/checkout.html:19
+msgid "Si votre client est enregistré sélectionnez le dans la liste."
+msgstr ""
+
+#: cart/templates/cart/checkout.html:23
+msgid "Client pas enregistré"
+msgstr ""

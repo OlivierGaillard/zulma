@@ -48,18 +48,18 @@
           <ul class="nav navbar-nav">
             <li><a href="/"><span class="glyphicon glyphicon-home" aria-hidden="true"></span></a></li>
             <li><a href="{% url 'about' %}">{% trans 'About' %}</a></li>
-            <!--<li class="nav-item dropdown">-->
-              <!--<a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ LANGUAGE_CODE }}</a>-->
-              <!--<ul class="dropdown-menu" aria-labelledby="dropdown02">{% for lang in LANGUAGES %}-->
-                <!--<form id="formsetLang{{ lang.0 }}" action="{% url 'set_language' %}" method="POST">-->
-                  <!--{% csrf_token %}-->
-                  <!--<input type="hidden" name="language" value="{{ lang.0 }}" />-->
-                  <!--<input type="hidden" name="next" value="{{ request.get_full_path }}" />-->
-                <!--</form>-->
-                <!--<li><a class="language_changer" id="{{ lang.0 }}" href="#">{{ lang.1 }}</a></li>-->
-              <!--{% endfor %}-->
-              <!--</ul>-->
-            <!--</li>-->
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{ LANGUAGE_CODE }}</a>
+              <ul class="dropdown-menu" aria-labelledby="dropdown02">{% for lang in LANGUAGES %}
+                <form id="formsetLang{{ lang.0 }}" action="{% url 'set_language' %}" method="POST">
+                  {% csrf_token %}
+                  <input type="hidden" name="language" value="{{ lang.0 }}" />
+                  <input type="hidden" name="next" value="{{ request.get_full_path }}" />
+                </form>
+                <li><a class="language_changer" id="{{ lang.0 }}" href="#">{{ lang.1 }}</a></li>
+              {% endfor %}
+              </ul>
+            </li>
           </ul>
           <!--<form class="navbar-form navbar-left" action="/search/" method="GET">-->
             <!--<div class="input-group">-->
@@ -72,7 +72,8 @@
           <ul class="nav navbar-nav navbar-right">
             {% if request.user.is_authenticated %}
                 <li class="dropdown">
-                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Caisse
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {% trans "Caisse" %}
                        <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
@@ -106,15 +107,15 @@
 
     <div class="content">
       {% if request.user.is_authenticated %}
-      <h4>Menu pour mobile</h4>
+      <h4>{% trans "Menu pour mobile" %}</h4>
 
           <ul>
             {% if request.user.is_authenticated %}
-            <li><a href="{% url "inventory:articles" %}" title="Liste des articles">Liste des articles</a></li>
-            <li><a href="{% url "cart:cart_content" %}">Contenu du panier</a></li>
-            <li><a href="{% url "cart:ventes"  %}">Ventes</a></li>
-            <li><a href="{% url "cart:clients" %}">Clients</a></li>
-            <li><a href="{% url "cart:client_create" %}">Ajouter un client</a></li>
+            <li><a href="{% url "inventory:articles" %}" title="Liste des articles">{% trans "Liste des articles" %}</a></li>
+            <li><a href="{% url "cart:cart_content" %}">{% trans "Contenu du panier" %}</a></li>
+            <li><a href="{% url "cart:ventes"  %}">{% trans "Ventes" %}</a></li>
+            <li><a href="{% url "cart:clients" %}">{% trans "Clients" %}</a></li>
+            <li><a href="{% url "cart:client_create" %}">{% trans "Ajouter un client" %}</a></li>
             <li><a href="{% url 'admin:index' %}">{% trans 'Admin' %}</a></li>
             <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
             {% else %}

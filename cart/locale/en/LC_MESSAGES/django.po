@@ -1,0 +1,258 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-10 19:32+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: cart/models.py:34
+msgid "montant"
+msgstr "Amount"
+
+#: cart/models.py:60 cart/templates/cart/vente.html:71
+#: cart/templates/cart/vente.html:122
+msgid "Montant"
+msgstr "Amount"
+
+#: cart/models.py:61
+msgid "Vente"
+msgstr "Selling"
+
+#: cart/templates/cart/cart_content.html:7
+msgid "3ème étape"
+msgstr "Step 3"
+
+#: cart/templates/cart/cart_content.html:7 cart/templates/cart/checkout.html:10
+#: cart/templates/cart/paiement_add.html:9 cart/templates/cart/vente.html:14
+msgid "step-by-step guide"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:8
+msgid "Saisir le prix de vente de l'article"
+msgstr "Enter the selling price"
+
+#: cart/templates/cart/cart_content.html:12
+msgid "Entrez le prix en éditant le champ de la colonne 'Modifier'"
+msgstr "Enter the price by editing the field of the column 'Edit'"
+
+#: cart/templates/cart/cart_content.html:13
+msgid "Validez en cliquant sur le bouton 'Modifier'"
+msgstr "Confirm by clicking on the 'Edit' button"
+
+#: cart/templates/cart/cart_content.html:14
+msgid ""
+"S'il y a d'autres articles à ajouter au panier, recommencez à chercher ces "
+"articles."
+msgstr ""
+"If there are other articles to add, please start again with the articles' "
+"list"
+
+#: cart/templates/cart/cart_content.html:15
+#, fuzzy
+#| msgid "Préparez la vente en cliquant sur le bouton"
+msgid "Allez au formulaire de vente en cliquant sur le bouton"
+msgstr "Go to the selling step by clicking on the button"
+
+#: cart/templates/cart/cart_content.html:22
+#: cart/templates/cart/checkout.html:25
+#: cart/templates/cart/paiement_add.html:23
+#: cart/templates/cart/paiement_add.html:28 cart/templates/cart/vente.html:22
+#: cart/templates/cart/vente.html:32
+msgid "de la vente achevée"
+msgstr "of the selling process"
+
+#: cart/templates/cart/cart_content.html:34
+#: cart/templates/cart/checkout.html:42
+msgid "No"
+msgstr "Nb"
+
+#: cart/templates/cart/cart_content.html:35
+#: cart/templates/cart/checkout.html:43
+msgid "Date d'ajout"
+msgstr "Date added"
+
+#: cart/templates/cart/cart_content.html:36
+msgid "Action"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:37
+#: cart/templates/cart/checkout.html:44
+msgid "Titre"
+msgstr "Title"
+
+#: cart/templates/cart/cart_content.html:38
+#: cart/templates/cart/checkout.html:45 cart/templates/cart/vente.html:83
+msgid "Quantité"
+msgstr "Quantity"
+
+#: cart/templates/cart/cart_content.html:39
+#: cart/templates/cart/checkout.html:46 cart/templates/cart/vente.html:82
+msgid "Prix"
+msgstr "Price"
+
+#: cart/templates/cart/cart_content.html:40
+#: cart/templates/cart/cart_content.html:68
+msgid "Modifier"
+msgstr "Edit"
+
+#: cart/templates/cart/cart_content.html:41
+#: cart/templates/cart/checkout.html:47
+msgid "Total"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:52
+msgid "Supprimer du panier"
+msgstr "Remove from cart"
+
+#: cart/templates/cart/cart_content.html:74
+#: cart/templates/cart/checkout.html:62
+msgid "Total de votre panier:"
+msgstr "Cart total"
+
+#: cart/templates/cart/cart_content.html:83
+msgid "Aller à la vente"
+msgstr "Go to the selling step"
+
+#: cart/templates/cart/checkout.html:10
+msgid "Etape 4"
+msgstr "Step 4"
+
+#: cart/templates/cart/checkout.html:11
+msgid "Création de la vente"
+msgstr "Selling creation"
+
+#: cart/templates/cart/checkout.html:14
+msgid "Au besoin ajustez le prix de vente global en éditant le champ 'Montant'"
+msgstr ""
+"If needed adjust the global selling price by editing the field 'Amount'"
+
+#: cart/templates/cart/checkout.html:15
+msgid "Au besoin ajustez la date de vente"
+msgstr "If needed adjust the selling's date"
+
+#: cart/templates/cart/checkout.html:16
+msgid "Si votre client est enregistré sélectionnez le dans la liste."
+msgstr ""
+"If your customer is registered please use the drop-down list to select her/"
+"him"
+
+#: cart/templates/cart/checkout.html:17
+msgid "Préparez la vente en cliquant sur le bouton"
+msgstr "Go to the selling step by clicking on the button"
+
+#: cart/templates/cart/checkout.html:31
+msgid "Client pas enregistré"
+msgstr "Not a registered customer"
+
+#: cart/templates/cart/checkout.html:33
+msgid ""
+"\n"
+"    Si votre client n'est pas enregistré vous pourrez modifier la vente plus "
+"tard,\n"
+"    une fois que vous l'aurez enregistré.\n"
+"    "
+msgstr ""
+"\n"
+"    If your customer is not registered you can update the selling later,\n"
+" once you have entered its coordinates.\n"
+"    "
+
+#: cart/templates/cart/paiement_add.html:9
+msgid "Etape 6"
+msgstr "Step 6"
+
+#: cart/templates/cart/paiement_add.html:12
+msgid "Ajoutez un paiement"
+msgstr "Add a payment"
+
+#: cart/templates/cart/paiement_add.html:12
+#: cart/templates/cart/paiement_add.html:14
+msgid "solde restant"
+msgstr "remaining balance"
+
+#: cart/templates/cart/paiement_add.html:14
+msgid "Vente terminée!"
+msgstr "Selling closed"
+
+#: cart/templates/cart/vente.html:14
+msgid "Etape 5"
+msgstr "Step 5"
+
+#: cart/templates/cart/vente.html:15
+msgid "Ajoutez un paiement (avance ou paiement complet) à la vente"
+msgstr "Add a payment (full or partial) to the selling-ID"
+
+#: cart/templates/cart/vente.html:27
+msgid "vente terminée"
+msgstr "Selling closed"
+
+#: cart/templates/cart/vente.html:41 cart/templates/cart/vente.html:46
+msgid "Ajouter un paiement"
+msgstr "Add a payment"
+
+#: cart/templates/cart/vente.html:50
+msgid "Résumé de la vente"
+msgstr "Selling summary"
+
+#: cart/templates/cart/vente.html:55
+msgid "No-de vente"
+msgstr "Selling Nb"
+
+#: cart/templates/cart/vente.html:62
+msgid "Client"
+msgstr "Customer"
+
+#: cart/templates/cart/vente.html:68 cart/templates/cart/vente.html:121
+msgid "Date"
+msgstr ""
+
+#: cart/templates/cart/vente.html:80
+msgid "Nom"
+msgstr "Name"
+
+#: cart/templates/cart/vente.html:81
+msgid "Aperçu"
+msgstr "Thumbnail"
+
+#: cart/templates/cart/vente.html:89
+msgid "Cliquer pour voir les détails"
+msgstr "Click to see details"
+
+#: cart/templates/cart/vente.html:99
+msgid "pas d'aperçu"
+msgstr "no thumbnail"
+
+#: cart/templates/cart/vente.html:108
+msgid "Liste des paiements"
+msgstr "Payments' list"
+
+#: cart/templates/cart/vente.html:111
+msgid "Pas de paiements enregistré"
+msgstr "There are no saved sellings"
+
+#: cart/templates/cart/vente.html:120
+msgid "Nr"
+msgstr "Nb"
+
+#: cart/templates/cart/vente.html:134
+msgid "Solde"
+msgstr "Balance"
+
+#: cart/templates/cart/vente.html:142 cart/templates/cart/vente.html:147
+msgid "Modifier la vente"
+msgstr "Edit the selling"
+
+#~ msgid "Enregistrement du prix de vente"
+#~ msgstr "Saving the selling price"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2017-10-17 08:23+0000\n"
+"POT-Creation-Date: 2018-02-10 12:20+0100\n"
 "PO-Revision-Date: 2017-10-11 08:40+0000\n"
 "Last-Translator: Pascal Bader <info@wservices.ch>\n"
 "Language-Team: LANGUAGE <info@wservices.ch>\n"
@@ -51,61 +51,74 @@ msgstr ""
 msgid "Imprint"
 msgstr "Imprimer"
 
-#: dproject/templates/base.html:44
+#: dproject/templates/base.html:50
 msgid "About"
 msgstr "À propos de nous"
 
-#: dproject/templates/base.html:60
+#: dproject/templates/base.html:66
 msgid "Search on the site"
 msgstr "Rechercher sur le site"
 
-#: dproject/templates/base.html:74
+#: dproject/templates/base.html:94
 msgid "Profile"
 msgstr "Profil"
 
-#: dproject/templates/base.html:75
+#: dproject/templates/base.html:95 dproject/templates/base.html:118
 msgid "Admin"
 msgstr ""
 
-#: dproject/templates/base.html:76
+#: dproject/templates/base.html:96 dproject/templates/base.html:119
 msgid "Log out"
 msgstr ""
 
-#: dproject/templates/base.html:80 dproject/templates/registration/login.html:5
+#: dproject/templates/base.html:100 dproject/templates/base.html:121
+#: dproject/templates/registration/login.html:5
 #: dproject/templates/registration/login.html:12
 #: dproject/templates/registration/login.html:18
 msgid "Log in"
 msgstr ""
 
-#: dproject/templates/base.html:105
-msgid "Installed by"
-msgstr "Installé par"
-
-#: dproject/templates/base.html:105
-msgid "one click installer"
+#: dproject/templates/base.html:145
+msgid "créé par"
 msgstr ""
 
-#: dproject/templates/email/base.html:68 dproject/templates/email/base.txt:4
-#: dproject/templates/email/base.txt:5
+#: dproject/templates/email/base.html:68
 msgid "Dear "
 msgstr ""
 
-#: dproject/templates/email/base.html:73 dproject/templates/email/base.txt:11
+#: dproject/templates/email/base.html:73
 msgid "Yours sincerely"
 msgstr ""
 
-#: dproject/templates/email/base.html:74 dproject/templates/email/base.txt:12
+#: dproject/templates/email/base.html:74
 #, python-format
 msgid "The %(site_name)s team"
 msgstr ""
 
-#: dproject/templates/email/base.txt:5
-msgid "Dear ladies and gentlemen"
+#: dproject/templates/index.html:9
+msgid "Bienvenue"
 msgstr ""
 
-#: dproject/templates/index.html:10
-msgid "Django successfully installed"
-msgstr "Django installé avec succès"
+
+#: dproject/templates/index.html:11
+msgid "Votre employeur"
+msgstr ""
+
+#: dproject/templates/index.html:13
+msgid "Comment saisir une vente"
+msgstr ""
+
+#: dproject/templates/index.html:17
+msgid "recherchez l'article que vous avez vendu en cliquant sur le lien"
+msgstr ""
+
+#: dproject/templates/index.html:18
+msgid "liste des articles"
+msgstr ""
+
+#: dproject/templates/index.html:19
+msgid "cliquez sur le lien du 'nom' de l'article"
+msgstr ""
 
 #: dproject/templates/registration/logged_out.html:4
 msgid "Home"
@@ -122,3 +135,9 @@ msgstr ""
 #: dproject/templates/registration/logged_out.html:12
 msgid "Log in again"
 msgstr ""
+
+#~ msgid "Installed by"
+#~ msgstr "Installé par"
+
+#~ msgid "Django successfully installed"
+#~ msgstr "Django installé avec succès"

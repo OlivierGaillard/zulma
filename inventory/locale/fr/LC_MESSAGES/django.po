@@ -1,0 +1,83 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-10 12:20+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: inventory/templates/inventory/article.html:11
+msgid "de la vente achevée"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:15
+msgid "Est-ce bien l'article recherché?"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:15
+msgid "step-by-step guide"
+msgstr "guide pas-à-pas"
+
+#: inventory/templates/inventory/article.html:17
+msgid "Au besoin cliquez sur l'image pour l'agrandir"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:18
+msgid "Ensuite ajoutez le au panier d'achat"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:22
+msgid "Détails de l'article"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:97
+msgid "Ajouter au panier"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:129
+msgid "Supprimer"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:138
+msgid "Ajouter une <strong>image</strong> en cliquant"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:138
+msgid "ici"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:11
+msgid "Chercher un article pour enregistrer une vente"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:13
+msgid "Recherchez l'article que vous avez vendu au moyen du filtre"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:14
+msgid "Accéder à l'article en cliquant sur le lien 'nom'"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:19
+msgid "Filtre"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:26
+msgid "Partie du nom"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:76
+msgid "Nom"
+msgstr ""

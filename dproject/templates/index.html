@@ -6,41 +6,30 @@
 {% block content %}
 <div id="bienvenue" class="container">
     {% if request.user.is_authenticated %}
-    <h1>Bienvenue {{ user.first_name|default:user.username }}!</h1>
+    <h1>{% trans "Bienvenue" %} {{ user.first_name|default:user.username }}!</h1>
        {% if employee %}
-       <p>Votre employeur: {{employee.enterprise}}</p>
+       <p>{% trans "Votre employeur" %}: {{employee.enterprise}}</p>
 
-  <h2>Comment saisir une vente</h2>
 
-<p>
-    <ol>
-  <li>recherchez l'article que vous avez vendu en cliquant sur le lien <a href="{% url "inventory:articles" %}">liste des articles</a></li>
-      <li>cliquez sur le lien du "nom" de l'article</li>
-      <li>ajoutez l'article au panier</li>
-      <li>entrez le prix de vente</li>
-  <li>si vous avez vendu d'autres articles, cherchez les et ajoutez les au <a href="{% url "cart:cart_content" %}">panier</a></li>
-      <li>une fois que votre panier est rempli, vérifiez si vous avez besoin de saisir un nouveau client en accédant à la
-        <a href="/cart/clients/">liste</a> des client; (le rajouter
-      ou le sélectionner dans la liste), ou bien ne sélectionnez rien si votre vente est anonyme</li>
-      <li>passez la commande, puis sélectionnez le client si besoin (les tirets indiquent une vente anonyme)</li>
-      <li>modifiez la date si nécessaire</li>
-      <li>appuyez sur le bouton "submit" pour enregistrer.</li>
-      <li>cliquez sur ajouter le paiement du client</li>
-      <li>modifiez le prix</li>
-      <li>cliquez sur "submit" pour terminer la vente</li>
-    </ol>
-  </p>
 
-  <h3>Ajouter un paiement</h3>
+     <h3>{% trans "Comment saisir une vente" %} <small>{% trans "step-by-step guide" %}</small></h3>
 
-  <p>Lorsque le client paie par avances, vous devez afficher la liste des ventes, puis
-  cliquer sur le vente-ID afin d'ajouter le paiement.</p>
+      <p>{% trans "Allez à la " %}
+      <a href="{% url "inventory:articles" %}">{% trans "1ère étape" %}</a></p>
+  <div class="progress">
+    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+         style="width:5%">
+    5% {% trans "de la vente achevée" %}
+    </div>
+  </div>
+
 
 
        {% else %}
        <div class="container">
          <div class="jumbotron">
 
+         {% blocktrans %}
          <h2>Pas un employé/e? Alors pas de contenu visible!</h2>
            <p>
              Le compte que vous utilisez n'est pas relié à un employé. Vous n'avez donc pas accès
@@ -48,20 +37,25 @@
            </p>
 
            <p>Dans ce cas veuillez vous déconnecter puis vous
-             <a href="{% url 'login' %}">annoncez</a> avec un autre nom d'utilisateur/trice, ou
+             {% endblocktrans %}
+             <a href="{% url 'login' %}">{% trans 'annoncez'</a>
+             {% blocktrans %}
+             avec un autre nom d'utilisateur/trice, ou
            adressez vous à votre administrateur/trice pour qu'il vous enregistre comme employé/e.
+             {% endblocktrans %}
            </p>
+
          </div>
        </div>
        {% endif %}
     {% else %}
   <div class="container">
          <div class="jumbotron">
-           <h1>Bienvenue sur notre site!</h1>
+           <h1>{% trans "Bienvenue sur notre site!" %}</h1>
 
-           <p>Tout prochainement nous présenterons nos soldes pour nos visiteurs.</p>
+           <p>{% trans "Tout prochainement nous présenterons nos soldes pour nos visiteurs" %}.</p>
 
-           <p>A tout bientôt!</p>
+           <p>{% trans "A tout bientôt" %}!</p>
          </div>
        </div>
 
