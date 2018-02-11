@@ -106,7 +106,7 @@
 	  </nav>
 
     <div class="content">
-      {% if request.user.is_authenticated %}
+      <div id="menu-mobile">
       <h4>{% trans "Menu pour mobile" %}</h4>
 
           <ul>
@@ -122,7 +122,7 @@
             <li><a href="{% url 'login' %}">{% trans 'Log in' %}</a></li>
             {% endif %}
           </ul>
-      {% endif %}
+      </div>
 
       {% if messages %}
         <div class="container">

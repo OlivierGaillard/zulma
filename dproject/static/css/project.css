@@ -16,3 +16,13 @@ body
 #filtre_articles {
     background-color: DARKKHAKI;
 }
+
+@media screen and (min-width: 0px) and (max-width: 400px) {
+
+   #menu-mobile { display: block; }
+
+}
+
+@media screen and (min-width: 401px) {
+   #menu-mobile { display: none; }
+}
