@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-11 11:12+0100\n"
+"POT-Creation-Date: 2018-02-11 11:49+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -25,14 +25,28 @@ msgstr "Amount"
 msgid "Laisser le champ vide (---) si le client n'est pas enregistré."
 msgstr "Keep the field empty (---) if the customer is not registered."
 
+#: cart/models.py:36
+msgid "Règlement terminé"
+msgstr "Selling closed"
+
 #: cart/models.py:60 cart/templates/cart/vente.html:71
 #: cart/templates/cart/vente.html:122
 msgid "Montant"
 msgstr "Amount"
 
-#: cart/models.py:61
+#: cart/models.py:61 cart/models.py:73
 msgid "Vente"
 msgstr "Selling"
+
+#: cart/models.py:72 cart/templates/cart/cart_content.html:39
+#: cart/templates/cart/checkout.html:46 cart/templates/cart/vente.html:82
+#: cart/templates/cart/vente_update.html:17
+msgid "Prix"
+msgstr "Price"
+
+#: cart/models.py:76
+msgid "Panier validé"
+msgstr "Cart validated"
 
 #: cart/templates/cart/cart_content.html:7
 msgid "3ème étape"
@@ -98,13 +112,9 @@ msgstr "Title"
 
 #: cart/templates/cart/cart_content.html:38
 #: cart/templates/cart/checkout.html:45 cart/templates/cart/vente.html:83
+#: cart/templates/cart/vente_update.html:18
 msgid "Quantité"
 msgstr "Quantity"
-
-#: cart/templates/cart/cart_content.html:39
-#: cart/templates/cart/checkout.html:46 cart/templates/cart/vente.html:82
-msgid "Prix"
-msgstr "Price"
 
 #: cart/templates/cart/cart_content.html:40
 #: cart/templates/cart/cart_content.html:68
@@ -203,6 +213,7 @@ msgid "vente terminée"
 msgstr "Selling closed"
 
 #: cart/templates/cart/vente.html:41 cart/templates/cart/vente.html:46
+#: cart/templates/cart/ventes.html:38
 msgid "Ajouter un paiement"
 msgstr "Add a payment"
 
@@ -214,7 +225,7 @@ msgstr "Selling summary"
 msgid "No-de vente"
 msgstr "Selling Nb"
 
-#: cart/templates/cart/vente.html:62
+#: cart/templates/cart/vente.html:62 cart/templates/cart/ventes.html:13
 msgid "Client"
 msgstr "Customer"
 
@@ -222,19 +233,19 @@ msgstr "Customer"
 msgid "Date"
 msgstr ""
 
-#: cart/templates/cart/vente.html:80
+#: cart/templates/cart/vente.html:80 cart/templates/cart/vente_update.html:15
 msgid "Nom"
 msgstr "Name"
 
-#: cart/templates/cart/vente.html:81
+#: cart/templates/cart/vente.html:81 cart/templates/cart/vente_update.html:16
 msgid "Aperçu"
 msgstr "Thumbnail"
 
-#: cart/templates/cart/vente.html:89
+#: cart/templates/cart/vente.html:89 cart/templates/cart/vente_update.html:25
 msgid "Cliquer pour voir les détails"
 msgstr "Click to see details"
 
-#: cart/templates/cart/vente.html:99
+#: cart/templates/cart/vente.html:99 cart/templates/cart/vente_update.html:35
 msgid "pas d'aperçu"
 msgstr "no thumbnail"
 
@@ -257,6 +268,49 @@ msgstr "Balance"
 #: cart/templates/cart/vente.html:142 cart/templates/cart/vente.html:147
 msgid "Modifier la vente"
 msgstr "Edit the selling"
+
+#: cart/templates/cart/vente_update.html:14
+msgid "Article-ID"
+msgstr ""
+
+#: cart/templates/cart/vente_update.html:19
+#: cart/templates/cart/vente_update.html:39
+#, fuzzy
+#| msgid "Supprimer du panier"
+msgid "Supprimer"
+msgstr "Remove from cart"
+
+#: cart/templates/cart/vente_update.html:48
+#, fuzzy
+#| msgid "Supprimer du panier"
+msgid "Supprimer la vente ID"
+msgstr "Remove from cart"
+
+#: cart/templates/cart/vente_update.html:53
+#, fuzzy
+#| msgid "Modifier la vente"
+msgid "Effacer la vente"
+msgstr "Edit the selling"
+
+#: cart/templates/cart/ventes.html:14
+msgid "Montant total"
+msgstr "Total Amount"
+
+#: cart/templates/cart/ventes.html:15
+msgid "Solde à payer"
+msgstr "Balance"
+
+#: cart/templates/cart/ventes.html:16
+msgid "Règlement terminé?"
+msgstr "Selling closed"
+
+#: cart/templates/cart/ventes.html:23
+msgid "Cliquer pour ajouter un paiement ou voir les détails de la vente"
+msgstr "Click to add a payment or see the details"
+
+#: cart/templates/cart/ventes.html:39
+msgid "solde"
+msgstr "balance"
 
 #~ msgid "Enregistrement du prix de vente"
 #~ msgstr "Saving the selling price"

@@ -2,6 +2,7 @@
 {% load static %}
 {% load thumbnail %}
 {% load humanize %}
+{% load i18n %}
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
@@ -10,18 +11,18 @@
 <table class="table">
       <thead>
       <tr>
-          <th>Article-ID</th>
-          <th>Nom</th>
-          <th>Aperçu</th>
-          <th>Prix</th>
-          <th>Quantité</th>
-          <th>Supprimer</th>
+          <th>{% trans 'Article-ID' %}</th>
+          <th>{% trans 'Nom' %}</th>
+          <th>{% trans 'Aperçu' %}</th>
+          <th>{% trans 'Prix' %}</th>
+          <th>{% trans 'Quantité' %}</th>
+          <th>{% trans 'Supprimer' %}</th>
       </tr>
       </thead>
       <tbody>
           {% for a in vente.cartitem_set.all %}
           <tr>
-              <td><a title="Cliquer pour voir les détails" href="/inventory/article_detail/{{a.article.pk}}">{{ a.article.pk }}</td>
+              <td><a title="{% trans 'Cliquer pour voir les détails' %}" href="/inventory/article_detail/{{a.article.pk}}">{{ a.article.pk }}</td>
               <td>{{a.article.nom}}</td>
               {% if a.article.photo_set.all %}
               {% thumbnail a.article.photo_set.first.photo.path  "50x50" crop="center" as thumbnail %}
@@ -31,11 +32,11 @@
               </td>
               {% endthumbnail %}
               {% else %}
-              <td>pas d'aperçu</td>
+              <td>{% trans "pas d'aperçu" %}</td>
               {% endif %}
               <td>{{a.prix|intcomma}}</td>
               <td>{{a.quantity}}</td>
-              <td><a href="{% url "cart:remove_article_from_vente" a.pk %}">Supprimer</a> </td>
+              <td><a href="{% url "cart:remove_article_from_vente" a.pk %}">{% trans 'Supprimer' %}</a> </td>
           </tr>
           {% endfor %}
       </tbody>
@@ -44,12 +45,12 @@
   {% if vente.cartitem_set.all|length == 0 %}
 
 
-  <h3>Supprimer la vente ID {{vente.pk}}</h3>
+  <h3>{% trans "Supprimer la vente ID" %} {{vente.pk}}</h3>
 
   <p>
   <form method="GET" action="{% url "cart:vente_delete" vente.pk  %}">
        {% csrf_token %}
-       <input type="submit" class="btn btn-danger" value="Effacer la vente"/>
+       <input type="submit" class="btn btn-danger" value="{% trans 'Effacer la vente' %}"/>
     </form>
 </p>
   {% endif %}

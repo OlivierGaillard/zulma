@@ -1,5 +1,6 @@
 {% extends "inventex.html" %}
 {% load static %}
+{% load i18n %}
 {% load humanize %}
 {% block content %}
 <div class="container-fluid">
@@ -9,17 +10,17 @@
           <th>ID</th>
           <th>Date</th>
           <th>Article</th>
-          <th>Client</th>
-          <th>Montant total</th>
-          <th>Solde à payer</th>
-          <th>Règlement terminé?</th>
+          <th>{% trans "Client" %}</th>
+          <th>{% trans "Montant total" %}</th>
+          <th>{% trans "Solde à payer" %}</th>
+          <th>{% trans "Règlement terminé?" %}</th>
       </tr>
       </thead>
 
       <tbody>
       {% for a in ventes %}
       <tr>
-          <td> <a title="Cliquer pour ajouter un paiement ou voir les détails de la vente" href="/cart/vente/{{a.pk}}">{{ a.pk }}</a> </td>
+          <td> <a title="{% trans 'Cliquer pour ajouter un paiement ou voir les détails de la vente' %}" href="/cart/vente/{{a.pk}}">{{ a.pk }}</a> </td>
           <td>{{ a.date|date:"D d/m/y" }}</td>
           <td>{{ a.cartitem_set.first.article.nom }}</td>
           <td>{{ a.client.prenom}} {{ a.client.nom }}</td>
@@ -34,8 +35,8 @@
                    {% else %}
                    class="btn btn-success"
                    {% endif %}
-                   value="Ajouter un paiement" />
-            <small class="form-text text-muted">solde: {{a.solde_paiements|intcomma}}</small>
+                   value="{% trans 'Ajouter un paiement' %}" />
+            <small class="form-text text-muted">{% trans 'solde'%}: {{a.solde_paiements|intcomma}}</small>
             </form>
           </td>
           {% else %}

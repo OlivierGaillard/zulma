@@ -33,7 +33,7 @@ class Vente(models.Model):
     date = models.DateTimeField(default=timezone.now)
     montant = models.DecimalField(_('montant'), max_digits=20, decimal_places=0, default=0)
     client  = models.ForeignKey(Client, null=True, blank=True, help_text=_("Laisser le champ vide (---) si le client n'est pas enregistré."))
-    reglement_termine = models.BooleanField(default=False)
+    reglement_termine = models.BooleanField(_('Règlement terminé'), default=False)
 
 
     class Meta:
@@ -69,11 +69,11 @@ class CartItem(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     quantity   = models.IntegerField(default=1)
     article    = models.ForeignKey(Article, unique=False)
-    prix       = models.DecimalField(max_digits=20, decimal_places=0, default=25000)
-    vente      = models.ForeignKey(Vente, null=True) # par défaut si une vente est effacée, ses cart_item aussi
+    prix       = models.DecimalField(_('Prix'), max_digits=20, decimal_places=0, default=25000)
+    vente      = models.ForeignKey(Vente, null=True, verbose_name=_('Vente')) # par défaut si une vente est effacée, ses cart_item aussi
     # Si le panier est validé pour une vente, ce dernier est vidé. (session_id effacé)
     # Pour retrouver les éléments il faut utiliser Vente-ID
-    cart_complete = models.BooleanField(default=False)
+    cart_complete = models.BooleanField(default=False, verbose_name=_('Panier validé'))
 
     class Meta:
         db_table = 'cart_items'
