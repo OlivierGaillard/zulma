@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-10 19:32+0100\n"
+"POT-Creation-Date: 2018-02-11 11:12+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -20,6 +20,10 @@ msgstr ""
 #: cart/models.py:34
 msgid "montant"
 msgstr "Amount"
+
+#: cart/models.py:35
+msgid "Laisser le champ vide (---) si le client n'est pas enregistré."
+msgstr "Keep the field empty (---) if the customer is not registered."
 
 #: cart/models.py:60 cart/templates/cart/vente.html:71
 #: cart/templates/cart/vente.html:122
@@ -240,7 +244,7 @@ msgstr "Payments' list"
 
 #: cart/templates/cart/vente.html:111
 msgid "Pas de paiements enregistré"
-msgstr "There are no saved sellings"
+msgstr "There are no saved payments"
 
 #: cart/templates/cart/vente.html:120
 msgid "Nr"

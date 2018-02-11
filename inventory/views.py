@@ -17,27 +17,27 @@ from cart.cartutils import article_already_in_cart, get_cart_items
 
 class ArticleFilter(FilterSet):
     genre_choices = (
-        ('A', 'Accessoire'),
-        ('V', 'Vêtement'),
-        ('C', 'Chaussure'),
-        ('S', 'Sous-vêtement'),
+        ('A', _('Accessoire')),
+        ('V', _('Vêtement')),
+        ('C', _('Chaussure')),
+        ('S', _('Sous-vêtement')),
     )
 
     clients_choices = (
-        ('H', 'Homme'),
-        ('F', 'Femme'),
-        ('M', 'Mixte'),
-        ('E', 'Enfant'),
+        ('H', _('Homme')),
+        ('F', _('Femme')),
+        ('M', _('Mixte')),
+        ('E', _('Enfant')),
     )
 
     solde_choices = (
-        ('S', 'en solde'),
+        ('S', _('en solde')),
     )
 
     genre_article = ChoiceFilter(choices=genre_choices, label=_(u"Genre d'article"))
-    type_client = ChoiceFilter(choices=clients_choices)
+    type_client = ChoiceFilter(choices=clients_choices, label=_('type de client'))
     solde = ChoiceFilter(choices=solde_choices)
-    quantite__gt = NumberFilter(name='quantite', lookup_expr='gt')
+    quantite__gt = NumberFilter(name='quantite', lookup_expr='gt', label=_('quantité supérieure à'))
 
     class Meta:
         model = Article

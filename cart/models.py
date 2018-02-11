@@ -32,7 +32,7 @@ class Vente(models.Model):
     """
     date = models.DateTimeField(default=timezone.now)
     montant = models.DecimalField(_('montant'), max_digits=20, decimal_places=0, default=0)
-    client  = models.ForeignKey(Client, null=True, blank=True, help_text="Laisser le champ vide (---) si le client n'est pas enregistré.")
+    client  = models.ForeignKey(Client, null=True, blank=True, help_text=_("Laisser le champ vide (---) si le client n'est pas enregistré."))
     reglement_termine = models.BooleanField(default=False)
 
 

@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
 
 class Enterprise(models.Model):
@@ -92,10 +93,10 @@ class Marque(models.Model):
 
 class Article(models.Model):
     clients_choices = (
-        ('H', 'Homme'),
-        ('F', 'Femme'),
-        ('M', 'Mixte'),
-        ('E', 'Enfant'),
+        ('H', _('Homme')),
+        ('F', _('Femme')),
+        ('M', _('Mixte')),
+        ('E', _('Enfant')),
     )
     genre_choices = (
         ('A', 'Accessoire'),
@@ -118,8 +119,8 @@ class Article(models.Model):
         ('11', '8XL'),
     )
     solde_choices = (
-        ('N', '-'),
-        ('S', 'en solde'),
+        ('N', _('-')),
+        ('S', _('en solde')),
     )
     type_taille = (
         ('1', 'EUR'),
@@ -127,9 +128,9 @@ class Article(models.Model):
         ('3', 'UK')
     )
     photo_no = models.PositiveSmallIntegerField(null=True, blank=True, help_text="no de la prise de vue", unique=True)
-    type_client = models.CharField("Type de client", max_length=1, choices=clients_choices, default='F', )
-    genre_article = models.CharField("Genre d'article", max_length=1, choices=genre_choices, default='S')
-    nom = models.CharField(max_length=100, default="ensemble")
+    type_client = models.CharField(_("Type de client"), max_length=1, choices=clients_choices, default='F', )
+    genre_article = models.CharField(_("Genre d'article"), max_length=1, choices=genre_choices, default='S')
+    nom = models.CharField(_('Nom'), max_length=100, default="ensemble")
     marque = models.ForeignKey(Marque)
     entreprise = models.ForeignKey(Enterprise, default=2)
     quantite   = models.IntegerField(default=1)
@@ -137,7 +138,7 @@ class Article(models.Model):
     prix_total    = models.DecimalField(max_digits=10, decimal_places=2, default=0.0)
     remise     = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True, default=0.0)
     date_ajout = models.DateField(auto_now_add=True)
-    arrivage   = models.ForeignKey(Arrivage, null=True, blank=True, default=3)
+    arrivage   = models.ForeignKey(Arrivage, null=True, blank=True, default=3, verbose_name=_('Arrivage'))
     couleurs_quantites = models.CharField(max_length=200, null=True, blank=True)
     motifs = models.CharField(max_length=200, null=True, blank=True)
     notes  = models.CharField(max_length=200, null=True, blank=True)
@@ -145,7 +146,7 @@ class Article(models.Model):
     taille = models.CharField(max_length=2, choices=tailles_choices, null=True, blank=True)
     taille_nombre = models.PositiveSmallIntegerField(null=True, blank=True)
     local = models.CharField(max_length=20, default='bas')
-    solde = models.CharField("en solde", max_length=1, choices=solde_choices, default='N')
+    solde = models.CharField(_("en solde"), max_length=1, choices=solde_choices, default='N')
     ventes = models.CharField(max_length=200, null=True, blank=True, help_text="25000, 35000")
     tailles_vendues = models.CharField(max_length=200, null=True, blank=True, help_text="(XL, 1), (M, 2)")
 
