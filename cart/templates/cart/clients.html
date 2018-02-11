@@ -1,15 +1,16 @@
 {% extends "inventex.html" %}
 {% load static %}
+{% load i18n %}
 {% block content %}
 
     <table class="table table-light">
       <thead class="thead-light">
       <tr>
           <th>ID</th>
-          <th>Nom</th>
-          <th>Prénom</th>
-          <th>Téléphone</th>
-          <th>Modifier</th>
+          <th>{% trans 'Nom' %}</th>
+          <th>{% trans 'Prénom' %}</th>
+          <th>{% trans 'Téléphone' %}</th>
+          <th>{% trans 'Modifier' %}</th>
       </tr>
       </thead>
 
@@ -20,7 +21,7 @@
           <td>{{ a.nom }}</td>
           <td>{{ a.prenom }}</td>
           <td>{{ a.tel }}</td>
-          <td><a href="{% url "cart:client_update" a.pk %}">Modifier</a> </td>
+          <td><a href="{% url "cart:client_update" a.pk %}">{% trans 'Modifier'%}</a> </td>
       </tr>
       {% endfor %}
     </table>

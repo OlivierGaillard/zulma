@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-11 11:49+0100\n"
+"POT-Creation-Date: 2018-02-11 12:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,9 +17,31 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
+#: cart/models.py:10 cart/templates/cart/clients.html:10
+#: cart/templates/cart/vente.html:80 cart/templates/cart/vente_update.html:15
+msgid "Nom"
+msgstr "Last name"
+
+#: cart/models.py:11 cart/templates/cart/clients.html:11
+msgid "Prénom"
+msgstr "First name"
+
+#: cart/models.py:14
+msgid "Tél."
+msgstr "Phone"
+
+#: cart/models.py:14
+msgid "pas d'espaces entre les chiffres svp"
+msgstr "no spaces between numbers please"
+
 #: cart/models.py:34
 msgid "montant"
 msgstr "Amount"
+
+#: cart/models.py:35 cart/templates/cart/vente.html:62
+#: cart/templates/cart/ventes.html:13
+msgid "Client"
+msgstr "Customer"
 
 #: cart/models.py:35
 msgid "Laisser le champ vide (---) si le client n'est pas enregistré."
@@ -117,7 +139,8 @@ msgid "Quantité"
 msgstr "Quantity"
 
 #: cart/templates/cart/cart_content.html:40
-#: cart/templates/cart/cart_content.html:68
+#: cart/templates/cart/cart_content.html:68 cart/templates/cart/clients.html:13
+#: cart/templates/cart/clients.html:24
 msgid "Modifier"
 msgstr "Edit"
 
@@ -183,6 +206,10 @@ msgstr ""
 " once you have entered its coordinates.\n"
 "    "
 
+#: cart/templates/cart/clients.html:12
+msgid "Téléphone"
+msgstr "Phone"
+
 #: cart/templates/cart/paiement_add.html:9
 msgid "Etape 6"
 msgstr "Step 6"
@@ -225,17 +252,9 @@ msgstr "Selling summary"
 msgid "No-de vente"
 msgstr "Selling Nb"
 
-#: cart/templates/cart/vente.html:62 cart/templates/cart/ventes.html:13
-msgid "Client"
-msgstr "Customer"
-
 #: cart/templates/cart/vente.html:68 cart/templates/cart/vente.html:121
 msgid "Date"
 msgstr ""
-
-#: cart/templates/cart/vente.html:80 cart/templates/cart/vente_update.html:15
-msgid "Nom"
-msgstr "Name"
 
 #: cart/templates/cart/vente.html:81 cart/templates/cart/vente_update.html:16
 msgid "Aperçu"

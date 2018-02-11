@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-11 11:49+0100\n"
+"POT-Creation-Date: 2018-02-11 12:04+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -179,15 +179,15 @@ msgstr ""
 
 #: dproject/templates/index.html:54
 msgid "Bienvenue sur notre site!"
-msgstr ""
+msgstr "Welcome in our website"
 
 #: dproject/templates/index.html:56
 msgid "Tout prochainement nous présenterons nos soldes pour nos visiteurs"
-msgstr ""
+msgstr "Soon visit us for our sales"
 
 #: dproject/templates/index.html:58
 msgid "A tout bientôt"
-msgstr ""
+msgstr "See you soon"
 
 #: dproject/templates/registration/logged_out.html:4
 msgid "Home"

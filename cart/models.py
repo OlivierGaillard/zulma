@@ -7,11 +7,11 @@ from inventory.models import Article
 
 
 class Client(models.Model):
-    nom = models.CharField(max_length=80)
-    prenom = models.CharField(max_length=80)
+    nom = models.CharField(_('Nom'), max_length=80)
+    prenom = models.CharField(_('Prénom'), max_length=80)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,20}$',
                                  message="Format: '+999999999'. Maximum 20 chiffres.")
-    tel = models.CharField(max_length=20, validators=[phone_regex], help_text="pas d'espaces entre les chiffres svp",
+    tel = models.CharField(_('Tél.'), max_length=20, validators=[phone_regex], help_text=_("pas d'espaces entre les chiffres svp"),
                            null=True, blank=True)
 
     class Meta:
@@ -32,7 +32,7 @@ class Vente(models.Model):
     """
     date = models.DateTimeField(default=timezone.now)
     montant = models.DecimalField(_('montant'), max_digits=20, decimal_places=0, default=0)
-    client  = models.ForeignKey(Client, null=True, blank=True, help_text=_("Laisser le champ vide (---) si le client n'est pas enregistré."))
+    client  = models.ForeignKey(Client, null=True, blank=True, verbose_name=_('Client'), help_text=_("Laisser le champ vide (---) si le client n'est pas enregistré."))
     reglement_termine = models.BooleanField(_('Règlement terminé'), default=False)
 
 
