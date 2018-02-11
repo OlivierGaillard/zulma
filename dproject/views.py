@@ -8,7 +8,9 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
-        if '.dev.prestigemikafric.com' in settings.ALLOWED_HOSTS:
+        if '.prestigemikafric.com' in settings.ALLOWED_HOSTS:
+            pass
+        else:
             context['DEV'] = 'DEV'
         user = self.request.user
         if user.is_authenticated:
