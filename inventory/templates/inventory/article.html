@@ -115,6 +115,10 @@
     </td>
     {% endif %}
 
+    <td>
+      <a href="/inventory/article_update/{{article.pk}}"><button class="btn btn-warning" >{% trans "Modifier" %}</button></a>
+    </td>
+
     </tr>
 
 </table>
@@ -140,6 +144,8 @@
 
 
 <p>{% trans "Ajouter une <strong>image</strong> en cliquant" %} <a href="/inventory/upload_pic/{{article.pk}}">{% trans "ici" %}</a>.</p>
+
+
 
 
 

@@ -9,10 +9,10 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse
 from django_filters import FilterSet, CharFilter, ChoiceFilter, NumberFilter
 from django_filters.views import FilterView
-from django.views.generic import ListView, TemplateView, CreateView, DetailView
+from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView
 from django.contrib.auth.models import User
 from .models import Article, Employee, Photo
-from .forms import  ArticleCreateForm, AddPhotoForm
+from .forms import  ArticleCreateForm, AddPhotoForm, ArticleUpdateForm
 from cart.cartutils import article_already_in_cart, get_cart_items
 
 class ArticleFilter(FilterSet):
@@ -153,6 +153,17 @@ class ArticleDetailView(DetailView):
         ctx['article_in_cart'] = article_already_in_cart(cart_items, self.object)
         #return add_categories_to_context(ctx)
         return ctx
+
+@method_decorator(login_required, name='dispatch')
+class ArticleUpdateView(UpdateView):
+    template_name = 'inventory/article_update.html'
+    context_object_name = 'article'
+    model = Article
+    form_class = ArticleUpdateForm
+
+    def get_success_url(self):
+        return reverse('inventory:articles')
+
 
 
 

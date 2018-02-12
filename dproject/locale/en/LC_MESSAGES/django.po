@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 16:30+0100\n"
+"POT-Creation-Date: 2018-02-12 17:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,7 +104,7 @@ msgstr ""
 
 #: dproject/templates/base.html:110
 msgid "Menu pour mobile"
-msgstr "Quick-dirty menu for mobile"
+msgstr "Quick menu for mobile"
 
 #: dproject/templates/base.html:146
 msgid "créé par"
@@ -180,8 +180,10 @@ msgid ""
 msgstr ""
 
 #: dproject/templates/index.html:53
-msgid "Bienvenue sur notre site!"
-msgstr "Welcome in our website"
+#, fuzzy
+#| msgid "Bienvenue"
+msgid "Bienvenue!"
+msgstr "Welcome"
 
 #: dproject/templates/index.html:55
 msgid "Articles en solde"
@@ -226,6 +228,9 @@ msgstr ""
 #: dproject/templates/registration/logged_out.html:12
 msgid "Log in again"
 msgstr ""
+
+#~ msgid "Bienvenue sur notre site!"
+#~ msgstr "Welcome in our website"
 
 #~ msgid "Tout prochainement nous présenterons nos soldes pour nos visiteurs"
 #~ msgstr "Soon visit us for our sales"

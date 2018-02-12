@@ -5,6 +5,23 @@ from django import forms
 from django.shortcuts import reverse
 from .models import Article
 
+class ArticleUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ('nom', 'solde', 'prix_total')
+
+    def __init__(self, *args, **kwargs):
+        super(ArticleUpdateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
 
 
 class ArticleCreateForm(forms.ModelForm):

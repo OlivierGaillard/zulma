@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 16:30+0100\n"
+"POT-Creation-Date: 2018-02-12 17:41+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -120,21 +120,32 @@ msgstr "Out of stock"
 msgid "Supprimer du panier"
 msgstr "Add to cart"
 
-#: inventory/templates/inventory/article.html:129
+#: inventory/templates/inventory/article.html:119
+#: inventory/templates/inventory/articles.html:121
+msgid "Modifier"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:133
 msgid "image de "
 msgstr "picture of"
 
-#: inventory/templates/inventory/article.html:133
+#: inventory/templates/inventory/article.html:137
 msgid "Supprimer"
 msgstr "Delete"
 
-#: inventory/templates/inventory/article.html:142
+#: inventory/templates/inventory/article.html:146
 msgid "Ajouter une <strong>image</strong> en cliquant"
 msgstr "Add a <strong>picture</strong> by clicking"
 
-#: inventory/templates/inventory/article.html:142
+#: inventory/templates/inventory/article.html:146
 msgid "ici"
 msgstr "here"
+
+#: inventory/templates/inventory/article_update.html:7
+#, fuzzy
+#| msgid "Détails de l'article"
+msgid "Modification de l'article-ID:"
+msgstr "Article's details"
 
 #: inventory/templates/inventory/articles.html:12
 msgid "1ère étape"

@@ -118,7 +118,7 @@
           {% else %}
           <td><span class="badge badge-danger">{{ a.quantite }}</span></td>
           {% endif %}
-          <td>{{a.prix_total|intcomma|default_if_none:"<em>{% trans 'à renseigner' %}</em>"}}</td>
+          <td><a title="{% trans 'Modifier' %}" href="/inventory/article_update/{{a.pk}}">{{a.prix_total|intcomma}}</a></td>
       </tr>
 
       {% endfor %}

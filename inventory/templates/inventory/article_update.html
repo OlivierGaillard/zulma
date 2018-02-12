@@ -1,0 +1,10 @@
+{% extends "inventex.html" %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+  <h3>{% trans "Modification de l'article-ID:"%} {{article.pk}}</h3>
+{% crispy form %}
+</div>
+{% endblock %}
