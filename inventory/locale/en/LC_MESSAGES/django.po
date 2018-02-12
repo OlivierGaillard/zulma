@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-11 12:14+0100\n"
+"POT-Creation-Date: 2018-02-12 16:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,52 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-
-#: inventory/models.py:96 inventory/views.py:27
-msgid "Homme"
-msgstr "Man"
-
-#: inventory/models.py:97 inventory/views.py:28
-msgid "Femme"
-msgstr "Woman"
-
-#: inventory/models.py:98 inventory/views.py:29
-msgid "Mixte"
-msgstr "Unisex"
-
-#: inventory/models.py:99 inventory/views.py:30
-msgid "Enfant"
-msgstr "Children"
-
-#: inventory/models.py:122
-msgid "-"
-msgstr "-"
-
-#: inventory/models.py:123 inventory/models.py:149
-#: inventory/templates/inventory/articles.html:51 inventory/views.py:34
-msgid "en solde"
-msgstr "price reduced"
-
-#: inventory/models.py:131 inventory/templates/inventory/articles.html:47
-#: inventory/templates/inventory/articles.html:82
-msgid "Type de client"
-msgstr "Client's type"
-
-#: inventory/models.py:132 inventory/templates/inventory/articles.html:43
-#: inventory/templates/inventory/articles.html:83 inventory/views.py:37
-msgid "Genre d'article"
-msgstr "Kind of article"
-
-#: inventory/models.py:133 inventory/templates/inventory/article.html:53
-#: inventory/templates/inventory/articles.html:85
-msgid "Nom"
-msgstr "Name"
-
-#: inventory/models.py:141
-#, fuzzy
-#| msgid "Date d'arrivage"
-msgid "Arrivage"
-msgstr "Arrival's Date"
 
 #: inventory/templates/inventory/article.html:8
 msgid "2ème étape"
@@ -117,6 +71,11 @@ msgstr "Date added"
 #: inventory/templates/inventory/article.html:48
 msgid "Client"
 msgstr "Customer"
+
+#: inventory/templates/inventory/article.html:53
+#: inventory/templates/inventory/articles.html:85
+msgid "Nom"
+msgstr "Name"
 
 #: inventory/templates/inventory/article.html:57
 #: inventory/templates/inventory/articles.html:86
@@ -215,6 +174,20 @@ msgstr "Part of the name string"
 msgid "Partie de la marque"
 msgstr "Part of the brand's name"
 
+#: inventory/templates/inventory/articles.html:43
+#: inventory/templates/inventory/articles.html:83
+msgid "Genre d'article"
+msgstr "Kind of article"
+
+#: inventory/templates/inventory/articles.html:47
+#: inventory/templates/inventory/articles.html:82
+msgid "Type de client"
+msgstr "Client's type"
+
+#: inventory/templates/inventory/articles.html:51
+msgid "en solde"
+msgstr "price reduced"
+
 #: inventory/templates/inventory/articles.html:55
 msgid "Quantité supérieure à"
 msgstr "Quantity greater than"
@@ -247,33 +220,47 @@ msgstr "Has a note"
 msgid "Cliquer pour voir les détails"
 msgstr "Click to see details"
 
-#: inventory/views.py:20
-msgid "Accessoire"
-msgstr "Accessory"
+#~ msgid "Homme"
+#~ msgstr "Man"
 
-#: inventory/views.py:21
-msgid "Vêtement"
-msgstr "Clothes"
+#~ msgid "Femme"
+#~ msgstr "Woman"
 
-#: inventory/views.py:22
-msgid "Chaussure"
-msgstr "Shoes"
+#~ msgid "Mixte"
+#~ msgstr "Unisex"
 
-#: inventory/views.py:23
-msgid "Sous-vêtement"
-msgstr "Underwear"
+#~ msgid "Enfant"
+#~ msgstr "Children"
 
-#: inventory/views.py:38
+#~ msgid "-"
+#~ msgstr "-"
+
 #, fuzzy
-#| msgid "Type de client"
-msgid "type de client"
-msgstr "Client's type"
+#~| msgid "Date d'arrivage"
+#~ msgid "Arrivage"
+#~ msgstr "Arrival's Date"
 
-#: inventory/views.py:40
+#~ msgid "Accessoire"
+#~ msgstr "Accessory"
+
+#~ msgid "Vêtement"
+#~ msgstr "Clothes"
+
+#~ msgid "Chaussure"
+#~ msgstr "Shoes"
+
+#~ msgid "Sous-vêtement"
+#~ msgstr "Underwear"
+
 #, fuzzy
-#| msgid "Quantité supérieure à"
-msgid "quantité supérieure à"
-msgstr "Quantity greater than"
+#~| msgid "Type de client"
+#~ msgid "type de client"
+#~ msgstr "Client's type"
+
+#, fuzzy
+#~| msgid "Quantité supérieure à"
+#~ msgid "quantité supérieure à"
+#~ msgstr "Quantity greater than"
 
 #, fuzzy
 #~| msgid "Filtre"

@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from django.conf import settings
-from inventory.models import Employee
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from inventory.models import Employee, Article
 
 
 class IndexView(TemplateView):
@@ -12,6 +13,24 @@ class IndexView(TemplateView):
             pass
         else:
             context['DEV'] = 'DEV'
+
+
+        articles_en_soldes = Article.objects.filter(solde='S')
+        paginator = Paginator(articles_en_soldes, 15)
+        page = self.request.GET.get('page')
+        start_index = 1
+        try:
+            articles = paginator.page(page)
+            start_index = articles.start_index()
+        except PageNotAnInteger:
+            articles = paginator.page(1)
+        except EmptyPage:
+            articles = paginator.page(paginator.num_pages)  # last page
+            start_index = articles.start_index()
+        context['soldes'] = articles
+        context['count'] =  articles_en_soldes.count()
+        context['start_index'] = start_index
+
         user = self.request.user
         if user.is_authenticated:
             try:
@@ -19,3 +38,5 @@ class IndexView(TemplateView):
             except:
                 context['employee'] = None
         return context
+
+

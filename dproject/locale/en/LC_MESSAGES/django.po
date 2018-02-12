@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-11 12:14+0100\n"
+"POT-Creation-Date: 2018-02-12 16:30+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -63,6 +63,26 @@ msgstr ""
 msgid "Caisse"
 msgstr "Checkout"
 
+#: dproject/templates/base.html:80 dproject/templates/base.html:114
+msgid "Liste des articles"
+msgstr "Articles' list"
+
+#: dproject/templates/base.html:81 dproject/templates/base.html:115
+msgid "Contenu du panier"
+msgstr "Cart content"
+
+#: dproject/templates/base.html:82 dproject/templates/base.html:116
+msgid "Ventes"
+msgstr "Sellings"
+
+#: dproject/templates/base.html:83 dproject/templates/base.html:117
+msgid "Clients"
+msgstr "Customers"
+
+#: dproject/templates/base.html:84 dproject/templates/base.html:118
+msgid "Ajouter un client"
+msgstr "Add a customer"
+
 #: dproject/templates/base.html:95
 msgid "Profile"
 msgstr ""
@@ -86,26 +106,6 @@ msgstr ""
 msgid "Menu pour mobile"
 msgstr "Quick-dirty menu for mobile"
 
-#: dproject/templates/base.html:114
-msgid "Liste des articles"
-msgstr "Articles' list"
-
-#: dproject/templates/base.html:115
-msgid "Contenu du panier"
-msgstr "Cart content"
-
-#: dproject/templates/base.html:116
-msgid "Ventes"
-msgstr "Sellings"
-
-#: dproject/templates/base.html:117
-msgid "Clients"
-msgstr "Customers"
-
-#: dproject/templates/base.html:118
-msgid "Ajouter un client"
-msgstr "Add a customer"
-
 #: dproject/templates/base.html:146
 msgid "créé par"
 msgstr "made by"
@@ -123,35 +123,37 @@ msgstr ""
 msgid "The %(site_name)s team"
 msgstr ""
 
-#: dproject/templates/index.html:9
+#: dproject/templates/index.html:11
 msgid "Bienvenue"
 msgstr "Welcome"
 
-#: dproject/templates/index.html:11
+#: dproject/templates/index.html:13
 msgid "Votre employeur"
 msgstr "Your employer"
 
-#: dproject/templates/index.html:15
+#: dproject/templates/index.html:17
 msgid "Comment saisir une vente"
 msgstr "How to register a selling"
 
-#: dproject/templates/index.html:15
+#: dproject/templates/index.html:17
 msgid "step-by-step guide"
 msgstr ""
 
-#: dproject/templates/index.html:17
+#: dproject/templates/index.html:19
 msgid "Allez à la "
 msgstr "Go to the"
 
-#: dproject/templates/index.html:18
+#: dproject/templates/index.html:20
 msgid "1ère étape"
 msgstr "Step 1"
 
-#: dproject/templates/index.html:22
-msgid "de la vente"
+#: dproject/templates/index.html:24
+#, fuzzy
+#| msgid "de la vente"
+msgid "de la vente achevée"
 msgstr "of the selling process"
 
-#: dproject/templates/index.html:32
+#: dproject/templates/index.html:31
 msgid ""
 "\n"
 "         <h2>Pas un employé/e? Alors pas de contenu visible!</h2>\n"
@@ -168,7 +170,7 @@ msgstr ""
 "\n"
 "Not an employee? Then no visible content!"
 
-#: dproject/templates/index.html:42
+#: dproject/templates/index.html:41
 msgid ""
 "\n"
 "             avec un autre nom d'utilisateur/trice, ou\n"
@@ -177,17 +179,37 @@ msgid ""
 "             "
 msgstr ""
 
-#: dproject/templates/index.html:54
+#: dproject/templates/index.html:53
 msgid "Bienvenue sur notre site!"
 msgstr "Welcome in our website"
 
-#: dproject/templates/index.html:56
-msgid "Tout prochainement nous présenterons nos soldes pour nos visiteurs"
-msgstr "Soon visit us for our sales"
+#: dproject/templates/index.html:55
+msgid "Articles en solde"
+msgstr "For sale"
 
-#: dproject/templates/index.html:58
-msgid "A tout bientôt"
-msgstr "See you soon"
+#: dproject/templates/index.html:70
+msgid "Nr."
+msgstr "Nb."
+
+#: dproject/templates/index.html:74
+msgid "prix inconnu"
+msgstr "price unknown"
+
+#: dproject/templates/index.html:102
+msgid "Quelque chose vous tente?"
+msgstr "Something interesting?"
+
+#: dproject/templates/index.html:103
+msgid "Alors envoyez- nous un petit courriel à cette"
+msgstr "Then drop a quick email to this"
+
+#: dproject/templates/index.html:103
+msgid "adresse"
+msgstr "adress"
+
+#: dproject/templates/index.html:110
+msgid "Info de connexion pour ce site de test"
+msgstr "Connextion credentials for this test website"
 
 #: dproject/templates/registration/logged_out.html:4
 msgid "Home"
@@ -204,6 +226,12 @@ msgstr ""
 #: dproject/templates/registration/logged_out.html:12
 msgid "Log in again"
 msgstr ""
+
+#~ msgid "Tout prochainement nous présenterons nos soldes pour nos visiteurs"
+#~ msgstr "Soon visit us for our sales"
+
+#~ msgid "A tout bientôt"
+#~ msgstr "See you soon"
 
 #~ msgid ""
 #~ "Commencez par rechercher l'article que vous avez vendu en cliquant sur le "
