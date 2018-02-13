@@ -192,7 +192,7 @@ msgstr "Welcome in our nice little store!"
 msgid ""
 "Nous nous trouvons au quartier Fouda, à côté du restaurant <em>Le Cercle "
 "Vert</em>."
-msgstr "We live in Fouda quartier, right beneath the <em>Le Cercle Vert</em>."
+msgstr "We live in Fouda quartier, right beneath the restaurant <em>Le Cercle Vert</em>."
 
 #: dproject/templates/index.html:64
 msgid "Nous avons récemment aménagé l'étage."
