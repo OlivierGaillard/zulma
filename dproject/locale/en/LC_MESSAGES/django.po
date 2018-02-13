@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-12 17:41+0100\n"
+"POT-Creation-Date: 2018-02-13 12:14+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -110,17 +110,22 @@ msgstr "Quick menu for mobile"
 msgid "créé par"
 msgstr "made by"
 
-#: dproject/templates/email/base.html:68
+#: dproject/templates/email/base.html:68 dproject/templates/email/base.txt:4
+#: dproject/templates/email/base.txt:5
 msgid "Dear "
 msgstr ""
 
-#: dproject/templates/email/base.html:73
+#: dproject/templates/email/base.html:73 dproject/templates/email/base.txt:11
 msgid "Yours sincerely"
 msgstr ""
 
-#: dproject/templates/email/base.html:74
+#: dproject/templates/email/base.html:74 dproject/templates/email/base.txt:12
 #, python-format
 msgid "The %(site_name)s team"
+msgstr ""
+
+#: dproject/templates/email/base.txt:5
+msgid "Dear ladies and gentlemen"
 msgstr ""
 
 #: dproject/templates/index.html:11
@@ -179,39 +184,57 @@ msgid ""
 "             "
 msgstr ""
 
-#: dproject/templates/index.html:53
-#, fuzzy
-#| msgid "Bienvenue"
-msgid "Bienvenue!"
-msgstr "Welcome"
+#: dproject/templates/index.html:54
+msgid "Bienvenue dans notre chère boutique!"
+msgstr "Welcome in our nice little store!"
 
 #: dproject/templates/index.html:55
+msgid ""
+"Nous nous trouvons au quartier Fouda, à côté du restaurant <em>Le Cercle "
+"Vert</em>."
+msgstr "We live in Fouda quartier, right beneath the <em>Le Cercle Vert</em>."
+
+#: dproject/templates/index.html:64
+msgid "Nous avons récemment aménagé l'étage."
+msgstr "We recently converted the attic into ceremony clothes store."
+
+#: dproject/templates/index.html:74
+msgid ""
+"Bien sûr nous conservons notre atelier de confection pour le sur-mesure et "
+"les retouches"
+msgstr "Of course the sewing workshop remains at your service: custom-made and touch-ups."
+
+#: dproject/templates/index.html:75
+msgid "En ce moment il y a des <strong>soldes...</strong> Profitez!"
+msgstr "Now there are <strong>sales</strong>... Check it!"
+
+#: dproject/templates/index.html:82
 msgid "Articles en solde"
 msgstr "For sale"
 
-#: dproject/templates/index.html:70
+#: dproject/templates/index.html:97
 msgid "Nr."
 msgstr "Nb."
 
-#: dproject/templates/index.html:74
+#: dproject/templates/index.html:101
 msgid "prix inconnu"
 msgstr "price unknown"
 
-#: dproject/templates/index.html:102
+#: dproject/templates/index.html:129
 msgid "Quelque chose vous tente?"
 msgstr "Something interesting?"
 
-#: dproject/templates/index.html:103
+#: dproject/templates/index.html:130
 msgid "Alors envoyez- nous un petit courriel à cette"
 msgstr "Then drop a quick email to this"
 
-#: dproject/templates/index.html:103
+#: dproject/templates/index.html:130
 msgid "adresse"
 msgstr "adress"
 
-#: dproject/templates/index.html:110
+#: dproject/templates/index.html:137
 msgid "Info de connexion pour ce site de test"
-msgstr "Connextion credentials for this test website"
+msgstr "Connexion credentials for this test website"
 
 #: dproject/templates/registration/logged_out.html:4
 msgid "Home"
@@ -229,8 +252,10 @@ msgstr ""
 msgid "Log in again"
 msgstr ""
 
-#~ msgid "Bienvenue sur notre site!"
-#~ msgstr "Welcome in our website"
+#, fuzzy
+#~| msgid "Bienvenue"
+#~ msgid "Bienvenue!"
+#~ msgstr "Welcome"
 
 #~ msgid "Tout prochainement nous présenterons nos soldes pour nos visiteurs"
 #~ msgstr "Soon visit us for our sales"
