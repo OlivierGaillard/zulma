@@ -95,11 +95,11 @@
                 <div class="media-body">
                     <h4 class="media-heading">
                         Article {% trans "Nr." %}<a href="{{ a.photo_set.first.photo.url }}"> <em>{{ a.pk  }}</em></a> </h4>
-                  {% if a.prix_total %}
-                  <p>{{ a.prix_total|floatformat:-2 }} XAF</p>
-                  {% else %}
-                  <p><em>{% trans "prix inconnu" %}</em></p>
-                  {% endif %}
+                  <!--{% if a.prix_total %}-->
+                  <!--<p>{{ a.prix_total|floatformat:-2 }} XAF</p>-->
+                  <!--{% else %}-->
+                  <!--<p><em>{% trans "prix inconnu" %}</em></p>-->
+                  <!--{% endif %}-->
                 </div>
                {% endthumbnail %}
             </div>
