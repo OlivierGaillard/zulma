@@ -49,9 +49,36 @@
        {% endif %}
     {% else %}
   <div class="container">
-         <div class="jumbotron alert-info">
-           <h1>{% trans "Bienvenue!" %}</h1>
-         </div>
+    <div id="jumbotron-home" class="jumbotron">
+      <div class="container text-center">
+        <h2>{% trans "Bienvenue dans notre chère boutique!" %}</h2>
+        <p>{% trans "Nous nous trouvons au quartier Fouda, à côté du restaurant <em>Le Cercle Vert</em>." %}</p>
+        <div class="row">
+          <div class="media col-sm-6">
+            <div class="media-top">
+              <a href="/media/boutique.jpg">
+                <img src="/media/boutique_resized.jpg" alt="atelier" style="padding-bottom: 10pt;">
+              </a>
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{% trans "Nous avons récemment aménagé l'étage." %}</h4>
+            </div>
+          </div>
+          <div class="media col-sm-6">
+            <div class="media-top">
+              <a href="/media/mika_atelier_large.jpg">
+                <img src="/media/mika_atelier.jpg" alt="atelier" style="padding-bottom: 10pt;">
+              </a>
+            </div>
+            <div class="media-body" >
+              <h4 class="media-heading" style="padding-bottom: 10pt">{% trans 'Bien sûr nous conservons notre atelier de confection pour le sur-mesure et les retouches' %}</h4>
+              <p>{% trans "En ce moment il y a des <strong>soldes...</strong> Profitez!" %}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <h2>{% trans 'Articles en solde' %}</h2>
          <div class="row">
            {% for a in soldes %}
