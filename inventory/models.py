@@ -81,6 +81,24 @@ class Frais(models.Model):
     class Meta:
         verbose_name_plural = 'Frais'
 
+class Category(models.Model):
+    name = models.CharField(_('Category'), max_length=100, unique=True)
+
+
+class ArticleBase(models.Model):
+    """Base for an article containing the only required fields: photo."""
+    photo = models.ImageField(upload_to='articles', null=True, blank=True)
+    purchasing_price = models.DecimalField(_('Purchasing price'), max_digits=10, decimal_places=2, null=True, blank=True)
+    selling_price    = models.DecimalField(_('Selling price'), max_digits=10, decimal_places=2, null=True, blank=True)
+    name  = models.CharField(_('Name'), max_length=100, null=True, blank=True)
+    category = models.ForeignKey(Category, null=True, verbose_name=_('Category'))
+    description = models.TextField(_('Description'), null=True, blank=True)
+    quantity = models.IntegerField(_('Quantity'), default=1)
+
+    class Meta:
+        verbose_name = _('Article with minimal data')
+
+
 
 class Marque(models.Model):
     nom = models.CharField(max_length=80, unique=True)
@@ -91,6 +109,20 @@ class Marque(models.Model):
     class Meta:
         ordering = ['nom']
 
+
+class ClothesArticle(ArticleBase):
+    """Cela ne résout pas le problème. Si les articles de bases sont créés encore faut-il générer les articles
+    spécifiques. Impossible de le faire automatiquement, sauf à prévoir un tri des photos.
+    Une autre solution: indexer les articles de base (fixer une catégorie), puis générer des instances
+    des classes dérivées. """
+    clients_choices = (
+        ('H', _('Homme')),
+        ('F', _('Femme')),
+        ('M', _('Mixte')),
+        ('E', _('Enfant')),
+    )
+    type_client = models.CharField(_("Type de client"), max_length=1, choices=clients_choices, default='F', )
+    marque = models.ForeignKey(Marque, null=True, blank=True)
 
 class Article(models.Model):
     clients_choices = (

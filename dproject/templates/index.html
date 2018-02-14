@@ -49,98 +49,89 @@
        {% endif %}
     {% else %}
   <div class="container">
-    <div id="jumbotron-home" class="jumbotron">
-      <div class="container text-center">
-        <h2>{% trans "Bienvenue dans notre chère boutique!" %}</h2>
-        <p>{% trans "Nous nous trouvons au quartier Fouda, à côté du restaurant <em>Le Cercle Vert</em>." %}</p>
-        <div class="row">
-          <div class="media col-sm-6">
-            <div class="media-top">
-              <a href="/media/boutique.jpg">
-                <img src="/media/boutique_resized.jpg" alt="atelier" style="padding-bottom: 10pt;">
-              </a>
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading">{% trans "Nous avons récemment aménagé l'étage." %}</h4>
-            </div>
-          </div>
-          <div class="media col-sm-6">
-            <div class="media-top">
-              <a href="/media/mika_atelier_large.jpg">
-                <img src="/media/mika_atelier.jpg" alt="atelier" style="padding-bottom: 10pt;">
-              </a>
-            </div>
-            <div class="media-body" >
-              <h4 class="media-heading" style="padding-bottom: 10pt">{% trans 'Bien sûr nous conservons notre atelier de confection pour le sur-mesure et les retouches' %}</h4>
-              <p>{% trans "En ce moment il y a des <strong>soldes...</strong> Profitez!" %}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+    <!--<div id="jumbotron-home" class="jumbotron">-->
+      <!--<div class="container text-center">-->
+        <!--<h2>{% trans "Bienvenue dans notre chère boutique!" %}</h2>-->
+        <!--<p>{% trans "Nous nous trouvons au quartier Fouda, à côté du restaurant <em>Le Cercle Vert</em>." %}</p>-->
+        <!--<div class="row">-->
+          <!--<div class="media col-sm-6">-->
+            <!--<div class="media-top">-->
+              <!--<a href="/media/boutique.jpg">-->
+                <!--<img src="/media/boutique_resized.jpg" alt="atelier" style="padding-bottom: 10pt;">-->
+              <!--</a>-->
+            <!--</div>-->
+            <!--<div class="media-body">-->
+              <!--<h4 class="media-heading">{% trans "Nous avons récemment aménagé l'étage." %}</h4>-->
+            <!--</div>-->
+          <!--</div>-->
+          <!--<div class="media col-sm-6">-->
+            <!--<div class="media-top">-->
+              <!--<a href="/media/mika_atelier_large.jpg">-->
+                <!--<img src="/media/mika_atelier.jpg" alt="atelier" style="padding-bottom: 10pt;">-->
+              <!--</a>-->
+            <!--</div>-->
+            <!--<div class="media-body" >-->
+              <!--<h4 class="media-heading" style="padding-bottom: 10pt">{% trans 'Bien sûr nous conservons notre atelier de confection pour le sur-mesure et les retouches' %}</h4>-->
+              <!--<p>{% trans "En ce moment il y a des <strong>soldes...</strong> Profitez!" %}</p>-->
+            <!--</div>-->
+          <!--</div>-->
+        <!--</div>-->
+      <!--</div>-->
+    <!--</div>-->
 
-    <h2>{% trans 'Articles en solde' %}</h2>
-         <div class="row">
-           {% for a in soldes %}
-           <div class="col-md-3 col-sm-4 col-xs-6">
-             {% if a.photo_set.all %}
-             {% thumbnail a.photo_set.first.photo  "100x100" crop="center" as im %}
-             <div class="media">
-                <div class="media-top">
-                  <a href="{{ a.photo_set.first.photo.url }}" alt="image de {{a.nom}}-ID: {{a.pk}}">
-                    <img src="{{ im.url }}" alt="The thumbnail" style="width: {{ im.width }}">
-                  </a>
+    <!--<h2>{% trans 'Articles en solde' %}</h2>-->
+         <!--<div class="row">-->
+           <!--{% for a in soldes %}-->
+           <!--<div class="col-md-3 col-sm-4 col-xs-6">-->
+             <!--{% if a.photo_set.all %}-->
+             <!--{% thumbnail a.photo_set.first.photo  "100x100" crop="center" as im %}-->
+             <!--<div class="media">-->
+                <!--<div class="media-top">-->
+                  <!--<a href="{{ a.photo_set.first.photo.url }}" alt="image de {{a.nom}}-ID: {{a.pk}}">-->
+                    <!--<img src="{{ im.url }}" alt="The thumbnail" style="width: {{ im.width }}">-->
+                  <!--</a>-->
 
-                </div>
-                <div class="media-body">
-                    <h4 class="media-heading">
-                        Article {% trans "Nr." %}<a href="{{ a.photo_set.first.photo.url }}"> <em>{{ a.pk  }}</em></a> </h4>
-                  <!--{% if a.prix_total %}-->
-                  <!--<p>{{ a.prix_total|floatformat:-2 }} XAF</p>-->
-                  <!--{% else %}-->
-                  <!--<p><em>{% trans "prix inconnu" %}</em></p>-->
-                  <!--{% endif %}-->
-                </div>
-               {% endthumbnail %}
-            </div>
-             {% endif %}
-           </div>
-           {% endfor %}
-           {% if soldes.has_other_pages %}
-           <ul class="pagination">
-             {% if soldes.has_previous %}
-             <li><a href="?page={{ articles.previous_page_number }}">&laquo;</a></li>
-             {% else %}
-             <li class="disabled"><span>&laquo;</span></li>
-             {% endif %}
-             {% for i in soldes.paginator.page_range %}
-             {% if soldes.number == i %}
-             <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
-             {% else %}
-             <li><a href="?page={{ i }}">{{ i }}</a></li>
-             {% endif %}
-             {% endfor %}
-             {% if soldes.has_next %}
-             <li><a href="?page={{ soldes.next_page_number }}">&raquo;</a></li>
-             {% else %}
-             <li class="disabled"><span>&raquo;</span></li>
-             {% endif %}
-           </ul>
-           <h4>{% trans "Quelque chose vous tente?" %}</h4>
-           <p>{% trans "Alors envoyez- nous un petit courriel à cette" %} <a href="mailto:bassy@prestigemikafric.com">{% trans 'adresse' %}</a>.</p>
-         </div>
+                <!--</div>-->
+                <!--<div class="media-body">-->
+                    <!--<h4 class="media-heading">-->
+                        <!--Article {% trans "Nr." %}<a href="{{ a.photo_set.first.photo.url }}"> <em>{{ a.pk  }}</em></a> </h4>-->
+                  <!--&lt;!&ndash;{% if a.prix_total %}&ndash;&gt;-->
+                  <!--&lt;!&ndash;<p>{{ a.prix_total|floatformat:-2 }} XAF</p>&ndash;&gt;-->
+                  <!--&lt;!&ndash;{% else %}&ndash;&gt;-->
+                  <!--&lt;!&ndash;<p><em>{% trans "prix inconnu" %}</em></p>&ndash;&gt;-->
+                  <!--&lt;!&ndash;{% endif %}&ndash;&gt;-->
+                <!--</div>-->
+               <!--{% endthumbnail %}-->
+            <!--</div>-->
+             <!--{% endif %}-->
+           <!--</div>-->
+           <!--{% endfor %}-->
+           <!--{% if soldes.has_other_pages %}-->
+           <!--<ul class="pagination">-->
+             <!--{% if soldes.has_previous %}-->
+             <!--<li><a href="?page={{ articles.previous_page_number }}">&laquo;</a></li>-->
+             <!--{% else %}-->
+             <!--<li class="disabled"><span>&laquo;</span></li>-->
+             <!--{% endif %}-->
+             <!--{% for i in soldes.paginator.page_range %}-->
+             <!--{% if soldes.number == i %}-->
+             <!--<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>-->
+             <!--{% else %}-->
+             <!--<li><a href="?page={{ i }}">{{ i }}</a></li>-->
+             <!--{% endif %}-->
+             <!--{% endfor %}-->
+             <!--{% if soldes.has_next %}-->
+             <!--<li><a href="?page={{ soldes.next_page_number }}">&raquo;</a></li>-->
+             <!--{% else %}-->
+             <!--<li class="disabled"><span>&raquo;</span></li>-->
+             <!--{% endif %}-->
+           <!--</ul>-->
+           <!--<h4>{% trans "Quelque chose vous tente?" %}</h4>-->
+           <!--<p>{% trans "Alors envoyez- nous un petit courriel à cette" %} <a href="mailto:bassy@prestigemikafric.com">{% trans 'adresse' %}</a>.</p>-->
+         <!--</div>-->
 
 {% endif %}
 
-       {% if DEV %}
-       <div class="info alert-success">
-         <h3>{% trans "Info de connexion pour ce site de test" %}</h3>
-         <ul>
-           <li>Login: test</li>
-           <li>Password: blacksnow</li>
-         </ul>
-       </div>
-       {% endif %}
   </div>
 
 

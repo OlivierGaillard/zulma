@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Frais, Enterprise, Employee, Arrivage, Article, Marque, Photo
+from .models import Frais, Enterprise, Employee, Arrivage, Article, Marque, Photo, ArticleBase, ClothesArticle
 
 class FraisAdmin(admin.ModelAdmin):
     list_display = ['date', 'montant', 'objet', 'entreprise']
@@ -29,3 +29,10 @@ class PhotoAdmin(admin.ModelAdmin):
     list_display = ['article', 'article_ID']
 admin.site.register(Photo, PhotoAdmin)
 
+class ArticleBaseAdmin(admin.ModelAdmin):
+    list_display = ['id', 'photo', 'quantity', 'category', 'name', 'purchasing_price', 'selling_price', 'description']
+admin.site.register(ArticleBase, ArticleBaseAdmin)
+
+class ClothesArticleAdmin(admin.ModelAdmin):
+    list_display = ['id', 'type_client', 'marque']
+admin.site.register(ClothesArticle, ClothesArticleAdmin)

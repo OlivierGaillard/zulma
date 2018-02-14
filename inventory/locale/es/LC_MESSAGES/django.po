@@ -1,0 +1,297 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-14 16:06+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: inventory/models.py:85 inventory/models.py:94
+msgid "Category"
+msgstr "Categoria"
+
+#: inventory/models.py:91
+msgid "Purchasing price"
+msgstr "Precio de compra"
+
+#: inventory/models.py:92
+msgid "Selling price"
+msgstr "precio de venta"
+
+#: inventory/models.py:93
+msgid "Name"
+msgstr "Nombre"
+
+#: inventory/models.py:95
+msgid "Description"
+msgstr "Descripcion"
+
+#: inventory/models.py:110 inventory/views.py:27
+msgid "Homme"
+msgstr "Uomo"
+
+#: inventory/models.py:111 inventory/views.py:28
+msgid "Femme"
+msgstr ""
+
+#: inventory/models.py:112 inventory/views.py:29
+msgid "Mixte"
+msgstr ""
+
+#: inventory/models.py:113 inventory/views.py:30
+msgid "Enfant"
+msgstr ""
+
+#: inventory/models.py:136
+msgid "-"
+msgstr ""
+
+#: inventory/models.py:137 inventory/models.py:163
+#: inventory/templates/inventory/articles.html:51 inventory/views.py:34
+msgid "en solde"
+msgstr ""
+
+#: inventory/models.py:145 inventory/templates/inventory/articles.html:47
+#: inventory/templates/inventory/articles.html:82
+msgid "Type de client"
+msgstr ""
+
+#: inventory/models.py:146 inventory/templates/inventory/articles.html:43
+#: inventory/templates/inventory/articles.html:83 inventory/views.py:37
+msgid "Genre d'article"
+msgstr ""
+
+#: inventory/models.py:147 inventory/templates/inventory/article.html:53
+#: inventory/templates/inventory/articles.html:85
+msgid "Nom"
+msgstr ""
+
+#: inventory/models.py:155
+msgid "Arrivage"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:8
+msgid "2ème étape"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:8
+#: inventory/templates/inventory/articles.html:12
+msgid "step-by-step guide"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:9
+msgid "Ajouter l'article au panier"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:13
+msgid "Est-ce le bon article"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:13
+msgid "Au besoin cliquez sur l'image pour l'agrandir"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:14
+msgid "Ensuite ajoutez le au panier d'achat"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:20
+#: inventory/templates/inventory/articles.html:22
+msgid "de la vente achevée"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:26
+msgid "Détails de l'article"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:31
+msgid "No photo"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:36
+msgid "Date d'arrivage"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:40
+msgid "Nom de l'arrivage"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:44
+#: inventory/templates/inventory/articles.html:84
+msgid "Date d'ajout"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:48
+msgid "Client"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:57
+#: inventory/templates/inventory/articles.html:86
+msgid "Marque"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:61
+msgid "Soldé?"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:66
+msgid "Couleurs / quantités"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:70
+msgid "Notes"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:74
+msgid "Motifs"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:79
+msgid "Quantité en stock"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:83
+msgid "Prix d'achat"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:101
+msgid "Ajouter au panier"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:103
+msgid "Stock épuisé!"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:112
+msgid "Supprimer du panier"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:119
+#: inventory/templates/inventory/articles.html:121
+msgid "Modifier"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:133
+msgid "image de "
+msgstr ""
+
+#: inventory/templates/inventory/article.html:137
+msgid "Supprimer"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:146
+msgid "Ajouter une <strong>image</strong> en cliquant"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:146
+msgid "ici"
+msgstr ""
+
+#: inventory/templates/inventory/article_update.html:7
+msgid "Modification de l'article-ID:"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:12
+msgid "1ère étape"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:13
+msgid "Chercher un article pour enregistrer une vente"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:15
+msgid "Recherchez l'article au moyen du filtre"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:15
+msgid "entrez vos critères et cliquez sur le bouton"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:16
+#: inventory/templates/inventory/articles.html:63
+msgid "Chercher"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:17
+msgid "Accéder à l'article en cliquant sur le lien <strong>Nom</strong>"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:28
+msgid "Filtre"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:35
+msgid "Partie du nom"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:39
+msgid "Partie de la marque"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:55
+msgid "Quantité supérieure à"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:69
+msgid "articles trouvés"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:80
+msgid "Nr."
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:81
+msgid "Aperçu"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:87
+msgid "Quantité"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:88
+msgid "Prix total"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:110
+msgid "Possède une note"
+msgstr ""
+
+#: inventory/templates/inventory/articles.html:113
+msgid "Cliquer pour voir les détails"
+msgstr ""
+
+#: inventory/views.py:20
+msgid "Accessoire"
+msgstr ""
+
+#: inventory/views.py:21
+msgid "Vêtement"
+msgstr ""
+
+#: inventory/views.py:22
+msgid "Chaussure"
+msgstr ""
+
+#: inventory/views.py:23
+msgid "Sous-vêtement"
+msgstr ""
+
+#: inventory/views.py:38
+msgid "type de client"
+msgstr ""
+
+#: inventory/views.py:40
+msgid "quantité supérieure à"
+msgstr ""

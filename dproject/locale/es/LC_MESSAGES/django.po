@@ -1,0 +1,246 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-02-14 16:06+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: dproject/templates/403.html:4 dproject/templates/403.html:10
+msgid "Permission denied"
+msgstr ""
+
+#: dproject/templates/403_csrf.html:3 dproject/templates/403_csrf.html:9
+msgid "CSRF verification failed. Request aborted."
+msgstr ""
+
+#: dproject/templates/404.html:4 dproject/templates/404.html:10
+msgid "Page not found"
+msgstr ""
+
+#: dproject/templates/404.html:11
+msgid "We're sorry, but the requested page could not be found."
+msgstr ""
+
+#: dproject/templates/500.html:4
+msgid "Server error (500)"
+msgstr ""
+
+#: dproject/templates/500.html:10
+msgid "Server Error <em>(500)</em>"
+msgstr ""
+
+#: dproject/templates/500.html:11
+msgid ""
+"There's been an error. It's been reported to the site administrators via "
+"email and should be fixed shortly. Thanks for your patience."
+msgstr ""
+
+#: dproject/templates/about.html:13
+msgid "Imprint"
+msgstr ""
+
+#: dproject/templates/base.html:50
+msgid "About"
+msgstr ""
+
+#: dproject/templates/base.html:66
+msgid "Search on the site"
+msgstr ""
+
+#: dproject/templates/base.html:76
+msgid "Caisse"
+msgstr ""
+
+#: dproject/templates/base.html:80 dproject/templates/base.html:114
+msgid "Liste des articles"
+msgstr ""
+
+#: dproject/templates/base.html:81 dproject/templates/base.html:115
+msgid "Contenu du panier"
+msgstr ""
+
+#: dproject/templates/base.html:82 dproject/templates/base.html:116
+msgid "Ventes"
+msgstr ""
+
+#: dproject/templates/base.html:83 dproject/templates/base.html:117
+msgid "Clients"
+msgstr ""
+
+#: dproject/templates/base.html:84 dproject/templates/base.html:118
+msgid "Ajouter un client"
+msgstr ""
+
+#: dproject/templates/base.html:95
+msgid "Profile"
+msgstr ""
+
+#: dproject/templates/base.html:96 dproject/templates/base.html:119
+msgid "Admin"
+msgstr ""
+
+#: dproject/templates/base.html:97 dproject/templates/base.html:120
+msgid "Log out"
+msgstr ""
+
+#: dproject/templates/base.html:101 dproject/templates/base.html:122
+#: dproject/templates/registration/login.html:5
+#: dproject/templates/registration/login.html:12
+#: dproject/templates/registration/login.html:18
+msgid "Log in"
+msgstr ""
+
+#: dproject/templates/base.html:110
+msgid "Menu pour mobile"
+msgstr ""
+
+#: dproject/templates/base.html:146
+msgid "créé par"
+msgstr ""
+
+#: dproject/templates/email/base.html:68 dproject/templates/email/base.txt:4
+#: dproject/templates/email/base.txt:5
+msgid "Dear "
+msgstr ""
+
+#: dproject/templates/email/base.html:73 dproject/templates/email/base.txt:11
+msgid "Yours sincerely"
+msgstr ""
+
+#: dproject/templates/email/base.html:74 dproject/templates/email/base.txt:12
+#, python-format
+msgid "The %(site_name)s team"
+msgstr ""
+
+#: dproject/templates/email/base.txt:5
+msgid "Dear ladies and gentlemen"
+msgstr ""
+
+#: dproject/templates/index.html:11
+msgid "Bienvenue"
+msgstr ""
+
+#: dproject/templates/index.html:13
+msgid "Votre employeur"
+msgstr ""
+
+#: dproject/templates/index.html:17
+msgid "Comment saisir une vente"
+msgstr ""
+
+#: dproject/templates/index.html:17
+msgid "step-by-step guide"
+msgstr ""
+
+#: dproject/templates/index.html:19
+msgid "Allez à la "
+msgstr ""
+
+#: dproject/templates/index.html:20
+msgid "1ère étape"
+msgstr ""
+
+#: dproject/templates/index.html:24
+msgid "de la vente achevée"
+msgstr ""
+
+#: dproject/templates/index.html:31
+msgid ""
+"\n"
+"         <h2>Pas un employé/e? Alors pas de contenu visible!</h2>\n"
+"           <p>\n"
+"             Le compte que vous utilisez n'est pas relié à un employé. Vous "
+"n'avez donc pas accès\n"
+"             au contenu de ce site. Mais peut-être avez-vous un autre "
+"compte?\n"
+"           </p>\n"
+"\n"
+"           <p>Dans ce cas veuillez vous déconnecter puis vous\n"
+"             "
+msgstr ""
+
+#: dproject/templates/index.html:41
+msgid ""
+"\n"
+"             avec un autre nom d'utilisateur/trice, ou\n"
+"           adressez vous à votre administrateur/trice pour qu'il vous "
+"enregistre comme employé/e.\n"
+"             "
+msgstr ""
+
+#: dproject/templates/index.html:54
+msgid "Bienvenue dans notre chère boutique!"
+msgstr ""
+
+#: dproject/templates/index.html:55
+msgid ""
+"Nous nous trouvons au quartier Fouda, à côté du restaurant <em>Le Cercle "
+"Vert</em>."
+msgstr ""
+
+#: dproject/templates/index.html:64
+msgid "Nous avons récemment aménagé l'étage."
+msgstr ""
+
+#: dproject/templates/index.html:74
+msgid ""
+"Bien sûr nous conservons notre atelier de confection pour le sur-mesure et "
+"les retouches"
+msgstr ""
+
+#: dproject/templates/index.html:75
+msgid "En ce moment il y a des <strong>soldes...</strong> Profitez!"
+msgstr ""
+
+#: dproject/templates/index.html:82
+msgid "Articles en solde"
+msgstr ""
+
+#: dproject/templates/index.html:97
+msgid "Nr."
+msgstr ""
+
+#: dproject/templates/index.html:101
+msgid "prix inconnu"
+msgstr ""
+
+#: dproject/templates/index.html:129
+msgid "Quelque chose vous tente?"
+msgstr ""
+
+#: dproject/templates/index.html:130
+msgid "Alors envoyez- nous un petit courriel à cette"
+msgstr ""
+
+#: dproject/templates/index.html:130
+msgid "adresse"
+msgstr ""
+
+#: dproject/templates/registration/logged_out.html:4
+msgid "Home"
+msgstr ""
+
+#: dproject/templates/registration/logged_out.html:10
+msgid "Logged out"
+msgstr ""
+
+#: dproject/templates/registration/logged_out.html:11
+msgid "Thanks for spending some quality time with the Web site today."
+msgstr ""
+
+#: dproject/templates/registration/logged_out.html:12
+msgid "Log in again"
+msgstr ""
