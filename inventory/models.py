@@ -101,6 +101,7 @@ class Article(models.Model):
     description = models.TextField(_('Description'), null=True, blank=True)
     quantity = models.IntegerField(_('Quantity'), default=1)
     solde = models.CharField(_("en solde"), max_length=1, choices=solde_choices, default='N')
+    enterprise = models.ForeignKey(Enterprise, default=1)
 
     class Meta:
         verbose_name = _('Article with minimal data')

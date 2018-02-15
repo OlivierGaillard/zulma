@@ -32,7 +32,7 @@ class ArticleFilter(FilterSet):
 @login_required()
 def articles(request):
     enterprise_of_current_user = Employee.get_enterprise_of_current_user(request.user)
-    qs = Article.objects.filter(entreprise=enterprise_of_current_user)
+    qs = Article.objects.filter(enterprise=enterprise_of_current_user)
     get_query = request.GET.copy()
     if 'quantity__gt' not in get_query:
         get_query['quantity__gt'] = '0'
