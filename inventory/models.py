@@ -87,6 +87,12 @@ class Category(models.Model):
 
 class Article(models.Model):
     """Base for an article containing the only required fields: photo."""
+
+    solde_choices = (
+        ('N', _('-')),
+        ('S', _('en solde')),
+    )
+
     photo = models.ImageField(upload_to='articles', null=True, blank=True)
     purchasing_price = models.DecimalField(_('Purchasing price'), max_digits=10, decimal_places=2, null=True, blank=True)
     selling_price    = models.DecimalField(_('Selling price'), max_digits=10, decimal_places=2, null=True, blank=True)
@@ -94,6 +100,7 @@ class Article(models.Model):
     category = models.ForeignKey(Category, null=True, verbose_name=_('Category'))
     description = models.TextField(_('Description'), null=True, blank=True)
     quantity = models.IntegerField(_('Quantity'), default=1)
+    solde = models.CharField(_("en solde"), max_length=1, choices=solde_choices, default='N')
 
     class Meta:
         verbose_name = _('Article with minimal data')
