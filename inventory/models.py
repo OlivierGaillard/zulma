@@ -85,7 +85,7 @@ class Category(models.Model):
     name = models.CharField(_('Category'), max_length=100, unique=True)
 
 
-class ArticleBase(models.Model):
+class Article(models.Model):
     """Base for an article containing the only required fields: photo."""
     photo = models.ImageField(upload_to='articles', null=True, blank=True)
     purchasing_price = models.DecimalField(_('Purchasing price'), max_digits=10, decimal_places=2, null=True, blank=True)
@@ -110,21 +110,21 @@ class Marque(models.Model):
         ordering = ['nom']
 
 
-class ClothesArticle(ArticleBase):
-    """Cela ne résout pas le problème. Si les articles de bases sont créés encore faut-il générer les articles
-    spécifiques. Impossible de le faire automatiquement, sauf à prévoir un tri des photos.
-    Une autre solution: indexer les articles de base (fixer une catégorie), puis générer des instances
-    des classes dérivées. """
-    clients_choices = (
-        ('H', _('Homme')),
-        ('F', _('Femme')),
-        ('M', _('Mixte')),
-        ('E', _('Enfant')),
-    )
-    type_client = models.CharField(_("Type de client"), max_length=1, choices=clients_choices, default='F', )
-    marque = models.ForeignKey(Marque, null=True, blank=True)
+# class ClothesArticle(Article):
+#     """Cela ne résout pas le problème. Si les articles de bases sont créés encore faut-il générer les articles
+#     spécifiques. Impossible de le faire automatiquement, sauf à prévoir un tri des photos.
+#     Une autre solution: indexer les articles de base (fixer une catégorie), puis générer des instances
+#     des classes dérivées. """
+#     clients_choices = (
+#         ('H', _('Homme')),
+#         ('F', _('Femme')),
+#         ('M', _('Mixte')),
+#         ('E', _('Enfant')),
+#     )
+#     type_client = models.CharField(_("Type de client"), max_length=1, choices=clients_choices, default='F', )
+#     marque = models.ForeignKey(Marque, null=True, blank=True)
 
-class Article(models.Model):
+class ArticleClothes(models.Model):
     clients_choices = (
         ('H', _('Homme')),
         ('F', _('Femme')),
@@ -194,14 +194,3 @@ class Article(models.Model):
 
 
 
-class Photo(models.Model):
-    photo = models.ImageField(upload_to='articles', null=True, blank=True)
-    article = models.ForeignKey(Article)
-
-    def __str__(self):
-        msg = "Photo de l'article %s" % self.article.nom + ' ID: ' + str(self.article.pk)
-        return msg
-
-    @property
-    def article_ID(self):
-        return str(self.article.id)

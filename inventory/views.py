@@ -11,92 +11,31 @@ from django_filters import FilterSet, CharFilter, ChoiceFilter, NumberFilter
 from django_filters.views import FilterView
 from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView
 from django.contrib.auth.models import User
-from .models import Article, Employee, Photo
-from .forms import  ArticleCreateForm, AddPhotoForm, ArticleUpdateForm
+from .models import Article, Employee
+from .forms import  AddPhotoForm, ArticleUpdateForm
 from cart.cartutils import article_already_in_cart, get_cart_items
 
 class ArticleFilter(FilterSet):
-    genre_choices = (
-        ('A', _('Accessoire')),
-        ('V', _('Vêtement')),
-        ('C', _('Chaussure')),
-        ('S', _('Sous-vêtement')),
-    )
 
-    clients_choices = (
-        ('H', _('Homme')),
-        ('F', _('Femme')),
-        ('M', _('Mixte')),
-        ('E', _('Enfant')),
-    )
-
-    solde_choices = (
-        ('S', _('en solde')),
-    )
-
-    genre_article = ChoiceFilter(choices=genre_choices, label=_(u"Genre d'article"))
-    type_client = ChoiceFilter(choices=clients_choices, label=_('type de client'))
-    solde = ChoiceFilter(choices=solde_choices)
-    quantite__gt = NumberFilter(name='quantite', lookup_expr='gt', label=_('quantité supérieure à'))
+    quantity__gt = NumberFilter(name='quantity', lookup_expr='gt', label=_('quantity greater than'))
 
     class Meta:
         model = Article
-        fields = {'marque__nom' : ['icontains'],
-                  'nom': ['icontains'],
+        fields = {'name' : ['icontains'],
+                  'category__name' : ['icontains'],
                   'id' : ['exact'],
-                  'quantite' : ['exact'],
+                  'quantity' : ['exact'],
                   }
 
 
-# @method_decorator(login_required, name='dispatch')
-# class ArticleFilteredView(ListView):
-#     filterset_class = ArticleFilter
-#     template_name = 'inventory/articles.html' # filtered list
-#     context_object_name = 'articles'
-#
-#     def get_queryset(self):
-#         enterprise_of_current_user = Employee.get_enterprise_of_current_user(self.request.user)
-#         queryset = Article.objects.filter(entreprise=enterprise_of_current_user)
-#         filtered_qs = ArticleFilter(self.request.GET,
-#                                  queryset=queryset).qs
-#         return filtered_qs
-#
-#     def test_func(self):
-#         return  Employee.is_current_user_employee(self.request.user)
-#
-#     def get_context_data(self, **kwargs):
-#         context = super(ArticleFilteredView, self).get_context_data(**kwargs)
-#         enterprise_of_current_user = Employee.get_enterprise_of_current_user(self.request.user)
-#         context['enterprise'] = enterprise_of_current_user
-#
-#         if 'filter' in context.keys():
-#             print('filter in context')
-#         else:
-#             print('filter not in context')
-#         qs = self.get_queryset()
-#         f = ArticleFilter(self.request.GET,
-#                                queryset=qs)
-#         page = self.request.GET.get('page', 1)
-#         paginator = Paginator(qs, 50)
-#         try:
-#             articles = paginator.page(page)
-#         except PageNotAnInteger:
-#             articles = paginator.page(1)
-#         except EmptyPage:
-#             articles = paginator.page(paginator.num_pages)
-#         context['articles'] = articles
-#         context['count'] = qs.count()
-#         context['filter'] = f
-#         return context
-#
 
 @login_required()
 def articles(request):
     enterprise_of_current_user = Employee.get_enterprise_of_current_user(request.user)
     qs = Article.objects.filter(entreprise=enterprise_of_current_user)
     get_query = request.GET.copy()
-    if 'quantite__gt' not in get_query:
-        get_query['quantite__gt'] = '0'
+    if 'quantity__gt' not in get_query:
+        get_query['quantity__gt'] = '0'
 
 
     article_filter = ArticleFilter(get_query,
@@ -143,7 +82,7 @@ class ArticleDetailView(DetailView):
     context_object_name = 'article'
     template_name = 'inventory/article.html'
     model = Article
-    fields = ['arrivage', 'nom', 'marque', ]
+    fields = ['name']
 
     def get_context_data(self, **kwargs):
         ctx = super(ArticleDetailView, self).get_context_data(**kwargs)
@@ -178,26 +117,26 @@ class ArticlesListView(ListView):
         qs = Article.objects.filter(entreprise=enterprise_of_current_user)
         return qs
 
-@method_decorator(login_required, name='dispatch')
-class ArticleCreateView(CreateView):
-    model = Article
-    template_name = "inventory/article_create.html"
-    #success_url = "inventory/articles.html"
-    form_class = ArticleCreateForm
-
-    def form_valid(self, form):
-        if form.is_valid():
-            print('Form is valid')
-            self.object = form.save()
-            #return HttpResponseRedirect(self.success_url)
-            return HttpResponseRedirect(self.get_success_url())
-        else:
-
-            print('Form is NOT valid')
-
-
-    def get_success_url(self):
-        return reverse('inventory:articles')
+# @method_decorator(login_required, name='dispatch')
+# class ArticleCreateView(CreateView):
+#     model = Article
+#     template_name = "inventory/article_create.html"
+#     #success_url = "inventory/articles.html"
+#     form_class = ArticleCreateForm
+#
+#     def form_valid(self, form):
+#         if form.is_valid():
+#             print('Form is valid')
+#             self.object = form.save()
+#             #return HttpResponseRedirect(self.success_url)
+#             return HttpResponseRedirect(self.get_success_url())
+#         else:
+#
+#             print('Form is NOT valid')
+#
+#
+#     def get_success_url(self):
+#         return reverse('inventory:articles')
 
     # def form_valid(self, form):
     #     #self.object = form.save()
