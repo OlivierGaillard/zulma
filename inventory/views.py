@@ -1,6 +1,7 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.utils.translation import ugettext_lazy as _
+from django.urls import reverse_lazy
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -10,11 +11,11 @@ from django.utils.decorators import method_decorator
 from django.urls import reverse
 from django_filters import FilterSet, CharFilter, ChoiceFilter, NumberFilter
 from django_filters.views import FilterView
-from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView
+from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.models import User
-from .models import Article, Employee, Arrivage
+from .models import Article, Employee, Arrivage, Category
 from .forms import  AddPhotoForm, ArticleUpdateForm, ArrivalCreateForm, HandlePicturesForm, ArrivalUpdateForm
-from .forms import UploadPicturesZipForm
+from .forms import UploadPicturesZipForm, CategoryFormCreate, CategoryFormUpdate, CategoryFormDelete
 from cart.cartutils import article_already_in_cart, get_cart_items
 from django.conf import settings
 import os
@@ -83,7 +84,34 @@ def handle_pictures(request):
         form = HandlePicturesForm()
         return render(request, "inventory/handle_pics.html", {'form': form, 'pics_count' : len(files2)})
 
+class CategoryCreateView(CreateView):
+    model = Category
+    template_name = 'inventory/category_create.html'
+    form_class = CategoryFormCreate
+    context_object_name = 'category'
 
+class CategoryDetailView(DetailView):
+    model = Category
+    template_name = 'inventory/category_detail.html'
+    context_object_name = 'category'
+
+
+class CategoryUpdateView(UpdateView):
+    model = Category
+    template_name = 'inventory/category_update.html'
+    form_class = CategoryFormUpdate
+    context_object_name = 'category'
+
+class CategoryListView(ListView):
+    model = Category
+    template_name = 'inventory/categories.html'
+    context_object_name = 'categories'
+
+class CategoryDeleteView(DeleteView):
+    model = Category
+    template_name = 'inventory/category_delete.html'
+    context_object_name = 'category'
+    success_url = reverse_lazy('inventory:categories')
 
 class ArrivalCreateView(CreateView):
     model = Arrivage

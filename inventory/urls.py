@@ -17,7 +17,9 @@ Including another URLconf
 from django.conf.urls import url
 from .views import ArticleDetailView, upload_pic, articles, ArticleUpdateView, ArrivalCreateView, ArrivalDetailView
 from .views import ArrivalListView, ArrivalUpdateView
-from .views import handle_pictures, upload_pictures_zip
+from .views import handle_pictures, upload_pictures_zip, CategoryCreateView, CategoryUpdateView, CategoryListView
+from .views import CategoryDetailView, CategoryDeleteView
+
 
 app_name = 'inventory'
 
@@ -27,8 +29,12 @@ urlpatterns = [
     url(r'^arrival_detail/(?P<pk>[0-9]+)$', ArrivalDetailView.as_view(), name='arrival_detail'),
     url(r'^arrival_update/(?P<pk>[0-9]+)$', ArrivalUpdateView.as_view(), name='arrival_update'),
     url(r'^arrivals/$', ArrivalListView.as_view(), name='arrivals'),
+    url(r'^categories/$', CategoryListView.as_view(), name='categories'),
+    url(r'^category_update/(?P<pk>[0-9]+)$', CategoryUpdateView.as_view(), name='category_update'),
+    url(r'^category_create/$', CategoryCreateView.as_view(), name='category_create'),
+    url(r'^category_detail/(?P<pk>[0-9]+)$', CategoryDetailView.as_view(), name='category_detail'),
+    url(r'^category_delete/(?P<pk>[0-9]+)$', CategoryDeleteView.as_view(), name='category_delete'),
     url('articles/', articles, name='articles'),
-    #url('article_create', ArticleCreateView.as_view(), name='article_create'),
     url(r'article_update/(?P<pk>[0-9]+)$', ArticleUpdateView.as_view(), name='article_update'),
     url(r'^article_detail/(?P<pk>[0-9]+)$', ArticleDetailView.as_view(), name='article_detail'),
     url(r'^upload_pic/(?P<pk>[0-9]+)$', upload_pic, name='upload_pic'),

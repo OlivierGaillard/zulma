@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<div class="container">
+  <h3>{% trans "Delete category-ID" %} {{category.pk}} / {% trans "Name:" %} {{category.name}}?</h3>
+  <form action="/inventory/category_delete/{{ category.pk }}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Delete" />
+</form>
+</div>
+{% endblock %}

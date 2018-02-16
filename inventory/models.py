@@ -87,6 +87,10 @@ class Frais(models.Model):
 class Category(models.Model):
     name = models.CharField(_('Category'), max_length=100, unique=True)
 
+    def get_absolute_url(self):
+        return reverse('inventory:category_detail', kwargs={'pk': self.pk})
+
+
 
 class Article(models.Model):
     """Base for an article containing the only required fields: photo."""

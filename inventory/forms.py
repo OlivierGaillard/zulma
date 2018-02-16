@@ -4,8 +4,62 @@ from crispy_forms.bootstrap import TabHolder, Tab, FormActions
 from crispy_forms.layout import Submit, Layout, Fieldset, Field, HTML
 from django import forms
 from django.conf import settings
-from .models import Article, Arrivage
-import os
+from .models import Article, Arrivage, Category
+
+class CategoryFormCreate(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ('name',)
+
+    def __init__(self, *args, **kwargs):
+        super(CategoryFormCreate, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
+class CategoryFormUpdate(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ('name',)
+
+    def __init__(self, *args, **kwargs):
+        super(CategoryFormUpdate, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
+
+class CategoryFormDelete(forms.ModelForm):
+    class Meta:
+        model = Category
+        fields = ('name',)
+
+    def __init__(self, *args, **kwargs):
+        super(CategoryFormDelete, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
 
 
 class UploadPicturesZipForm(forms.Form):

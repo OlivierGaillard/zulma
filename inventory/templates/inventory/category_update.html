@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+  <h3>{% trans "Modification de la catégorie-ID:"%} {{category.pk}}</h3>
+{% crispy form %}
+
+  <h3>{% trans "Delete the category" %}</h3>
+
+  <p>
+    <a href="{% url "inventory:category_delete" category.pk  %}"> Delete</a>
+  </p>
+
+</div>
+{% endblock %}
