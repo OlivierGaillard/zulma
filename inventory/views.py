@@ -1,4 +1,5 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.utils.translation import ugettext_lazy as _
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
@@ -11,9 +12,102 @@ from django_filters import FilterSet, CharFilter, ChoiceFilter, NumberFilter
 from django_filters.views import FilterView
 from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView
 from django.contrib.auth.models import User
-from .models import Article, Employee
-from .forms import  AddPhotoForm, ArticleUpdateForm
+from .models import Article, Employee, Arrivage
+from .forms import  AddPhotoForm, ArticleUpdateForm, ArrivalCreateForm, HandlePicturesForm, ArrivalUpdateForm
+from .forms import UploadPicturesZipForm
 from cart.cartutils import article_already_in_cart, get_cart_items
+from django.conf import settings
+import os
+import zipfile
+from django.db.utils import IntegrityError
+
+
+
+
+def handle_uploaded_files(f):
+    pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
+    file_name = os.path.join(pictures_dir, f.name)
+    with open(file_name, 'wb+') as destination:
+        for chunk in f.chunks():
+            destination.write(chunk)
+    with zipfile.ZipFile(file_name, "r") as zip_ref:
+        zip_ref.extractall(pictures_dir)
+    os.unlink(file_name)
+
+
+
+
+@csrf_exempt
+def upload_pictures_zip(request):
+    if request.method == 'POST':
+        form = UploadPicturesZipForm(request.POST, request.FILES)
+        if form.is_valid():
+            handle_uploaded_files(request.FILES['pictures_zip'])
+            return HttpResponseRedirect("/inventory/handle_pics/")
+        else:
+            return render(request, "inventory/upload_zipics.html", {'form': form})
+    else:
+        form = UploadPicturesZipForm()
+        return render(request, "inventory/upload_zipics.html", {'form': form})
+
+
+def handle_pictures(request):
+    pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
+    target_dir = os.path.join(settings.MEDIA_ROOT, 'articles')
+    files2 = os.listdir(pictures_dir)
+
+
+    if request.method == 'POST':
+        form = HandlePicturesForm(request.POST)
+        if form.is_valid():
+            arrival = form.cleaned_data['arrival']
+            nb = 0
+            for f in files2:
+                nb += 1
+                source_path = os.path.join(pictures_dir, f)
+                target_path = os.path.join(target_dir, f)
+                a = Article(photo=os.path.join('articles', f), arrival=arrival)
+                try:
+                    a.save()
+                except IntegrityError:
+                    os.unlink(source_path)
+                    return HttpResponse('This pic already exists and was deleted.')
+                os.rename(source_path, target_path)
+            return HttpResponseRedirect("/inventory/articles/")
+        else:
+            return HttpResponse("Will not handle pictures. Form not valid")
+
+
+    else:
+
+        form = HandlePicturesForm()
+        return render(request, "inventory/handle_pics.html", {'form': form, 'pics_count' : len(files2)})
+
+
+
+class ArrivalCreateView(CreateView):
+    model = Arrivage
+    template_name = 'inventory/arrival_create.html'
+    form_class = ArrivalCreateForm
+    context_object_name = 'arrival'
+
+class ArrivalDetailView(DetailView):
+    model = Arrivage
+    template_name = 'inventory/arrival_detail.html'
+    context_object_name = 'arrival'
+
+class ArrivalUpdateView(UpdateView):
+    model = Arrivage
+    template_name = 'inventory/arrival_update.html'
+    context_object_name = 'arrival'
+    form_class = ArrivalUpdateForm
+
+
+class ArrivalListView(ListView):
+    model = Arrivage
+    template_name = 'inventory/arrivals.html'
+    context_object_name = 'arrivals'
+
 
 class ArticleFilter(FilterSet):
 
@@ -25,14 +119,16 @@ class ArticleFilter(FilterSet):
                   'category__name' : ['icontains'],
                   'id' : ['exact'],
                   'quantity' : ['exact'],
+                  'solde': ['exact'],
                   }
 
 
 
 @login_required()
 def articles(request):
-    enterprise_of_current_user = Employee.get_enterprise_of_current_user(request.user)
-    qs = Article.objects.filter(enterprise=enterprise_of_current_user)
+    #enterprise_of_current_user = Employee.get_enterprise_of_current_user(request.user)
+    #qs = Article.objects.filter(enterprise=enterprise_of_current_user)
+    qs = Article.objects.all()
     get_query = request.GET.copy()
     if 'quantity__gt' not in get_query:
         get_query['quantity__gt'] = '0'
@@ -45,7 +141,7 @@ def articles(request):
     meta = request.META
     q = meta['QUERY_STRING']
     # the whole url is .e.g. "marque__nom__icontains=&nom__icontains=&id=&genre_article=&type_client=H&solde=S&page=2"
-    if q.find('nom') > 0: # checking if a filter param exist?
+    if q.find('name') > 0: # checking if a filter param exist?
         # it contains a filter
          try:
             idx = q.index('page')
@@ -113,8 +209,9 @@ class ArticlesListView(ListView):
     model = Article
 
     def get_queryset(self):
-        enterprise_of_current_user = Employee.get_enterprise_of_current_user(self.request.user)
-        qs = Article.objects.filter(entreprise=enterprise_of_current_user)
+        #enterprise_of_current_user = Employee.get_enterprise_of_current_user(self.request.user)
+        #qs = Article.objects.filter(entreprise=enterprise_of_current_user)
+        qs = Article.objects.all()
         return qs
 
 # @method_decorator(login_required, name='dispatch')

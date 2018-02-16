@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-14 16:06+0100\n"
+"POT-Creation-Date: 2018-02-16 08:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,53 +61,81 @@ msgid "Search on the site"
 msgstr ""
 
 #: dproject/templates/base.html:76
+msgid "Arrival"
+msgstr ""
+
+#: dproject/templates/base.html:80
+msgid "Create an arrival"
+msgstr ""
+
+#: dproject/templates/base.html:80
+msgid "Create one arrival"
+msgstr ""
+
+#: dproject/templates/base.html:81
+msgid "Arrivals List"
+msgstr ""
+
+#: dproject/templates/base.html:81
+msgid "Arrivals"
+msgstr ""
+
+#: dproject/templates/base.html:82
+msgid "Generate articles from pictures"
+msgstr ""
+
+#: dproject/templates/base.html:82
+msgid "Generate Articles"
+msgstr ""
+
+#: dproject/templates/base.html:88
 msgid "Caisse"
 msgstr ""
 
-#: dproject/templates/base.html:80 dproject/templates/base.html:114
+#: dproject/templates/base.html:92 dproject/templates/base.html:126
 msgid "Liste des articles"
 msgstr ""
 
-#: dproject/templates/base.html:81 dproject/templates/base.html:115
+#: dproject/templates/base.html:93 dproject/templates/base.html:127
 msgid "Contenu du panier"
 msgstr ""
 
-#: dproject/templates/base.html:82 dproject/templates/base.html:116
+#: dproject/templates/base.html:94 dproject/templates/base.html:128
 msgid "Ventes"
 msgstr ""
 
-#: dproject/templates/base.html:83 dproject/templates/base.html:117
+#: dproject/templates/base.html:95 dproject/templates/base.html:129
 msgid "Clients"
 msgstr ""
 
-#: dproject/templates/base.html:84 dproject/templates/base.html:118
+#: dproject/templates/base.html:96 dproject/templates/base.html:130
 msgid "Ajouter un client"
 msgstr ""
 
-#: dproject/templates/base.html:95
+#: dproject/templates/base.html:107
 msgid "Profile"
 msgstr ""
 
-#: dproject/templates/base.html:96 dproject/templates/base.html:119
+#: dproject/templates/base.html:108 dproject/templates/base.html:131
 msgid "Admin"
 msgstr ""
 
-#: dproject/templates/base.html:97 dproject/templates/base.html:120
+#: dproject/templates/base.html:109 dproject/templates/base.html:132
 msgid "Log out"
 msgstr ""
 
-#: dproject/templates/base.html:101 dproject/templates/base.html:122
+#: dproject/templates/base.html:113 dproject/templates/base.html:134
 #: dproject/templates/registration/login.html:5
 #: dproject/templates/registration/login.html:12
 #: dproject/templates/registration/login.html:18
 msgid "Log in"
 msgstr ""
 
-#: dproject/templates/base.html:110
+#: dproject/templates/base.html:122
 msgid "Menu pour mobile"
 msgstr ""
 
-#: dproject/templates/base.html:146
+#: dproject/templates/base.html:158
 msgid "créé par"
 msgstr ""
 

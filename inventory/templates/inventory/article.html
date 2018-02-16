@@ -3,7 +3,6 @@
 {% load i18n %}
 {% load thumbnail %}
 {% block content %}
-<p>
 <div class="container">
   <h3>{% trans "2ème étape" %}  <small>{% trans "step-by-step guide" %}</small></h3>
   <h4>{% trans "Ajouter l'article au panier" %}</h4>
@@ -15,11 +14,11 @@
   </ol>
 
     <div class="progress">
-    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
          style="width:40%">
     40% {% trans "de la vente achevée" %}
+      </div>
     </div>
-  </div>
 
 
 
@@ -29,63 +28,43 @@
     <tbody>
 
       <tr>
-        <th>{% trans "Date d'arrivage" %}</th><td>{{article.arrivage.date_arrivee}}</td>
+        <th>{% trans "Date d'arrivage" %}</th><td>{{article.arrival.date_arrivee|date:"d.m.Y"}}</td>
       </tr>
 
       <tr>
           <th>{% trans "Nom de l'arrivage" %}</th>
-        <td>{{article.arrivage.nom}}</td>
+        <td>{{article.arrival.nom}}</td>
       </tr>
-      <tr>
-          <th>{% trans "Date d'ajout" %}</th>
-        <td>{{article.date_ajout}}</td>
-      </tr>
-      <tr>
-          <th>{% trans "Client" %}</th>
-        <td>{{article.get_type_client_display}}</td>
-      </tr>
-
       <tr>
         <th>{% trans "Nom" %}</th>
-        <td>{{article.nom}} - ID: {{article.pk}}</td>
-      </tr>
-      <tr>
-        <th>{% trans "Marque" %}</th>
-        <td>{{article.marque}}</td>
+        <td>{{article.name|default_if_none:"n.d."}}</td>
       </tr>
       <tr>
           <th>{% trans "Soldé?" %}</th>
           <td>{{article.get_solde_display}}</td>
       </tr>
-
-      <tr>
-          <th>{% trans "Couleurs / quantités" %}</th>
-          <td>{{article.couleurs_quantites}}</td>
-      </tr>
-      <tr>
-          <th>{% trans "Notes" %}</th>
-          <td>{{article.notes}}</td>
-      </tr>
-      <tr>
-          <th>{% trans "Motifs" %}</th>
-          <td>{{article.motifs}}</td>
-      </tr>
-
       <tr>
         <th>{% trans "Quantité en stock" %}</th>
-        <td>{{article.quantite}}</td>
+        <td>{{article.quantity}}</td>
       </tr>
       <tr>
         <th>{% trans "Prix d'achat" %}</th>
-        <!--<td>{{article.prix_achat|default_if_none:"<em>à renseigner</em>"}}</td>-->
-        <td>{{article.prix_total|default_if_none:"<em>à renseigner</em>"}}</td>
+        <td>{{article.purchasing_price|default_if_none:"n.d."}}</td>
       </tr>
-
+      <tr>
+        <th>{% trans "Prix de vente" %}</th>
+        <td>{{article.selling_price|default_if_none:"n.d."}}</td>
+      </tr>
+      <tr>
+        <th>{% trans "Description" %}</th>
+        <td>{{article.description|default_if_none:"n.d."}}</td>
+      </tr>
+      <tr>
+        <th>{% trans "Notes" %}</th>
+        <td>{{article.notes|default_if_none:"n.d."}}</td>
+      </tr>
     </tbody>
   </table>
-
-</div>
-</p>
 
 
 <table class="table-condensed">
@@ -93,7 +72,7 @@
         <td>
     <form method="POST" action="{% url "cart:add_item" article.pk  %}">
        {% csrf_token %}
-            {% if article.quantite > 0 %}
+            {% if article.quantity > 0 %}
             <input type="submit" class="btn btn-primary" value="{% trans "Ajouter au panier" %}"/>
             {% else %}
             <input type="text" class="btn btn-danger disabled" value="{% trans 'Stock épuisé!' %}"/>
@@ -119,6 +98,19 @@
 
 </table>
 
+<h3>{% trans "Illustration" %}</h3>
+
+<div class="pic_container row">
+    {% thumbnail article.photo  "450x450" crop="center" as thumbnail %}
+  <div class="pic col-md-4 col-md-offset-4">
+    <p>
+        <a href="{{ article.photo.url }}" alt="{% trans 'image de ' %}{{article.name}}-ID: {{article.pk}}">
+        <img src="{{ thumbnail.url }}" alt="The thumbnail" style="width: {{ thumbnail.width }}">
+        </a>
+    </p>
+  </div>
+    {% endthumbnail %}
+</div>
 
 
 <div class="pic_container">
@@ -137,9 +129,9 @@
 {% endfor %}
 </div>
 
+</div>
 
-
-<p>{% trans "Ajouter une <strong>image</strong> en cliquant" %} <a href="/inventory/upload_pic/{{article.pk}}">{% trans "ici" %}</a>.</p>
+<!--<p>{% trans "Ajouter une <strong>image</strong> en cliquant" %} <a href="/inventory/upload_pic/{{article.pk}}">{% trans "ici" %}</a>.</p>-->
 
 
 

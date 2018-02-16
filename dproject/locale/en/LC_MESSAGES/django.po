@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-13 12:14+0100\n"
+"POT-Creation-Date: 2018-02-16 08:28+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -60,53 +60,81 @@ msgid "Search on the site"
 msgstr ""
 
 #: dproject/templates/base.html:76
+msgid "Arrival"
+msgstr ""
+
+#: dproject/templates/base.html:80
+msgid "Create an arrival"
+msgstr ""
+
+#: dproject/templates/base.html:80
+msgid "Create one arrival"
+msgstr ""
+
+#: dproject/templates/base.html:81
+msgid "Arrivals List"
+msgstr ""
+
+#: dproject/templates/base.html:81
+msgid "Arrivals"
+msgstr ""
+
+#: dproject/templates/base.html:82
+msgid "Generate articles from pictures"
+msgstr ""
+
+#: dproject/templates/base.html:82
+msgid "Generate Articles"
+msgstr ""
+
+#: dproject/templates/base.html:88
 msgid "Caisse"
 msgstr "Checkout"
 
-#: dproject/templates/base.html:80 dproject/templates/base.html:114
+#: dproject/templates/base.html:92 dproject/templates/base.html:126
 msgid "Liste des articles"
 msgstr "Articles' list"
 
-#: dproject/templates/base.html:81 dproject/templates/base.html:115
+#: dproject/templates/base.html:93 dproject/templates/base.html:127
 msgid "Contenu du panier"
 msgstr "Cart content"
 
-#: dproject/templates/base.html:82 dproject/templates/base.html:116
+#: dproject/templates/base.html:94 dproject/templates/base.html:128
 msgid "Ventes"
 msgstr "Sellings"
 
-#: dproject/templates/base.html:83 dproject/templates/base.html:117
+#: dproject/templates/base.html:95 dproject/templates/base.html:129
 msgid "Clients"
 msgstr "Customers"
 
-#: dproject/templates/base.html:84 dproject/templates/base.html:118
+#: dproject/templates/base.html:96 dproject/templates/base.html:130
 msgid "Ajouter un client"
 msgstr "Add a customer"
 
-#: dproject/templates/base.html:95
+#: dproject/templates/base.html:107
 msgid "Profile"
 msgstr ""
 
-#: dproject/templates/base.html:96 dproject/templates/base.html:119
+#: dproject/templates/base.html:108 dproject/templates/base.html:131
 msgid "Admin"
 msgstr ""
 
-#: dproject/templates/base.html:97 dproject/templates/base.html:120
+#: dproject/templates/base.html:109 dproject/templates/base.html:132
 msgid "Log out"
 msgstr ""
 
-#: dproject/templates/base.html:101 dproject/templates/base.html:122
+#: dproject/templates/base.html:113 dproject/templates/base.html:134
 #: dproject/templates/registration/login.html:5
 #: dproject/templates/registration/login.html:12
 #: dproject/templates/registration/login.html:18
 msgid "Log in"
 msgstr ""
 
-#: dproject/templates/base.html:110
+#: dproject/templates/base.html:122
 msgid "Menu pour mobile"
 msgstr "Quick menu for mobile"
 
-#: dproject/templates/base.html:146
+#: dproject/templates/base.html:158
 msgid "créé par"
 msgstr "made by"
 
@@ -192,7 +220,9 @@ msgstr "Welcome in our nice little store!"
 msgid ""
 "Nous nous trouvons au quartier Fouda, à côté du restaurant <em>Le Cercle "
 "Vert</em>."
-msgstr "We live in Fouda quartier, right beneath the restaurant <em>Le Cercle Vert</em>."
+msgstr ""
+"We live in Fouda quartier, right beneath the restaurant <em>Le Cercle Vert</"
+"em>."
 
 #: dproject/templates/index.html:64
 msgid "Nous avons récemment aménagé l'étage."
@@ -202,7 +232,9 @@ msgstr "We recently converted the attic into ceremony clothes store."
 msgid ""
 "Bien sûr nous conservons notre atelier de confection pour le sur-mesure et "
 "les retouches"
-msgstr "Of course the sewing workshop remains at your service: custom-made and touch-ups."
+msgstr ""
+"Of course the sewing workshop remains at your service: custom-made and touch-"
+"ups."
 
 #: dproject/templates/index.html:75
 msgid "En ce moment il y a des <strong>soldes...</strong> Profitez!"
@@ -232,10 +264,6 @@ msgstr "Then drop a quick email to this"
 msgid "adresse"
 msgstr "adress"
 
-#: dproject/templates/index.html:137
-msgid "Info de connexion pour ce site de test"
-msgstr "Connexion credentials for this test website"
-
 #: dproject/templates/registration/logged_out.html:4
 msgid "Home"
 msgstr ""
@@ -251,6 +279,9 @@ msgstr ""
 #: dproject/templates/registration/logged_out.html:12
 msgid "Log in again"
 msgstr ""
+
+#~ msgid "Info de connexion pour ce site de test"
+#~ msgstr "Connexion credentials for this test website"
 
 #, fuzzy
 #~| msgid "Bienvenue"

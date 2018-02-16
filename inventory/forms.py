@@ -1,14 +1,68 @@
 from crispy_forms.helper import FormHelper
+from django.utils.translation import ugettext_lazy as _
 from crispy_forms.bootstrap import TabHolder, Tab, FormActions
-from crispy_forms.layout import Submit, Layout, Fieldset, Field
+from crispy_forms.layout import Submit, Layout, Fieldset, Field, HTML
 from django import forms
-from django.shortcuts import reverse
-from .models import Article
+from django.conf import settings
+from .models import Article, Arrivage
+import os
+
+
+class UploadPicturesZipForm(forms.Form):
+    pictures_zip = forms.FileField()
+
+    def __init__(self, *args, **kwargs):
+        super(UploadPicturesZipForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Upload'),
+            )
+        )
+
+    def clean(self):
+        cleaned_data = super(UploadPicturesZipForm, self).clean()
+        zip_file = cleaned_data['pictures_zip']
+        if not zip_file.name.split('.')[1] == 'zip':
+            self.add_error('pictures_zip', _("File ends not with extension '.zip'."))
+        # print('clean zip file:', zip_file)
+        # print('clean', zip_file.temporary_file_path())
+        # print('clean', zip_file.name)
+        # print('clean', zip_file.size)
+        # if zip_file.multiple_chunks():
+        #     print('multiple chunks required.')
+        # else:
+        #     print('no multiple chunks required')
+        return cleaned_data
+
+
+
+class HandlePicturesForm(forms.Form):
+
+    arrival = forms.ModelChoiceField(label=_('Arrival'), queryset=Arrivage.objects.all())
+
+    def __init__(self, *args, **kwargs):
+        super(HandlePicturesForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Generate'),
+            )
+        )
+
 
 class ArticleUpdateForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('name', 'category', 'purchasing_price', 'selling_price', 'quantity', )
+        fields = ('name', 'category', 'purchasing_price', 'selling_price', 'solde', 'quantity', 'notes', 'description')
 
     def __init__(self, *args, **kwargs):
         super(ArticleUpdateForm, self).__init__(*args, **kwargs)
@@ -23,8 +77,57 @@ class ArticleUpdateForm(forms.ModelForm):
             )
         )
 
+class ArrivalUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Arrivage
+        fields = ('nom', _('date_arrivee'))
+        widgets = {
+            'date_arrivee': forms.DateInput(format='%Y-%m-%d',
+                attrs={'id': 'datetimepicker_arrival'}
+            ),
+        }
 
-# class ArticleCreateForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super(ArrivalUpdateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
+
+class ArrivalCreateForm(forms.ModelForm):
+    class Meta:
+        model = Arrivage
+        fields = ('nom', _('date_arrivee'))
+        widgets = {
+            'date_arrivee': forms.DateInput(format=settings.DATE_INPUT_FORMATS,
+                                            attrs={'id': 'datetimepicker_arrival'}
+                                            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(ArrivalCreateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
+
+
+
+                # class ArticleCreateForm(forms.ModelForm):
 #     #quantite = forms.IntegerField(min_value=1, required=True, label="Quantité", initial=0,
 #     #                              help_text="Quantité en stock (peut différer de la quantité achetée)")
 #     new_marque = forms.CharField(max_length=100, required=False, help_text='Pour entrer une nouvelle marque')

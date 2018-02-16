@@ -73,6 +73,19 @@
             {% if request.user.is_authenticated %}
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                      {% trans "Arrival" %}
+                       <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{% url "inventory:arrival_create" %}" title="{% trans 'Create an arrival' %}">(1) {% trans 'Create one arrival' %}</a></li>
+                        <li><a href="{% url "inventory:arrivals" %}" title="{% trans 'Arrivals List' %}">{% trans 'Arrivals' %}</a></li>
+                        <li><a href="{% url "inventory:upload_zipics" %}" title="{% trans 'Upload pictures ZIP' %}">(2) {% trans 'Upload ZIP pictures' %}</a></li>
+                        <li><a href="{% url "inventory:handle_pics" %}" title="{% trans 'Generate articles from pictures' %}">(3) {% trans 'Generate Articles' %}</a></li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                       {% trans "Caisse" %}
                        <span class="caret"></span>
                     </a>
@@ -171,7 +184,7 @@
     <script src="/static/jquery/jqueryhello.js"></script>
     <script src="/static/jqueryui/external/jquery/jquery-3.2.1.min.js"></script>
     <script src="/static/jqueryui/jquery-ui.min.js"></script>
-    <script src="/static/jqueryui/i18n/datepicker-fr-CH.js"></script>
+    <script src="/static/jqueryui/i18n/datepicker-es.js"></script>
 
 
     <!-- Project specific javascript -->

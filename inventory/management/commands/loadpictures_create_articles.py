@@ -3,7 +3,7 @@ from operator import itemgetter
 from datetime import datetime
 from django.core.management.base import BaseCommand
 from django.conf import settings
-from inventory.models import ArticleBase
+from inventory.models import Article
 
 
 
@@ -18,7 +18,6 @@ class Command(BaseCommand):
         pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
         target_dir = os.path.join(settings.MEDIA_ROOT, 'articles')
         files = os.listdir(pictures_dir)
-        print('Will handle %s pictures.' % len(files))
         nb = 0
         for f in files:
             nb += 1

@@ -12,7 +12,7 @@ admin.site.register(Enterprise, EnterpriseAdmin)
 
 admin.site.register(Employee)
 class ArrivageAdmin(admin.ModelAdmin):
-    list_display = ['id', 'nom', 'proprietaire']
+    list_display = ['id', 'nom', 'date_arrivee']
 admin.site.register(Arrivage, ArrivageAdmin)
 
 class ArticleClothesAdmin(admin.ModelAdmin):

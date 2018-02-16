@@ -1,0 +1,40 @@
+{% extends "inventex.html" %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+{% block content %}
+<p>
+<div class="container">
+
+
+
+  <h2>{% trans "Détails de l'arrivage" %}</h2>
+
+  <table class="table">
+    <tbody>
+
+      <tr>
+        <th>{% trans "Date d'arrivage" %}</th><td>{{arrival.date_arrivee}}</td>
+      </tr>
+
+      <tr>
+          <th>{% trans "Nom de l'arrivage" %}</th>
+        <td>{{arrival.nom}}</td>
+      </tr>
+      <tr>
+          <th>{% trans "Owner" %}</th>
+        <td>{{arrival.proprietaire}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
+</p>
+
+
+{% endblock %}
+
+{% block footernav %}
+
+{% endblock %}

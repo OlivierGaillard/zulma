@@ -61,11 +61,14 @@ class Employee(models.Model):
 
 class Arrivage(models.Model):
     nom = models.CharField(max_length=50, unique=True)
-    date_arrivee = models.DateField()
-    proprietaire = models.ForeignKey(Enterprise, null=True)
+    date_arrivee = models.DateField(_('Arrival Date'))
+    #proprietaire = models.ForeignKey(Enterprise, null=True)
 
     def __str__(self):
         return self.nom
+
+    def get_absolute_url(self):
+        return reverse('inventory:arrival_detail', kwargs={'pk': self.pk})
 
 
 class Frais(models.Model):
@@ -93,18 +96,22 @@ class Article(models.Model):
         ('S', _('en solde')),
     )
 
-    photo = models.ImageField(upload_to='articles', null=True, blank=True)
-    purchasing_price = models.DecimalField(_('Purchasing price'), max_digits=10, decimal_places=2, null=True, blank=True)
-    selling_price    = models.DecimalField(_('Selling price'), max_digits=10, decimal_places=2, null=True, blank=True)
-    name  = models.CharField(_('Name'), max_length=100, null=True, blank=True)
-    category = models.ForeignKey(Category, null=True, verbose_name=_('Category'))
-    description = models.TextField(_('Description'), null=True, blank=True)
+    photo = models.ImageField(upload_to='articles', null=True, blank=True, unique=True)
+    purchasing_price = models.DecimalField(_('Purchasing price'), max_digits=10, decimal_places=2, null=True, blank=True,
+                                           default=0)
+    selling_price    = models.DecimalField(_('Selling price'), max_digits=10, decimal_places=2, null=True, blank=True,
+                                           default=0)
+    name  = models.CharField(_('Name'), max_length=100, null=True, blank=True, default=_('n.d.'))
+    category = models.ForeignKey(Category, null=True, blank=True, verbose_name=_('Category'))
+    description = models.TextField(_('Description'), null=True, blank=True, default=_('n.d.'))
     quantity = models.IntegerField(_('Quantity'), default=1)
     solde = models.CharField(_("en solde"), max_length=1, choices=solde_choices, default='N')
-    enterprise = models.ForeignKey(Enterprise, default=1)
+    arrival = models.ForeignKey(Arrivage, default=1)
+    notes = models.TextField(_("Notes"), null=True, blank=True, default=_('n.d.'))
 
     class Meta:
         verbose_name = _('Article with minimal data')
+        ordering = ['pk']
 
 
 
