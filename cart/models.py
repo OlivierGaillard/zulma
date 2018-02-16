@@ -83,7 +83,7 @@ class CartItem(models.Model):
         return self.quantity * self.prix
 
     def update_article_quantity(self):
-        self.article.quantite = self.article.quantite - self.quantity
+        self.article.quantity = self.article.quantity - self.quantity
         self.article.save()
 
     @property
@@ -97,7 +97,7 @@ class CartItem(models.Model):
 
     def augment_quantity(self, quantity):
         # check if this is possible given 1) the stock available and 2) the actual quantity
-        if self.quantity < self.article.quantite:
+        if self.quantity < self.article.quantiy:
             self.quantity = self.quantity + int(quantity)
             self.save()
 

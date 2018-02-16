@@ -26,7 +26,7 @@ def add_cart_item(request, pk):
             cart_item.augment_quantity(1)
             cart_item.save()
         else:
-            if article.quantite > 0:
+            if article.quantity > 0:
                 cart_item = CartItem()
                 cart_item.cart_id = _set_or_get_session_id(request)
                 cart_item.article = article
@@ -58,7 +58,7 @@ def remove_article_from_vente_and_update_article_quantity(request, pk):
         cart_item = CartItem.objects.get(pk=pk)
         vente = cart_item.vente
         article = Article.objects.get(pk=cart_item.article.pk)
-        article.quantite += cart_item.quantity
+        article.quantity += cart_item.quantity
         article.save()
         cart_item.delete()
 #        url_redirect = reverse('cart:vente_update', kwargs={'pk':vente.pk})
