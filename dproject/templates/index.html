@@ -13,7 +13,30 @@
        <p>{% trans "Votre employeur" %}: {{employee.enterprise}}</p>
 
 
+  <div class="row">
+    <div class="col-md-8 col-sm-8">
+    <h3>{% trans "First steps to enter your articles" %}</h3>
+    <div class="alert alert-info">
 
+    {% blocktrans %}
+    <p>Please follow the enemerated list of the menu <em>Arrival</em>:
+    <ol>
+    <li>Create one arrival</li>
+    <li>Upload the pictures as a .zip file.</li>
+    <li>Generate the articles</li>
+  </ol>
+    </p>
+    {% endblocktrans %}
+
+
+    <p>Afterwards you can create the <em>categories</em> to classify your stuff.</p>
+
+  </div>
+    <h4>Alternative and future way</h4>
+    <p>To facilitate your work it will be better to create the categories at the very first beginning. Then you could
+    make one upload of pictures for each category. Actually you cannot because I don't have implemented this feature.</p>
+    </div>
+</div>
      <h3>{% trans "Comment saisir une vente" %} <small>{% trans "step-by-step guide" %}</small></h3>
 
       <p>{% trans "Allez à la " %}
