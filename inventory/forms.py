@@ -4,6 +4,7 @@ from crispy_forms.bootstrap import TabHolder, Tab, FormActions
 from crispy_forms.layout import Submit, Layout, Fieldset, Field, HTML
 from django import forms
 from django.conf import settings
+import os
 from .models import Article, Arrivage, Category
 
 class CategoryFormCreate(forms.ModelForm):
@@ -72,11 +73,20 @@ class UploadPicturesZipForm(forms.Form):
         self.helper.form_class = 'form-horizontal'
         self.helper.label_class = 'col-sm-2'
         self.helper.field_class = 'col-sm-4'
-        self.helper.layout.append(
-            FormActions(
-                Submit('save', 'Upload'),
+
+        pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
+        li = os.listdir(pictures_dir)
+        if len(li) > 0:
+            self.helper.layout = Layout(
+                HTML("<div class='alert alert-warning'>They are already uploaded pictures. Please generate the articles before uploading new ones.</div>")
             )
-        )
+        else:
+            self.helper.layout.append(
+                FormActions(
+                    Submit('save', 'Upload'),
+                )
+            )
+
 
     def clean(self):
         cleaned_data = super(UploadPicturesZipForm, self).clean()

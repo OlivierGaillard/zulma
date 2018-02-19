@@ -49,9 +49,8 @@ def handle_pics_zip(f):
         if first_element.endswith('/'): # zipped directory
             zipped_dir = os.path.join(pictures_dir, first_element)
             os.chdir(zipped_dir)
-            with os.scandir('.') as it:
-                for entry in it:
-                    shutil.move(entry.name, pictures_dir)
+            for entry in os.listdir('.'):
+                shutil.move(entry, pictures_dir)
             os.rmdir(zipped_dir)
     os.unlink(file_name)
     resize_pics()
