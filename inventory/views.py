@@ -14,28 +14,47 @@ from django_filters.views import FilterView
 from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from .models import Article, Employee, Arrivage, Category
-from .forms import  AddPhotoForm, ArticleUpdateForm, ArrivalCreateForm, HandlePicturesForm, ArrivalUpdateForm
+from .forms import  ArticleUpdateForm, ArrivalCreateForm, HandlePicturesForm, ArrivalUpdateForm
 from .forms import UploadPicturesZipForm, CategoryFormCreate, CategoryFormUpdate, CategoryFormDelete
 from cart.cartutils import article_already_in_cart, get_cart_items
 from django.conf import settings
 import os
-import zipfile
+from zipfile import ZipFile
 from django.db.utils import IntegrityError
+import subprocess
+import shutil
 
 
+IMAGE_RESIZE_PERCENT = getattr(settings, 'IMAGE_DEFAULT_RESIZE_PERCENT', '40%')
 
 
-def handle_uploaded_files(f):
+def resize_pics():
     pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
+    os.chdir(pictures_dir)
+    subprocess.call(["mogrify", "-resize", IMAGE_RESIZE_PERCENT, "*.jpg"])
+
+
+def handle_pics_zip(f):
+    pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
+    target_dir = os.path.join(settings.MEDIA_ROOT, 'articles')
     file_name = os.path.join(pictures_dir, f.name)
     with open(file_name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
-    with zipfile.ZipFile(file_name, "r") as zip_ref:
-        zip_ref.extractall(pictures_dir)
+
+    shutil.unpack_archive(file_name, pictures_dir)
+    zipfile = ZipFile(file_name)
+    first_element = zipfile.namelist()[0]
+    if first_element:
+        if first_element.endswith('/'): # zipped directory
+            zipped_dir = os.path.join(pictures_dir, first_element)
+            os.chdir(zipped_dir)
+            with os.scandir('.') as it:
+                for entry in it:
+                    shutil.move(entry.name, pictures_dir)
+            os.rmdir(zipped_dir)
     os.unlink(file_name)
-
-
+    resize_pics()
 
 
 @csrf_exempt
@@ -43,7 +62,7 @@ def upload_pictures_zip(request):
     if request.method == 'POST':
         form = UploadPicturesZipForm(request.POST, request.FILES)
         if form.is_valid():
-            handle_uploaded_files(request.FILES['pictures_zip'])
+            handle_pics_zip(request.FILES['pictures_zip'])
             return HttpResponseRedirect("/inventory/handle_pics/")
         else:
             return render(request, "inventory/upload_zipics.html", {'form': form})
@@ -55,7 +74,7 @@ def upload_pictures_zip(request):
 def handle_pictures(request):
     pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
     target_dir = os.path.join(settings.MEDIA_ROOT, 'articles')
-    files2 = os.listdir(pictures_dir)
+    files = os.listdir(pictures_dir)
 
 
     if request.method == 'POST':
@@ -63,7 +82,7 @@ def handle_pictures(request):
         if form.is_valid():
             arrival = form.cleaned_data['arrival']
             nb = 0
-            for f in files2:
+            for f in files:
                 nb += 1
                 source_path = os.path.join(pictures_dir, f)
                 target_path = os.path.join(target_dir, f)
@@ -82,7 +101,7 @@ def handle_pictures(request):
     else:
 
         form = HandlePicturesForm()
-        return render(request, "inventory/handle_pics.html", {'form': form, 'pics_count' : len(files2)})
+        return render(request, "inventory/handle_pics.html", {'form': form, 'pics_count' : len(files)})
 
 class CategoryCreateView(CreateView):
     model = Category
@@ -278,22 +297,22 @@ class ArticlesListView(ListView):
     #     return kwargs
 
 
-def upload_pic(request, pk):
-    "pk is Article ID"
-    if request.method == 'POST':
-        form = AddPhotoForm(request.POST, request.FILES)
-        if form.is_valid():
-            article = Article.objects.get(pk=pk)
-            photo = Photo()
-            photo.photo = form.cleaned_data['image']
-            photo.article = article
-            photo.save()
-            return HttpResponseRedirect("/inventory/article_detail/" + str(article.pk))
-        else:
-            article = Article.objects.get(pk=pk)
-            return render(request, "inventory/photo_add.html", {'article': article, 'form': form})
-
-    else:
-        article = Article.objects.get(pk=pk)
-        return render(request, "inventory/photo_add.html", {'article': article})
-
+# def upload_pic(request, pk):
+#     "pk is Article ID"
+#     if request.method == 'POST':
+#         form = AddPhotoForm(request.POST, request.FILES)
+#         if form.is_valid():
+#             article = Article.objects.get(pk=pk)
+#             photo = Photo()
+#             photo.photo = form.cleaned_data['image']
+#             photo.article = article
+#             photo.save()
+#             return HttpResponseRedirect("/inventory/article_detail/" + str(article.pk))
+#         else:
+#             article = Article.objects.get(pk=pk)
+#             return render(request, "inventory/photo_add.html", {'article': article, 'form': form})
+#
+#     else:
+#         article = Article.objects.get(pk=pk)
+#         return render(request, "inventory/photo_add.html", {'article': article})
+#

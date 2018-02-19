@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+import os
 
 
 class Enterprise(models.Model):
@@ -119,6 +120,12 @@ class Article(models.Model):
     class Meta:
         verbose_name = _('Article with minimal data')
         ordering = ['pk']
+
+    def delete(self):
+        """Work fine for article indivdually deleted but not for bulk delete. Admin action required."""
+        os.unlink(self.photo.path)
+        super(Article, self).delete()
+
 
 
 
