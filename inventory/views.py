@@ -158,7 +158,10 @@ class ArrivalListView(ListView):
 class ArticleFilter(FilterSet):
 
     quantity__gt = NumberFilter(name='quantity', lookup_expr='gt', label=_('quantity greater than'))
-
+    purchasing_price__gt = NumberFilter(name='purchasing_price', lookup_expr='gt',
+                                        label=_('greater than'))
+    selling_price__gt = NumberFilter(name='selling_price', lookup_expr='gt',
+                                        label=_('greater than'))
     class Meta:
         model = Article
         fields = {'name' : ['icontains'],
@@ -166,6 +169,7 @@ class ArticleFilter(FilterSet):
                   'id' : ['exact'],
                   'quantity' : ['exact'],
                   'solde': ['exact'],
+                  'arrival__nom' : ['icontains'],
                   }
 
 
