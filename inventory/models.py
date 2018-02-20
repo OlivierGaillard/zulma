@@ -123,8 +123,10 @@ class Article(models.Model):
 
     def delete(self):
         """Work fine for article indivdually deleted but not for bulk delete. Admin action required."""
-        if os.path.exists(self.photo.path):
+        try:
             os.unlink(self.photo.path)
+        except ValueError:
+            print('No deletion of photo because no photo file found. (delete method within model Articel).')
         super(Article, self).delete()
 
 
