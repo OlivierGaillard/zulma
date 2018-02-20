@@ -107,9 +107,16 @@
         <a href="{{ article.photo.url }}" alt="{% trans 'image de ' %}{{article.name}}-ID: {{article.pk}}">
         <img src="{{ thumbnail.url }}" alt="The thumbnail" style="width: {{ thumbnail.width }}">
         </a>
+
     </p>
   </div>
+
+   {% empty %}
+   <div class="pic col-md-2">
+      {% trans "Sorry no picture available" %}
+   </div>
     {% endthumbnail %}
+
 </div>
 
 

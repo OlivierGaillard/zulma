@@ -98,16 +98,14 @@
       {% for a in articles %}
       <tr>
         <td> <a title="{% trans 'Cliquer pour voir les détails' %}" href="/inventory/article_detail/{{a.pk}}">{{ forloop.counter0|add:start_index}}</a> </td>
-          {% if a.photo %}
           {% thumbnail a.photo  "50x50" crop="center" as im %}
           <td><a href="{{ a.photo.url }}" alt="image de {{a.name}}-ID: {{a.pk}}">
               <img src="{{ im.url }}" alt="The thumbnail" style="width: {{ im.width }}">
               </a>
           </td>
+          {% empty %}
+          <td>{% trans "no pic found" %}</td>
           {% endthumbnail %}
-          {% else %}
-          <td>pas photo</td>
-          {% endif %}
           <td>{{ a.purchasing_price|intcomma}}</td>
           <td>{{ a.selling_price|intcomma }}</td>
           <td>{{ a.name|default_if_none:"n.d." }}</td>
