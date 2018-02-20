@@ -23,44 +23,64 @@ from zipfile import ZipFile
 from django.db.utils import IntegrityError
 import subprocess
 import shutil
+import logging
+
+logger = logging.getLogger('django')
 
 
 IMAGE_RESIZE_PERCENT = getattr(settings, 'IMAGE_DEFAULT_RESIZE_PERCENT', '40%')
 
 
 def resize_pics():
+    logger.debug('starting resize...')
     pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
+    logger.debug('chdir into %s' % pictures_dir)
     os.chdir(pictures_dir)
+    logger.debug('calling mogrify with -resize %s for all *.jpg' % IMAGE_RESIZE_PERCENT)
     subprocess.call(["mogrify", "-resize", IMAGE_RESIZE_PERCENT, "*.jpg"])
-
+    #logger.debug('result: %s' % result.returncode)
+    logger.debug('resize completed.')
 
 def handle_pics_zip(f):
+    logger.debug('in handle_pics_zip.')
     pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
-    target_dir = os.path.join(settings.MEDIA_ROOT, 'articles')
     file_name = os.path.join(pictures_dir, f.name)
+    logger.debug('filename: %s', file_name)
     with open(file_name, 'wb+') as destination:
         for chunk in f.chunks():
             destination.write(chunk)
-
+    logger.debug('file saved. Will unzip')
     shutil.unpack_archive(file_name, pictures_dir)
+    logger.debug('unzipped.')
     zipfile = ZipFile(file_name)
     first_element = zipfile.namelist()[0]
+
     if first_element:
+        logger.debug('first element of zip: %s' % first_element)
         if first_element.endswith('/'): # zipped directory
+            logger.debug('seems to contains a directory because ends with /')
             zipped_dir = os.path.join(pictures_dir, first_element)
+            logger.debug('zip dir is %s' % zipped_dir)
             os.chdir(zipped_dir)
+            logger.debug('cd into this dir to move the files to the tmp level.')
             for entry in os.listdir('.'):
+                logger.debug('move %s into %s' % (entry, pictures_dir))
                 shutil.move(entry, pictures_dir)
+            logger.debug('rmdir %s' % zipped_dir)
             os.rmdir(zipped_dir)
+    logger.debug('rm zip file %s' % file_name)
     os.unlink(file_name)
+    logger.debug('zip file deleted. Will resize pics now.')
     resize_pics()
 
 
 @csrf_exempt
 def upload_pictures_zip(request):
     if request.method == 'POST':
+        logger.debug('upload_pictures_zip is called.')
         form = UploadPicturesZipForm(request.POST, request.FILES)
         if form.is_valid():
+            logger.debug('form is valid. handle_pics_zip will be called...')
             handle_pics_zip(request.FILES['pictures_zip'])
             return HttpResponseRedirect("/inventory/handle_pics/")
         else:
@@ -71,15 +91,17 @@ def upload_pictures_zip(request):
 
 
 def handle_pictures(request):
+    logger.debug("starting pictures handling to make Article's instances.")
     pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
     target_dir = os.path.join(settings.MEDIA_ROOT, 'articles')
     files = os.listdir(pictures_dir)
-
+    logger.debug('%s pictures to handle.' % str(len(files)))
 
     if request.method == 'POST':
         form = HandlePicturesForm(request.POST)
         if form.is_valid():
             arrival = form.cleaned_data['arrival']
+            logger.debug('Arrival: %s' % arrival)
             nb = 0
             for f in files:
                 nb += 1
@@ -87,19 +109,25 @@ def handle_pictures(request):
                 target_path = os.path.join(target_dir, f)
                 a = Article(photo=os.path.join('articles', f), arrival=arrival)
                 try:
+                    logger.debug('creating article with pic %s' % f)
                     a.save()
+                    logger.debug('article saved.')
                 except IntegrityError:
+                    logger.warning('The pic %s already exists and was deleted.' % f)
                     os.unlink(source_path)
-                    return HttpResponse('This pic already exists and was deleted.')
+                logger.debug('moving the pic from "tmp" into "articles" directory.')
                 os.rename(source_path, target_path)
+            logger.debug('handling pics job is ended. Return the articles list.')
             return HttpResponseRedirect("/inventory/articles/")
         else:
+            logger.warning('form is not valid. Pictures will not be handled.')
             return HttpResponse("Will not handle pictures. Form not valid")
 
 
     else:
-
+        logger.debug('GET part of handle_pictures.')
         form = HandlePicturesForm()
+        logger.debug('%s pictures to handle.' % str(len(files)))
         return render(request, "inventory/handle_pics.html", {'form': form, 'pics_count' : len(files)})
 
 class CategoryCreateView(CreateView):

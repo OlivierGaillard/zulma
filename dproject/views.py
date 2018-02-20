@@ -1,6 +1,7 @@
 from django.views.generic import TemplateView
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.contrib.sites.shortcuts import get_current_site
 from inventory.models import Employee, Article
 
 
@@ -9,6 +10,7 @@ class IndexView(TemplateView):
 
     def get_context_data(self, **kwargs):
         context = super(IndexView, self).get_context_data(**kwargs)
+        context['site'] = get_current_site(self.request)
         if '.prestigemikafric.com' in settings.ALLOWED_HOSTS:
             pass
         else:
