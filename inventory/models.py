@@ -123,7 +123,8 @@ class Article(models.Model):
 
     def delete(self):
         """Work fine for article indivdually deleted but not for bulk delete. Admin action required."""
-        os.unlink(self.photo.path)
+        if os.path.exists(self.photo.path):
+            os.unlink(self.photo.path)
         super(Article, self).delete()
 
 
