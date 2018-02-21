@@ -21,9 +21,11 @@ from django.conf import settings
 import os
 from zipfile import ZipFile
 from django.db.utils import IntegrityError
+from django.contrib import messages
 import subprocess
 import shutil
 import logging
+import tempfile
 
 logger = logging.getLogger('django')
 
@@ -37,9 +39,13 @@ def resize_pics():
     logger.debug('chdir into %s' % pictures_dir)
     os.chdir(pictures_dir)
     logger.debug('calling mogrify with -resize %s for all *.jpg' % IMAGE_RESIZE_PERCENT)
-    subprocess.call(["mogrify", "-resize", IMAGE_RESIZE_PERCENT, "*.jpg"])
-    #logger.debug('result: %s' % result.returncode)
-    logger.debug('resize completed.')
+    returncode = subprocess.call(["mogrify", "-resize", IMAGE_RESIZE_PERCENT, "*.jpg"])
+    logger.debug('result: %s' % returncode)
+    if returncode == 0:
+        logger.debug('resize completed.')
+    else:
+        logger.warning('resize failed')
+        logger.warning('cleaning temporary folder')
 
 def handle_pics_zip(f):
     logger.debug('in handle_pics_zip.')
@@ -50,24 +56,26 @@ def handle_pics_zip(f):
         for chunk in f.chunks():
             destination.write(chunk)
     logger.debug('file saved. Will unzip')
-    shutil.unpack_archive(file_name, pictures_dir)
-    logger.debug('unzipped.')
-    zipfile = ZipFile(file_name)
-    first_element = zipfile.namelist()[0]
 
-    if first_element:
-        logger.debug('first element of zip: %s' % first_element)
-        if first_element.endswith('/'): # zipped directory
-            logger.debug('seems to contains a directory because ends with /')
-            zipped_dir = os.path.join(pictures_dir, first_element)
-            logger.debug('zip dir is %s' % zipped_dir)
-            os.chdir(zipped_dir)
-            logger.debug('cd into this dir to move the files to the tmp level.')
-            for entry in os.listdir('.'):
-                logger.debug('move %s into %s' % (entry, pictures_dir))
-                shutil.move(entry, pictures_dir)
-            logger.debug('rmdir %s' % zipped_dir)
-            os.rmdir(zipped_dir)
+    with tempfile.TemporaryDirectory() as tempdir:
+        logger.debug('will unpack in tempdir: ', tempdir)
+        shutil.unpack_archive(file_name, tempdir)
+        logger.debug('unzipped in tempdir.')
+        #ZipFile.extractall(file_name, path=tempdir)
+        logger.debug('will walk into ', tempdir)
+        for dirpath, dirnames, filenames in os.walk(tempdir):
+            for filename in filenames:
+                filepath = os.path.join(dirpath, filename)
+                logger.debug('handling %s...' % filepath)
+                file, ext = os.path.splitext(filepath)
+                if ext.upper() == ".JPG" or ext.upper() == ".JPEG":
+                    logger.debug('mv %s into tmp.' % filepath)
+                    shutil.move(filepath, pictures_dir)
+                else:
+                    logger.debug('not moved file %s' % filepath)
+                logger.debug('end.')
+    #logger.debug('rmdir %s' % zipped_dir)
+     #       os.rmdir(zipped_dir)
     logger.debug('rm zip file %s' % file_name)
     os.unlink(file_name)
     logger.debug('zip file deleted. Will resize pics now.')
@@ -96,7 +104,6 @@ def handle_pictures(request):
     target_dir = os.path.join(settings.MEDIA_ROOT, 'articles')
     files = os.listdir(pictures_dir)
     logger.debug('%s pictures to handle.' % str(len(files)))
-
     if request.method == 'POST':
         form = HandlePicturesForm(request.POST)
         if form.is_valid():
@@ -112,11 +119,15 @@ def handle_pictures(request):
                     logger.debug('creating article with pic %s' % f)
                     a.save()
                     logger.debug('article saved.')
+                    logger.debug('moving the pic from "tmp" into "articles" directory.')
+                    messages.info(request, 'Article with pic %s created.' % f)
+                    os.rename(source_path, target_path)
                 except IntegrityError:
-                    logger.warning('The pic %s already exists and was deleted.' % f)
+                    msg = 'The pic %s already exists and was deleted.' % f
+                    logger.warning(msg)
+                    messages.warning(request, msg)
                     os.unlink(source_path)
-                logger.debug('moving the pic from "tmp" into "articles" directory.')
-                os.rename(source_path, target_path)
+
             logger.debug('handling pics job is ended. Return the articles list.')
             return HttpResponseRedirect("/inventory/articles/")
         else:
@@ -218,17 +229,23 @@ def articles(request):
     # Extracting the filter parameters
     meta = request.META
     q = meta['QUERY_STRING']
+    logger.debug('parameter q: %s' % q)
     # the whole url is .e.g. "marque__nom__icontains=&nom__icontains=&id=&genre_article=&type_client=H&solde=S&page=2"
     if q.find('name') > 0: # checking if a filter param exist?
         # it contains a filter
-         try:
+        logger.debug('value of q implies a filter')
+        try:
             idx = q.index('page')
             q = q[:idx-1] # removing the page part of the url:
             #print('filter part:', q)
             context['q'] = q
-         except ValueError:
+        except ValueError:
             #print('no page or page 1, setting the filter')
             context['q'] = q
+    else:
+        logger.debug('no q. too sad. Addin an empty one.')
+        context['q'] = ''
+
 
     paginator = Paginator(article_filter.qs, 25)
     page = request.GET.get('page')

@@ -9,6 +9,7 @@
 {% block content %}
 <div class="container">
 
+
 <h3>{% trans "1ère étape" %}  <small>{% trans "step-by-step guide" %}</small></h3>
   <h4>{% trans "Chercher un article pour enregistrer une vente" %}</h4>
   <ol>
@@ -134,12 +135,12 @@
         <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
       {% else %}
         <!--<li><a href="?page={{ i }}">{{ i }}</a></li>-->
-        <li><a href="?{{ q|default_if_none:'' }}&page={{ i }}">{{ i }}</a></li>
+        <li><a href="?{{ q }}&page={{ i }}">{{ i }}</a></li>
       {% endif %}
     {% endfor %}
     {% if articles.has_next %}
 
-    <li><a href="?{{ q|default_if_none:'' }}&page={{ articles.next_page_number }}">&raquo;</a></li>
+    <li><a href="?{{ q }}&page={{ articles.next_page_number }}">&raquo;</a></li>
     <!--<li><a href="?marque__nom__icontains=&nom__icontains=&id=&genre_article=&type_client=&solde=S">&raquo;</a></li>-->
     {% else %}
       <li class="disabled"><span>&raquo;</span></li>

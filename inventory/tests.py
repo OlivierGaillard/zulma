@@ -9,6 +9,7 @@ import subprocess
 import zipfile
 from PIL import Image
 from zipfile import ZipInfo, ZipFile
+import tempfile
 
 
 
@@ -22,8 +23,10 @@ class TestInentory(TestCase):
         self.zip_file__dir_name_nospace = 'picsdir.zip'
         self.zip_file__dir_name_with_space = 'pics dir.zip'
         self.zip_file_dir_name_with_zip_and_spaces = 'FOTOS COSAS DE CASA ZIP.zip'
+        self.zip_file_kea = 'Kea 1.zip'
+        self.big_zip_kea = 'kea.zip'
 
-    def tearDown(self):
+    def btearDown(self):
         for entry in os.scandir(self.tmp_dir):
             if entry.is_file() and entry.name.endswith('.jpg'):
                 os.unlink(entry)
@@ -42,7 +45,7 @@ class TestInentory(TestCase):
                     images.append(entry.name)
         return len(images)
 
-    def test_unzip(self):
+    def btest_unzip(self):
         """Test unzip files containing no directory"""
         zip_file_path =  os.path.join(self.tmp_dir, self.zip_file_no_dir)
         with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
@@ -52,7 +55,7 @@ class TestInentory(TestCase):
 
 
 
-    def test_unzip_dir(self):
+    def btest_unzip_dir(self):
         """Test unzip files containing directory"""
         zip_file_path = os.path.join(self.tmp_dir, self.zip_file__dir_name_nospace)
         with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
@@ -60,7 +63,7 @@ class TestInentory(TestCase):
 
         self.assertEqual(self._count_images('picsdir'), 3)
 
-    def test_unzip_dir_space_name(self):
+    def btest_unzip_dir_space_name(self):
         """Test unzip files containing directory name with spaces"""
         zip_file_path = os.path.join(self.tmp_dir, self.zip_file__dir_name_with_space)
         with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
@@ -68,7 +71,7 @@ class TestInentory(TestCase):
 
         self.assertEqual(self._count_images('pics dir'), 3)
 
-    def test_unzip_dir_space_name_zip(self):
+    def btest_unzip_dir_space_name_zip(self):
         zip_file_path = os.path.join(self.tmp_dir, self.zip_file_dir_name_with_zip_and_spaces)
         with zipfile.ZipFile(zip_file_path, "r") as zip_ref:
             zip_ref.extractall(self.tmp_dir)
@@ -76,7 +79,7 @@ class TestInentory(TestCase):
         self.assertEqual(self._count_images('FOTOS COSAS DE CASA ZIP'), 3)
 
 
-    def test_getzipdir(self):
+    def btest_getzipdir(self):
         zip_file_path = os.path.join(self.tmp_dir, self.zip_file_dir_name_with_zip_and_spaces)
         zipfile = ZipFile(zip_file_path)
         zipfile.extractall(self.tmp_dir)
@@ -84,7 +87,7 @@ class TestInentory(TestCase):
         zipfile.close()
         os.chdir(os.path.join(self.tmp_dir, "FOTOS COSAS DE CASA ZIP/"))
 
-    def test_check_if_zipfile_has_subdir(self):
+    def btest_check_if_zipfile_has_subdir(self):
         zip_file_path = os.path.join(self.tmp_dir, self.zip_file_dir_name_with_zip_and_spaces)
         zipfile = ZipFile(zip_file_path)
         elements = zipfile.namelist()
@@ -96,7 +99,7 @@ class TestInentory(TestCase):
             self.assertTrue(os.path.isdir(picdir))
 
 
-    def test_check_if_zipfile_has_subdir(self):
+    def btest_check_if_zipfile_has_subdir(self):
         zip_file_path = os.path.join(self.tmp_dir, self.zip_file_no_dir)
         zipfile = ZipFile(zip_file_path)
         elements = zipfile.namelist()
@@ -104,6 +107,41 @@ class TestInentory(TestCase):
             first_element = elements[0]
             self.assertFalse(first_element.endswith('/'))
             zipfile.extractall(self.tmp_dir)
+
+    def btest_check_if_zipfile_kea_has_subdir(self):
+        zip_file_path = os.path.join(self.tmp_dir, self.zip_file_kea)
+        zipfile = ZipFile(zip_file_path)
+        elements = zipfile.namelist()
+        if elements:
+            first_element = elements[0]
+            self.assertTrue(first_element.endswith('/'))
+            zipfile.extractall(self.tmp_dir)
+
+    def test_unzip_walk(self):
+        zip_file_path = os.path.join(self.tmp_dir, self.zip_file_kea)
+        zipfile = ZipFile(zip_file_path)
+        with tempfile.TemporaryDirectory() as tempdir:
+            ZipFile.extractall(zipfile, path=tempdir)
+            for dirpath, dirnames, filenames in os.walk(tempdir):
+                for filename in filenames:
+                    filepath = os.path.join(dirpath, filename)
+                    shutil.move(filepath, self.tmp_dir)
+
+    def btest_unzip_walk2(self):
+        zip_file_path = os.path.join(self.tmp_dir, self.big_zip_kea)
+        print('zipfilepath: ', zip_file_path)
+        zipfile = ZipFile(zip_file_path)
+        with tempfile.TemporaryDirectory() as tempdir:
+            ZipFile.extractall(zipfile, path=tempdir)
+            for dirpath, dirnames, filenames in os.walk(tempdir):
+                for filename in filenames:
+                    filepath = os.path.join(dirpath, filename)
+                    print('filepath:', filepath)
+                    print('fullpath', os.path.join(self.tmp_dir, filepath))
+                    #ZipFile.extractall(filepath)
+
+                for dirname in dirnames:
+                    print('dirname:', dirname)
 
 
     def btest_resize(self):
