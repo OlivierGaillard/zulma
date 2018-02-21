@@ -109,12 +109,19 @@ def handle_pictures(request):
         if form.is_valid():
             arrival = form.cleaned_data['arrival']
             logger.debug('Arrival: %s' % arrival)
+            category = form.cleaned_data['category']
+            logger.debug('Category: %s' % category)
             nb = 0
             for f in files:
                 nb += 1
                 source_path = os.path.join(pictures_dir, f)
                 target_path = os.path.join(target_dir, f)
                 a = Article(photo=os.path.join('articles', f), arrival=arrival)
+                if category:
+                    logger.debug('saving category %s' % category)
+                    a.category = category
+                else:
+                    logger.debug('no category selected.')
                 try:
                     logger.debug('creating article with pic %s' % f)
                     a.save()

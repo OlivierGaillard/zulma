@@ -107,7 +107,8 @@ class UploadPicturesZipForm(forms.Form):
 
 class HandlePicturesForm(forms.Form):
 
-    arrival = forms.ModelChoiceField(label=_('Arrival'), queryset=Arrivage.objects.all())
+    arrival  = forms.ModelChoiceField(label=_('Arrival'), queryset=Arrivage.objects.all())
+    category = forms.ModelChoiceField(label=_('Category'), required=False, queryset=Category.objects.all())
 
     def __init__(self, *args, **kwargs):
         super(HandlePicturesForm, self).__init__(*args, **kwargs)
