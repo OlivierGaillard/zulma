@@ -116,9 +116,6 @@ class CartView(ListView):
             ctx['cart_total'] = CartItem.get_total_of_cart(cart_id)
             #ctx['vente_pk']   = CartItem.get_vente_id(cart_id)
             ctx['cart'] = get_cart_items(self.request)
-            carts = get_cart_items(self.request)
-            print(carts)
-            print('cart')
             return ctx
         else:
             return ctx

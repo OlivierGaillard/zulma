@@ -118,24 +118,6 @@
     {% endthumbnail %}
 
 </div>
-
-
-<div class="pic_container">
-    {% for image in article.photo_set.all %}
-    {% thumbnail image.photo  "200x200" crop="center" as thumbnail %}
-  <div class="pic">
-    <p>
-        <a href="{{ image.photo.url }}" alt="{% trans 'image de ' %}{{article.nom}}-ID: {{article.pk}}">
-        <img src="{{ thumbnail.url }}" alt="The thumbnail" style="width: {{ thumbnail.width }}">
-        </a>
-
-        <a href="# supprimer l'image" >{% trans "Supprimer" %}</a>
-    </p>
-  </div>
-    {% endthumbnail %}
-{% endfor %}
-</div>
-
 </div>
 
 <!--<p>{% trans "Ajouter une <strong>image</strong> en cliquant" %} <a href="/inventory/upload_pic/{{article.pk}}">{% trans "ici" %}</a>.</p>-->

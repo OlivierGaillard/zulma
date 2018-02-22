@@ -52,7 +52,7 @@
                 <input type="submit" class="btn btn-warning" value="{% trans "Supprimer du panier"%}"/>
               </form>
           </td>
-          <td><a href="{% url "inventory:article_detail" item.article.pk %}">{{ item.article.nom }}</a></td>
+          <td><a href="{% url "inventory:article_detail" item.article.pk %}">{{ item.article.name }}</a></td>
           <td>{{ item.quantity }}</td>
           <td>{{ item.prix|intcomma }}</td>
           <td><form method="POST" action="{% url "cart:edit_price" item.pk %}">

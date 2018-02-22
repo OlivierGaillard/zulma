@@ -7,162 +7,48 @@
 
 {% block content %}
 <div id="bienvenue" class="container">
-    {% if request.user.is_authenticated %}
+
+  {% if request.user.is_authenticated %}
+
+
     <h1>{% trans "Bienvenue" %} {{ user.first_name|default:user.username }}!</h1>
-       {% if employee %}
-       <p>{% trans "Votre employeur" %}: {{employee.enterprise}}</p>
-
-
   <div class="row">
     <div class="col-md-8 col-sm-8">
-    <h3>{% trans "First steps to enter your articles" %}</h3>
-    <div class="alert alert-success">
+      <h3>{% trans "First steps to enter your articles" %}</h3>
+      <div class="alert alert-success">
 
-    {% blocktrans %}
-    <p>Please follow the enemerated list of the menu <em>Arrival</em>:
-    <ol>
-    <li>Create one <a href="/inventory/arrival_create/">arrival</a></li>
-      <small><em>Or <a href="/inventor/arrivals/">rename</a> the one I created</em></small></li>
-      <li><a href="/inventory/upload_zipics/">Upload</a> the pictures as a .zip file. <small><em>Done</em></small></li>
-    <li><a href="/inventory/handle_pics/" %}">Generate </a> the articles <small><em>Done</em></small></li></li>
-  </ol>
-    </p>
-    {% endblocktrans %}
+        {% blocktrans %}
+          <p>Please follow the enemerated list of the menu <em>Arrival</em>:
+          <ol>
+          <li>Create one <a href="/inventory/arrival_create/">arrival</a></li>
+            <small><em>Or <a href="/inventor/arrivals/">rename</a> the one I created</em></small></li>
+            <li><a href="/inventory/upload_zipics/">Upload</a> the pictures as a .zip file. <small><em>Done</em></small></li>
+          <li><a href="/inventory/handle_pics/" %}">Generate </a> the articles <small><em>Done</em></small></li></li>
+        </ol>
+          </p>
 
-
-    <p>Afterwards you can create the <em>categories</em> to classify your stuff.</p>
-
-  </div>
-    <h4>Alternative and future way</h4>
-    <p>To facilitate your work it will be better to create the categories at the very first beginning. Then you could
-    make one upload of pictures for each category. Actually you cannot because I don't have implemented this feature.</p>
-    </div>
-</div>
-     <h3>{% trans "Comment saisir une vente" %} <small>{% trans "step-by-step guide" %}</small></h3>
-
-      <p>{% trans "Allez à la " %}
-      <a href="{% url "inventory:articles" %}">{% trans "1ère étape" %}</a></p>
-  <div class="progress">
-    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-         style="width:10%">
-    5% {% trans "de la vente achevée" %}
+        <p>Afterwards you can create the <em>categories</em> to classify your stuff.</p>
+      </div>
+      <h4>Alternative way</h4>
+      <p>To facilitate your work it will be better to create the categories at the very first beginning. Then you could
+        make one upload of pictures for each category and you select the category in the
+        <em>(3) Generate Articles</em> step.</p>
+      {% endblocktrans %}
     </div>
   </div>
-       {% else %}
-       <div class="container">
-         <div class="jumbotron">
+    <h3>{% trans "Comment saisir une vente" %} <small>{% trans "step-by-step guide" %}</small></h3>
 
-         {% blocktrans %}
-         <h2>Pas un employé/e? Alors pas de contenu visible!</h2>
-           <p>
-             Le compte que vous utilisez n'est pas relié à un employé. Vous n'avez donc pas accès
-             au contenu de ce site. Mais peut-être avez-vous un autre compte?
-           </p>
+    <p>{% trans "Allez à la " %}
+        <a href="{% url "inventory:articles" %}">{% trans "1ère étape" %}</a></p>
+    <div class="progress">
+      <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+           style="width:10%">
+      5% {% trans "de la vente achevée" %}
+      </div>
+    </div>
 
-           <p>Dans ce cas veuillez vous déconnecter puis vous
-             {% endblocktrans %}
-             <a href="{% url 'login' %}">{% trans 'annoncez'</a>
-             {% blocktrans %}
-             avec un autre nom d'utilisateur/trice, ou
-           adressez vous à votre administrateur/trice pour qu'il vous enregistre comme employé/e.
-             {% endblocktrans %}
-           </p>
-
-         </div>
-       </div>
-       {% endif %}
-    {% else %}
-  <div class="container">
-    <!--<div id="jumbotron-home" class="jumbotron">-->
-      <!--<div class="container text-center">-->
-        <!--<h2>{% trans "Bienvenue dans notre chère boutique!" %}</h2>-->
-        <!--<p>{% trans "Nous nous trouvons au quartier Fouda, à côté du restaurant <em>Le Cercle Vert</em>." %}</p>-->
-        <!--<div class="row">-->
-          <!--<div class="media col-sm-6">-->
-            <!--<div class="media-top">-->
-              <!--<a href="/media/boutique.jpg">-->
-                <!--<img src="/media/boutique_resized.jpg" alt="atelier" style="padding-bottom: 10pt;">-->
-              <!--</a>-->
-            <!--</div>-->
-            <!--<div class="media-body">-->
-              <!--<h4 class="media-heading">{% trans "Nous avons récemment aménagé l'étage." %}</h4>-->
-            <!--</div>-->
-          <!--</div>-->
-          <!--<div class="media col-sm-6">-->
-            <!--<div class="media-top">-->
-              <!--<a href="/media/mika_atelier_large.jpg">-->
-                <!--<img src="/media/mika_atelier.jpg" alt="atelier" style="padding-bottom: 10pt;">-->
-              <!--</a>-->
-            <!--</div>-->
-            <!--<div class="media-body" >-->
-              <!--<h4 class="media-heading" style="padding-bottom: 10pt">{% trans 'Bien sûr nous conservons notre atelier de confection pour le sur-mesure et les retouches' %}</h4>-->
-              <!--<p>{% trans "En ce moment il y a des <strong>soldes...</strong> Profitez!" %}</p>-->
-            <!--</div>-->
-          <!--</div>-->
-        <!--</div>-->
-      <!--</div>-->
-    <!--</div>-->
-
-    <!--<h2>{% trans 'Articles en solde' %}</h2>-->
-         <!--<div class="row">-->
-           <!--{% for a in soldes %}-->
-           <!--<div class="col-md-3 col-sm-4 col-xs-6">-->
-             <!--{% if a.photo_set.all %}-->
-             <!--{% thumbnail a.photo_set.first.photo  "100x100" crop="center" as im %}-->
-             <!--<div class="media">-->
-                <!--<div class="media-top">-->
-                  <!--<a href="{{ a.photo_set.first.photo.url }}" alt="image de {{a.nom}}-ID: {{a.pk}}">-->
-                    <!--<img src="{{ im.url }}" alt="The thumbnail" style="width: {{ im.width }}">-->
-                  <!--</a>-->
-
-                <!--</div>-->
-                <!--<div class="media-body">-->
-                    <!--<h4 class="media-heading">-->
-                        <!--Article {% trans "Nr." %}<a href="{{ a.photo_set.first.photo.url }}"> <em>{{ a.pk  }}</em></a> </h4>-->
-                  <!--&lt;!&ndash;{% if a.prix_total %}&ndash;&gt;-->
-                  <!--&lt;!&ndash;<p>{{ a.prix_total|floatformat:-2 }} XAF</p>&ndash;&gt;-->
-                  <!--&lt;!&ndash;{% else %}&ndash;&gt;-->
-                  <!--&lt;!&ndash;<p><em>{% trans "prix inconnu" %}</em></p>&ndash;&gt;-->
-                  <!--&lt;!&ndash;{% endif %}&ndash;&gt;-->
-                <!--</div>-->
-               <!--{% endthumbnail %}-->
-            <!--</div>-->
-             <!--{% endif %}-->
-           <!--</div>-->
-           <!--{% endfor %}-->
-           <!--{% if soldes.has_other_pages %}-->
-           <!--<ul class="pagination">-->
-             <!--{% if soldes.has_previous %}-->
-             <!--<li><a href="?page={{ articles.previous_page_number }}">&laquo;</a></li>-->
-             <!--{% else %}-->
-             <!--<li class="disabled"><span>&laquo;</span></li>-->
-             <!--{% endif %}-->
-             <!--{% for i in soldes.paginator.page_range %}-->
-             <!--{% if soldes.number == i %}-->
-             <!--<li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>-->
-             <!--{% else %}-->
-             <!--<li><a href="?page={{ i }}">{{ i }}</a></li>-->
-             <!--{% endif %}-->
-             <!--{% endfor %}-->
-             <!--{% if soldes.has_next %}-->
-             <!--<li><a href="?page={{ soldes.next_page_number }}">&raquo;</a></li>-->
-             <!--{% else %}-->
-             <!--<li class="disabled"><span>&raquo;</span></li>-->
-             <!--{% endif %}-->
-           <!--</ul>-->
-           <!--<h4>{% trans "Quelque chose vous tente?" %}</h4>-->
-           <!--<p>{% trans "Alors envoyez- nous un petit courriel à cette" %} <a href="mailto:bassy@prestigemikafric.com">{% trans 'adresse' %}</a>.</p>-->
-         <!--</div>-->
-
-{% endif %}
-
-  </div>
-
-
-
-    {% endif %}
-
-
+  {% endif %}
 
 </div>
+
 {% endblock %}
