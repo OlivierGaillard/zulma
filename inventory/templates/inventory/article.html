@@ -35,6 +35,12 @@
           <th>{% trans "Nom de l'arrivage" %}</th>
         <td>{{article.arrival.nom}}</td>
       </tr>
+
+      <tr>
+          <th>{% trans "Category" %}</th>
+        <td>{{article.category|default_if_none:"n.d."}}</td>
+      </tr>
+
       <tr>
         <th>{% trans "Nom" %}</th>
         <td>{{article.name|default_if_none:"n.d."}}</td>
