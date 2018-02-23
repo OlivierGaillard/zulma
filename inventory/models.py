@@ -114,7 +114,7 @@ class Article(models.Model):
     description = models.TextField(_('Description'), null=True, blank=True, default=_('n.d.'))
     quantity = models.IntegerField(_('Quantity'), default=1)
     solde = models.CharField(_("en solde"), max_length=1, choices=solde_choices, default='N')
-    arrival = models.ForeignKey(Arrivage, default=1)
+    arrival = models.ForeignKey(Arrivage, null=True)
     notes = models.TextField(_("Notes"), null=True, blank=True, default=_('n.d.'))
 
     class Meta:

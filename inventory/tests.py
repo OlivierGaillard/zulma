@@ -26,9 +26,9 @@ class TestInentory(TestCase):
         self.zip_file_kea = 'Kea 1.zip'
         self.big_zip_kea = 'kea.zip'
 
-    def btearDown(self):
+    def tearDown(self):
         for entry in os.scandir(self.tmp_dir):
-            if entry.is_file() and entry.name.endswith('.jpg'):
+            if entry.is_file() and (entry.name.endswith('.jpg') or entry.name.endswith('.db')):
                 os.unlink(entry)
             if entry.is_dir():
                 for e in os.scandir(entry):

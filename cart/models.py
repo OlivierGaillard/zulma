@@ -88,7 +88,7 @@ class CartItem(models.Model):
 
     @property
     def nom(self):
-        return self.article.nom
+        return self.article.name
 
 
     def get_absolute_url(self):
@@ -97,7 +97,7 @@ class CartItem(models.Model):
 
     def augment_quantity(self, quantity):
         # check if this is possible given 1) the stock available and 2) the actual quantity
-        if self.quantity < self.article.quantiy:
+        if self.quantity < self.article.quantity:
             self.quantity = self.quantity + int(quantity)
             self.save()
 
