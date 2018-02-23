@@ -101,6 +101,17 @@ class CartItem(models.Model):
             self.quantity = self.quantity + int(quantity)
             self.save()
 
+    def set_quantity(self, quantity):
+        if quantity <= self.article.quantity and quantity > 0:
+            self.quantity = quantity
+            self.save()
+        else:
+            #print('quantity exceed stock total.')
+            self.quantity = self.article.quantity
+            msg = "Warning: quantity set to max stock available."
+            #print('quantity set to maximum available stock')
+            return msg
+
     def get_total_of_cart(session_id):
         """
         Select the cart_items for this session_id and sum the total

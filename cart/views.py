@@ -11,6 +11,9 @@ from inventory.models import Article
 from .cartutils import is_cart_id_session_set, _set_or_get_session_id, get_cart_items, get_cart_id_session
 from .cartutils import  get_cart_item_of_book, article_already_in_cart, get_cart_counter, _remove_cart_item, cart_not_complete
 from .cartutils import remove_cart_id_from_session
+import logging
+
+logger = logging.getLogger('django')
 
 
 def add_cart_counter_to_context(request, ctx):
@@ -69,10 +72,13 @@ def edit_price(request, pk):
     if request.method == 'POST':
         cart_item = CartItem.objects.get(pk=pk)
         price = request.POST.get('new_price', '')
+        logger.debug('new_price: %s' % price)
         if len(price) == 0:
             # assuming zero
             price = "0"
+        logger.debug('converting in float..')
         cart_item.prix = float(price)
+        logger.debug('DONE.')
         cart_item.save()
         if cart_item.prix == 0:
             return render(request, 'cart/cart_content.html',
@@ -84,6 +90,25 @@ def edit_price(request, pk):
         return HttpResponseRedirect(url_redirect)
     else:
         raise ValueError('cart:views:edit_price: should not be called with GET')
+
+def edit_quantity(request, pk):
+    logger.debug('in edit_quantity view of app "cart"')
+    if request.method == "POST":
+        cart_item = CartItem.objects.get(pk=pk)
+        quantity = cart_item.quantity
+        logger.debug('original quantity: %s' % str(quantity) )
+        new_quantity = request.POST.get('new_quantity', '')
+        new_quantity = int(new_quantity)
+        logger.debug('new quantity: %s' % str(new_quantity))
+        msg = cart_item.set_quantity(new_quantity)
+        logger.warning('msg: %s' % msg)
+        cart_item.save()
+        logger.debug('new quantity set and saved')
+        url_redirect = reverse('cart:cart_content')
+        return HttpResponseRedirect(url_redirect, {'warning' : msg })
+    else:
+        raise ValueError('cart:views:edit_quantity: should not be called with GET')
+
 
 # This import must be defined here, after the functions definition and not before,
 # otherwise it fails.

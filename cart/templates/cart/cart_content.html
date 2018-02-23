@@ -35,9 +35,11 @@
              <th>{% trans "Date d'ajout" %}</th>
              <th>{% trans "Action" %}</th>
             <th>{% trans "Titre" %}</th>
+            <th>{% trans "Quantité disponible en stock" %}</th>
             <th>{% trans 'Quantité' %}</th>
+            <th>{% trans "Modifier la quantité" %}</th>
             <th>{% trans 'Prix' %}</th>
-           <th>{% trans "Modifier" %}</th>
+            <th>{% trans "Modifier" %}</th>
             <th>{% trans "Total" %}</th>
          </tr>
       </thead>
@@ -53,20 +55,39 @@
               </form>
           </td>
           <td><a href="{% url "inventory:article_detail" item.article.pk %}">{{ item.article.name }}</a></td>
+          <td title="{% trans "available quantity" %}">{{ item.article.quantity }}</td>
           <td>{{ item.quantity }}</td>
+          <td>
+            <form method="POST" action="{% url "cart:edit_quantity" item.pk %}">
+            {% csrf_token %}
+            {% if error_message %}
+            <label onerror="{{ error_message }}" >{{error_message}}</label>
+            <input id="new_quantity" type="number" value="{{ new_quantity }}" name="new_quantity">
+            {% elif warning %}
+            <label title="WARNING!!!">WARNING</label>
+            <label onerror="{{ warning }}" >{{warning}}</label>
+            <input id="new_quantity" type="number" value="{{ new_quantity }}" name="new_quantity">
+            {% else %}
+            <input id="new_quantity" title="Max: {{item.article.quantity}}" type="number" value="{{ item.quantity }}" name="new_quantity" >
+            {% endif %}
+            <input title="Add to quantity" type="submit" class="btn btn-success" value="{% trans "Modifier" %}"/>
+            </form>
+          </td>
           <td>{{ item.prix|intcomma }}</td>
-          <td><form method="POST" action="{% url "cart:edit_price" item.pk %}">
+          <td>
+            <form method="POST" action="{% url "cart:edit_price" item.pk %}">
               {% csrf_token %}
               {% if error_message %}
               <label onerror="{{ error_message }}" >{{error_message}}</label>
               <input id="new_price" type="number" value="{{ new_price }}" name="new_price">
               {% else %}
-              <input id="new_price" type="number" value="{{ item.prix }}" name="new_price">
+              <input id="new_price" type="number" value="{% if new_price %}{{ new_price }}{% else %}{{ item.prix }}{% endif %}" name="new_price">
               {% endif %}
 
 
               <input type="submit" class="btn btn-success" value="{% trans "Modifier" %}"/>
-              </form> </td>
+              </form>
+          </td>
           <td>{{ item.total }}</td>
       </tr>
       {% endfor %}

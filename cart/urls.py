@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^remove_item_from_vente/(?P<pk>[0-9]+)$', views.remove_article_from_vente_and_update_article_quantity,
         name='remove_article_from_vente'),
     url(r'^edit_price/(?P<pk>[0-9]+)$', views.edit_price, name='edit_price'),
+    url(r'^edit_quantity/(?P<pk>[0-9]+)$', views.edit_quantity, name='edit_quantity'),
     url(r'^vente/(?P<pk>[0-9]+)$', views.VenteDetail.as_view(), name='vente'),
     url(r'^vente_update/(?P<pk>[0-9]+)$', views.VenteUpdateView.as_view(), name='vente_update'),
     #url(r'^vente_delete/(?P<pk>[0-9]+)$', views.VenteDeleteView.as_view(), name='vente_delete'),
