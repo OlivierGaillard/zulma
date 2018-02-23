@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-16 10:16-0600\n"
+"POT-Creation-Date: 2018-02-23 13:44+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,7 +61,7 @@ msgstr ""
 msgid "Vente"
 msgstr ""
 
-#: cart/models.py:72 cart/templates/cart/cart_content.html:39
+#: cart/models.py:72 cart/templates/cart/cart_content.html:41
 #: cart/templates/cart/checkout.html:46 cart/templates/cart/vente.html:82
 #: cart/templates/cart/vente_update.html:17
 msgid "Prix"
@@ -130,32 +130,45 @@ msgid "Titre"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:38
+msgid "Quantité disponible en stock"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:39
 #: cart/templates/cart/checkout.html:45 cart/templates/cart/vente.html:83
 #: cart/templates/cart/vente_update.html:18
 msgid "Quantité"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:40
-#: cart/templates/cart/cart_content.html:68 cart/templates/cart/clients.html:13
+msgid "Modifier la quantité"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:42
+#: cart/templates/cart/cart_content.html:73
+#: cart/templates/cart/cart_content.html:88 cart/templates/cart/clients.html:13
 #: cart/templates/cart/clients.html:24
 msgid "Modifier"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:41
+#: cart/templates/cart/cart_content.html:43
 #: cart/templates/cart/checkout.html:47
 msgid "Total"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:52
+#: cart/templates/cart/cart_content.html:54
 msgid "Supprimer du panier"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:74
+#: cart/templates/cart/cart_content.html:58
+msgid "available quantity"
+msgstr ""
+
+#: cart/templates/cart/cart_content.html:95
 #: cart/templates/cart/checkout.html:62
 msgid "Total de votre panier:"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:83
+#: cart/templates/cart/cart_content.html:104
 msgid "Aller à la vente"
 msgstr ""
 
