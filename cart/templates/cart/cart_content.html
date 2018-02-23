@@ -36,7 +36,6 @@
              <th>{% trans "Action" %}</th>
             <th>{% trans "Titre" %}</th>
             <th>{% trans "Quantité disponible en stock" %}</th>
-            <th>{% trans 'Quantité' %}</th>
             <th>{% trans "Modifier la quantité" %}</th>
             <th>{% trans 'Prix' %}</th>
             <th>{% trans "Modifier" %}</th>
@@ -56,7 +55,7 @@
           </td>
           <td><a href="{% url "inventory:article_detail" item.article.pk %}">{{ item.article.name }}</a></td>
           <td title="{% trans "available quantity" %}">{{ item.article.quantity }}</td>
-          <td>{{ item.quantity }}</td>
+
           <td>
             <form method="POST" action="{% url "cart:edit_quantity" item.pk %}">
             {% csrf_token %}
