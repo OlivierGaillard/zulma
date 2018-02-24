@@ -9,6 +9,39 @@
 {% block content %}
 <div class="container">
 
+  <div class="row">
+    <div class="col-md-3">
+      <h3>{% trans "Summary without filters" %}</h3>
+
+      <table class="table">
+        <tbody>
+        <tr>
+          <th>{% trans "Total articles" %}</th><td>{{summary.total}}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Quantity zero" %}</th><td>{{summary.quantity_zero}}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Reduced price" %}</th><td>{{summary.reduced}}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Without category" %}</th><td>{{summary.no_category}}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Without name" %}</th><td>{{summary.no_name}}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Without selling price" %}</th><td>{{summary.selling_price_zero}}</td>
+        </tr>
+        <tr>
+            <th>{% trans "Without purchasing price" %}</th><td>{{summary.purchasing_price_zero}}</td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+
 
 <h3>{% trans "1ère étape" %}  <small>{% trans "step-by-step guide" %}</small></h3>
   <h4>{% trans "Chercher un article pour enregistrer une vente" %}</h4>
@@ -75,9 +108,11 @@
 
 
     <table class="table table-light">
+
       <thead class="thead-light">
       <tr>
           <th>{% trans 'Nr.' %}</th>
+          <th>{% trans "ID" %}</th>
           <th>{% trans 'Aperçu' %}</th>
           <th>{% trans 'Purchasing price' %}</th>
           <th>{% trans "Selling price" %}</th>
@@ -85,7 +120,6 @@
           <th>{% trans "Category" %}</th>
           <th>{% trans "Reduced price?" %}</th>
           <th>{% trans "Quantity" %}</th>
-          <th>{% trans "Description" %}</th>
       </tr>
       </thead>
 
@@ -93,7 +127,8 @@
       <tbody>
       {% for a in articles %}
       <tr>
-        <td> <a title="{% trans 'Cliquer pour voir les détails' %}" href="/inventory/article_detail/{{a.pk}}">{{ forloop.counter0|add:start_index}}</a> </td>
+        <td>{{ forloop.counter0|add:start_index}}</td>
+        <td><a title="{% trans 'Cliquer pour voir les détails' %}" href="/inventory/article_detail/{{a.pk}}">{{a.pk}}</td>
           {% thumbnail a.photo  "50x50" crop="center" as im %}
           <td><a href="{{ a.photo.url }}" alt="image de {{a.name}}-ID: {{a.pk}}">
               <img src="{{ im.url }}" alt="The thumbnail" style="width: {{ im.width }}">
@@ -108,20 +143,17 @@
           <td>{{ a.category|default_if_none:"n.d." }}</td>
           <td>{{ a.get_solde_display }}</td>
           {% if a.quantity > 0 %}
-           <td><span class="badge">{{ a.quantity }}</span></td>
+           <td><span class="badge progress-bar-info">{{ a.quantity }}</span></td>
           {% else %}
-          <td><span class="badge badge-danger">{{ a.quantity }}</span></td>
-          {% endif %}
-          {% if a.description %}
-          <td>{{ a.description|truncatechars_html:15 }}</td>
-          {% else %}
-          <td>{% trans "n.d." %}</td>
+          <td><span class="badge progress-bar-warning">{{ a.quantity }}</span></td>
           {% endif %}
       </tr>
 
       {% endfor %}
       </tbody>
     </table>
+
+
 
   {% if articles.has_other_pages %}
   <ul class="pagination">

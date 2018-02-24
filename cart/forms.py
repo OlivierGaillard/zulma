@@ -3,9 +3,10 @@ from crispy_forms.bootstrap import TabHolder, Tab, FormActions
 from crispy_forms.layout import Submit, Layout, Fieldset, Field
 from django import forms
 
+
 from django.shortcuts import reverse
 from inventory.models import Article
-from .models import Vente, Client, Paiement
+from .models import Vente, Client, Paiement, CartItem
 
 class VenteCreateForm(forms.ModelForm):
     class Meta:
@@ -29,6 +30,27 @@ class VenteCreateForm(forms.ModelForm):
                 Submit('save', 'Submit'),
             )
         )
+
+
+
+class CartItemCreateForm(forms.ModelForm):
+    class Meta:
+        model = CartItem
+        fields = ('quantity', 'article', 'prix')
+
+    def __init__(self, *args, **kwargs):
+        super(CartItemCreateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-lg-2'
+        self.helper.field_class = 'col-lg-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
 
 class VenteUpdateForm(forms.ModelForm):
     class Meta:

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-23 13:44+0100\n"
+"POT-Creation-Date: 2018-02-24 09:01+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -61,7 +61,8 @@ msgstr ""
 msgid "Vente"
 msgstr ""
 
-#: cart/models.py:72 cart/templates/cart/cart_content.html:41
+#: cart/models.py:72 cart/templates/cart/cart_content.html:40
+#: cart/templates/cart/cart_content2.html:40
 #: cart/templates/cart/checkout.html:46 cart/templates/cart/vente.html:82
 #: cart/templates/cart/vente_update.html:17
 msgid "Prix"
@@ -72,37 +73,46 @@ msgid "Panier validé"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:7
+#: cart/templates/cart/cart_content2.html:7
 msgid "3ème étape"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:7 cart/templates/cart/checkout.html:10
-#: cart/templates/cart/paiement_add.html:9 cart/templates/cart/vente.html:14
+#: cart/templates/cart/cart_content.html:7
+#: cart/templates/cart/cart_content2.html:7
+#: cart/templates/cart/checkout.html:10 cart/templates/cart/paiement_add.html:9
+#: cart/templates/cart/vente.html:14
 msgid "step-by-step guide"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:8
+#: cart/templates/cart/cart_content2.html:8
 msgid "Saisir le prix de vente de l'article"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:12
+#: cart/templates/cart/cart_content2.html:12
 msgid "Entrez le prix en éditant le champ de la colonne 'Modifier'"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:13
+#: cart/templates/cart/cart_content2.html:13
 msgid "Validez en cliquant sur le bouton 'Modifier'"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:14
+#: cart/templates/cart/cart_content2.html:14
 msgid ""
 "S'il y a d'autres articles à ajouter au panier, recommencez à chercher ces "
 "articles."
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:15
+#: cart/templates/cart/cart_content2.html:15
 msgid "Allez au formulaire de vente en cliquant sur le bouton"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:22
+#: cart/templates/cart/cart_content2.html:22
 #: cart/templates/cart/checkout.html:25
 #: cart/templates/cart/paiement_add.html:23
 #: cart/templates/cart/paiement_add.html:28 cart/templates/cart/vente.html:22
@@ -111,64 +121,72 @@ msgid "de la vente achevée"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:34
+#: cart/templates/cart/cart_content2.html:34
 #: cart/templates/cart/checkout.html:42
 msgid "No"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:35
+#: cart/templates/cart/cart_content2.html:35
 #: cart/templates/cart/checkout.html:43
 msgid "Date d'ajout"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:36
+#: cart/templates/cart/cart_content2.html:36
 msgid "Action"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:37
+#: cart/templates/cart/cart_content2.html:37
 #: cart/templates/cart/checkout.html:44
 msgid "Titre"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:38
+#: cart/templates/cart/cart_content2.html:38
 msgid "Quantité disponible en stock"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:39
-#: cart/templates/cart/checkout.html:45 cart/templates/cart/vente.html:83
-#: cart/templates/cart/vente_update.html:18
-msgid "Quantité"
-msgstr ""
-
-#: cart/templates/cart/cart_content.html:40
+#: cart/templates/cart/cart_content2.html:39
 msgid "Modifier la quantité"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:42
-#: cart/templates/cart/cart_content.html:73
-#: cart/templates/cart/cart_content.html:88 cart/templates/cart/clients.html:13
-#: cart/templates/cart/clients.html:24
+#: cart/templates/cart/cart_content.html:41
+#: cart/templates/cart/cart_content.html:72
+#: cart/templates/cart/cart_content.html:87
+#: cart/templates/cart/cart_content2.html:41
+#: cart/templates/cart/cart_content2.html:72
+#: cart/templates/cart/cart_content2.html:87
+#: cart/templates/cart/clients.html:13 cart/templates/cart/clients.html:24
 msgid "Modifier"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:43
+#: cart/templates/cart/cart_content.html:42
+#: cart/templates/cart/cart_content2.html:42
 #: cart/templates/cart/checkout.html:47
 msgid "Total"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:54
+#: cart/templates/cart/cart_content.html:53
+#: cart/templates/cart/cart_content2.html:53
 msgid "Supprimer du panier"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:58
+#: cart/templates/cart/cart_content.html:57
+#: cart/templates/cart/cart_content2.html:57
 msgid "available quantity"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:95
+#: cart/templates/cart/cart_content.html:94
+#: cart/templates/cart/cart_content2.html:94
 #: cart/templates/cart/checkout.html:62
 msgid "Total de votre panier:"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:104
+#: cart/templates/cart/cart_content.html:103
+#: cart/templates/cart/cart_content2.html:103
 msgid "Aller à la vente"
 msgstr ""
 
@@ -207,6 +225,11 @@ msgid ""
 "tard,\n"
 "    une fois que vous l'aurez enregistré.\n"
 "    "
+msgstr ""
+
+#: cart/templates/cart/checkout.html:45 cart/templates/cart/vente.html:83
+#: cart/templates/cart/vente_update.html:18
+msgid "Quantité"
 msgstr ""
 
 #: cart/templates/cart/clients.html:12

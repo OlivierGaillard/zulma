@@ -218,13 +218,22 @@ class ArticleFilter(FilterSet):
                   'arrival__nom' : ['icontains'],
                   }
 
-
+def make_summary(queryset):
+    summary = {'quantity_zero' : len(queryset.filter(quantity=0))}
+    summary['total'] = len(queryset)
+    summary['reduced'] = len(queryset.filter(solde='S'))
+    summary['no_name'] = len(queryset.filter(name='n.d.'))
+    summary['no_category'] = len(queryset.filter(category=None))
+    summary['selling_price_zero'] = len(queryset.filter(selling_price = 0.0))
+    summary['purchasing_price_zero'] = len(queryset.filter(purchasing_price=0.0))
+    return summary
 
 @login_required()
 def articles(request):
     #enterprise_of_current_user = Employee.get_enterprise_of_current_user(request.user)
     #qs = Article.objects.filter(enterprise=enterprise_of_current_user)
     qs = Article.objects.all()
+    summary = make_summary(qs)
     get_query = request.GET.copy()
     if 'quantity__gt' not in get_query:
         get_query['quantity__gt'] = '0'
@@ -232,7 +241,7 @@ def articles(request):
 
     article_filter = ArticleFilter(get_query,
                                    queryset=qs)
-    context = {}
+    context = {'summary' : summary,}
     # Extracting the filter parameters
     meta = request.META
     q = meta['QUERY_STRING']
@@ -250,7 +259,7 @@ def articles(request):
             #print('no page or page 1, setting the filter')
             context['q'] = q
     else:
-        logger.debug('no q. too sad. Addin an empty one.')
+        logger.debug('no q. too sad. Adding an empty one.')
         context['q'] = ''
 
 

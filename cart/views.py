@@ -7,6 +7,8 @@ from crispy_forms.bootstrap import TabHolder, Tab, FormActions
 from crispy_forms.layout import Submit, Layout, Fieldset, Field
 from .models import CartItem, Vente, Client, Paiement
 from .forms import VenteCreateForm, ClientCreateForm, PaiementCreateForm, VenteDeleteForm, VenteUpdateForm, ClientUpdateForm
+from .forms import CartItemCreateForm
+from django.forms import formset_factory, modelformset_factory, BaseModelFormSet
 from inventory.models import Article
 from .cartutils import is_cart_id_session_set, _set_or_get_session_id, get_cart_items, get_cart_id_session
 from .cartutils import  get_cart_item_of_book, article_already_in_cart, get_cart_counter, _remove_cart_item, cart_not_complete
@@ -113,6 +115,10 @@ def edit_quantity(request, pk):
 # This import must be defined here, after the functions definition and not before,
 # otherwise it fails.
 
+class BaseCartItemFormSet(BaseModelFormSet):
+    def __init__(self, *args, **kwargs):
+        super(BaseCartItemFormSet, self).__init__(*args, **kwargs)
+        self.queryset = get_cart_items(self.request)
 
 class CartView(ListView):
     """When the cart is validated the cart_items have the status
@@ -120,7 +126,7 @@ class CartView(ListView):
     from the request?
     """
     model = CartItem
-    template_name = 'cart/cart_content.html'
+    template_name = 'cart/cart_content2.html'
     context_object_name = 'cart'
 
     def get_queryset(self):
@@ -133,16 +139,15 @@ class CartView(ListView):
 
     def get_context_data(self, **kwargs):
         ctx = super(CartView, self).get_context_data(**kwargs)
-        # ctx = add_categories_to_context(ctx)
-        # ctx = add_cart_counter_to_context(self.request, ctx)
-        # ctx = add_total_books(ctx)
-        if  is_cart_id_session_set(self.request): # and not cart_not_complete(self.request):
+        if  is_cart_id_session_set(self.request):
             cart_id = get_cart_id_session(self.request)
             ctx['cart_total'] = CartItem.get_total_of_cart(cart_id)
-            #ctx['vente_pk']   = CartItem.get_vente_id(cart_id)
             ctx['cart'] = get_cart_items(self.request)
             return ctx
         else:
+            cart_items_formset = modelformset_factory(CartItem, fields=('article', 'prix', 'quantity', ),
+                                                      formset=BaseCartItemFormSet)
+
             return ctx
 
 
