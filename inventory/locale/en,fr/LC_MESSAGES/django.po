@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-24 16:37+0100\n"
+"POT-Creation-Date: 2018-02-24 16:36+0100\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,7 +16,6 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: inventory/forms.py:95
 msgid "File ends not with extension '.zip'."
@@ -30,7 +29,7 @@ msgstr ""
 #: inventory/templates/inventory/article.html:40
 #: inventory/templates/inventory/articles.html:180
 msgid "Category"
-msgstr "Categoria"
+msgstr ""
 
 #: inventory/forms.py:148 inventory/forms.py:172
 msgid "date_arrivee"
@@ -51,18 +50,18 @@ msgstr ""
 
 #: inventory/models.py:108 inventory/templates/inventory/articles.html:177
 msgid "Purchasing price"
-msgstr "Precio de compra"
+msgstr ""
 
 #: inventory/models.py:110 inventory/templates/inventory/articles.html:178
 msgid "Selling price"
-msgstr "precio de venta"
+msgstr ""
 
 #: inventory/models.py:112 inventory/templates/inventory/arrivals.html:16
 #: inventory/templates/inventory/articles.html:179
 #: inventory/templates/inventory/categories.html:16
 #: inventory/templates/inventory/category_detail.html:21
 msgid "Name"
-msgstr "Nombre"
+msgstr ""
 
 #: inventory/models.py:112 inventory/models.py:114 inventory/models.py:118
 msgid "n.d."
@@ -70,7 +69,7 @@ msgstr ""
 
 #: inventory/models.py:114 inventory/templates/inventory/article.html:65
 msgid "Description"
-msgstr "Descripcion"
+msgstr ""
 
 #: inventory/models.py:115 inventory/templates/inventory/articles.html:182
 msgid "Quantity"
@@ -86,7 +85,7 @@ msgstr ""
 
 #: inventory/models.py:161
 msgid "Homme"
-msgstr "Uomo"
+msgstr ""
 
 #: inventory/models.py:162
 msgid "Femme"
@@ -272,16 +271,12 @@ msgid "Without name"
 msgstr ""
 
 #: inventory/templates/inventory/articles.html:76
-#, fuzzy
-#| msgid "Selling price"
 msgid "Without selling price"
-msgstr "precio de venta"
+msgstr ""
 
 #: inventory/templates/inventory/articles.html:88
-#, fuzzy
-#| msgid "Purchasing price"
 msgid "Without purchasing price"
-msgstr "Precio de compra"
+msgstr ""
 
 #: inventory/templates/inventory/articles.html:106
 msgid "1ère étape"
@@ -321,10 +316,8 @@ msgid "Part of the category's name "
 msgstr ""
 
 #: inventory/templates/inventory/articles.html:137
-#, fuzzy
-#| msgid "Selling price"
 msgid "Selling Price Greater than"
-msgstr "precio de venta"
+msgstr ""
 
 #: inventory/templates/inventory/articles.html:147
 msgid "Quantité supérieure à"
@@ -335,10 +328,8 @@ msgid "Part of Arrival's Name"
 msgstr ""
 
 #: inventory/templates/inventory/articles.html:155
-#, fuzzy
-#| msgid "Purchasing price"
 msgid "Purchasing Price Greater than"
-msgstr "Precio de compra"
+msgstr ""
 
 #: inventory/templates/inventory/articles.html:167
 msgid "articles trouvés"
@@ -370,16 +361,12 @@ msgid "Delete category-ID"
 msgstr ""
 
 #: inventory/templates/inventory/category_delete.html:6
-#, fuzzy
-#| msgid "Name"
 msgid "Name:"
-msgstr "Nombre"
+msgstr ""
 
 #: inventory/templates/inventory/category_detail.html:10
-#, fuzzy
-#| msgid "Category"
 msgid "Category details"
-msgstr "Categoria"
+msgstr ""
 
 #: inventory/templates/inventory/category_update.html:7
 msgid "Modification de la catégorie-ID:"

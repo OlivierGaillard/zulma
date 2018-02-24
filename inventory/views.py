@@ -219,13 +219,21 @@ class ArticleFilter(FilterSet):
                   }
 
 def make_summary(queryset):
-    summary = {'quantity_zero' : len(queryset.filter(quantity=0))}
-    summary['total'] = len(queryset)
-    summary['reduced'] = len(queryset.filter(solde='S'))
-    summary['no_name'] = len(queryset.filter(name='n.d.'))
-    summary['no_category'] = len(queryset.filter(category=None))
-    summary['selling_price_zero'] = len(queryset.filter(selling_price = 0.0))
-    summary['purchasing_price_zero'] = len(queryset.filter(purchasing_price=0.0))
+    summary = {}
+    summary['total'] = total = len(queryset)
+    summary['quantity_zero'] = quantity_zero = len(queryset.filter(quantity=0))
+    summary['quantity_zero_percent'] = "{0}".format(str(int((quantity_zero / total) * 100)))
+    summary['reduced'] = reduced = len(queryset.filter(solde='S'))
+
+    summary['reduced_percent'] = "{0}".format(str(int((reduced / total) * 100)))
+    summary['no_name'] = no_name = len(queryset.filter(name='n.d.'))
+    summary['no_name_percent']     = "{0}".format(str(int((no_name / total) * 100)))
+    summary['no_category'] = no_category = len(queryset.filter(category=None))
+    summary['no_category_percent'] = "{0}".format(str(int((no_category / total) * 100)))
+    summary['selling_price_zero'] = selling_price_zero = len(queryset.filter(selling_price = 0.0))
+    summary['no_selling_price_percent'] = "{0}".format(str(int((selling_price_zero / total) * 100)))
+    summary['purchasing_price_zero'] = purchasing_price_zero = len(queryset.filter(purchasing_price=0.0))
+    summary['no_purchasing_price_percent'] = "{0}".format(str(int((purchasing_price_zero / total) * 100)))
     return summary
 
 @login_required()
