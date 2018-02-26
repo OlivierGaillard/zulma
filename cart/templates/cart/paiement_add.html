@@ -12,7 +12,7 @@
   <h4>{% trans "Ajoutez un paiement" %} <small>{% trans "solde restant"%}: {{solde|intcomma}}</small></h4>
   {% else %}
   <h4>{% trans "Vente terminée!" %} <small>{% trans "solde restant"%}: {{solde|intcomma}}</small></h4>
-  
+
   {% endif %}
 
 
@@ -42,7 +42,7 @@ $( function() {
      $.datepicker.setDefaults(
        $.datepicker.regional["fr-CH"]);
      $( '[id="datetimepicker_vente"]' ).datepicker({
-       dateFormat: "dd.mm.yy" });
+       dateFormat: "yy-mm-dd" });
 }
 );
 
