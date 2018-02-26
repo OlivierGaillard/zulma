@@ -130,11 +130,43 @@ class ClientUpdateForm(forms.ModelForm):
             )
         )
 
+class PaiementUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Paiement
+        fields = ('date', 'montant', 'vente', 'payment_mode')
+
+        widgets = {
+            'vente': forms.TextInput(
+                attrs={'readonly': 'True'}  # attr 'disabled' causes field is removed from "cleaned_data"
+                # which is used in method "clean".
+            ),
+
+            'date': forms.DateTimeInput(
+                attrs={'id': 'datetimepicker_vente'}
+            ),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super(PaiementUpdateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-lg-2'
+        self.helper.field_class = 'col-lg-4'
+        self.helper.layout = Layout(
+            'date', 'vente', 'montant', 'payment_mode',
+        )
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
 
 class PaiementCreateForm(forms.ModelForm):
     class Meta:
         model = Paiement
-        fields = ('date', 'montant', 'vente' )
+        fields = ('date', 'montant', 'vente', 'payment_mode' )
 
         widgets = {
             'vente': forms.TextInput(
@@ -156,7 +188,7 @@ class PaiementCreateForm(forms.ModelForm):
         self.helper.label_class = 'col-lg-2'
         self.helper.field_class = 'col-lg-4'
         self.helper.layout = Layout(
-            'date', 'vente',
+            'date', 'vente', 'montant', 'payment_mode',
         )
 
 

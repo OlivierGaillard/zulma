@@ -1,26 +1,33 @@
 {% extends "inventex.html" %}
 {% load static %}
+{% load i18n %}
 {% block content %}
-
+<div class="container">
     <table class="table table-light">
       <tbody>
       <tr>
           <th>ID</th>
-          <td>{{ paiement.pk }}</td>
+          <td><a href="{% url "cart:paiement_update" paiement.pk %}">{{paiement.pk}}</a></td>
       </tr>
       <tr>
           <th>Date</th>
           <td>{{ paiement.date }}</td>
       </tr>
       <tr>
-          <th>Vente</th>
-          <td>{{ paiement.vente }}</td>
+          <th>{% trans "Vente" %}</th>
+          <td>{{ paiement.vente.pk }}</td>
       </tr>
       <tr>
-          <th>Montant</th>
+          <th>{% trans "Montant" %}</th>
           <td>{{ paiement.montant }}</td>
+      </tr>
+      <tr>
+          <th>{% trans "Mode" %}</th>
+          <td>{{ paiement.get_payment_mode_display|default_if_none:"&mdash;" }}</td>
       </tr>
       </tbody>
     </table>
 
+  <p><a class="btn btn-info" role="button" href="{% url "cart:paiement_update" paiement.pk %}">Edit</a> </p>
+</div>
 {% endblock %}

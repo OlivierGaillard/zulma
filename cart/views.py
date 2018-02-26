@@ -7,7 +7,7 @@ from crispy_forms.bootstrap import TabHolder, Tab, FormActions
 from crispy_forms.layout import Submit, Layout, Fieldset, Field
 from .models import CartItem, Vente, Client, Paiement
 from .forms import VenteCreateForm, ClientCreateForm, PaiementCreateForm, VenteDeleteForm, VenteUpdateForm, ClientUpdateForm
-from .forms import CartItemCreateForm
+from .forms import PaiementUpdateForm
 from django.forms import formset_factory, modelformset_factory, BaseModelFormSet
 from inventory.models import Article
 from .cartutils import is_cart_id_session_set, _set_or_get_session_id, get_cart_items, get_cart_id_session
@@ -301,7 +301,7 @@ def add_paiement(request, vente_pk):
 
         date_vente = datetime.datetime(year=vente.date.year, month=vente.date.month, day=vente.date.day,
                                        hour=vente.date.hour, minute=vente.date.minute)
-        form = PaiementCreateForm(initial={'vente': vente, 'date' : date_vente, 'montant' : vente_solde})
+        form = PaiementCreateForm(initial={'vente': vente, 'date' : date_vente, 'montant' : vente_solde, 'payment_mode' : 'C'})
         # add prepended text here
         form.helper.layout.append(PrependedText('montant', 'Max: ' + str(vente_solde)))
         form.helper.layout.append(
@@ -319,6 +319,13 @@ class PaiementDetailView(DetailView):
     model = Paiement
     template_name = 'cart/paiement.html'
     context_object_name = 'paiement'
+
+class PaiementUpdateView(UpdateView):
+    model = Paiement
+    template_name = 'cart/paiement_update.html'
+    context_object_name = 'paiement'
+    form_class = PaiementUpdateForm
+
 
 
 

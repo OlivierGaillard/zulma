@@ -52,7 +52,7 @@
   <table class="table">
     <tbody>
     <tr>
-        <th>{% trans "No-de vente" %}</th>
+        <th>{% trans "Selling ID" %}</th>
         <td>{{vente.pk}}</td>
     </tr>
 
@@ -120,11 +120,14 @@
             <th>{% trans 'Nr' %}</th>
             <th>{% trans 'Date' %}</th>
             <th>{% trans 'Montant' %}</th>
+            <th>{% trans 'Mode' %}</th>
         </tr>
         </thead>
         <tbody>
         {% for p in vente.paiement_set.all %}
-        <tr><td>{{forloop.counter}}</td>  <td>{{p.date|date:"D d/m/y"}}</td><td>{{p.montant|intcomma}}</td></tr>
+        <tr><td>{{forloop.counter}}</td>  <td>{{p.date|date:"D d/m/y"}}</td><td>{{p.montant|intcomma}}</td>
+          <td>{{p.get_payment_mode_display|default_if_none:"&mdash;"}}</td>
+        </tr>
         {% endfor %}
         <tr>
             <th colspan="2">Total</th>

@@ -25,6 +25,6 @@ urlpatterns = [
     url(r'^paiements/$', views.PaiementListView.as_view(), name='paiements'),
     url(r'^paiement_create/$', views.PaiementCreateView.as_view(), name='paiement_create'),
     url(r'^paiement_add/(?P<vente_pk>[0-9]+)$', views.add_paiement, name='paiement_add'),
-    #url(r'^paiement_add/$', views.add_paiement, name='paiement_add'),
     url(r'^paiement/(?P<pk>[0-9]+)$', views.PaiementDetailView.as_view(), name='paiement'),
+    url(r'^paiement_update/(?P<pk>[0-9]+)$', views.PaiementUpdateView.as_view(), name='paiement_update'),
     ]

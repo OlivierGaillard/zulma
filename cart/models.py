@@ -57,12 +57,21 @@ class Vente(models.Model):
         return self.montant - self.total_paiements()
 
 class Paiement(models.Model):
+    PAYMENT_MODE = (
+        ('C' , 'Cash'),
+        ('B' , 'Bank'),
+    )
+
     date    = models.DateTimeField(default=timezone.now)
     montant = models.DecimalField(_('Montant'), max_digits=20, decimal_places=0, default=0)
     vente   = models.ForeignKey(Vente, verbose_name=_('Vente'))
+    payment_mode = models.CharField(max_length=1, choices=PAYMENT_MODE, null=True, blank=True)
 
     def __str__(self):
         return "Montant: %s / Vente-ID: %s" % (self.montant, self.vente.pk)
+
+    def get_absolute_url(self):
+        return reverse('cart:paiement', kwargs={'pk': self.pk})
 
 
 class CartItem(models.Model):

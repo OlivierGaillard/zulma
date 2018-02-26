@@ -1,15 +1,18 @@
 {% extends "inventex.html" %}
 {% load static %}
+{% load i18n %}
 {% block content %}
+<div class="container">
 
     <table class="table table-light">
       <thead class="thead-light">
       <tr>
-          <th>Nr</th>
+          <th>{% trans "Nr" %}</th>
           <th>ID</th>
-          <th>Date</th>
-          <th>Montant</th>
-          <th>Vente</th>
+          <th>{% trans "Date" %}</th>
+          <th>{% trans "Montant" %}</th>
+          <th>{% trans "Mode" %}</th>
+          <th>{% trans "Vente" %}</th>
       </tr>
       </thead>
 
@@ -17,11 +20,14 @@
       {% for p in paiements %}
       <tr>
           <td>{{ forloop.counter }}</td>
-          <td>{{ p.pk }}</td>
+          <td><a title="{% trans "Click to see details" %}" href="{% url "cart:paiement" p.pk %}">{{p.pk}}</a></td>
           <td>{{ p.date }}</td>
           <td>{{ p.montant }}</td>
-          <td><a title="Cliquer pour voir les détails" href="/cart/vente/{{p.vente.pk}}">{{ p.vente.pk }}</a></td>
+          <td>{{ p.get_payment_mode_display|default_if_none:"&mdash;" }}</td>
+          <td><a title="{% trans "Click to see details of selling" %}"
+            href="{% url "cart:vente" p.vente.pk %}">{{ p.vente.pk }}</a></td>
       </tr>
       {% endfor %}
     </table>
+  </div>
 {% endblock %}
