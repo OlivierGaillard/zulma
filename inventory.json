@@ -1,0 +1,3539 @@
+[
+{
+    "model": "inventory.enterprise",
+    "pk": 1,
+    "fields": {
+        "name": "Cosas de casa"
+    }
+},
+{
+    "model": "inventory.employee",
+    "pk": 1,
+    "fields": {
+        "user": 2,
+        "enterprise": 1
+    }
+},
+{
+    "model": "inventory.employee",
+    "pk": 2,
+    "fields": {
+        "user": 1,
+        "enterprise": 1
+    }
+},
+{
+    "model": "inventory.employee",
+    "pk": 3,
+    "fields": {
+        "user": 3,
+        "enterprise": 1
+    }
+},
+{
+    "model": "inventory.arrivage",
+    "pk": 2,
+    "fields": {
+        "nom": "Carnival",
+        "date_arrivee": "2018-02-16"
+    }
+},
+{
+    "model": "inventory.arrivage",
+    "pk": 3,
+    "fields": {
+        "nom": "Test",
+        "date_arrivee": "2018-02-19"
+    }
+},
+{
+    "model": "inventory.arrivage",
+    "pk": 4,
+    "fields": {
+        "nom": "Kea1",
+        "date_arrivee": "2018-02-20"
+    }
+},
+{
+    "model": "inventory.arrivage",
+    "pk": 5,
+    "fields": {
+        "nom": "Kea2",
+        "date_arrivee": "2018-02-20"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 6,
+    "fields": {
+        "name": "Porcelana"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 8,
+    "fields": {
+        "name": "Cristal"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 9,
+    "fields": {
+        "name": "Hierro forjado y madera"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 10,
+    "fields": {
+        "name": "Cocina"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 11,
+    "fields": {
+        "name": "L\u00e1mparas"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 12,
+    "fields": {
+        "name": "Cuadros y espejos"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 13,
+    "fields": {
+        "name": "Relojes"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 14,
+    "fields": {
+        "name": "Accesorios Dama"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 15,
+    "fields": {
+        "name": "Decoracion vintage"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 16,
+    "fields": {
+        "name": "Bisuteria"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 18,
+    "fields": {
+        "name": "Antiguedades"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 19,
+    "fields": {
+        "name": "Bronce / plata"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 20,
+    "fields": {
+        "name": "Objetos de colecci\u00f3n"
+    }
+},
+{
+    "model": "inventory.category",
+    "pk": 21,
+    "fields": {
+        "name": "Accesorios casa"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 26,
+    "fields": {
+        "photo": "articles/20180212_141652.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Hummel",
+        "category": 15,
+        "description": "Bomba musical",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 27,
+    "fields": {
+        "photo": "articles/20180213_103205.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Bavaria",
+        "category": 6,
+        "description": "Platos tama\u00f1o pastelero",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 28,
+    "fields": {
+        "photo": "articles/20180212_144754.jpg",
+        "purchasing_price": "35.00",
+        "selling_price": "75.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Plato en relieve",
+        "quantity": 0,
+        "solde": "S",
+        "arrival": 2,
+        "notes": "Defecto."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 29,
+    "fields": {
+        "photo": "articles/20180213_130502.jpg",
+        "purchasing_price": "20.00",
+        "selling_price": "60.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Libro caja",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 30,
+    "fields": {
+        "photo": "articles/20180213_110023.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "125.00",
+        "name": "Sin marca",
+        "category": 9,
+        "description": "Diosa de madera",
+        "quantity": 0,
+        "solde": "S",
+        "arrival": 2,
+        "notes": "Defecto"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 31,
+    "fields": {
+        "photo": "articles/20180212_143209.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Norway",
+        "category": 8,
+        "description": "Florero cristal",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 32,
+    "fields": {
+        "photo": "articles/20180213_105250.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Botella forma barco peque\u00f1o",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 33,
+    "fields": {
+        "photo": "articles/20180212_135931.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 18,
+        "description": "Quinque miniatura",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 34,
+    "fields": {
+        "photo": "articles/20180213_103132.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Bavaria",
+        "category": 6,
+        "description": "Plato tama\u00f1o pastelero",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 35,
+    "fields": {
+        "photo": "articles/20180213_103326.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Capodimonte",
+        "category": 6,
+        "description": "Flor porcelana",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Defecto"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 36,
+    "fields": {
+        "photo": "articles/20180213_111847.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 12,
+        "description": "Marco para cocina - comedor",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 37,
+    "fields": {
+        "photo": "articles/20180213_104331.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Cartera vidrio",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 38,
+    "fields": {
+        "photo": "articles/20180213_102804.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Royal Worcester",
+        "category": 6,
+        "description": "Flameproof porcelain",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Evesham, England"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 39,
+    "fields": {
+        "photo": "articles/20180213_102914.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Salero y pimentero",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 40,
+    "fields": {
+        "photo": "articles/20180212_141936.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "25.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Copas para agua",
+        "quantity": 8,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 41,
+    "fields": {
+        "photo": "articles/20180212_142217.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Vasos peque\u00f1os venecianos",
+        "quantity": 4,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 42,
+    "fields": {
+        "photo": "articles/20180213_104317.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Florero peque\u00f1o veneciano",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 43,
+    "fields": {
+        "photo": "articles/20180212_144903.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Plato boquitero",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 44,
+    "fields": {
+        "photo": "articles/20180212_132545.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 14,
+        "description": "Polvera estilo vintage",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 45,
+    "fields": {
+        "photo": "articles/20180213_104150.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Norman Rockwell",
+        "category": 6,
+        "description": "Plato decorativo.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 46,
+    "fields": {
+        "photo": "articles/20180212_132425.jpg",
+        "purchasing_price": "60.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 9,
+        "description": "Porta libros",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 47,
+    "fields": {
+        "photo": "articles/20180121_203525.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "275.00",
+        "name": "Phanolith",
+        "category": 6,
+        "description": "Plato mural con pedrer\u00eda de phanolith.",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Vendido a Luc\u00eda"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 48,
+    "fields": {
+        "photo": "articles/20180213_104112.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Norman Rockwell",
+        "category": 6,
+        "description": "Plato decorativo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 49,
+    "fields": {
+        "photo": "articles/20180213_104019.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Pato grande porcenala",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 50,
+    "fields": {
+        "photo": "articles/20180212_141943.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Copas cristal postre",
+        "quantity": 8,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 51,
+    "fields": {
+        "photo": "articles/20180213_104530.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 18,
+        "description": "Quinque base roja",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 52,
+    "fields": {
+        "photo": "articles/20180213_110333.jpg",
+        "purchasing_price": "85.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Florero tipo jarra",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 53,
+    "fields": {
+        "photo": "articles/20180212_145351.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 16,
+        "description": "Camafeo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "R\u00e9plica"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 54,
+    "fields": {
+        "photo": "articles/20180213_105142.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 9,
+        "description": "Mundo para guardar corchos vinos",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 55,
+    "fields": {
+        "photo": "articles/20180212_140810.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Willow tree",
+        "category": 6,
+        "description": "Sagrada Familia",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 56,
+    "fields": {
+        "photo": "articles/20180212_151016.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "W.S. George",
+        "category": 6,
+        "description": "Plato decorativo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "The duck stamp plate collection"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 57,
+    "fields": {
+        "photo": "articles/20180212_133943.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Pisapapel",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 58,
+    "fields": {
+        "photo": "articles/20180213_124828.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Crucifijo peque\u00f1o concha n\u00e1car.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 59,
+    "fields": {
+        "photo": "articles/20180212_150950.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "W.S. George",
+        "category": 6,
+        "description": "Plato decorativo.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "The federal duck stamp plate collection"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 60,
+    "fields": {
+        "photo": "articles/20180212_145425.jpg",
+        "purchasing_price": "35.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 16,
+        "description": "Camafeo / Guardapelo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "R\u00e9plica"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 61,
+    "fields": {
+        "photo": "articles/20180213_110503.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Cremero alem\u00e1n",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 62,
+    "fields": {
+        "photo": "articles/20180212_145302.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 16,
+        "description": "Camafeo rom\u00e1nticos",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Porcenala"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 63,
+    "fields": {
+        "photo": "articles/20180213_104402.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Pato peque\u00f1o porcelana",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 64,
+    "fields": {
+        "photo": "articles/20180213_105448.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Florero porcelana",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "R\u00e9plica"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 65,
+    "fields": {
+        "photo": "articles/20180212_140715.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 18,
+        "description": "Huevo ort\u00f3doxo.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 66,
+    "fields": {
+        "photo": "articles/20180212_132538.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 14,
+        "description": "Polvera (japonesa)",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 67,
+    "fields": {
+        "photo": "articles/20180212_143722.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Jirafa peque\u00f1a de bronce",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 68,
+    "fields": {
+        "photo": "articles/20180212_134041.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Llave bronce",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 69,
+    "fields": {
+        "photo": "articles/20180212_142738.jpg",
+        "purchasing_price": "250.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 11,
+        "description": "L\u00e1mpara 55 cm.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Material:  Peltre"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 70,
+    "fields": {
+        "photo": "articles/20180213_104004.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Libro caja",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 71,
+    "fields": {
+        "photo": "articles/20180213_102930.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 20,
+        "description": "Campana colecci\u00f3n",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 72,
+    "fields": {
+        "photo": "articles/20180212_150958.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "W.S. George",
+        "category": 6,
+        "description": "Plato decorativo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "The federal duck stamp plate collection"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 73,
+    "fields": {
+        "photo": "articles/20180213_104641.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "100.00",
+        "name": "Pato",
+        "category": 9,
+        "description": "Pato de madera \r\n12 cm.",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 2,
+        "notes": ""
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 74,
+    "fields": {
+        "photo": "articles/20180212_141448.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Reloj arena",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 75,
+    "fields": {
+        "photo": "articles/20180213_104207.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Norman Rockwell",
+        "category": 6,
+        "description": "Plato decorativo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 76,
+    "fields": {
+        "photo": "articles/20180213_105600.jpg",
+        "purchasing_price": "85.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Florero",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 77,
+    "fields": {
+        "photo": "articles/20180213_103231.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Caballo cuerda.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 78,
+    "fields": {
+        "photo": "articles/20180212_134030.jpg",
+        "purchasing_price": "30.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Juego de llaves de bronce",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": ""
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 79,
+    "fields": {
+        "photo": "articles/20180212_133129.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Perro salchicha peque\u00f1o de bronce",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 80,
+    "fields": {
+        "photo": "articles/20180213_114657.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 9,
+        "description": "Paj\u00e1rito de hierro",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 81,
+    "fields": {
+        "photo": "articles/20180213_105321.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "30.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Imitaci\u00f3n Wedgdwood.",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Blanca Torres"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 82,
+    "fields": {
+        "photo": "articles/20180213_130212.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Cruz de pewter.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 83,
+    "fields": {
+        "photo": "articles/20180213_104354.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Gato de porcelana peque\u00f1o",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 84,
+    "fields": {
+        "photo": "articles/20180212_132454.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 18,
+        "description": "Globo terr\u00e1queo peque\u00f1o",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 85,
+    "fields": {
+        "photo": "articles/20180212_133031.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Florero opalina",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 86,
+    "fields": {
+        "photo": "articles/20180212_140348.jpg",
+        "purchasing_price": "125.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 11,
+        "description": "Quinqu\u00e9 de opalina blanco",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 87,
+    "fields": {
+        "photo": "articles/20180212_144942.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "W.S. George",
+        "category": 6,
+        "description": "Plato decorativo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "The federal duck stamp plate collection"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 88,
+    "fields": {
+        "photo": "articles/20180213_111136.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "50.00",
+        "name": "Marco foto",
+        "category": 12,
+        "description": "Marco para fotos",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 89,
+    "fields": {
+        "photo": "articles/20180212_132236.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": null,
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Florero peque\u00f1o portugu\u00e9s",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 90,
+    "fields": {
+        "photo": "articles/20180213_103259.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Gato peque\u00f1o bronce",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 91,
+    "fields": {
+        "photo": "articles/20180212_144933.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "W.S. George",
+        "category": 6,
+        "description": "Plato decorativo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "The federal duck stamp plate collection"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 92,
+    "fields": {
+        "photo": "articles/20180212_134818.jpg",
+        "purchasing_price": "50.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 20,
+        "description": "Porta libros baquelita",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 93,
+    "fields": {
+        "photo": "articles/20180213_104448.jpg",
+        "purchasing_price": "50.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 11,
+        "description": "L\u00e1mpara estilio Tifany",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 94,
+    "fields": {
+        "photo": "articles/20180213_103154.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Bavaria",
+        "category": 6,
+        "description": "Plato decorativo tama\u00f1o pastelero",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 95,
+    "fields": {
+        "photo": "articles/20180212_145320.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 16,
+        "description": "Camafeo de porcelan",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 96,
+    "fields": {
+        "photo": "articles/20180213_130221.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 9,
+        "description": "Cruz pewter",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 97,
+    "fields": {
+        "photo": "articles/20180212_150941.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "W.S. George",
+        "category": 6,
+        "description": "Plato decorativo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "The federal duck stamp plate collection"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 98,
+    "fields": {
+        "photo": "articles/20180213_130200.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 9,
+        "description": "Cruz pewter",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 99,
+    "fields": {
+        "photo": "articles/20180212_140758.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "R.R.",
+        "category": 6,
+        "description": "Virgen resina",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 100,
+    "fields": {
+        "photo": "articles/20180213_124705.jpg",
+        "purchasing_price": "20.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Juego taza y porcelan inglesa.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 101,
+    "fields": {
+        "photo": "articles/20180213_110648.jpg",
+        "purchasing_price": "85.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Busto dama yeso",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 102,
+    "fields": {
+        "photo": "articles/20180212_142027.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Vaso para whisky",
+        "quantity": 6,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 103,
+    "fields": {
+        "photo": "articles/20180212_131708.jpg",
+        "purchasing_price": "85.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Jarra cristal",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 104,
+    "fields": {
+        "photo": "articles/20180212_132225.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Cubeta gallo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 105,
+    "fields": {
+        "photo": "articles/20180212_140503.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Reloj funciona con bater\u00eda",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 106,
+    "fields": {
+        "photo": "articles/20180213_110056.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Jirafa grande de bronce",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 107,
+    "fields": {
+        "photo": "articles/20180213_105402.jpg",
+        "purchasing_price": "85.00",
+        "selling_price": "300.00",
+        "name": "Roger",
+        "category": 19,
+        "description": "Jarra ba\u00f1o de plata",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 108,
+    "fields": {
+        "photo": "articles/20180212_145327.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 16,
+        "description": "Camafeo de porcelana",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 109,
+    "fields": {
+        "photo": "articles/20180213_103112.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Joyero porcelana",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 110,
+    "fields": {
+        "photo": "articles/20180212_132059.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 14,
+        "description": "Perfumero cristal",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 111,
+    "fields": {
+        "photo": "articles/20180213_103516.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 14,
+        "description": "Espejo bolsillo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 112,
+    "fields": {
+        "photo": "articles/20180212_145357.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 16,
+        "description": "Camafeo antiguo de plata.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Conchar."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 113,
+    "fields": {
+        "photo": "articles/20180213_103747.jpg",
+        "purchasing_price": "85.00",
+        "selling_price": "300.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Cabeza vidrio para accesoriosl",
+        "quantity": 3,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 114,
+    "fields": {
+        "photo": "articles/20180213_111454.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Elefante dos piezas.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 115,
+    "fields": {
+        "photo": "articles/20180212_131349.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Florero cristal",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 116,
+    "fields": {
+        "photo": "articles/20180212_132942.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 9,
+        "description": "Adorno para exterior",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 117,
+    "fields": {
+        "photo": "articles/20180212_140240.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 14,
+        "description": "Espejo bolsillo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 118,
+    "fields": {
+        "photo": "articles/20180213_103909.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Candeleros imitacion Capodimonti",
+        "quantity": 2,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 119,
+    "fields": {
+        "photo": "articles/20180212_132037.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "My favorite Teddies",
+        "category": 6,
+        "description": "Juego taza y porcelana.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Fine bone china."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 120,
+    "fields": {
+        "photo": "articles/20180212_141003.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Busto para decorar porcelana y hierro.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 121,
+    "fields": {
+        "photo": "articles/20180213_102850.jpg",
+        "purchasing_price": "40.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Angel musical con cuerda",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 122,
+    "fields": {
+        "photo": "articles/20180212_132410.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Waterford",
+        "category": 8,
+        "description": "Pisapapel",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 123,
+    "fields": {
+        "photo": "articles/20180213_110837.jpg",
+        "purchasing_price": "50.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 11,
+        "description": "Lampara cristal.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 124,
+    "fields": {
+        "photo": "articles/20180212_131804.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Taza",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Fine bone china"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 125,
+    "fields": {
+        "photo": "articles/20180212_140358.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Frasco decorativo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 126,
+    "fields": {
+        "photo": "articles/20180213_111151.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 12,
+        "description": "Marco de fotos",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 127,
+    "fields": {
+        "photo": "articles/20180212_143822.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Bavaria",
+        "category": 6,
+        "description": "Porcelana peque\u00f1o",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "15 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 128,
+    "fields": {
+        "photo": "articles/20180213_102753.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Recipiente para pasar Verduras.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 129,
+    "fields": {
+        "photo": "articles/20180213_125321.jpg",
+        "purchasing_price": "35.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 14,
+        "description": "Polvera",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 130,
+    "fields": {
+        "photo": "articles/20180212_144741.jpg",
+        "purchasing_price": "20.00",
+        "selling_price": "0.00",
+        "name": "Monet",
+        "category": 16,
+        "description": "Prendedor",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 131,
+    "fields": {
+        "photo": "articles/20180213_105726.jpg",
+        "purchasing_price": "85.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Florero Caf\u00e9",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 132,
+    "fields": {
+        "photo": "articles/20180213_111531.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 12,
+        "description": "Marco decorativo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 133,
+    "fields": {
+        "photo": "articles/20180213_111421.jpg",
+        "purchasing_price": "85.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 12,
+        "description": "Cuadro para colocar paletas",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 134,
+    "fields": {
+        "photo": "articles/20180213_125112.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Figuras asi\u00e1ticas.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "12 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 135,
+    "fields": {
+        "photo": "articles/20180212_142037.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 10,
+        "description": "Vasos cortos",
+        "quantity": 6,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 136,
+    "fields": {
+        "photo": "articles/20180213_110103.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Jirafa peque\u00f1a.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 137,
+    "fields": {
+        "photo": "articles/20180213_124556.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Enanos",
+        "quantity": 2,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "8 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 138,
+    "fields": {
+        "photo": "articles/20180213_105409.jpg",
+        "purchasing_price": "1.00",
+        "selling_price": "0.00",
+        "name": "Roger",
+        "category": 19,
+        "description": "Tetera ba\u00f1o plata",
+        "quantity": 1,
+        "solde": "S",
+        "arrival": 2,
+        "notes": "Defecto."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 139,
+    "fields": {
+        "photo": "articles/20180213_114452.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "50.00",
+        "name": "Reloj",
+        "category": 13,
+        "description": "Reloj de mesa de cuerda.",
+        "quantity": 1,
+        "solde": "S",
+        "arrival": 2,
+        "notes": "defecto"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 140,
+    "fields": {
+        "photo": "articles/20180212_133021.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 9,
+        "description": "Macetero lat\u00f3n.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 141,
+    "fields": {
+        "photo": "articles/20180212_150904.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 20,
+        "description": "Bomba musical de agua",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 142,
+    "fields": {
+        "photo": "articles/20180212_143549.jpg",
+        "purchasing_price": "85.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Florero cristal",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "30 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 143,
+    "fields": {
+        "photo": "articles/20180213_110119.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Pich\u00f3n de bronce.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 144,
+    "fields": {
+        "photo": "articles/20180213_110042.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Tarro peque\u00f1o bronce tallado",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 145,
+    "fields": {
+        "photo": "articles/20180213_111303.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 12,
+        "description": "Marco decorativo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "25 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 146,
+    "fields": {
+        "photo": "articles/20180213_111224.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "30.00",
+        "name": "Marco foto",
+        "category": 12,
+        "description": "Marco foto",
+        "quantity": 1,
+        "solde": "S",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 147,
+    "fields": {
+        "photo": "articles/20180212_132345.jpg",
+        "purchasing_price": "30.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Maceteros",
+        "quantity": 2,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Iimitaci\u00f3n lecheros. ."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 148,
+    "fields": {
+        "photo": "articles/20180212_141849.jpg",
+        "purchasing_price": "150.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Licorera cristal",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 149,
+    "fields": {
+        "photo": "articles/20180212_131624.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Wedgwood",
+        "category": 6,
+        "description": "3 platos\r\n1 joyero",
+        "quantity": 4,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 150,
+    "fields": {
+        "photo": "articles/20180204_203641.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "225.00",
+        "name": "Sin marca",
+        "category": 12,
+        "description": "Marco italiano.  Base madera.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 151,
+    "fields": {
+        "photo": "articles/20180213_105225.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Ba\u00fal miniatura",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 152,
+    "fields": {
+        "photo": "articles/20180212_140217.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Florero cristal rojo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "25 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 153,
+    "fields": {
+        "photo": "articles/20180213_102824.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Campana labrada",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 154,
+    "fields": {
+        "photo": "articles/20180212_131216.jpg",
+        "purchasing_price": "20.00",
+        "selling_price": "100.00",
+        "name": "Amethyst",
+        "category": 6,
+        "description": "Juego taza y porcelana inglesa",
+        "quantity": 5,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Royal Standard\r\n434"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 155,
+    "fields": {
+        "photo": "articles/20180212_145055.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "W.S. George",
+        "category": 6,
+        "description": "Plato decorativo.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "The federal duck stampo plata collection"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 156,
+    "fields": {
+        "photo": "articles/20180212_133835.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 13,
+        "description": "reloj de mesa",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 157,
+    "fields": {
+        "photo": "articles/20180212_141622.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 20,
+        "description": "pisapapel",
+        "quantity": 4,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 158,
+    "fields": {
+        "photo": "articles/20180213_103032.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Bavaria",
+        "category": 6,
+        "description": "Plato tama\u00f1o pastelero",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 159,
+    "fields": {
+        "photo": "articles/20180212_141136.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Pavo real",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "15 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 160,
+    "fields": {
+        "photo": "articles/20180213_102957.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Cremero ingl\u00e9s",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 161,
+    "fields": {
+        "photo": "articles/20180213_104700.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "100.00",
+        "name": "Pato",
+        "category": 9,
+        "description": "Pato madera 30 cm.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "Fisura"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 162,
+    "fields": {
+        "photo": "articles/20180213_103614.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 16,
+        "description": "Guardapelo imitaci\u00f3n bronce.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 163,
+    "fields": {
+        "photo": "articles/20180213_103005.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Royal Albert",
+        "category": 6,
+        "description": "Cremero porcelana inglesa.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 164,
+    "fields": {
+        "photo": "articles/20180212_140232.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 14,
+        "description": "Espejo de bolsillo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 165,
+    "fields": {
+        "photo": "articles/20180213_130346.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Libro caj\u00f3n",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 166,
+    "fields": {
+        "photo": "articles/20180212_151007.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "W.S. George",
+        "category": 6,
+        "description": "Plato decorativo",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "The federal duck stamp plate collection"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 167,
+    "fields": {
+        "photo": "articles/20180212_131850.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Maceta base lat\u00f3n",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 168,
+    "fields": {
+        "photo": "articles/20180213_125132.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 20,
+        "description": "Lupa.  Sujetador forma concha.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 169,
+    "fields": {
+        "photo": "articles/20180213_111208.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 12,
+        "description": "Marco foto",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 170,
+    "fields": {
+        "photo": "articles/20180213_103532.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "100.00",
+        "name": "Alfiletero",
+        "category": 18,
+        "description": "Zapato para guardar alfileres",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 171,
+    "fields": {
+        "photo": "articles/20180213_104226.jpg",
+        "purchasing_price": "65.00",
+        "selling_price": "0.00",
+        "name": "Provenza",
+        "category": 6,
+        "description": "Florero porcelana",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 172,
+    "fields": {
+        "photo": "articles/20180212_133708.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Limoge",
+        "category": 6,
+        "description": "Huevo con figuras de los rom\u00e1nticos.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 173,
+    "fields": {
+        "photo": "articles/20180213_104804.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 12,
+        "description": "Sagrada Familia",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 174,
+    "fields": {
+        "photo": "articles/20180213_104045.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "lat\u00f3n ingl\u00e9s",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 175,
+    "fields": {
+        "photo": "articles/20180212_141215.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 19,
+        "description": "Gallos de pelea",
+        "quantity": 2,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 176,
+    "fields": {
+        "photo": "articles/20180212_133820.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Waterford",
+        "category": 8,
+        "description": "animal cristal",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "12 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 177,
+    "fields": {
+        "photo": "articles/20180212_143508.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Florero porcelana",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "30 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 178,
+    "fields": {
+        "photo": "articles/20180212_131811.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 10,
+        "description": "Taza",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 179,
+    "fields": {
+        "photo": "articles/20180212_144842.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Plato hondo alem\u00e1n",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 180,
+    "fields": {
+        "photo": "articles/20180213_103402.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "Platos hondos ingleses",
+        "quantity": 2,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 181,
+    "fields": {
+        "photo": "articles/20180212_143219.jpg",
+        "purchasing_price": "35.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 21,
+        "description": "Florero",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "30 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 182,
+    "fields": {
+        "photo": "articles/20180213_114625.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 9,
+        "description": "Banca de hierro",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "40 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 183,
+    "fields": {
+        "photo": "articles/20180213_103916.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 6,
+        "description": "zapato porcelana",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 2,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 186,
+    "fields": {
+        "photo": "articles/casquette.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "20.00",
+        "name": "n.d.",
+        "category": null,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "S",
+        "arrival": 3,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 187,
+    "fields": {
+        "photo": "articles/casquette.2jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": null,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 3,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 188,
+    "fields": {
+        "photo": "articles/casquette3.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": null,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 3,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 189,
+    "fields": {
+        "photo": "articles/fossil-smartwatch-qwander-ftw2102.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": null,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 3,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 191,
+    "fields": {
+        "photo": "articles/VA215B000-A11@10.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": null,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 3,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 192,
+    "fields": {
+        "photo": "articles/VA215B000-A11@12.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": null,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 3,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 193,
+    "fields": {
+        "photo": "articles/VA215B000-A11@11.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": null,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 3,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 196,
+    "fields": {
+        "photo": "articles/20180219_093806.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Adderley",
+        "category": 6,
+        "description": "Pasterlo ingles",
+        "quantity": 8,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 197,
+    "fields": {
+        "photo": "articles/20180219_094428.jpg",
+        "purchasing_price": "20.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Adornos bronce",
+        "quantity": 2,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 198,
+    "fields": {
+        "photo": "articles/20180219_153922.jpg",
+        "purchasing_price": "60.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 11,
+        "description": "L\u00e1mpara hierro",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 199,
+    "fields": {
+        "photo": "articles/20180219_094532.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 9,
+        "description": "pato labrado madera",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 200,
+    "fields": {
+        "photo": "articles/20180219_094400.jpg",
+        "purchasing_price": "45.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Guarda corchos",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "35 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 201,
+    "fields": {
+        "photo": "articles/20180219_154031.jpg",
+        "purchasing_price": "60.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 18,
+        "description": "Placha grande  carb\u00f3n",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 202,
+    "fields": {
+        "photo": "articles/20180219_093413.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Adderley",
+        "category": 6,
+        "description": "Platos para servir",
+        "quantity": 9,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 203,
+    "fields": {
+        "photo": "articles/20180219_093638.jpg",
+        "purchasing_price": "20.00",
+        "selling_price": "0.00",
+        "name": "Adderley",
+        "category": 6,
+        "description": "Sopera y plato",
+        "quantity": 8,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 204,
+    "fields": {
+        "photo": "articles/20180219_094004.jpg",
+        "purchasing_price": "10.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Cenicero con cristal y bronce",
+        "quantity": 4,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 205,
+    "fields": {
+        "photo": "articles/20180219_094342.jpg",
+        "purchasing_price": "15.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 20,
+        "description": "Caja decorativa",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "10 cm.."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 206,
+    "fields": {
+        "photo": "articles/20180219_094201.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 8,
+        "description": "Candelero",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 207,
+    "fields": {
+        "photo": "articles/20180219_093746.jpg",
+        "purchasing_price": "20.00",
+        "selling_price": "0.00",
+        "name": "Adderley",
+        "category": 6,
+        "description": "Juego taza con porcelana",
+        "quantity": 8,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 208,
+    "fields": {
+        "photo": "articles/20180219_095958.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Quinque de gas.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "15 cm."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 209,
+    "fields": {
+        "photo": "articles/20180219_101345.jpg",
+        "purchasing_price": "20.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Caja de lat\u00f3n",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 210,
+    "fields": {
+        "photo": "articles/20180219_101405.jpg",
+        "purchasing_price": "30.00",
+        "selling_price": "0.00",
+        "name": "Sin marca",
+        "category": 15,
+        "description": "Cuadro \u00e1ngeles.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 211,
+    "fields": {
+        "photo": "articles/20180219_101529.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 212,
+    "fields": {
+        "photo": "articles/20180219_095857.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 213,
+    "fields": {
+        "photo": "articles/20180219_151827.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 214,
+    "fields": {
+        "photo": "articles/20180219_101559.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 215,
+    "fields": {
+        "photo": "articles/20180219_095644.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 216,
+    "fields": {
+        "photo": "articles/20180219_152753.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 217,
+    "fields": {
+        "photo": "articles/20180219_100244.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 218,
+    "fields": {
+        "photo": "articles/20180219_154040.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 219,
+    "fields": {
+        "photo": "articles/20180219_151927.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 220,
+    "fields": {
+        "photo": "articles/20180219_152530.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 221,
+    "fields": {
+        "photo": "articles/20180219_152147.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 222,
+    "fields": {
+        "photo": "articles/20180219_152105.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 223,
+    "fields": {
+        "photo": "articles/20180219_151954.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 224,
+    "fields": {
+        "photo": "articles/20180219_152209.jpg",
+        "purchasing_price": "25.00",
+        "selling_price": "0.00",
+        "name": "Capodimonte",
+        "category": 6,
+        "description": "Cenicero",
+        "quantity": 0,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "20 cm. di\u00e1metro"
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 225,
+    "fields": {
+        "photo": "articles/20180219_152603.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 226,
+    "fields": {
+        "photo": "articles/20180219_151939.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 227,
+    "fields": {
+        "photo": "articles/20180219_152414.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 228,
+    "fields": {
+        "photo": "articles/20180219_151910.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 229,
+    "fields": {
+        "photo": "articles/20180219_151905.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 230,
+    "fields": {
+        "photo": "articles/20180219_154135.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 231,
+    "fields": {
+        "photo": "articles/20180219_174137.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 232,
+    "fields": {
+        "photo": "articles/20180219_152314.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 233,
+    "fields": {
+        "photo": "articles/20180219_154144.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 234,
+    "fields": {
+        "photo": "articles/20180219_154844.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 235,
+    "fields": {
+        "photo": "articles/20180219_154834.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 236,
+    "fields": {
+        "photo": "articles/20180219_154850.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 237,
+    "fields": {
+        "photo": "articles/20180219_154716.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 238,
+    "fields": {
+        "photo": "articles/20180219_173858.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 239,
+    "fields": {
+        "photo": "articles/20180219_154914.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 240,
+    "fields": {
+        "photo": "articles/20180219_152458.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+},
+{
+    "model": "inventory.article",
+    "pk": 241,
+    "fields": {
+        "photo": "articles/20180219_173646.jpg",
+        "purchasing_price": "0.00",
+        "selling_price": "0.00",
+        "name": "n.d.",
+        "category": 15,
+        "description": "n.d.",
+        "quantity": 1,
+        "solde": "N",
+        "arrival": 4,
+        "notes": "n.d."
+    }
+}
+]
