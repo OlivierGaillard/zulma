@@ -98,7 +98,7 @@ class VenteDeleteForm(forms.ModelForm):
 class ClientCreateForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ('nom', 'prenom', 'tel')
+        fields = ('name', 'first_name', 'tel')
 
     def __init__(self, *args, **kwargs):
         super(ClientCreateForm, self).__init__(*args, **kwargs)
@@ -116,7 +116,7 @@ class ClientCreateForm(forms.ModelForm):
 class ClientUpdateForm(forms.ModelForm):
     class Meta:
         model = Client
-        fields = ('nom', 'prenom', 'tel')
+        fields = ('name', 'first_name', 'tel')
     def __init__(self, *args, **kwargs):
         super(ClientUpdateForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)

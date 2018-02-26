@@ -24,15 +24,15 @@
           <td>{{ a.date|date:"D d/m/y" }}</td>
           <td>{{ a.cartitem_set.first.article.name }}</td>
           <td>{% if a.client %}
-                {% if a.client.prenom %}
-                  {{ a.client.prenom }}
+                {% if a.client.first_name %}
+                  {{ a.client.first_name }}
                 {% else %}
-                no prenom
+                no first_name
                 {% endif %}
-                {% if a.client.nom %}
-                   {{ a.client.nom }}
+                {% if a.client.name %}
+                   {{ a.client.name }}
                    {% else %}
-                   no nom
+                   no name
                 {% endif %}
 
               {% else %}

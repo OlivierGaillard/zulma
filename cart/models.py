@@ -7,18 +7,19 @@ from inventory.models import Article
 
 
 class Client(models.Model):
-    nom = models.CharField(_('Nom'), max_length=80)
-    prenom = models.CharField(_('Prénom'), max_length=80)
+    name = models.CharField(_('Nom'), max_length=80)
+    first_name = models.CharField(_('Prénom'), max_length=80)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,20}$',
                                  message="Format: '+999999999'. Maximum 20 chiffres.")
     tel = models.CharField(_('Tél.'), max_length=20, validators=[phone_regex], help_text=_("pas d'espaces entre les chiffres svp"),
                            null=True, blank=True)
 
     class Meta:
-        unique_together = ['nom', 'prenom']
+        unique_together = ['name', 'first_name']
+        ordering = ['name']
 
     def __str__(self):
-        return self.nom + ' ' + self.prenom
+        return self.first_name + ' ' + self.name
 
     def get_absolute_url(self):
         return reverse('cart:client', kwargs={'pk': self.pk})

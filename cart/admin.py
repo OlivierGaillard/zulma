@@ -12,7 +12,7 @@ class VenteAdmin(admin.ModelAdmin):
 admin.site.register(Vente, VenteAdmin)
 
 class ClientAdmin(admin.ModelAdmin):
-    list_display = ['nom', 'prenom', 'tel']
+    list_display = ['name', 'first_name', 'tel']
 
 admin.site.register(Client, ClientAdmin)
 
