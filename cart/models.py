@@ -7,8 +7,8 @@ from inventory.models import Article
 
 
 class Client(models.Model):
-    name = models.CharField(_('Nom'), max_length=80)
-    first_name = models.CharField(_('Prénom'), max_length=80)
+    name = models.CharField(_('Name'), max_length=80)
+    first_name = models.CharField(_('First name'), max_length=80)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,20}$',
                                  message="Format: '+999999999'. Maximum 20 chiffres.")
     tel = models.CharField(_('Tél.'), max_length=20, validators=[phone_regex], help_text=_("pas d'espaces entre les chiffres svp"),
