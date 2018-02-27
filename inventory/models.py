@@ -131,7 +131,6 @@ class Article(models.Model):
 
 
 
-
 class Marque(models.Model):
     nom = models.CharField(max_length=80, unique=True)
 

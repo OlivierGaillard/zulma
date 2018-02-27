@@ -333,6 +333,17 @@ class ArticlesListView(ListView):
         qs = Article.objects.all()
         return qs
 
+@method_decorator(login_required, name='dispatch')
+class ArticleDeleteView(DeleteView):
+    context_object_name = 'article'
+    template_name = 'inventory/article_delete.html'
+    model = Article
+    success_url = 'inventory/articles/'
+
+
+
+
+
 # @method_decorator(login_required, name='dispatch')
 # class ArticleCreateView(CreateView):
 #     model = Article

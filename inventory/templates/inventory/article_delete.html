@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-sm-3">
+      <p>{% trans "Delete article-ID" %} {{article.pk}} / {% trans "Name:" %} {{article.name}}?</p>
+    </div>
+    <div class="col-sm-3">
+      <div class="pic_container row">
+          {% thumbnail article.photo  "150x150" crop="center" as thumbnail %}
+        <div class="pic">
+          <p>
+              <a href="{{ article.photo.url }}" alt="{% trans 'image de ' %}{{article.name}}-ID: {{article.pk}}">
+              <img src="{{ thumbnail.url }}" alt="The thumbnail" style="width: {{ thumbnail.width }}">
+              </a>
+          </p>
+        </div>
+
+         {% empty %}
+         <div class="pic">
+            {% trans "Sorry no picture available" %}
+         </div>
+          {% endthumbnail %}
+
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-6">
+      <form action="/inventory/article_delete/{{ article.pk }}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn btn-danger" type="submit" value="Delete"{% trans "Effacer" %}</input>
+      </form>
+      </div>
+  </div>
+</div>
+{% endblock %}
