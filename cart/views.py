@@ -34,6 +34,8 @@ def add_cart_item(request, pk):
             if article.quantity > 0:
                 cart_item = CartItem()
                 cart_item.cart_id = _set_or_get_session_id(request)
+                msg = 'Session-ID: %s' % cart_item.cart_id
+                logger.debug(msg)
                 cart_item.article = article
                 cart_item.quantity = 1
                 cart_item.save()
@@ -76,7 +78,8 @@ def save_cart_item(request, pk):
         new_quantity = int(new_quantity)
         logger.debug('new quantity: %s' % str(new_quantity))
         msg = cart_item.set_quantity(new_quantity)
-        logger.warning('msg: %s' % msg)
+        if msg:
+            logger.warning('msg: %s' % msg)
         price = request.POST.get('new_price', '')
         logger.debug('new_price: %s' % price)
         if len(price) == 0:
