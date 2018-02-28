@@ -69,6 +69,35 @@ def remove_article_from_vente_and_update_article_quantity(request, pk):
 #        url_redirect = reverse('cart:vente_update', kwargs={'pk':vente.pk})
         return HttpResponseRedirect("/cart/vente_update/%s" % vente.pk)
 
+def save_cart_item(request, pk):
+    if request.method == 'POST':
+        cart_item = CartItem.objects.get(pk=pk)
+        new_quantity = request.POST.get('new_quantity', '')
+        new_quantity = int(new_quantity)
+        logger.debug('new quantity: %s' % str(new_quantity))
+        msg = cart_item.set_quantity(new_quantity)
+        logger.warning('msg: %s' % msg)
+        price = request.POST.get('new_price', '')
+        logger.debug('new_price: %s' % price)
+        if len(price) == 0:
+            # assuming zero
+            price = "0"
+        logger.debug('converting in float..')
+        cart_item.prix = float(price)
+
+        if cart_item.prix == 0:
+            logger.warning("Le montant de l'article est zéro!")
+            return render(request, 'cart/cart_content.html',
+                          {'error_message': "Le montant de l'article est zéro!",
+                           'cart': get_cart_items(request), 'new_price': price,
+                           })
+        cart_item.save()
+        logger.debug('Item saved.')
+        url_redirect = reverse('cart:cart_content')
+        return HttpResponseRedirect(url_redirect)
+    else:
+        raise ValueError('cart:views:edit_price: should not be called with GET')
+
 
 def edit_price(request, pk):
     if request.method == 'POST':
@@ -126,7 +155,7 @@ class CartView(ListView):
     from the request?
     """
     model = CartItem
-    template_name = 'cart/cart_content2.html'
+    template_name = 'cart/cart_content.html'
     context_object_name = 'cart'
 
     def get_queryset(self):

@@ -7,6 +7,7 @@ app_name = 'cart'
 urlpatterns = [
     url(r'^add_item/(?P<pk>[0-9]+)$', views.add_cart_item, name='add_item'),
     url(r'^cart_content/$', views.CartView.as_view(), name='cart_content'),
+    url(r'^save_cart_item/(?P<pk>[0-9]+)$', views.save_cart_item, name='save_cart_item'),
     url(r'^checkout/$', views.CheckoutView.as_view(), name='checkout'),
     url(r'^remove_item/(?P<pk>[0-9]+)$', views.remove_cart_item, name='remove_item'),
     url(r'^remove_item_from_vente/(?P<pk>[0-9]+)$', views.remove_article_from_vente_and_update_article_quantity,

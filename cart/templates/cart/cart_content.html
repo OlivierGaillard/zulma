@@ -28,7 +28,7 @@
 
 
 
-<table class="table">
+<table class="table-condensed">
       <thead>
          <tr>
             <th>{% trans 'No' %}</th>
@@ -36,10 +36,9 @@
              <th>{% trans "Action" %}</th>
             <th>{% trans "Titre" %}</th>
             <th>{% trans "Quantité disponible en stock" %}</th>
-            <th>{% trans "Modifier la quantité" %}</th>
-            <th>{% trans 'Prix' %}</th>
-            <th>{% trans "Modifier" %}</th>
-            <th>{% trans "Total" %}</th>
+            <th>{% trans "Quantity" %}</th>
+            <th>{% trans "Price" %}</th>
+            <th></th>
          </tr>
       </thead>
 
@@ -55,45 +54,26 @@
           </td>
           <td><a href="{% url "inventory:article_detail" item.article.pk %}">{{ item.article.name }}</a></td>
           <td title="{% trans "available quantity" %}">{{ item.article.quantity }}</td>
-
           <td>
-            <form method="POST" action="{% url "cart:edit_quantity" item.pk %}">
-            {% csrf_token %}
-            {% if error_message %}
-            <label onerror="{{ error_message }}" >{{error_message}}</label>
-            <input id="new_quantity" type="number" value="{{ new_quantity }}" name="new_quantity">
-            {% elif warning %}
-            <label title="WARNING!!!">WARNING</label>
-            <label onerror="{{ warning }}" >{{warning}}</label>
-            <input id="new_quantity" type="number" value="{{ new_quantity }}" name="new_quantity">
-            {% else %}
-            <input id="new_quantity" title="Max: {{item.article.quantity}}" type="number" value="{{ item.quantity }}" name="new_quantity" >
-            {% endif %}
-            <input title="Add to quantity" type="submit" class="btn btn-success" value="{% trans "Modifier" %}"/>
-            </form>
+            <form method="POST" action="/cart/save_cart_item/{{item.pk}}">
+                    {% csrf_token %}
+                 <input id="new_quantity" title="Max: {{item.article.quantity}}" type="number" value="{{ item.quantity }}" name="new_quantity" >
           </td>
-          <td>{{ item.prix|intcomma }}</td>
           <td>
-            <form method="POST" action="{% url "cart:edit_price" item.pk %}">
-              {% csrf_token %}
-              {% if error_message %}
-              <label onerror="{{ error_message }}" >{{error_message}}</label>
-              <input id="new_price" type="number" value="{{ new_price }}" name="new_price">
-              {% else %}
-              <input id="new_price" type="number" value="{% if new_price %}{{ new_price }}{% else %}{{ item.prix }}{% endif %}" name="new_price">
-              {% endif %}
-
-
-              <input type="submit" class="btn btn-success" value="{% trans "Modifier" %}"/>
-              </form>
+            <input id="new_price" type="number" value="{{ item.prix }}" name="new_price">
           </td>
-          <td>{{ item.total }}</td>
+          <td>
+            <input type="submit" class="btn btn-success" value="{% trans "Sauvegarder" %}"/>
+          </td>
+        </form>
       </tr>
       {% endfor %}
       <tr>
           <th colspan="6">{% trans "Total de votre panier:" %}</th>
           <td id="amount"><strong>{{ cart_total|intcomma }}</strong></td>
       </tr>
+
+
 
     </table>
 {% if cart_total %}
