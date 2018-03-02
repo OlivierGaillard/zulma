@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django.utils import timezone
 import os
 
 
@@ -112,6 +113,9 @@ class Article(models.Model):
     name  = models.CharField(_('Name'), max_length=100, null=True, blank=True, default=_('n.d.'))
     category = models.ForeignKey(Category, null=True, blank=True, verbose_name=_('Category'))
     description = models.TextField(_('Description'), null=True, blank=True, default=_('n.d.'))
+    date_added  = models.DateField(auto_now_add=True, null=True)
+    # initial quantity when article is added to the inventory
+    initial_quantity = models.IntegerField(_('Initial quantity'), default=1, null=True)
     quantity = models.IntegerField(_('Quantity'), default=1)
     solde = models.CharField(_("en solde"), max_length=1, choices=solde_choices, default='N')
     arrival = models.ForeignKey(Arrivage, null=True)

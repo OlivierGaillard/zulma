@@ -127,7 +127,7 @@ class HandlePicturesForm(forms.Form):
 class ArticleUpdateForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('name', 'category', 'purchasing_price', 'selling_price', 'solde', 'quantity', 'notes', 'description', 'arrival')
+        fields = ('name', 'category', 'purchasing_price', 'selling_price', 'solde', 'initial_quantity', 'quantity', 'notes', 'description', 'arrival')
 
     def __init__(self, *args, **kwargs):
         super(ArticleUpdateForm, self).__init__(*args, **kwargs)

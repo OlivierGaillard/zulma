@@ -46,8 +46,16 @@
         <td>{{article.name|default_if_none:"n.d."}}</td>
       </tr>
       <tr>
+        <th>{% trans "Creation date" %}</th>
+        <td>{{article.date_added|default_if_none:"n.d."}}</td>
+      </th>
+      <tr>
           <th>{% trans "Soldé?" %}</th>
           <td>{{article.get_solde_display}}</td>
+      </tr>
+      <tr>
+        <th>{% trans "Initial quantity" %}</th>
+        <td>{{article.initial_quantity}}</td>
       </tr>
       <tr>
         <th>{% trans "Quantité en stock" %}</th>
