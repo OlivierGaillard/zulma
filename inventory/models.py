@@ -2,9 +2,10 @@ from django.db import models
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from django.utils import timezone
+import logging
 import os
 
+logger = logging.getLogger('django')
 
 class Enterprise(models.Model):
     name = models.CharField(max_length=80)
@@ -129,8 +130,8 @@ class Article(models.Model):
         """Work fine for article indivdually deleted but not for bulk delete. Admin action required."""
         try:
             os.unlink(self.photo.path)
-        except ValueError:
-            print('No deletion of photo because no photo file found. (delete method within model Articel).')
+        except (ValueError, FileNotFoundError):
+            logger.warning('No deletion of photo because no photo file found. (delete method within model Article).')
         super(Article, self).delete()
 
 
