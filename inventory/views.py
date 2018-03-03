@@ -26,6 +26,7 @@ import subprocess
 import shutil
 import logging
 import tempfile
+from urllib.parse import urlparse
 
 logger = logging.getLogger('django')
 
@@ -242,33 +243,28 @@ def articles(request):
     #qs = Article.objects.filter(enterprise=enterprise_of_current_user)
     qs = Article.objects.all()
     summary = make_summary(qs)
+    context = {'summary': summary, }
+
+    # Constructing filter for query
     get_query = request.GET.copy()
-    if 'quantity__gt' not in get_query:
-        get_query['quantity__gt'] = '0'
+    logger.debug('get_query: %s' % get_query)
+    meta = request.META  # voir https://docs.djangoproject.com/fr/1.11/ref/request-response/
+    try:
+        HTTP_REFERER = meta['HTTP_REFERER']
+        logger.debug('REFERER: %s' % HTTP_REFERER)
+        r = urlparse(HTTP_REFERER)
+        if '/inventory/articles/' in r:
+            logger.debug('Request referrer is articles list. Saving query parameters.')
+            request.session['get_query'] = get_query
+        else:
+            logger.debug('Request referrer is NOT articles list. Trying to retrieve from session.')
+            get_query = request.session.get('get_query', '')
+            logger.debug('value retrieved: %s' % get_query)
+    except KeyError:
+        logger.debug('REFERER is empty')
+    # Creating filterk passing the filter params
+    article_filter = ArticleFilter(get_query, queryset=qs)
 
-
-    article_filter = ArticleFilter(get_query,
-                                   queryset=qs)
-    context = {'summary' : summary,}
-    # Extracting the filter parameters
-    meta = request.META
-    q = meta['QUERY_STRING']
-    logger.debug('parameter q: %s' % q)
-    # the whole url is .e.g. "marque__nom__icontains=&nom__icontains=&id=&genre_article=&type_client=H&solde=S&page=2"
-    if q.find('name') > 0: # checking if a filter param exist?
-        # it contains a filter
-        logger.debug('value of q implies a filter')
-        try:
-            idx = q.index('page')
-            q = q[:idx-1] # removing the page part of the url:
-            #print('filter part:', q)
-            context['q'] = q
-        except ValueError:
-            #print('no page or page 1, setting the filter')
-            context['q'] = q
-    else:
-        logger.debug('no q. too sad. Adding an empty one.')
-        context['q'] = ''
 
 
     paginator = Paginator(article_filter.qs, 25)

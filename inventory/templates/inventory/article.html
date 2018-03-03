@@ -112,6 +112,9 @@
       <a href="/inventory/article_delete/{{article.pk}}"><button class="btn btn-warning" >{% trans "Effacer" %}</button></a>
     </td>
 
+    <td>
+      <a href="{% url 'inventory:articles' %}"><button class="btn btn-info" >{% trans "Back to articles's list" %}</button></a>
+    </td>
 
     </tr>
 
@@ -148,5 +151,6 @@
 {% endblock %}
 
 {% block footernav %}
+<p><a href="{% url 'inventory:articles' %}"><button class="btn btn-info" >{% trans "Back to articles's list" %}</button></a> </p>
 
 {% endblock %}

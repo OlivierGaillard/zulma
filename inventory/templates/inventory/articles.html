@@ -226,14 +226,11 @@
       {% if articles.number == i %}
         <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
       {% else %}
-        <!--<li><a href="?page={{ i }}">{{ i }}</a></li>-->
-        <li><a href="?{{ q }}&page={{ i }}">{{ i }}</a></li>
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
       {% endif %}
     {% endfor %}
     {% if articles.has_next %}
-
-    <li><a href="?{{ q }}&page={{ articles.next_page_number }}">&raquo;</a></li>
-    <!--<li><a href="?marque__nom__icontains=&nom__icontains=&id=&genre_article=&type_client=&solde=S">&raquo;</a></li>-->
+    <li><a href="?page={{ articles.next_page_number }}">&raquo;</a></li>
     {% else %}
       <li class="disabled"><span>&raquo;</span></li>
     {% endif %}
