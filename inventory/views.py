@@ -247,25 +247,24 @@ def articles(request):
 
     # Constructing filter for query
     get_query = request.GET.copy()
-    logger.debug('get_query: %s' % get_query)
     meta = request.META  # voir https://docs.djangoproject.com/fr/1.11/ref/request-response/
     try:
         HTTP_REFERER = meta['HTTP_REFERER']
         logger.debug('REFERER: %s' % HTTP_REFERER)
         r = urlparse(HTTP_REFERER)
-        if '/inventory/articles/' in r:
-            logger.debug('Request referrer is articles list. Saving query parameters.')
+        logger.debug('query of current page: %s' % get_query)
+        # 1st time the list is requested, and without a page=1 or page=2 query.
+        if '/inventory/articles/' in r and not('page' in get_query):
+            logger.debug('Request referrer is articles list. Saving query parameters: "%s".' % get_query)
             request.session['get_query'] = get_query
         else:
-            logger.debug('Request referrer is NOT articles list. Trying to retrieve from session.')
+            logger.debug('Request referrer is NOT articles list OR we are in articles list within the paginator. Trying to retrieve from session.')
             get_query = request.session.get('get_query', '')
             logger.debug('value retrieved: %s' % get_query)
     except KeyError:
         logger.debug('REFERER is empty')
     # Creating filterk passing the filter params
     article_filter = ArticleFilter(get_query, queryset=qs)
-
-
 
     paginator = Paginator(article_filter.qs, 25)
     page = request.GET.get('page')
