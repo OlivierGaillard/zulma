@@ -121,52 +121,71 @@
         <div class="well well-md" id="filtre_articles">
           <h4 style="margin-top: 0">{% trans "Filtre" %}</h4>
           <div class="row">
-            <div class="form-group col-xs-3 col-md-3">
+            <div class="form-group col-xs-3 col-sm-3">
               {{filter.form.id.label_tag}}
               {% render_field filter.form.id class="form-control" %}
             </div>
-            <div class="form-group col-xs-3 col-md-3">
+            <div class="form-group col-xs-9 col-sm-9">
               <strong>{% trans "Partie du nom" %}:</strong>
               {% render_field filter.form.name__icontains  class="form-control" %}
             </div>
-            <div class="form-group col-xs-3 col-md-3">
+          </div>
+          <div class="row">
+            <div class="form-group col-xs-12 col-sm-12">
               <strong>{% trans "Part of the category's name " %}:</strong>
               {% render_field filter.form.category__name__icontains  class="form-control" %}
             </div>
-            <div class="form-group col-xs-3 col-md-3">
-              <strong>{% trans "Selling Price Greater than" %}:</strong>
+          </div>
+          <div class="row">
+            <div class="form-group col-xs-12 col-sm-12">
+              <strong>{% trans "Partie du nom" %}:</strong>
+              {% render_field filter.form.name__icontains  class="form-control" %}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-xs-12 col-sm-12">
+              <strong>{% trans "Selling Price greater than" %}:</strong>
               {% render_field filter.form.selling_price__gt class="form-control" %}
             </div>
           </div>
           <div class="row">
-            <div class="form-group col-xs-3 col-md-3" >
+            <div class="form-group col-xs-12 col-sm-12">
               <strong>{% trans "en solde" %}:</strong>
               {% render_field filter.form.solde  class="form-control" %}
             </div>
-            <div class="form-group col-xs-3 col-md-3">
+          </div>
+          <div class="row">
+            <div class="form-group col-xs-12 col-sm-12">
               <strong>{% trans "Quantité supérieure à" %}:</strong>
               {% render_field filter.form.quantity__gt  class="form-control" %}
             </div>
-            <div class="form-group col-xs-3 col-md-3">
+          </div>
+          <div class="row">
+            <div class="form-group col-xs-12 col-sm-12">
               <strong>{% trans "Part of Arrival's Name" %}:</strong>
               {% render_field filter.form.arrival__nom__icontains  class="form-control" %}
             </div>
-            <div class="form-group col-xs-3 col-md-3">
+          </div>
+          <div class="row">
+            <div class="form-group col-xs-12 col-sm-12">
               <strong>{% trans "Purchasing Price Greater than" %}:</strong>
               {% render_field filter.form.purchasing_price__gt class="form-control" %}
             </div>
           </div>
-        </div>
-    <button type="submit" class="btn btn-success">
-        <span class="glyphicon glyphicon-search"></span> {% trans "Chercher" %}
-      </button>
-    <!--<button type="submit" class="btn btn-success">Filtrer</button>-->
-  </form>
 
+          <div class="row">
+            <div class="col-xs-3 col-sm-3">
+              <button type="submit" class="btn btn-success">
+                <span class="glyphicon glyphicon-search"></span> {% trans "Chercher" %}
+              </button>
+            </div>
+          </div>
+        </div>
+  </form>
 
 <h3>{{count}} {% trans "articles trouvés" %}.</h3>
 
-
+<div class="table-responsive">
     <table class="table table-light">
 
       <thead class="thead-light">
@@ -212,7 +231,7 @@
       {% endfor %}
       </tbody>
     </table>
-
+</div>
 
 
   {% if articles.has_other_pages %}
