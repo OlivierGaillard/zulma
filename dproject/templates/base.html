@@ -85,21 +85,43 @@
                 </li>
             {% endif %}
 
-              <li class="dropdown">
-                <a class="dropdown-toggle" href="#" data-toggle="dropdown">
-                  <span><i class="fa fa-user fa-fw" aria-hidden="true"></i>{{ request.user }}</span>
-                  <span class="caret"></span>
-                </a>
-                <ul class="dropdown-menu">
-                  {% if user.is_authenticated %}
-                  <li><a href="#">{% trans 'Profile' %}</a></li>
-                  <li><a href="{% url 'admin:index' %}">{% trans 'Admin' %}</a></li>
-                  <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
-                  {% else %}
-                  <li><a href="{% url 'login' %}">{% trans 'Log in' %}</a></li>
-                  {% endif %}
-                </ul>
-              </li>
+            {%  if user.is_authenticated %}
+
+            <li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>
+            {% else %}
+            <li>
+              <a class="active" href="{% url 'login' %}">{% trans 'Log in' %} <span class="fa fa-sign-in"></span></a>
+            </li>
+            {% endif %}
+
+            <!--{% if user.is_authenticated %}-->
+            <!--<li class="dropdown">-->
+                <!--<a class="dropdown-toggle" href="#" data-toggle="dropdown">Admin-->
+                  <!--<span class="caret"></span>-->
+                <!--</a>-->
+                <!--<ul class="dropdown-menu">-->
+                  <!--<li><a href="{% url 'admin:index' %}">{% trans 'Admin' %}</a></li>-->
+
+                <!--</ul>-->
+            <!--</li>-->
+            <!--{% endif %}-->
+
+
+              <!--<li class="dropdown">-->
+                <!--<a class="dropdown-toggle" href="#" data-toggle="dropdown">-->
+                  <!--<span><i class="fa fa-user fa-fw" aria-hidden="true"></i>{{ request.user }}</span>-->
+                  <!--<span class="caret"></span>-->
+                <!--</a>-->
+                <!--<ul class="dropdown-menu">-->
+                  <!--{% if user.is_authenticated %}-->
+                  <!--<li><a href="#">{% trans 'Profile' %}</a></li>-->
+                  <!--<li><a href="{% url 'admin:index' %}">{% trans 'Admin' %}</a></li>-->
+                  <!--<li><a href="{% url 'logout' %}">{% trans 'Log out' %}</a></li>-->
+                  <!--{% else %}-->
+                  <!--<li><a href="{% url 'login' %}">{% trans 'Log in' %}</a></li>-->
+                  <!--{% endif %}-->
+                <!--</ul>-->
+              <!--</li>-->
 
           </ul>
         </div>
