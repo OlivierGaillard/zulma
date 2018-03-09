@@ -43,7 +43,7 @@
 
       <tr>
           <th>{% trans "Status" %}</th>
-        <td>{{article.status|default_if_none:"n.d."}}</td>
+        <td>{{article.get_status_display|default_if_none:"n.d."}}</td>
       </tr>
 
 

@@ -213,6 +213,7 @@ class ArticleFilter(FilterSet):
         model = Article
         fields = {'name' : ['icontains'],
                   'category__name' : ['icontains'],
+                  'status': ['exact'],
                   'id' : ['exact'],
                   'quantity' : ['exact'],
                   'solde': ['exact'],
