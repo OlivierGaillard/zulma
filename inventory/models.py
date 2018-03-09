@@ -106,6 +106,10 @@ class Article(models.Model):
         ('S', _('en solde')),
     )
 
+    status_choices = (
+        ('B', _('Broken')),
+    )
+
     photo = models.ImageField(upload_to='articles', null=True, blank=True, unique=True)
     purchasing_price = models.DecimalField(_('Purchasing price'), max_digits=10, decimal_places=2, null=True, blank=True,
                                            default=0)
@@ -113,6 +117,7 @@ class Article(models.Model):
                                            default=0)
     name  = models.CharField(_('Name'), max_length=100, null=True, blank=True, default=_('n.d.'))
     category = models.ForeignKey(Category, null=True, blank=True, verbose_name=_('Category'))
+    status = models.CharField(_('Status'), choices=status_choices, max_length=1, null=True, blank=True)
     description = models.TextField(_('Description'), null=True, blank=True, default=_('n.d.'))
     date_added  = models.DateField(auto_now_add=True, null=True)
     # initial quantity when article is added to the inventory

@@ -16,6 +16,13 @@ class TestInventoryViews(TestCase):
     def test_article_initial_quantity(self):
         self.assertEqual(self.a1.initial_quantity, 1)
 
+    def test_get_status(self):
+        self.assertIsNone(self.a1.status)
+        self.a1.status = 'B'
+        self.assertEqual('B', self.a1.status)
+
+
+
 
 
 

@@ -42,6 +42,12 @@
       </tr>
 
       <tr>
+          <th>{% trans "Status" %}</th>
+        <td>{{article.status|default_if_none:"n.d."}}</td>
+      </tr>
+
+
+      <tr>
         <th>{% trans "Nom" %}</th>
         <td>{{article.name|default_if_none:"n.d."}}</td>
       </tr>
