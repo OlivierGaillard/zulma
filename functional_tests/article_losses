@@ -63,7 +63,7 @@
 </tr>
 <tr>
 	<td>assertText</td>
-	<td>css=#div_id_status &gt; label.control-label.col-sm-2</td>
+	<td>css=#div_id_losses &gt; label.control-label.col-sm-2</td>
 	<td>Status</td>
 </tr>
 <tr>
