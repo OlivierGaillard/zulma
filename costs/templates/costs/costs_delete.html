@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+  <h3>{% trans "Costs:" %} <small>{{costs.category}}</small></h3>
+
+  <div class="row">
+    <div class="col-sm-6">
+      <form action="{% url "costs:costs_delete" costs.pk  %}" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <input class="btn btn-danger" type="submit" value="Delete"{% trans "Effacer" %}</input>
+      </form>
+      </div>
+  </div>
+
+</div>
+{% endblock %}
+

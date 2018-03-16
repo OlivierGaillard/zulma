@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+{% crispy form %}
+</div>
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+
+$( function() {
+     $.datepicker.setDefaults(
+       $.datepicker.regional["es"]);
+     $( '[id="datetimepicker_es"]' ).datepicker({
+       dateFormat: "yy-mm-dd"});
+}
+);
+  </script>
+{% endblock %}

@@ -16,6 +16,7 @@ from django.contrib.auth.models import User
 from .models import Article, Employee, Arrivage, Category
 from .forms import  ArticleUpdateForm, ArrivalCreateForm, HandlePicturesForm, ArrivalUpdateForm
 from .forms import UploadPicturesZipForm, CategoryFormCreate, CategoryFormUpdate, CategoryFormDelete
+from .forms import ArticleLossesForm
 from cart.cartutils import article_already_in_cart, get_cart_items
 from django.conf import settings
 import os
@@ -313,6 +314,12 @@ class ArticleUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('inventory:articles')
 
+@method_decorator(login_required, name='dispatch')
+class ArticleLossesView(UpdateView):
+    template_name = 'inventory/losses_form.html'
+    context_object_name = 'article'
+    model = Article
+    form_class = ArticleLossesForm
 
 
 

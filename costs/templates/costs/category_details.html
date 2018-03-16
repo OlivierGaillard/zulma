@@ -1,0 +1,30 @@
+{% extends "base.html"%}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<p>
+<div class="container">
+
+
+
+  <h2>{% trans "Details of the costs' category" %}</h2>
+
+  <table class="table">
+    <tbody>
+
+      <tr>
+        <th>{% trans "Name" %}</th><td>{{category.name}}</td>
+      </tr>
+
+    </tbody>
+  </table>
+
+</div>
+</p>
+
+
+{% endblock %}
+
+{% block footernav %}
+
+{% endblock %}

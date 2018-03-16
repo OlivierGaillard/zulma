@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
+from django.core.exceptions import ValidationError
 import logging
 import os
 
@@ -118,6 +119,7 @@ class Article(models.Model):
     # initial quantity when article is added to the inventory
     initial_quantity = models.IntegerField(_('Initial quantity'), default=1, null=True)
     quantity = models.IntegerField(_('Quantity'), default=1)
+    losses  = models.PositiveSmallIntegerField(_('Losses'), default=0)
     solde = models.CharField(_("en solde"), max_length=1, choices=solde_choices, default='N')
     arrival = models.ForeignKey(Arrivage, null=True)
     notes = models.TextField(_("Notes"), null=True, blank=True, default=_('n.d.'))
@@ -133,6 +135,30 @@ class Article(models.Model):
         except (ValueError, FileNotFoundError):
             logger.warning('No deletion of photo because no photo file found. (delete method within model Article).')
         super(Article, self).delete()
+
+    # def clean_fields(self, exclude=None):
+    #     """To check validity of 'losses' field."""
+    #     if self.losses > self.quantity:
+    #         raise ValidationError({'losses' : _('Losses cannot exceed quantity (%s).' % str(self.quantity))})
+
+
+    def clean(self):
+        print("clean")
+        if self.losses > self.quantity:
+            raise ValidationError({'losses' : _('Losses cannot exceed quantity (%s).' % str(self.quantity))})
+        if self.losses > 0:
+            print('updating')
+            self.quantity = self.quantity - self.losses
+            print('quantity would be now: ', str(self.quantity))
+            print('losses would be now: ', str(self.losses))
+        else:
+            print('doing no update of quantity')
+
+    def get_absolute_url(self):
+        return reverse('inventory:article_detail', kwargs={'pk': self.pk})
+
+
+
 
 
 

@@ -142,6 +142,26 @@ class ArticleUpdateForm(forms.ModelForm):
             )
         )
 
+class ArticleLossesForm(forms.ModelForm):
+    class Meta:
+        model = Article
+        fields = ('losses',)
+
+    def __init__(self, *args, **kwargs):
+        super(ArticleLossesForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
+
+
 class ArrivalUpdateForm(forms.ModelForm):
     class Meta:
         model = Arrivage

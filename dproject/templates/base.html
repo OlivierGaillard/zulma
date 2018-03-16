@@ -83,6 +83,19 @@
                         <li><a href="{% url "cart:client_create" %}">{% trans 'Ajouter un client' %}</a></li>
                     </ul>
                 </li>
+                <li class="dropdown">
+                  <a class="dropdown-toggle" href="#" data-toggle="dropdown">{% trans "Costs" %}
+                  <span class="caret"></span>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li><a href="{% url "costs:categories" %}">{% trans "Categories" %}</a> </li>
+                    <li><a href="{% url "costs:category_create" %}">{% trans "Create a category" %}</a> </li>
+                    <li><a href="{% url "costs:enterprises" %}">{% trans "Enterprises" %}</a> </li>
+                    <li><a href="{% url "costs:enterprise_create" %}">{% trans "Create an enterprise" %}</a> </li>
+                    <li><a href="{% url "costs:costs" %}">{% trans "Costs" %}</a> </li>
+                    <li><a href="{% url "costs:costs_create" %}">{% trans "Add one Cost" %}</a> </li>
+                  </ul>
+                </li>
             {% endif %}
 
             {%  if user.is_authenticated %}
