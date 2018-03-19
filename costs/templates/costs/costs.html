@@ -18,8 +18,8 @@
       <tbody>
       {% for a in costs %}
       <tr>
-          <td><a href="{% url "costs:costs_details" a.pk %}">{{a.amount}}</a></td>
-          <td>{{ a.name }}</td>
+          <td>{{a.amount}}</td>
+          <td><a href="{% url "costs:costs_details" a.pk %}" title="{% trans "Click to see details" %}">{{ a.name }}</a></td>
           <td>{{ a.category }}</td>
           <td>{{ a.billing_date }}</td>
           <td><a href="{% url "costs:costs_update" a.pk %}"">{% trans 'Edit'%}</a> </td>
