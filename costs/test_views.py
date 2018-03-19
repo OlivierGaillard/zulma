@@ -2,6 +2,7 @@ from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from .models import Costs, Category, Enterprise
+from datetime import date
 
 
 class TestCostsViews(TestCase):
@@ -141,6 +142,18 @@ class TestCostsViews(TestCase):
         response = c.post(reverse('costs:costs_delete', args=[cost.pk]), follow=True)
         self.assertEqual(response.status_code, 200)
         self.assertEqual(0, Costs.objects.count())
+
+    def test_costs_billing_date_in_main_costs_list(self):
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        c1 = Category.objects.create(name='canalisations')
+        billing_date = date(year=2018, month=3, day=16)
+        cost = Costs.objects.create(amount=2000, category=c1, name='fosse', billing_date=billing_date)
+        response = c.get(reverse('costs:costs'))
+        self.assertEqual(200, response.status_code)
+        self.assertInHTML('Billing Date', response.content.decode())
+
+
 
 
 

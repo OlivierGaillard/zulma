@@ -1,5 +1,6 @@
 from django.test import TestCase
 from .models import Enterprise, Category, Costs
+from datetime import date
 
 class TestModels(TestCase):
 
@@ -36,5 +37,10 @@ class TestModels(TestCase):
     def test_categories_ordered(self):
         li = Category.objects.all()
         self.assertEqual('électricité', li[0].name)
+
+    def test_cost_dates(self):
+        billing_date = date(year=2018, month=3, day=16)
+        cost1 = Costs.objects.create(category=self.c1, amount=100, billing_date=billing_date)
+        self.assertEqual(billing_date, cost1.billing_date)
 
 
