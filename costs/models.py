@@ -58,5 +58,6 @@ class Costs(models.Model):
 
     class Meta:
         verbose_name_plural = _('Costs')
+        ordering = ['-billing_date']
 
 
