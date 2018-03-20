@@ -88,12 +88,13 @@
                   <span class="caret"></span>
                   </a>
                   <ul class="dropdown-menu">
+                    <li><a href="{% url "costs:costs" %}">{% trans "Costs" %}</a> </li>
+                    <li><a href="{% url "costs:costs_create" %}">{% trans "Add one Cost" %}</a> </li>
                     <li><a href="{% url "costs:categories" %}">{% trans "Categories" %}</a> </li>
                     <li><a href="{% url "costs:category_create" %}">{% trans "Create a category" %}</a> </li>
                     <li><a href="{% url "costs:enterprises" %}">{% trans "Enterprises" %}</a> </li>
-                    <li><a href="{% url "costs:enterprise_create" %}">{% trans "Create an enterprise" %}</a> </li>
-                    <li><a href="{% url "costs:costs" %}">{% trans "Costs" %}</a> </li>
-                    <li><a href="{% url "costs:costs_create" %}">{% trans "Add one Cost" %}</a> </li>
+                    <li><a href="{% url "costs:enterprise_create" %}"
+                      title="{% trans 'an enterprise or provider which occurs regularly in your costs' %}">{% trans "Create an enterprise" %}</a> </li>
                   </ul>
                 </li>
             {% endif %}
