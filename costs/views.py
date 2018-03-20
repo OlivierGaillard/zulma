@@ -89,6 +89,11 @@ class CostsListView(ListView):
     template_name = 'costs/costs.html'
     context_object_name = 'costs'
 
+    def get_context_data(self, **kwargs):
+        ctx = super(CostsListView, self).get_context_data(**kwargs)
+        ctx['total'] = Costs.objects.total_costs()
+        return ctx
+
 
 class CostsDetailView(DetailView):
     model = Costs

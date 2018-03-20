@@ -33,6 +33,15 @@ class Category(models.Model):
         ordering = ['name']
 
 
+class CostsManager(models.Manager):
+
+    def total_costs(self):
+        total = 0
+        for c in self.model.objects.all():
+            total += c.amount
+        return total
+
+
 class Costs(models.Model):
     creation_date = models.DateField(_('Creation date'), auto_now_add=True)
     category = models.ForeignKey(Category)
@@ -42,10 +51,12 @@ class Costs(models.Model):
     enterprise = models.ForeignKey(Enterprise, blank=True, null=True)
     billing_date = models.DateField(blank=True, null=True, help_text=_('when the bill was created'))
     billing_number = models.CharField(blank=True, null=True, max_length=200, help_text=_('the bill reference number'))
+    objects = CostsManager()
 
     def __str__(self):
         return "Amount: %s / Category: %s / Date: %s " % (self.amount, self.category, self.creation_date)
 
     class Meta:
         verbose_name_plural = _('Costs')
+
 

@@ -43,4 +43,16 @@ class TestModels(TestCase):
         cost1 = Costs.objects.create(category=self.c1, amount=100, billing_date=billing_date)
         self.assertEqual(billing_date, cost1.billing_date)
 
+    def test_total_costs_for_no_costs(self):
+        self.assertEqual(0, Costs.objects.total_costs())
+
+    def test_total_costs_for_one_cost(self):
+        c = Costs.objects.create(category=self.c1, amount=100)
+        self.assertEqual(100, Costs.objects.total_costs())
+
+    def test_total_costs_for_two_costs(self):
+        c = Costs.objects.create(category=self.c1, amount=100)
+        Costs.objects.create(category=self.c1, amount=100.50)
+        self.assertEqual(200.5, Costs.objects.total_costs())
+
 

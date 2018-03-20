@@ -153,6 +153,18 @@ class TestCostsViews(TestCase):
         self.assertEqual(200, response.status_code)
         self.assertInHTML('Billing Date', response.content.decode())
 
+    def test_costs_total_in_main_costs_list(self):
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        c1 = Category.objects.create(name='canalisations')
+        billing_date = date(year=2018, month=3, day=16)
+        Costs.objects.create(amount=2000, category=c1, name='fosse', billing_date=billing_date)
+        Costs.objects.create(amount=1000, category=c1, name='plomberie', billing_date=billing_date)
+        response = c.get(reverse('costs:costs'))
+        self.assertEqual(200, response.status_code)
+        self.assertInHTML('Total', response.content.decode())
+
+
 
 
 
