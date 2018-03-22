@@ -1,7 +1,9 @@
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.core.exceptions import ObjectDoesNotExist
 from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
+from datetime import date
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
@@ -17,6 +19,7 @@ from .models import Article, Employee, Arrivage, Category
 from .forms import  ArticleUpdateForm, ArrivalCreateForm, HandlePicturesForm, ArrivalUpdateForm
 from .forms import UploadPicturesZipForm, CategoryFormCreate, CategoryFormUpdate, CategoryFormDelete
 from .forms import ArticleLossesForm
+import costs.models
 from cart.cartutils import article_already_in_cart, get_cart_items
 from django.conf import settings
 import os
@@ -314,12 +317,42 @@ class ArticleUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('inventory:articles')
 
-@method_decorator(login_required, name='dispatch')
-class ArticleLossesView(UpdateView):
-    template_name = 'inventory/losses_form.html'
-    context_object_name = 'article'
-    model = Article
-    form_class = ArticleLossesForm
+# @method_decorator(login_required, name='dispatch')
+# class ArticleLossesView(UpdateView):
+#     template_name = 'inventory/losses_form.html'
+#     context_object_name = 'article'
+#     model = Article
+#     form_class = ArticleLossesForm
+
+@login_required()
+def add_one_loss(request, pk):
+    if request.method == 'POST':
+        form = ArticleLossesForm(request.POST)
+        if form.is_valid():
+            db_instance = Article.objects.get(pk=pk)
+            db_instance.losses += form.cleaned_data['losses']
+            db_instance.amount_losses += form.cleaned_data['amount_losses']
+            db_instance.quantity -= form.cleaned_data['losses']
+            db_instance.save()
+            category_losses = None
+            try:
+                category_losses = costs.models.Category.objects.get(name='Losses')
+            except ObjectDoesNotExist :
+                category_losses = costs.models.Category.objects.create(name='Losses')
+            url_msg = "/inventory/article_detail/%s" % pk
+            name = "Article-ID: %s " % db_instance.pk
+            costs.models.Costs.objects.create(category = category_losses, amount=form.cleaned_data['amount_losses'],
+                                              name=name, billing_date=date.today(),
+                                              article_link=url_msg)
+            return HttpResponseRedirect("/inventory/article_detail/%s" % pk)
+        else:
+            # TODO: AJOUTER LE MESSAGE D'ERREUR
+            return HttpResponse("Erreur dans l'ajout d'une perte")
+    else:
+        article = Article.objects.get(pk=pk)
+        form = ArticleLossesForm(instance=article)
+        return render(request, "inventory/losses_form.html", {'article': article, 'form' : form})
+
 
 
 

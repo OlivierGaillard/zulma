@@ -2,6 +2,7 @@ from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from .models import Article
+from costs.models import Costs
 #from .views import ArticleDeleteView
 
 class TestInventoryViews(TestCase):
@@ -30,11 +31,17 @@ class TestInventoryViews(TestCase):
         self.assertEqual(0, self.a1.losses)
         c = Client()
         response = c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
-        data = {'losses' : 1}
-        response = c.post(reverse('inventory:article_losses', args=[self.a1.pk]), data=data, follow=False)
+        data = {'losses' : 1, 'amount_losses' : 20}
+        response = c.post(reverse('inventory:article_losses', args=[self.a1.pk]), data=data, follow=True)
         c.logout()
-        self.assertEqual(9, self.a1.quantity)
-        self.assertEqual(1, self.a1.losses)
+        a1_upated = Article.objects.get(pk=self.a1.pk)
+        self.assertEqual(9, a1_upated.quantity)
+        self.assertEqual(1, a1_upated.losses)
+        self.assertTrue(Costs.objects.count() == 1)
+        cost = Costs.objects.all()[0]
+        self.assertEqual(cost.amount, 20)
+
+
 
 
 

@@ -26,6 +26,10 @@
 
   <table class="table">
     <tbody>
+      <tr>
+        <th>{% trans "ID" %}</th>
+        <td>{{article.pk}}</td>
+      </tr>
 
       <tr>
         <th>{% trans "Date d'arrivage" %}</th><td>{{article.arrival.date_arrivee|date:"d.m.Y"}}</td>
@@ -61,6 +65,15 @@
         <th>{% trans "Quantité en stock" %}</th>
         <td>{{article.quantity}}</td>
       </tr>
+      <tr>
+        <th>{% trans "Pertes" %}</th>
+        <td>{{article.losses}}</td>
+      </tr>
+      <tr>
+        <th>{% trans "Montant des pertes" %}</th>
+        <td>{{article.amount_losses}}</td>
+      </tr>
+
       <tr>
         <th>{% trans "Prix d'achat" %}</th>
         <td>{{article.purchasing_price|default_if_none:"n.d."}}</td>
@@ -107,6 +120,11 @@
     <td>
       <a href="/inventory/article_update/{{article.pk}}"><button class="btn btn-warning" >{% trans "Modifier" %}</button></a>
     </td>
+
+    <td>
+      <a href="/inventory/article_losses/{{article.pk}}"><button class="btn btn-info" >{% trans "Pertes" %}</button></a>
+    </td>
+
 
     <td>
       <a href="/inventory/article_delete/{{article.pk}}"><button class="btn btn-warning" >{% trans "Effacer" %}</button></a>

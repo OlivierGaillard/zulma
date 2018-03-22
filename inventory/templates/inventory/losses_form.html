@@ -4,23 +4,9 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
-  <h3>{% trans "Modification de l'arrivage-ID:"%} {{arrival.pk}}</h3>
+  <h3>{% trans "Losses Registration"%}</h3>
 {% crispy form %}
 </div>
-{% endblock %}
-{% block javascript %}
-<script type="text/javascript">
-
-$( function() {
-     $.datepicker.setDefaults(
-       $.datepicker.regional["es"]);
-     $( '[id="datetimepicker_arrival"]' ).datepicker({
-       dateFormat: "yy-mm-dd"});
-}
-);
-
-
-  </script>
 {% endblock %}
 
 

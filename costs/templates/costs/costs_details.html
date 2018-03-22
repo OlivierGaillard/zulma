@@ -19,6 +19,10 @@
       <tr>
         <th>{% trans "Name" %}</th><td>{{costs.name|default_if_none:"n.d."}}</td>
         <th>{% trans "Note" %}</th><td>{{costs.note|default_if_none:"n.d."}}</td>
+        {% if costs.article_link %}
+        <th>{% trans "Article link" %}</th><td>
+        <a href="{{costs.article_link}}">{% trans "Link to article" %}</a></td>
+        {% endif %}
       </tr>
       <tr>
         <th>{% trans "Enterprise" %}</th><td>{% if costs.enterprise %}{{costs.enterprise.name}}{% else %}n.d.{% endif %}</td>
