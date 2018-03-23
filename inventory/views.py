@@ -346,12 +346,14 @@ def add_one_loss(request, pk):
                                               article_link=url_msg)
             return HttpResponseRedirect("/inventory/article_detail/%s" % pk)
         else:
-            # TODO: AJOUTER LE MESSAGE D'ERREUR
-            return HttpResponse("Erreur dans l'ajout d'une perte")
+            return render(request=request, template_name='inventory/losses_form.html',
+                          context={'form': form})
+
     else:
-        article = Article.objects.get(pk=pk)
-        form = ArticleLossesForm(instance=article)
-        return render(request, "inventory/losses_form.html", {'article': article, 'form' : form})
+        # article = Article.objects.get(pk=pk)
+        # form = ArticleLossesForm(instance=article)
+        form = ArticleLossesForm()
+        return render(request, "inventory/losses_form.html", {'form' : form})
 
 
 

@@ -16,16 +16,13 @@ class TestInventoryForms(TestCase):
         self.assertTrue(form.is_valid())
 
 
-    def test_article_quantity_is_updated_after_losses(self):
-        data = {'losses': 1}
-        form = ArticleLossesForm(instance=self.a1, data=data)
-        self.assertTrue(form.is_valid(), form.errors.as_data())
 
     def test_losses_exceed_quantity(self):
         """The losses cannot be greater than the quantity"""
         data = {'losses': 200,}
         form = ArticleLossesForm(instance=self.a1, data=data)
         self.assertFalse(form.is_valid(), form.errors.as_data())
+
 
 
 

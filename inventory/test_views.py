@@ -12,7 +12,7 @@ class TestInventoryViews(TestCase):
         self.a2 = Article.objects.create(name='a2', quantity=5, photo='a2')
         self.user_oga = User.objects.create_user(username='golivier', password='mikacherie')
 
-    def btest_delete_view(self):
+    def test_delete_view(self):
         self.assertEqual(2, Article.objects.count())
         c = Client()
         response = c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
@@ -41,6 +41,13 @@ class TestInventoryViews(TestCase):
         cost = Costs.objects.all()[0]
         self.assertEqual(cost.amount, 20)
 
+    def test_error_msg(self):
+        c = Client()
+        response = c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        data = {'losses': 12, 'amount_losses': 20} # article a1 quantity = 10
+        response = c.post(reverse('inventory:article_losses', args=[self.a1.pk]), data=data, follow=True)
+        msg = "Losses (12) cannot exceed quantity (1)."
+        self.assertInHTML(msg, response.content.decode())
 
 
 
