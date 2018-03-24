@@ -346,14 +346,15 @@ def add_one_loss(request, pk):
                                               article_link=url_msg)
             return HttpResponseRedirect("/inventory/article_detail/%s" % pk)
         else:
+
             return render(request=request, template_name='inventory/losses_form.html',
                           context={'form': form})
 
     else:
-        # article = Article.objects.get(pk=pk)
-        # form = ArticleLossesForm(instance=article)
+        article = Article.objects.get(pk=pk)
         form = ArticleLossesForm()
-        return render(request, "inventory/losses_form.html", {'form' : form})
+        return render(request, "inventory/losses_form.html", {'form' : form, 'previous_losses' : article.losses,
+                                                              'amount_losses' : article.amount_losses})
 
 
 

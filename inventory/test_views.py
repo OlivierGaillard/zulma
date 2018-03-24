@@ -49,6 +49,14 @@ class TestInventoryViews(TestCase):
         msg = "Losses (12) cannot exceed quantity (1)."
         self.assertInHTML(msg, response.content.decode())
 
+    def test_losses_form_display_previous_losses_info(self):
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        response = c.get(reverse('inventory:article_losses', args=[self.a1.pk]))
+        self.assertInHTML('Previous losses:', response.content.decode())
+
+
+
 
 
 

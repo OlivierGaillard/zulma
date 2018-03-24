@@ -23,6 +23,11 @@ class TestInventoryForms(TestCase):
         form = ArticleLossesForm(instance=self.a1, data=data)
         self.assertFalse(form.is_valid(), form.errors.as_data())
 
+    def test_losses_with_zero_quantity(self):
+        data = {'losses': 0, }
+        form = ArticleLossesForm(instance=self.a1, data=data)
+        self.assertFalse(form.is_valid(), form.errors.as_data())
+
 
 
 

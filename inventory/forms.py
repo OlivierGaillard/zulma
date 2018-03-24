@@ -1,4 +1,5 @@
 from crispy_forms.helper import FormHelper
+from django.core.validators import MinValueValidator
 from django.utils.translation import ugettext_lazy as _
 from crispy_forms.bootstrap import TabHolder, Tab, FormActions
 from crispy_forms.layout import Submit, Layout, Fieldset, Field, HTML
@@ -147,7 +148,7 @@ class ArticleLossesForm(forms.ModelForm):
 
     class Meta:
         model = Article
-        fields = ('losses', 'amount_losses')
+        fields = ('losses', 'amount_losses',)
 
     def __init__(self, *args, **kwargs):
         super(ArticleLossesForm, self).__init__(*args, **kwargs)
@@ -168,6 +169,8 @@ class ArticleLossesForm(forms.ModelForm):
                 str(self.cleaned_data['losses']),
                 str(self.instance.quantity))
             ))
+        elif self.cleaned_data['losses'] == 0:
+            self.add_error('losses', _('Losses should be greater than zero.'))
         return self.cleaned_data
 
 
