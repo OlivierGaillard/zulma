@@ -326,10 +326,11 @@ class ArticleUpdateView(UpdateView):
 
 @login_required()
 def add_one_loss(request, pk):
+    article = Article.objects.get(pk=pk)
     if request.method == 'POST':
         form = ArticleLossesForm(request.POST)
         if form.is_valid():
-            db_instance = Article.objects.get(pk=pk)
+            db_instance = article
             db_instance.losses += form.cleaned_data['losses']
             db_instance.amount_losses += form.cleaned_data['amount_losses']
             db_instance.quantity -= form.cleaned_data['losses']
@@ -346,12 +347,13 @@ def add_one_loss(request, pk):
                                               article_link=url_msg)
             return HttpResponseRedirect("/inventory/article_detail/%s" % pk)
         else:
-
             return render(request=request, template_name='inventory/losses_form.html',
-                          context={'form': form})
+                          context={'form': form, 'previous_losses' : article.losses,
+                                   'amount_losses' : article.amount_losses}
+                          )
 
     else:
-        article = Article.objects.get(pk=pk)
+
         form = ArticleLossesForm()
         return render(request, "inventory/losses_form.html", {'form' : form, 'previous_losses' : article.losses,
                                                               'amount_losses' : article.amount_losses})
