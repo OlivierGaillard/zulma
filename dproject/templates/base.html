@@ -62,8 +62,10 @@
                     <ul class="dropdown-menu">
                         <li><a href="{% url "inventory:arrival_create" %}" title="{% trans 'Create an arrival' %}">(1) {% trans 'Create one arrival' %}</a></li>
                         <li><a href="{% url "inventory:arrivals" %}" title="{% trans 'Arrivals List' %}">{% trans 'Arrivals' %}</a></li>
+                        <li class="divider"></li>
                         <li><a href="{% url "inventory:upload_zipics" %}" title="{% trans 'Upload pictures ZIP' %}">(2) {% trans 'Upload ZIP pictures' %}</a></li>
                         <li><a href="{% url "inventory:handle_pics" %}" title="{% trans 'Generate articles from pictures' %}">(3) {% trans 'Generate Articles' %}</a></li>
+                        <li class="divider"></li>
                         <li><a href="{% url "inventory:category_create" %}" title="{% trans 'Create category' %}">(4) {% trans 'Create one Category' %}</a></li>
                         <li><a href="{% url "inventory:categories" %}" title="{% trans 'List the categories' %}">{% trans 'Categories' %}</a></li>
                     </ul>
@@ -79,6 +81,7 @@
                         <li><a href="{% url "cart:cart_content" %}">{%trans 'Contenu du panier' %}</a></li>
                         <li><a href="{% url "cart:ventes"  %}">{% trans 'Ventes' %}</a></li>
                         <li><a href="{% url "cart:paiements"  %}">{% trans 'Payments' %}</a></li>
+                        <li class="divider"></li>
                         <li><a href="{% url "cart:clients" %}">{% trans 'Clients' %}</a></li>
                         <li><a href="{% url "cart:client_create" %}">{% trans 'Ajouter un client' %}</a></li>
                     </ul>
@@ -90,8 +93,10 @@
                   <ul class="dropdown-menu">
                     <li><a href="{% url "costs:costs" %}">{% trans "Costs" %}</a> </li>
                     <li><a href="{% url "costs:costs_create" %}">{% trans "Add one Cost" %}</a> </li>
+                    <li class="divider"></li>
                     <li><a href="{% url "costs:categories" %}">{% trans "Categories" %}</a> </li>
                     <li><a href="{% url "costs:category_create" %}">{% trans "Create a category" %}</a> </li>
+                    <li class="divider"></li>
                     <li><a href="{% url "costs:enterprises" %}">{% trans "Enterprises" %}</a> </li>
                     <li><a href="{% url "costs:enterprise_create" %}"
                       title="{% trans 'an enterprise or provider which occurs regularly in your costs' %}">{% trans "Create an enterprise" %}</a> </li>
