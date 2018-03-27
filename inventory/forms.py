@@ -7,6 +7,8 @@ from django import forms
 from django.conf import settings
 import os
 from .models import Article, Arrivage, Category
+import logging
+logger = logging.getLogger('django')
 
 class CategoryFormCreate(forms.ModelForm):
     class Meta:
@@ -144,11 +146,31 @@ class ArticleUpdateForm(forms.ModelForm):
             )
         )
 
-class ArticleLossesForm(forms.ModelForm):
+# class ArticleLossesForm(forms.ModelForm):
+#
+#     class Meta:
+#         model = Article
+#         fields = ('losses', 'amount_losses',)
+#         #fields = ('losses', 'amount_losses',)
+#
+#     def __init__(self, *args, **kwargs):
+#         super(ArticleLossesForm, self).__init__(*args, **kwargs)
+#         self.helper = FormHelper(self)
+#         self.helper.form_method = "POST"
+#         self.helper.form_class = 'form-horizontal'
+#         self.helper.label_class = 'col-sm-2'
+#         self.helper.field_class = 'col-sm-4'
+#         self.helper.layout.append(
+#             FormActions(
+#                 Submit('save', 'Submit'),
+#             )
+#         )
 
-    class Meta:
-        model = Article
-        fields = ('losses', 'amount_losses',)
+class ArticleLossesForm(forms.Form):
+    losses = forms.IntegerField(required=True)
+    amount_losses = forms.DecimalField(required=True)
+
+
 
     def __init__(self, *args, **kwargs):
         super(ArticleLossesForm, self).__init__(*args, **kwargs)
@@ -162,16 +184,6 @@ class ArticleLossesForm(forms.ModelForm):
                 Submit('save', 'Submit'),
             )
         )
-
-    def clean(self):
-        if self.cleaned_data['losses'] > self.instance.quantity:
-            self.add_error('losses', _('Losses (%s) cannot exceed quantity (%s).' % (
-                str(self.cleaned_data['losses']),
-                str(self.instance.quantity))
-            ))
-        elif self.cleaned_data['losses'] == 0:
-            self.add_error('losses', _('Losses should be greater than zero.'))
-        return self.cleaned_data
 
 
 

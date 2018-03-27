@@ -2,6 +2,7 @@ from django.db import models
 from django.shortcuts import reverse
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
+from inventory.models import Article
 
 # Create your models here.
 
@@ -52,6 +53,7 @@ class Costs(models.Model):
     billing_date = models.DateField(blank=True, null=True, help_text=_('when the bill was created'))
     billing_number = models.CharField(blank=True, null=True, max_length=200, help_text=_('the bill reference number'))
     article_link = models.URLField(_('Article link'), null=True, blank=True)
+    article_id   = models.ForeignKey(Article, null=True, on_delete=models.CASCADE)
     objects = CostsManager()
 
     def __str__(self):
@@ -60,5 +62,17 @@ class Costs(models.Model):
     class Meta:
         verbose_name_plural = _('Costs')
         ordering = ['-billing_date']
+
+    def delete(self):
+        if self.article_id:
+            article = Article.objects.get(pk=self.article_id.pk)
+            if self.amount > 0:
+                article.losses -= 1
+                article.amount_losses -= self.amount
+                article.quantity += 1
+                article.save()
+        super(Costs, self).delete()
+
+
 
 

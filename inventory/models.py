@@ -118,7 +118,7 @@ class Article(models.Model):
     date_added  = models.DateField(auto_now_add=True, null=True)
     # initial quantity when article is added to the inventory
     initial_quantity = models.IntegerField(_('Initial quantity'), default=1, null=True)
-    quantity = models.IntegerField(_('Quantity'), default=1)
+    quantity = models.PositiveSmallIntegerField(_('Quantity'), default=1)
     losses  = models.PositiveSmallIntegerField(_('Losses'), default=0)
     amount_losses = models.DecimalField(_('Money lost'), max_digits=10, decimal_places=2, null=True, blank=True,
                                            default=0)
@@ -142,7 +142,6 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return reverse('inventory:article_detail', kwargs={'pk': self.pk})
-
 
 
 

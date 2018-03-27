@@ -4,13 +4,14 @@ from django.views.decorators.csrf import csrf_exempt, csrf_protect
 from django.utils.translation import ugettext_lazy as _
 from django.urls import reverse_lazy
 from datetime import date
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required, permission_required
 #from django.contrib.admin.views.decorators import staff_member_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse
+from django.core.exceptions import ValidationError
 from django_filters import FilterSet, CharFilter, ChoiceFilter, NumberFilter
 from django_filters.views import FilterView
 from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView, DeleteView
@@ -317,43 +318,78 @@ class ArticleUpdateView(UpdateView):
     def get_success_url(self):
         return reverse('inventory:articles')
 
-# @method_decorator(login_required, name='dispatch')
-# class ArticleLossesView(UpdateView):
-#     template_name = 'inventory/losses_form.html'
-#     context_object_name = 'article'
-#     model = Article
-#     form_class = ArticleLossesForm
+def quantities_of_article_and_form_are_valid(article, form):
+    """Check if article quantity and losses in form are valid."""
+    new_losses = form.cleaned_data['losses']
+    if article.quantity > 0 and article.quantity >= new_losses and new_losses > 0:
+        logger.debug("Previous losses of article: %s" % article.losses)
+        logger.debug("Losses of form: %s" % form.cleaned_data['losses'])
+        logger.debug("Article quantity >= new_losses: %s >= %s" % (article.quantity, new_losses))
+        return True
+    else:
+        if article.quantity < new_losses:
+            logger.debug("Article quantity < new losses. We add error msg: %s < %s" % (article.quantity, new_losses))
+            error = ValidationError(_("Losses (%s) cannot exceed quantity (%s).") % (new_losses, article.quantity))
+            form.add_error(error=error, field='losses')
+        return False
+
+def update_article_losses_and_quantity(article, form):
+    """Add losses to article losses and substract to quantity."""
+    new_losses = form.cleaned_data['losses']
+    article.losses += new_losses
+    logger.debug("Updated losses of article: %s" % article.losses)
+    article.amount_losses += form.cleaned_data['amount_losses']
+    article.quantity -= form.cleaned_data['losses']
+    article.save()
+    logger.debug("Added [%s] losses." % form.cleaned_data['losses'])
+    logger.debug("Generating a Cost of category 'Losses'.")
+
+
+def generate_cost_of_category_lost(article, form):
+    category_losses = None
+    try:
+        category_losses = costs.models.Category.objects.get(name='Losses')
+    except ObjectDoesNotExist:
+        category_losses = costs.models.Category.objects.create(name='Losses')
+    url_msg = "/inventory/article_detail/%s" % article.pk
+    name = "Article-ID: %s " % article.pk
+    cost = costs.models.Costs.objects.create(category=category_losses,
+                                             amount=form.cleaned_data['amount_losses'],
+                                             name=name, billing_date=date.today(),
+                                             article_link=url_msg, article_id=article)
+
 
 @login_required()
 def add_one_loss(request, pk):
-    article = Article.objects.get(pk=pk)
+    logger.debug("add_one_loss function.")
+    article = get_object_or_404(Article, pk=pk)
+    logger.debug("Article-ID [%s]. Losses: %s" % (article.pk, article.losses))
     if request.method == 'POST':
         form = ArticleLossesForm(request.POST)
+
         if form.is_valid():
-            db_instance = article
-            db_instance.losses += form.cleaned_data['losses']
-            db_instance.amount_losses += form.cleaned_data['amount_losses']
-            db_instance.quantity -= form.cleaned_data['losses']
-            db_instance.save()
-            category_losses = None
-            try:
-                category_losses = costs.models.Category.objects.get(name='Losses')
-            except ObjectDoesNotExist :
-                category_losses = costs.models.Category.objects.create(name='Losses')
-            url_msg = "/inventory/article_detail/%s" % pk
-            name = "Article-ID: %s " % db_instance.pk
-            costs.models.Costs.objects.create(category = category_losses, amount=form.cleaned_data['amount_losses'],
-                                              name=name, billing_date=date.today(),
-                                              article_link=url_msg)
-            return HttpResponseRedirect("/inventory/article_detail/%s" % pk)
+            logger.debug('form is valid')
+            logger.debug('checking if losses value is compatible with quantity of article...')
+
+            if quantities_of_article_and_form_are_valid(article, form):
+                logger.debug('Losses and article values seem OK.')
+                update_article_losses_and_quantity(article, form)
+                generate_cost_of_category_lost(article, form)
+                return HttpResponseRedirect("/inventory/article_detail/%s" % article.pk)
+            else:
+                logger.warning('Losses and articles values seem NOT ok.')
+                return render(request=request, template_name='inventory/losses_form.html',
+                              context={'form': form, 'previous_losses': article.losses,
+                                           'amount_losses': article.amount_losses}
+                              )
         else:
+            logger.warning('form is NOT valid for article-ID %s' % article.pk)
+            logger.warning(form.errors.as_data())
             return render(request=request, template_name='inventory/losses_form.html',
                           context={'form': form, 'previous_losses' : article.losses,
                                    'amount_losses' : article.amount_losses}
                           )
-
-    else:
-
+    else: # GET
         form = ArticleLossesForm()
         return render(request, "inventory/losses_form.html", {'form' : form, 'previous_losses' : article.losses,
                                                               'amount_losses' : article.amount_losses})
