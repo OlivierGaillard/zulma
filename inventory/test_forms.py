@@ -8,25 +8,30 @@ from .forms import ArticleUpdateForm, ArticleLossesForm
 class TestInventoryForms(TestCase):
 
     def setUp(self):
-        self.a1 = Article.objects.create(name='a1', quantity=10, losses=0, photo='a1')
+        pass
 
     def test_quantity_of_losses(self):
         data = {'losses' : 1, 'amount_losses' : 200}
-        form = ArticleLossesForm(instance=self.a1, data=data)
+        form = ArticleLossesForm(data=data)
         self.assertTrue(form.is_valid())
 
-    def test_losses_exceed_quantity(self):
-        """The losses cannot be greater than the quantity"""
-        data = {'losses': 200,}
-        form = ArticleLossesForm(instance=self.a1, data=data)
-        self.assertFalse(form.is_valid(), form.errors.as_data())
+    def test_add_loss_quantity_zero(self):
+        data = {'losses': 0, 'amount_losses': 0}
+        form = ArticleLossesForm(data=data)
+        self.assertFalse(form.is_valid())
 
 
-    def test_addone_but_stock_empty(self):
-        a = Article.objects.create(name='yero', quantity=0, losses=0, photo='yero')
-        data = {'losses': 1, }
-        form = ArticleLossesForm(instance=a, data=data)
-        self.assertFalse(form.is_valid(), form.errors.as_data())
+    def test_add_loss_but_with_amount_zero(self):
+        data = {'losses': 1, 'amount_losses': 0}
+        form = ArticleLossesForm(data=data)
+        self.assertFalse(form.is_valid())
+
+    def test_add_loss_but_with_minimum_amount(self):
+        data = {'losses': 1, 'amount_losses': 0.1}
+        form = ArticleLossesForm(data=data)
+        self.assertTrue(form.is_valid(), form.errors.as_data())
+
+
 
 
 

@@ -14,7 +14,7 @@ from django.urls import reverse
 from django.core.exceptions import ValidationError
 from django_filters import FilterSet, CharFilter, ChoiceFilter, NumberFilter
 from django_filters.views import FilterView
-from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView, DeleteView
+from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView, DeleteView, View, FormView
 from django.contrib.auth.models import User
 from .models import Article, Employee, Arrivage, Category
 from .forms import  ArticleUpdateForm, ArrivalCreateForm, HandlePicturesForm, ArrivalUpdateForm
@@ -393,6 +393,23 @@ def add_one_loss(request, pk):
         form = ArticleLossesForm()
         return render(request, "inventory/losses_form.html", {'form' : form, 'previous_losses' : article.losses,
                                                               'amount_losses' : article.amount_losses})
+
+
+class AddOneLossView(FormView):
+
+    template_name = "inventory/losses_form.html"
+    form_class = ArticleLossesForm
+
+    def get_context_data(self, **kwargs):
+        context = super(AddOneLossView, self).get_context_data(**kwargs)
+        article = get_object_or_404(Article, self.kwargs['pk'])
+        context['previous_losses'] = article.losses
+        context['amount_losses']   =  article.amount_losses
+        return context
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
 
 
 

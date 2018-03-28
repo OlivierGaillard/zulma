@@ -151,6 +151,19 @@ class TestInventoryViews(TestCase):
         # Now the crucial test
         self.assertEqual(3, a_updated.losses)
 
+    def btest_get_add_one_loss_view(self):
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        r = c.get(reverse('inventory:add_one_loss', args=[self.a1.pk]))
+        self.assertEqual(200, r.status_code)
+
+    def test_button_loss_inactive_if_stock_empty(self):
+        a = Article.objects.create(name='one', quantity=0, photo='zero')
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        r = c.get(reverse('inventory:article_detail', args=[a.pk]))
+
+
 
 
 

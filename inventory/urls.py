@@ -19,7 +19,7 @@ from .views import ArticleDetailView, articles, ArticleUpdateView, ArticleDelete
 from .views import ArrivalListView, ArrivalUpdateView, ArrivalCreateView, ArrivalDetailView
 from .views import handle_pictures, upload_pictures_zip, CategoryCreateView, CategoryUpdateView, CategoryListView
 from .views import CategoryDetailView, CategoryDeleteView
-from .views import add_one_loss
+from .views import add_one_loss, AddOneLossView
 
 
 app_name = 'inventory'
@@ -37,8 +37,8 @@ urlpatterns = [
     url(r'^category_delete/(?P<pk>[0-9]+)$', CategoryDeleteView.as_view(), name='category_delete'),
     url('articles/', articles, name='articles'),
     url(r'article_update/(?P<pk>[0-9]+)$', ArticleUpdateView.as_view(), name='article_update'),
-    # url(r'article_losses/(?P<pk>[0-9]+)$', ArticleLossesView.as_view(), name='article_losses'),
     url(r'article_losses/(?P<pk>[0-9]+)$', add_one_loss, name='article_losses'),
+    url(r'add_one_loss/(?P<pk>[0-9]+)$', AddOneLossView.as_view(), name='add_one_loss'),
     url(r'^article_detail/(?P<pk>[0-9]+)$', ArticleDetailView.as_view(), name='article_detail'),
     url(r'^article_delete/(?P<pk>[0-9]+)$', ArticleDeleteView.as_view(), name='article_delete'),
     #url(r'^upload_pic/(?P<pk>[0-9]+)$', upload_pic, name='upload_pic'),

@@ -167,9 +167,8 @@ class ArticleUpdateForm(forms.ModelForm):
 #         )
 
 class ArticleLossesForm(forms.Form):
-    losses = forms.IntegerField(required=True)
-    amount_losses = forms.DecimalField(required=True)
-
+    losses = forms.IntegerField(required=True, min_value=1)
+    amount_losses = forms.DecimalField(required=True, min_value=0.01)
 
 
     def __init__(self, *args, **kwargs):

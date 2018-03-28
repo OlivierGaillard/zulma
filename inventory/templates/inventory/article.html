@@ -122,7 +122,11 @@
     </td>
 
     <td>
+      {% if article.quantity > 0 %}
       <a href="/inventory/article_losses/{{article.pk}}"><button class="btn btn-warning" >{% trans "Pertes" %}</button></a>
+      {% else %}
+      <a href="/inventory/article_losses/{{article.pk}}"><button class="btn btn-warning disabled" >{% trans "Pertes" %}</button></a>
+      {% endif %}
     </td>
 
 
