@@ -24,6 +24,15 @@ class Client(models.Model):
     def get_absolute_url(self):
         return reverse('cart:client', kwargs={'pk': self.pk})
 
+class VenteManager(models.Manager):
+
+    def total_sellings(self):
+        total = 0
+        for v in self.model.objects.all():
+            if v.reglement_termine:
+                total += v.montant
+        return total
+
 
 class Vente(models.Model):
     """Simplistic. Further adds are:
@@ -32,10 +41,10 @@ class Vente(models.Model):
     - un lien sur une cliente
     """
     date = models.DateTimeField(default=timezone.now)
-    montant = models.DecimalField(_('montant'), max_digits=20, decimal_places=0, default=0)
+    montant = models.DecimalField(_('montant'), max_digits=20, decimal_places=2, default=0)
     client  = models.ForeignKey(Client, null=True, blank=True, verbose_name=_('Client'), help_text=_("Laisser le champ vide (---) si le client n'est pas enregistré."))
     reglement_termine = models.BooleanField(_('Règlement terminé'), default=False)
-
+    objects = VenteManager()
 
     class Meta:
         ordering = ['-date']
@@ -55,6 +64,8 @@ class Vente(models.Model):
 
     def solde_paiements(self):
         return self.montant - self.total_paiements()
+
+
 
 class Paiement(models.Model):
     PAYMENT_MODE = (

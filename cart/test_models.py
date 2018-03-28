@@ -1,7 +1,7 @@
 from django.test import TestCase, RequestFactory
 from inventory.models import Article, Arrivage
 from django.db.models import ImageField
-from cart.models import CartItem
+from cart.models import CartItem, Vente
 from cart import cartutils
 from datetime import date
 
@@ -35,6 +35,17 @@ class TestCartUtils(TestCase):
         cart = CartItem.objects.create(cart_id=self.session_id, article=self.b, quantity=1)
         msg = cart.set_quantity(15)
         self.assertEqual("Warning: quantity set to max stock available.", msg)
+
+
+    def test_get_total_sellings(self):
+        Vente.objects.create(montant=10.50, reglement_termine=True)
+        Vente.objects.create(montant=20.50, reglement_termine=True)
+        self.assertEqual(31.0, Vente.objects.total_sellings())
+
+    def test_get_total_sellings_with_uncomplete(self):
+        Vente.objects.create(montant=10.50, reglement_termine=False)
+        Vente.objects.create(montant=20.50, reglement_termine=True)
+        self.assertEqual(20.50, Vente.objects.total_sellings())
 
 
 

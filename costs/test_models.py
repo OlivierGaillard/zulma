@@ -1,5 +1,7 @@
 from django.test import TestCase
 from .models import Enterprise, Category, Costs
+from cart.models import Vente
+from inventory.models import Article
 from datetime import date
 
 class TestModels(TestCase):
@@ -51,8 +53,25 @@ class TestModels(TestCase):
         self.assertEqual(100, Costs.objects.total_costs())
 
     def test_total_costs_for_two_costs(self):
-        c = Costs.objects.create(category=self.c1, amount=100)
+        Costs.objects.create(category=self.c1, amount=100)
         Costs.objects.create(category=self.c1, amount=100.50)
         self.assertEqual(200.5, Costs.objects.total_costs())
 
+    def test_balance_without_purchases(self):
+        Vente.objects.create(montant=10.50, reglement_termine=True)
+        Vente.objects.create(montant=20.50, reglement_termine=True)
+        Costs.objects.create(category=self.c1, amount=10)
+        Costs.objects.create(category=self.c1, amount=5.50)
+        # 31 - 15.50 = 15.5
+        self.assertEqual(15.5, Costs.objects.get_balance())
+
+    def test_balance_with_purchases(self):
+        Article.objects.create(name='a', purchasing_price=10)
+        Article.objects.create(name='b', purchasing_price=5.5, photo='jjj')
+        Vente.objects.create(montant=20.50, reglement_termine=True)
+        Vente.objects.create(montant=20.50, reglement_termine=True)
+        Costs.objects.create(category=self.c1, amount=10)
+        Costs.objects.create(category=self.c1, amount=5.50)
+        # 31 - 15.50 = 25.5
+        self.assertEqual(10.0, Costs.objects.get_balance())
 

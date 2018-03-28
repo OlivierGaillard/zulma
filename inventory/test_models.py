@@ -6,7 +6,8 @@ from .models import Article
 class TestInventoryViews(TestCase):
 
     def setUp(self):
-        self.a1 = Article.objects.create(name='a1', quantity=10)
+        self.a1 = Article.objects.create(name='a1', quantity=10, purchasing_price=20, photo='a1')
+        self.a2 = Article.objects.create(name='a2', quantity=2,  purchasing_price=10.50, photo='a2')
         #self.user_oga = User.objects.create_user(username='golivier', password='mikacherie')
 
     def test_article_date_added(self):
@@ -38,6 +39,10 @@ class TestInventoryViews(TestCase):
         self.a1.clean()
         self.a1.save()
         self.assertEqual(9, self.a1.quantity)
+
+    def test_total_purchasing_price(self):
+        self.assertEqual(30.50, Article.objects.total_purchasing_price())
+
 
 
 

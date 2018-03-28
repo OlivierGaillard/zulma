@@ -3,6 +3,7 @@ from django.shortcuts import reverse
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from inventory.models import Article
+from cart.models import Vente
 
 # Create your models here.
 
@@ -41,6 +42,15 @@ class CostsManager(models.Manager):
         for c in self.model.objects.all():
             total += c.amount
         return total
+
+    def grand_total(self):
+        """Sum of costs + sum of Articles' purchasing price."""
+        purchasing_price = Article.objects.total_purchasing_price()
+        return purchasing_price + self.total_costs()
+
+    def get_balance(self):
+        return Vente.objects.total_sellings() - self.grand_total()
+
 
 
 class Costs(models.Model):

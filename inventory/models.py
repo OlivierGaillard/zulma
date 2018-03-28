@@ -97,6 +97,14 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+class ArticleManager(models.Manager):
+
+    def total_purchasing_price(self):
+        total = 0
+        for a in self.model.objects.all():
+            total += a.purchasing_price
+        return total
+
 
 
 class Article(models.Model):
@@ -125,6 +133,8 @@ class Article(models.Model):
     solde = models.CharField(_("en solde"), max_length=1, choices=solde_choices, default='N')
     arrival = models.ForeignKey(Arrivage, null=True)
     notes = models.TextField(_("Notes"), null=True, blank=True, default=_('n.d.'))
+
+    objects = ArticleManager()
 
     class Meta:
         verbose_name = _('Article with minimal data')
