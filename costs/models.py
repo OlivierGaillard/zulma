@@ -49,6 +49,11 @@ class CostsManager(models.Manager):
         return purchasing_price + self.total_costs()
 
     def get_balance(self):
+        """
+        Ventes - - (purchases + costs)
+        Purchases are taken from Article.objects.total_purchasing_price method.
+        :return: Ventes - (purchases + costs)
+        """
         return Vente.objects.total_sellings() - self.grand_total()
 
 

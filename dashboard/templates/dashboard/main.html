@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<div class="container">
+
+<h3>{% trans "Main Dashboard"%}</h3>
+  <table class="table">
+    <tbody>
+    <tr>
+      <th>{% trans "Total costs:" %}</th>
+      <td>{{grand_total_costs}}</td>
+    </tr>
+    <tr>
+      <th>{% trans "Total incomes:" %}</th>
+      <td>{{ total_sellings }}</td>
+    </tr>
+    <tr>
+      <th>{% trans "Balance:" %}</th>
+      <td>{{ balance }}</td>
+    </tr>
+    </tbody>
+  </table>
+
+</div>
+{% endblock %}
+
+

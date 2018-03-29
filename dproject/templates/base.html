@@ -6,7 +6,7 @@
 {% get_current_language as LANGUAGE_CODE %}
 {% get_available_languages as LANGUAGES %}
 
-<html lang="{{ LANGUAGE_CODE }}">
+<html lang="{{ LANGUAGE_CODE }}" xmlns="http://www.w3.org/1999/html">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -101,6 +101,12 @@
                     <li><a href="{% url "costs:enterprise_create" %}"
                       title="{% trans 'an enterprise or provider which occurs regularly in your costs' %}">{% trans "Create an enterprise" %}</a> </li>
                   </ul>
+                </li>
+
+                <li class="dropdown"><a href="#" data-toggle="dropdown">Dashboard<span class="caret"</span></a>
+                    <ul class="dropdown-menu">
+                      <li><a href="{% url 'dashboard:main' %}">Main</a> </li>
+                    </ul>
                 </li>
             {% endif %}
 

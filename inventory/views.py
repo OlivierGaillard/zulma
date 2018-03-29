@@ -378,24 +378,17 @@ def add_one_loss(request, pk):
                 return HttpResponseRedirect("/inventory/article_detail/%s" % article.pk)
             else:
                 logger.warning('Losses and articles values seem NOT ok.')
-                return render(request=request, template_name='inventory/losses_form.html',
-                              context={'form': form, 'previous_losses': article.losses,
-                                           'amount_losses': article.amount_losses}
-                              )
         else:
             logger.warning('form is NOT valid for article-ID %s' % article.pk)
             logger.warning(form.errors.as_data())
-            return render(request=request, template_name='inventory/losses_form.html',
-                          context={'form': form, 'previous_losses' : article.losses,
-                                   'amount_losses' : article.amount_losses}
-                          )
     else: # GET
         form = ArticleLossesForm()
-        return render(request, "inventory/losses_form.html", {'form' : form, 'previous_losses' : article.losses,
+
+    return render(request, "inventory/losses_form.html", {'form' : form, 'previous_losses' : article.losses,
                                                               'amount_losses' : article.amount_losses})
 
 
-class AddOneLossView(FormView):
+class AddOneLossView(View):
 
     template_name = "inventory/losses_form.html"
     form_class = ArticleLossesForm
