@@ -31,6 +31,7 @@ class TestDashboard(TestCase):
         self.assertInHTML('210,00', html)
         self.assertInHTML('-190,00', html)
         self.assertInHTML('20,00', html)
+        self.assertInHTML('200,00', html)
         c.logout()
 
 
