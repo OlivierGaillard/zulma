@@ -2,12 +2,13 @@ from django.db import models
 from django.shortcuts import reverse
 from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
-from inventory.models import Article
+from inventory.models import Article, Branch
 from cart.models import Vente
 
 # Create your models here.
 
 class Enterprise(models.Model):
+    """Or a better name could be 'Provider'."""
     name = models.CharField(_('name'), max_length=80, unique=True)
 
     def __str__(self):
@@ -59,6 +60,7 @@ class CostsManager(models.Manager):
 
 
 class Costs(models.Model):
+    branch = models.ForeignKey(Branch, null=True, blank=True)
     creation_date = models.DateField(_('Creation date'), auto_now_add=True)
     category = models.ForeignKey(Category)
     amount = models.DecimalField(_('Amount'), max_digits=20, decimal_places=2)

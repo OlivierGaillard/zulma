@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+
+<div class="container">
+
+
+
+  <h2>{% trans "Branch details" %}</h2>
+
+  <table class="table">
+    <tbody>
+
+      <tr>
+          <th>{% trans "ID" %}</th>
+        <td>{{branch.pk}}</td>
+      </tr>
+
+      <tr>
+          <th>{% trans "Name" %}</th>
+        <td>{{branch.name}}</td>
+      </tr>
+
+      <tr>
+          <th>{% trans "Edit" %}</th>
+        <td><a href="{% url "inventory:branch_update" branch.pk %}">Edit</a> </td>
+      </tr>
+
+
+    </tbody>
+  </table>
+
+</div>
+
+
+{% endblock %}
+
+{% block footernav %}
+
+{% endblock %}

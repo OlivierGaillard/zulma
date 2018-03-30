@@ -97,6 +97,20 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+
+class Branch(models.Model):
+    """One enterprise can have multiple branches.
+    For sample one shop and one production unit.
+    """
+    name = models.CharField(_('Name'), max_length=100, unique=True)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('inventory:branch_detail', kwargs={'pk' : self.pk})
+
+
 class ArticleManager(models.Manager):
 
     def total_purchasing_price(self):
@@ -115,6 +129,7 @@ class Article(models.Model):
         ('S', _('en solde')),
     )
 
+    branch = models.ForeignKey(Branch, null=True, blank=True)
     photo = models.ImageField(upload_to='articles', null=True, blank=True, unique=True)
     purchasing_price = models.DecimalField(_('Purchasing price'), max_digits=10, decimal_places=2, null=True, blank=True,
                                            default=0)

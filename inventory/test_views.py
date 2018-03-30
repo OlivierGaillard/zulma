@@ -2,7 +2,7 @@ from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from datetime import date
-from .models import Article, Arrivage
+from .models import Article, Arrivage, Branch
 from .forms import ArticleUpdateForm
 from costs.models import Costs, Category
 #from .views import ArticleDeleteView
@@ -218,6 +218,42 @@ class TestInventoryViews(TestCase):
         Article.objects.create(name='a2', quantity=1, photo='a2a', purchasing_price=10.5)
         data = {'losses': 3, 'amount_losses': 10.5}
         c.post(reverse('inventory:article_losses', args=[a1.pk]), data=data)
+
+    def test_branch_list_view(self):
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        r = c.get(reverse('inventory:branches'))
+        self.assertEqual(200, r.status_code)
+
+    def test_create_branch(self):
+        c = Client()
+        c.post('/login/', {'username' : 'golivier', 'password' : 'mikacherie'})
+        data = {'name' : 'Boutique'}
+        r = c.post(reverse('inventory:branch_create'), data=data, follow=True)
+        self.assertEqual(200, r.status_code)
+        self.assertEqual(1, Branch.objects.count())
+        self.assertInHTML('Boutique', r.content.decode())
+
+    def test_delete_branch(self):
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        b = Branch.objects.create(name='Boutique')
+        c.post(reverse('inventory:branch_delete', args=[b.pk]), follow=True)
+        self.assertEqual(0, Branch.objects.count())
+
+    def test_edit_branch(self):
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        b = Branch.objects.create(name='Boutique')
+        data = {'name' : 'Chance'}
+        r = c.post(reverse('inventory:branch_update', args=[b.pk]), data=data, follow=True)
+        b2 = Branch.objects.get(pk=b.pk)
+        self.assertEqual('Chance', b2.name)
+        self.assertInHTML('Chance', r.content.decode())
+
+
+
+
 
 
 

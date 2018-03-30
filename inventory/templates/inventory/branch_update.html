@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container" xmlns="http://www.w3.org/1999/html">
+  <h3>{% trans "Edit branch-ID:"%} {{branch.pk}}</h3>
+{% crispy form %}
+</div>
+{% endblock %}

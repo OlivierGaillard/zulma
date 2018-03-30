@@ -16,10 +16,10 @@ from django_filters import FilterSet, CharFilter, ChoiceFilter, NumberFilter
 from django_filters.views import FilterView
 from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView, DeleteView, View, FormView
 from django.contrib.auth.models import User
-from .models import Article, Employee, Arrivage, Category
+from .models import Article, Employee, Arrivage, Category, Branch
 from .forms import  ArticleUpdateForm, ArrivalCreateForm, HandlePicturesForm, ArrivalUpdateForm
 from .forms import UploadPicturesZipForm, CategoryFormCreate, CategoryFormUpdate, CategoryFormDelete
-from .forms import ArticleLossesForm
+from .forms import ArticleLossesForm, BranchCreateForm, BranchUpdateForm
 import costs.models
 from cart.cartutils import article_already_in_cart, get_cart_items
 from django.conf import settings
@@ -426,62 +426,37 @@ class ArticleDeleteView(DeleteView):
     model = Article
     success_url = 'inventory/articles/'
 
+@method_decorator(login_required, name='dispatch')
+class BranchListView(ListView):
+    model = Branch
+    template_name = 'inventory/branches.html'
+    context_object_name = 'branches'
+
+@method_decorator(login_required, name='dispatch')
+class BranchCreateView(CreateView):
+    model = Branch
+    template_name = 'inventory/branch_create.html'
+    form_class = BranchCreateForm
 
 
+@method_decorator(login_required, name='dispatch')
+class BranchDetailView(DetailView):
+    model = Branch
+    template_name = 'inventory/branch_detail.html'
+    context_object_name = 'branch'
+
+@method_decorator(login_required, name='dispatch')
+class BranchDeleteView(DeleteView):
+    model = Branch
+    template_name = 'inventory/branch_delete.html'
+    success_url = 'inventory/branches'
+    context_object_name = 'branch'
+
+@method_decorator(login_required, name='dispatch')
+class BranchEditView(UpdateView):
+    model = Branch
+    template_name = 'inventory/branch_update.html'
+    context_object_name = 'branch'
+    form_class = BranchUpdateForm
 
 
-# @method_decorator(login_required, name='dispatch')
-# class ArticleCreateView(CreateView):
-#     model = Article
-#     template_name = "inventory/article_create.html"
-#     #success_url = "inventory/articles.html"
-#     form_class = ArticleCreateForm
-#
-#     def form_valid(self, form):
-#         if form.is_valid():
-#             print('Form is valid')
-#             self.object = form.save()
-#             #return HttpResponseRedirect(self.success_url)
-#             return HttpResponseRedirect(self.get_success_url())
-#         else:
-#
-#             print('Form is NOT valid')
-#
-#
-#     def get_success_url(self):
-#         return reverse('inventory:articles')
-
-    # def form_valid(self, form):
-    #     #self.object = form.save()
-    #     print("inside form_valid")
-    #     #self.object.update_marque_ref(form['marque'].value(), form['marque_ref'].value())
-    #     return HttpResponseRedirect('inventory/articles.html')
-
-    # Todo: filtrer les arrivages de l'utilisateur
-
-
-    # def get_form_kwargs(self):
-    #     kwargs = super(ArticleCreateView, self).get_form_kwargs()
-    #     kwargs['user'] = self.request.user
-    #     return kwargs
-
-
-# def upload_pic(request, pk):
-#     "pk is Article ID"
-#     if request.method == 'POST':
-#         form = AddPhotoForm(request.POST, request.FILES)
-#         if form.is_valid():
-#             article = Article.objects.get(pk=pk)
-#             photo = Photo()
-#             photo.photo = form.cleaned_data['image']
-#             photo.article = article
-#             photo.save()
-#             return HttpResponseRedirect("/inventory/article_detail/" + str(article.pk))
-#         else:
-#             article = Article.objects.get(pk=pk)
-#             return render(request, "inventory/photo_add.html", {'article': article, 'form': form})
-#
-#     else:
-#         article = Article.objects.get(pk=pk)
-#         return render(request, "inventory/photo_add.html", {'article': article})
-#

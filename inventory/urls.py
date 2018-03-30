@@ -19,7 +19,8 @@ from .views import ArticleDetailView, articles, ArticleUpdateView, ArticleDelete
 from .views import ArrivalListView, ArrivalUpdateView, ArrivalCreateView, ArrivalDetailView
 from .views import handle_pictures, upload_pictures_zip, CategoryCreateView, CategoryUpdateView, CategoryListView
 from .views import CategoryDetailView, CategoryDeleteView
-from .views import add_one_loss, AddOneLossView
+from .views import add_one_loss, AddOneLossView, BranchCreateView, BranchDetailView, BranchDeleteView
+from .views import BranchListView, BranchEditView
 
 
 app_name = 'inventory'
@@ -36,6 +37,13 @@ urlpatterns = [
     url(r'^category_detail/(?P<pk>[0-9]+)$', CategoryDetailView.as_view(), name='category_detail'),
     url(r'^category_delete/(?P<pk>[0-9]+)$', CategoryDeleteView.as_view(), name='category_delete'),
     url('articles/', articles, name='articles'),
+
+    url('branches/', BranchListView.as_view(), name='branches'),
+    url('branch_create/$', BranchCreateView.as_view(), name='branch_create'),
+    url('branch_detail/(?P<pk>[0-9]+)$', BranchDetailView.as_view(), name='branch_detail'),
+    url('branch_delete/(?P<pk>[0-9]+)$', BranchDeleteView.as_view(), name='branch_delete'),
+    url('branch_update/(?P<pk>[0-9]+)$', BranchEditView.as_view(), name='branch_update'),
+
     url(r'article_update/(?P<pk>[0-9]+)$', ArticleUpdateView.as_view(), name='article_update'),
     url(r'article_losses/(?P<pk>[0-9]+)$', add_one_loss, name='article_losses'),
     url(r'add_one_loss/(?P<pk>[0-9]+)$', AddOneLossView.as_view(), name='add_one_loss'),

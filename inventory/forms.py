@@ -6,7 +6,7 @@ from crispy_forms.layout import Submit, Layout, Fieldset, Field, HTML
 from django import forms
 from django.conf import settings
 import os
-from .models import Article, Arrivage, Category
+from .models import Article, Arrivage, Category, Branch
 import logging
 logger = logging.getLogger('django')
 
@@ -130,7 +130,7 @@ class HandlePicturesForm(forms.Form):
 class ArticleUpdateForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('name', 'category', 'purchasing_price', 'selling_price', 'solde', 'initial_quantity', 'quantity', 'notes', 'description', 'arrival')
+        fields = ('branch', 'name', 'category', 'purchasing_price', 'selling_price', 'solde', 'initial_quantity', 'quantity', 'notes', 'description', 'arrival')
 
 
     def __init__(self, *args, **kwargs):
@@ -234,6 +234,41 @@ class ArrivalCreateForm(forms.ModelForm):
         )
 
 
+class BranchCreateForm(forms.ModelForm):
+    class Meta:
+        model = Branch
+        fields = ('name',)
+
+    def __init__(self, *args, **kwargs):
+        super(BranchCreateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
+class BranchUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Branch
+        fields = ('name',)
+
+    def __init__(self, *args, **kwargs):
+        super(BranchUpdateForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
 
 
 

@@ -56,12 +56,15 @@
             {% if request.user.is_authenticated %}
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {% trans "Arrival" %}
+                      {% trans "Setup" %}
                        <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url "inventory:arrival_create" %}" title="{% trans 'Create an arrival' %}">(1) {% trans 'Create one arrival' %}</a></li>
                         <li><a href="{% url "inventory:arrivals" %}" title="{% trans 'Arrivals List' %}">{% trans 'Arrivals' %}</a></li>
+                        <li class="divider"></li>
+                        <li><a href="{% url "inventory:branches" %}">{% trans 'Branches' %}</a> </li>
+                        <li><a href="{% url "inventory:branch_create" %}">{% trans 'Create Branch' %}</a> </li>
                         <li class="divider"></li>
                         <li><a href="{% url "inventory:upload_zipics" %}" title="{% trans 'Upload pictures ZIP' %}">(2) {% trans 'Upload ZIP pictures' %}</a></li>
                         <li><a href="{% url "inventory:handle_pics" %}" title="{% trans 'Generate articles from pictures' %}">(3) {% trans 'Generate Articles' %}</a></li>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-02-24 16:37+0100\n"
+"POT-Creation-Date: 2018-03-30 02:22-0600\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,101 +18,114 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: inventory/forms.py:95
+#: inventory/forms.py:98
 msgid "File ends not with extension '.zip'."
 msgstr ""
 
-#: inventory/forms.py:110
+#: inventory/forms.py:113
 msgid "Arrival"
 msgstr ""
 
-#: inventory/forms.py:111 inventory/models.py:89 inventory/models.py:113
-#: inventory/templates/inventory/article.html:40
-#: inventory/templates/inventory/articles.html:180
+#: inventory/forms.py:114 inventory/models.py:92 inventory/models.py:105
+#: inventory/models.py:136 inventory/templates/inventory/article.html:44
+#: inventory/templates/inventory/articles.html:199
 msgid "Category"
 msgstr "Categoria"
 
-#: inventory/forms.py:148 inventory/forms.py:172
+#: inventory/forms.py:192 inventory/forms.py:216
 msgid "date_arrivee"
 msgstr ""
 
-#: inventory/models.py:65
+#: inventory/models.py:68
 msgid "Arrival Date"
 msgstr ""
 
-#: inventory/models.py:103 inventory/models.py:187
+#: inventory/models.py:125 inventory/models.py:224
 msgid "-"
 msgstr ""
 
-#: inventory/models.py:104 inventory/models.py:116 inventory/models.py:188
-#: inventory/models.py:214 inventory/templates/inventory/articles.html:143
+#: inventory/models.py:126 inventory/models.py:145 inventory/models.py:225
+#: inventory/models.py:251 inventory/templates/inventory/articles.html:153
 msgid "en solde"
 msgstr ""
 
-#: inventory/models.py:108 inventory/templates/inventory/articles.html:177
+#: inventory/models.py:131 inventory/templates/inventory/articles.html:196
 msgid "Purchasing price"
 msgstr "Precio de compra"
 
-#: inventory/models.py:110 inventory/templates/inventory/articles.html:178
+#: inventory/models.py:133 inventory/templates/inventory/articles.html:197
 msgid "Selling price"
 msgstr "precio de venta"
 
-#: inventory/models.py:112 inventory/templates/inventory/arrivals.html:16
-#: inventory/templates/inventory/articles.html:179
+#: inventory/models.py:135 inventory/templates/inventory/arrivals.html:16
+#: inventory/templates/inventory/articles.html:198
+#: inventory/templates/inventory/branches.html:11
 #: inventory/templates/inventory/categories.html:16
 #: inventory/templates/inventory/category_detail.html:21
 msgid "Name"
-msgstr "Nombre"
+msgstr "Nome"
 
-#: inventory/models.py:112 inventory/models.py:114 inventory/models.py:118
+#: inventory/models.py:135 inventory/models.py:137 inventory/models.py:147
 msgid "n.d."
 msgstr ""
 
-#: inventory/models.py:114 inventory/templates/inventory/article.html:65
+#: inventory/models.py:137 inventory/templates/inventory/article.html:86
 msgid "Description"
 msgstr "Descripcion"
 
-#: inventory/models.py:115 inventory/templates/inventory/articles.html:182
+#: inventory/models.py:140 inventory/templates/inventory/article.html:61
+msgid "Initial quantity"
+msgstr ""
+
+#: inventory/models.py:141 inventory/templates/inventory/articles.html:201
 msgid "Quantity"
 msgstr ""
 
-#: inventory/models.py:118 inventory/templates/inventory/article.html:69
+#: inventory/models.py:142
+msgid "Losses"
+msgstr ""
+
+#: inventory/models.py:143
+msgid "Money lost"
+msgstr ""
+
+#: inventory/models.py:147 inventory/templates/inventory/article.html:90
 msgid "Notes"
 msgstr ""
 
-#: inventory/models.py:121
+#: inventory/models.py:152
 msgid "Article with minimal data"
 msgstr ""
 
-#: inventory/models.py:161
+#: inventory/models.py:198
 msgid "Homme"
 msgstr "Uomo"
 
-#: inventory/models.py:162
+#: inventory/models.py:199
 msgid "Femme"
 msgstr ""
 
-#: inventory/models.py:163
+#: inventory/models.py:200
 msgid "Mixte"
 msgstr ""
 
-#: inventory/models.py:164
+#: inventory/models.py:201
 msgid "Enfant"
 msgstr ""
 
-#: inventory/models.py:196
+#: inventory/models.py:233
 msgid "Type de client"
 msgstr ""
 
-#: inventory/models.py:197
+#: inventory/models.py:234
 msgid "Genre d'article"
 msgstr ""
 
-#: inventory/models.py:198 inventory/templates/inventory/article.html:45
+#: inventory/models.py:235 inventory/templates/inventory/article.html:49
 msgid "Nom"
 msgstr ""
 
-#: inventory/models.py:206
+#: inventory/models.py:243
 msgid "Arrivage"
 msgstr ""
 
@@ -121,12 +134,12 @@ msgid "Détails de l'arrivage"
 msgstr ""
 
 #: inventory/templates/inventory/arrival_detail.html:17
-#: inventory/templates/inventory/article.html:31
+#: inventory/templates/inventory/article.html:35
 msgid "Date d'arrivage"
 msgstr ""
 
 #: inventory/templates/inventory/arrival_detail.html:21
-#: inventory/templates/inventory/article.html:35
+#: inventory/templates/inventory/article.html:39
 msgid "Nom de l'arrivage"
 msgstr ""
 
@@ -139,7 +152,8 @@ msgid "Modification de l'arrivage-ID:"
 msgstr ""
 
 #: inventory/templates/inventory/arrivals.html:15
-#: inventory/templates/inventory/articles.html:174
+#: inventory/templates/inventory/articles.html:193
+#: inventory/templates/inventory/branches.html:10
 #: inventory/templates/inventory/categories.html:15
 msgid "Nr."
 msgstr ""
@@ -149,7 +163,7 @@ msgid "Date d'ajout"
 msgstr ""
 
 #: inventory/templates/inventory/arrivals.html:25
-#: inventory/templates/inventory/articles.html:191
+#: inventory/templates/inventory/articles.html:210
 msgid "Cliquer pour voir les détails"
 msgstr ""
 
@@ -187,57 +201,100 @@ msgstr ""
 msgid "Détails de l'article"
 msgstr ""
 
-#: inventory/templates/inventory/article.html:49
-msgid "Soldé?"
+#: inventory/templates/inventory/article.html:30
+#: inventory/templates/inventory/articles.html:194
+#: inventory/templates/inventory/category_detail.html:16
+msgid "ID"
 msgstr ""
 
 #: inventory/templates/inventory/article.html:53
-msgid "Quantité en stock"
+msgid "Creation date"
 msgstr ""
 
 #: inventory/templates/inventory/article.html:57
+msgid "Soldé?"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:65
+msgid "Quantité en stock"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:69
+#: inventory/templates/inventory/article.html:126
+#: inventory/templates/inventory/article.html:128
+msgid "Pertes"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:73
+msgid "Montant des pertes"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:78
 msgid "Prix d'achat"
 msgstr ""
 
-#: inventory/templates/inventory/article.html:61
+#: inventory/templates/inventory/article.html:82
 msgid "Prix de vente"
 msgstr ""
 
-#: inventory/templates/inventory/article.html:82
+#: inventory/templates/inventory/article.html:103
 msgid "Ajouter au panier"
 msgstr ""
 
-#: inventory/templates/inventory/article.html:84
+#: inventory/templates/inventory/article.html:105
 msgid "Stock épuisé!"
 msgstr ""
 
-#: inventory/templates/inventory/article.html:93
+#: inventory/templates/inventory/article.html:114
 msgid "Supprimer du panier"
 msgstr ""
 
-#: inventory/templates/inventory/article.html:100
+#: inventory/templates/inventory/article.html:121
 msgid "Modifier"
 msgstr ""
 
-#: inventory/templates/inventory/article.html:107
+#: inventory/templates/inventory/article.html:134
+#: inventory/templates/inventory/article_delete.html:36
+msgid "Effacer"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:138
+#: inventory/templates/inventory/article.html:176
+msgid "Back to articles's list"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:145
 msgid "Illustration"
 msgstr ""
 
-#: inventory/templates/inventory/article.html:113
+#: inventory/templates/inventory/article.html:151
+#: inventory/templates/inventory/article_delete.html:16
 msgid "image de "
 msgstr ""
 
-#: inventory/templates/inventory/article.html:122
+#: inventory/templates/inventory/article.html:160
+#: inventory/templates/inventory/article_delete.html:24
 msgid "Sorry no picture available"
 msgstr ""
 
-#: inventory/templates/inventory/article.html:129
+#: inventory/templates/inventory/article.html:167
 msgid "Ajouter une <strong>image</strong> en cliquant"
 msgstr ""
 
-#: inventory/templates/inventory/article.html:129
+#: inventory/templates/inventory/article.html:167
 msgid "ici"
 msgstr ""
+
+#: inventory/templates/inventory/article_delete.html:9
+msgid "Delete article-ID"
+msgstr ""
+
+#: inventory/templates/inventory/article_delete.html:9
+#: inventory/templates/inventory/category_delete.html:6
+#, fuzzy
+#| msgid "Name"
+msgid "Name:"
+msgstr "Nome"
 
 #: inventory/templates/inventory/article_update.html:7
 msgid "Modification de l'article-ID:"
@@ -300,7 +357,7 @@ msgid "entrez vos critères et cliquez sur le bouton"
 msgstr ""
 
 #: inventory/templates/inventory/articles.html:110
-#: inventory/templates/inventory/articles.html:161
+#: inventory/templates/inventory/articles.html:179
 msgid "Chercher"
 msgstr ""
 
@@ -313,51 +370,47 @@ msgid "Filtre"
 msgstr ""
 
 #: inventory/templates/inventory/articles.html:129
+#: inventory/templates/inventory/articles.html:141
 msgid "Partie du nom"
 msgstr ""
 
-#: inventory/templates/inventory/articles.html:133
+#: inventory/templates/inventory/articles.html:135
 msgid "Part of the category's name "
 msgstr ""
 
-#: inventory/templates/inventory/articles.html:137
+#: inventory/templates/inventory/articles.html:147
 #, fuzzy
 #| msgid "Selling price"
-msgid "Selling Price Greater than"
+msgid "Selling Price greater than"
 msgstr "precio de venta"
 
-#: inventory/templates/inventory/articles.html:147
+#: inventory/templates/inventory/articles.html:159
 msgid "Quantité supérieure à"
 msgstr ""
 
-#: inventory/templates/inventory/articles.html:151
+#: inventory/templates/inventory/articles.html:165
 msgid "Part of Arrival's Name"
 msgstr ""
 
-#: inventory/templates/inventory/articles.html:155
+#: inventory/templates/inventory/articles.html:171
 #, fuzzy
 #| msgid "Purchasing price"
 msgid "Purchasing Price Greater than"
 msgstr "Precio de compra"
 
-#: inventory/templates/inventory/articles.html:167
+#: inventory/templates/inventory/articles.html:186
 msgid "articles trouvés"
 msgstr ""
 
-#: inventory/templates/inventory/articles.html:175
-#: inventory/templates/inventory/category_detail.html:16
-msgid "ID"
-msgstr ""
-
-#: inventory/templates/inventory/articles.html:176
+#: inventory/templates/inventory/articles.html:195
 msgid "Aperçu"
 msgstr ""
 
-#: inventory/templates/inventory/articles.html:181
+#: inventory/templates/inventory/articles.html:200
 msgid "Reduced price?"
 msgstr ""
 
-#: inventory/templates/inventory/articles.html:198
+#: inventory/templates/inventory/articles.html:217
 msgid "no pic found"
 msgstr ""
 
@@ -368,12 +421,6 @@ msgstr ""
 #: inventory/templates/inventory/category_delete.html:6
 msgid "Delete category-ID"
 msgstr ""
-
-#: inventory/templates/inventory/category_delete.html:6
-#, fuzzy
-#| msgid "Name"
-msgid "Name:"
-msgstr "Nombre"
 
 #: inventory/templates/inventory/category_detail.html:10
 #, fuzzy
@@ -393,14 +440,35 @@ msgstr ""
 msgid " pictures to handle for generating articles."
 msgstr ""
 
+#: inventory/templates/inventory/losses_form.html:8
+msgid "Previous Losses"
+msgstr ""
+
+#: inventory/templates/inventory/losses_form.html:12
+msgid "Previous losses:"
+msgstr ""
+
+#: inventory/templates/inventory/losses_form.html:16
+msgid "Money lost:"
+msgstr ""
+
+#: inventory/templates/inventory/losses_form.html:22
+msgid "New Losses"
+msgstr ""
+
 #: inventory/templates/inventory/upload_zipics.html:7
 msgid "Upload only a ZIP file."
 msgstr ""
 
-#: inventory/views.py:206
+#: inventory/views.py:212
 msgid "quantity greater than"
 msgstr ""
 
-#: inventory/views.py:208 inventory/views.py:210
+#: inventory/views.py:214 inventory/views.py:216
 msgid "greater than"
+msgstr ""
+
+#: inventory/views.py:332
+#, python-format
+msgid "Losses (%s) cannot exceed quantity (%s)."
 msgstr ""

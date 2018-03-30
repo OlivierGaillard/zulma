@@ -32,6 +32,12 @@
       </tr>
 
       <tr>
+        <th>{% trans "Branch" %}</th>
+        <td>{{article.branch|default_if_none:"n.d."}}</td>
+      </tr>
+
+
+      <tr>
         <th>{% trans "Date d'arrivage" %}</th><td>{{article.arrival.date_arrivee|date:"d.m.Y"}}</td>
       </tr>
 
@@ -162,6 +168,7 @@
     {% endthumbnail %}
 
 </div>
+
 </div>
 
 <!--<p>{% trans "Ajouter une <strong>image</strong> en cliquant" %} <a href="/inventory/upload_pic/{{article.pk}}">{% trans "ici" %}</a>.</p>-->

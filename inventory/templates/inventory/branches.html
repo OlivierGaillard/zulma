@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<div class="container">
+
+    <table class="table table-light">
+      <thead class="thead-light">
+      <tr>
+          <th>{% trans 'Nr.' %}</th>
+          <th>{% trans 'Name' %}</th>
+      </tr>
+      </thead>
+
+
+      <tbody>
+      {% for a in branches %}
+      <tr>
+        <td><a href="{% url "inventory:branch_detail" a.pk %}"> {{ forloop.counter}}</a></td>
+          <td>{{ a.name}}</td>
+        <td><a href="{% url "inventory:branch_delete" a.pk %}">{% trans 'Delete' %}</a> </td>
+      </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+
+{% endblock %}
+{% block footer %}
+{% endblock %}
+

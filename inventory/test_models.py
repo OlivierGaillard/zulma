@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
-from .models import Article
+from .models import Article, Branch
 #from .views import ArticleDeleteView
 class TestInventoryViews(TestCase):
 
@@ -43,6 +43,15 @@ class TestInventoryViews(TestCase):
     def test_total_purchasing_price(self):
         self.assertEqual(30.50, Article.objects.total_purchasing_price())
 
+    def test_create_two_articles_with_same_name_but_two_branches(self):
+        # test uniqueness too? One article could have the same name if it belongs to different branches.
+        # todo: validate this business case with client
+
+        boutique = Branch.objects.create(name="Boutique")
+        atelier  = Branch.objects.create(name="Atelier")
+        a1 = Article.objects.create(branch=atelier, name='aa1', quantity=10, purchasing_price=20, photo='aa')
+        a2 = Article.objects.create(branch=boutique, name='aa1', quantity=10, purchasing_price=20, photo='aaa' )
+        self.assertIsNotNone(a2)
 
 
 
