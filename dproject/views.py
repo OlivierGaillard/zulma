@@ -2,7 +2,7 @@ from django.views.generic import TemplateView
 from django.conf import settings
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.sites.shortcuts import get_current_site
-from inventory.models import Employee, Article
+from inventory.models import Employee, Article, Branch
 
 
 class IndexView(TemplateView):
@@ -32,6 +32,7 @@ class IndexView(TemplateView):
         context['soldes'] = articles
         context['count'] =  articles_en_soldes.count()
         context['start_index'] = start_index
+        context['branches'] = Branch.objects.all()
 
         user = self.request.user
         if user.is_authenticated:
