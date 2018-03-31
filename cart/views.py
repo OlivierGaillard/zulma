@@ -306,13 +306,6 @@ def add_paiement(request, vente_pk):
         form = PaiementCreateForm(request.POST)
         montant = float(request.POST.get('montant', ''))
         vente = Vente.objects.get(pk=vente_pk)
-        form.helper.layout.append(PrependedText('montant', 'Max: ' + str(vente.solde_paiements())))
-        form.helper.layout.append(
-            FormActions(
-                Submit('save', 'Submit'),
-            )
-        )
-
 
         if form.is_valid():
             form.save()

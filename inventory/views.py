@@ -222,7 +222,8 @@ class ArticleFilter(FilterSet):
 
     class Meta:
         model = Article
-        fields = {'name' : ['icontains'],
+        fields = {'branch__name' : ['icontains'],
+                  'name' : ['icontains'],
                   'category__name' : ['icontains'],
                   'id' : ['exact'],
                   'quantity' : ['exact'],

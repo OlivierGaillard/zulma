@@ -2,9 +2,9 @@ from django.db import models
 from django.shortcuts import reverse
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
-from django.core.exceptions import ValidationError
 import logging
 import os
+
 
 logger = logging.getLogger('django')
 
@@ -114,11 +114,20 @@ class Branch(models.Model):
         ordering = ['name']
 
 
+
+
+
+
 class ArticleManager(models.Manager):
 
-    def total_purchasing_price(self):
+    def total_purchasing_price(self, branch=None):
         total = 0
-        for a in self.model.objects.all():
+        articles = None
+        if branch != None:
+            articles = self.model.objects.all().filter(branch=branch)
+        else:
+            articles = self.model.objects.all()
+        for a in articles:
             total += a.purchasing_price
         return total
 

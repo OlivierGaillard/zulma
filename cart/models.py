@@ -3,7 +3,8 @@ from django.utils import timezone
 from django.shortcuts import reverse
 from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
-from inventory.models import Article
+from inventory.models import Branch, Article
+
 
 
 class Client(models.Model):
@@ -26,9 +27,14 @@ class Client(models.Model):
 
 class VenteManager(models.Manager):
 
-    def total_sellings(self):
+    def total_sellings(self, branch=None):
         total = 0
-        for v in self.model.objects.all():
+        ventes = None
+        if branch != None:
+            ventes = self.model.objects.all().filter(branch=branch)
+        else:
+            ventes = self.model.objects.all()
+        for v in ventes:
             if v.reglement_termine:
                 total += v.montant
         return total
@@ -40,6 +46,7 @@ class Vente(models.Model):
     - un lien sur les avances
     - un lien sur une cliente
     """
+    branch = models.ForeignKey(Branch, null=True, blank=True)
     date = models.DateTimeField(default=timezone.now)
     montant = models.DecimalField(_('montant'), max_digits=20, decimal_places=2, default=0)
     client  = models.ForeignKey(Client, null=True, blank=True, verbose_name=_('Client'), help_text=_("Laisser le champ vide (---) si le client n'est pas enregistré."))

@@ -126,6 +126,12 @@
               {% render_field filter.form.id class="form-control" %}
             </div>
             <div class="form-group col-xs-9 col-sm-9">
+              <strong>{% trans "Part of branch" %}:</strong>
+              {% render_field filter.form.branch__name__icontains  class="form-control" %}
+            </div>
+          </div>
+          <div class="row">
+            <div class="form-group col-xs-12 col-sm-12">
               <strong>{% trans "Partie du nom" %}:</strong>
               {% render_field filter.form.name__icontains  class="form-control" %}
             </div>

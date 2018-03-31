@@ -8,7 +8,7 @@ from .models import Costs, Category, Enterprise
 class CostsCreateForm(forms.ModelForm):
     class Meta:
         model = Costs
-        fields = ('name', 'amount', 'category', 'note', 'enterprise', 'billing_date', 'billing_number' )
+        fields = ('branch', 'name', 'amount', 'category', 'note', 'enterprise', 'billing_date', 'billing_number' )
         widgets = {
             'billing_date': forms.DateInput(
                 attrs={'id': 'datetimepicker_es'}
@@ -31,7 +31,7 @@ class CostsCreateForm(forms.ModelForm):
 class CostsUpdateForm(forms.ModelForm):
     class Meta:
         model = Costs
-        fields = ('name', 'amount', 'category', 'note', 'enterprise', 'billing_date', 'billing_number' )
+        fields = ('branch', 'name', 'amount', 'category', 'note', 'enterprise', 'billing_date', 'billing_number' )
         widgets = {
             'billing_date': forms.DateInput(
                 attrs={'id': 'datetimepicker_es'}

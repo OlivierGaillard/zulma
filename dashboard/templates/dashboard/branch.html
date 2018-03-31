@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% block content %}
+<div class="container">
+
+<h3>{% trans "Dashboard of Branch "%}{{branch.name}}</h3>
+
+  <div class="row">
+
+    <div class="col-md-6">
+    <table class="table">
+      <tbody>
+      <tr>
+        <th>{% trans "Purchases" %}</th>
+        <td align="right">{{ purchases|intcomma }}</td>
+      </tr>
+      <tr>
+        <th>{% trans "Costs" %}</th>
+        <td align="right">{{ costs|intcomma }}</td>
+      </tr>
+
+      <tr>
+        <th>{% trans "Total costs:" %}</th>
+        <td align="right">{{ grand_total_costs|intcomma }}</td>
+      </tr>
+      <tr>
+        <th>{% trans "Total incomes:" %}</th>
+        <td align="right">{{ total_sellings|intcomma }}</td>
+      </tr>
+      <tr>
+        <th>{% trans "Balance:" %}</th>
+        <td align="right">{{ balance|intcomma }}</td>
+      </tr>
+      </tbody>
+    </table>
+      </div>
+  </div>
+</div>
+{% endblock %}
+
+

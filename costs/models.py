@@ -38,24 +38,29 @@ class Category(models.Model):
 
 class CostsManager(models.Manager):
 
-    def total_costs(self):
+    def total_costs(self, branch=None):
         total = 0
-        for c in self.model.objects.all():
+        costs = None
+        if branch:
+            costs = self.model.objects.all().filter(branch=branch)
+        else:
+            costs = self.model.objects.all()
+        for c in costs:
             total += c.amount
         return total
 
-    def grand_total(self):
+    def grand_total(self, branch=None):
         """Sum of costs + sum of Articles' purchasing price."""
-        purchasing_price = Article.objects.total_purchasing_price()
-        return purchasing_price + self.total_costs()
+        purchasing_price = Article.objects.total_purchasing_price(branch=branch)
+        return purchasing_price + self.total_costs(branch)
 
-    def get_balance(self):
+    def get_balance(self, branch=None):
         """
         Ventes - - (purchases + costs)
         Purchases are taken from Article.objects.total_purchasing_price method.
         :return: Ventes - (purchases + costs)
         """
-        return Vente.objects.total_sellings() - self.grand_total()
+        return Vente.objects.total_sellings(branch=branch) - self.grand_total(branch=branch)
 
 
 
