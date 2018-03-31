@@ -12,8 +12,8 @@ from django.contrib.auth.decorators import login_required, permission_required
 from django.utils.decorators import method_decorator
 from django.urls import reverse
 from django.core.exceptions import ValidationError
-from django_filters import FilterSet, CharFilter, ChoiceFilter, NumberFilter
-from django_filters.views import FilterView
+from django_filters import FilterSet, CharFilter, ChoiceFilter, NumberFilter, BooleanFilter
+from django_filters.widgets import BooleanWidget
 from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView, DeleteView, View, FormView
 from django.contrib.auth.models import User
 from .models import Article, Employee, Arrivage, Category, Branch
@@ -206,6 +206,10 @@ class ArrivalListView(ListView):
     template_name = 'inventory/arrivals.html'
     context_object_name = 'arrivals'
 
+def has_some_losses(queryset, name, value):
+    return queryset.filter(losses__gt=0)
+
+
 
 class ArticleFilter(FilterSet):
 
@@ -214,6 +218,8 @@ class ArticleFilter(FilterSet):
                                         label=_('greater than'))
     selling_price__gt = NumberFilter(name='selling_price', lookup_expr='gt',
                                         label=_('greater than'))
+    losses =  NumberFilter(label=_('Losses greater or equal'), lookup_expr='gte')
+
     class Meta:
         model = Article
         fields = {'name' : ['icontains'],
@@ -222,7 +228,12 @@ class ArticleFilter(FilterSet):
                   'quantity' : ['exact'],
                   'solde': ['exact'],
                   'arrival__nom' : ['icontains'],
-                  }
+
+                      }
+
+    # def has_losses_Filter(self, queryset, name, value):
+    #     return queryset.filter('losses__gt=0')
+
 
 def make_summary(queryset):
     summary = {}

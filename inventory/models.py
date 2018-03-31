@@ -110,6 +110,9 @@ class Branch(models.Model):
     def get_absolute_url(self):
         return reverse('inventory:branch_detail', kwargs={'pk' : self.pk})
 
+    class Meta:
+        ordering = ['name']
+
 
 class ArticleManager(models.Manager):
 
@@ -167,6 +170,11 @@ class Article(models.Model):
 
     def get_absolute_url(self):
         return reverse('inventory:article_detail', kwargs={'pk': self.pk})
+
+    @property
+    def has_losses(self):
+        """Check if the article has losses or not."""
+        return self.losses > 0
 
 
 

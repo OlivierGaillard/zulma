@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 {% load i18n %}
+{% load branches_list %}
 
 
 {% get_current_language as LANGUAGE_CODE %}
@@ -109,9 +110,7 @@
                 <li class="dropdown"><a href="#" data-toggle="dropdown">Dashboard<span class="caret"</span></a>
                     <ul class="dropdown-menu">
                       <li><a href="{% url 'dashboard:main' %}">Main</a> </li>
-                      {% for b in branches %}
-                      <li><a href="#">{{b.name}}</a> </li>
-                      {% endfor %}
+                      {% show_branches %}
                     </ul>
                 </li>
             {% endif %}
