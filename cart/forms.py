@@ -2,6 +2,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import TabHolder, Tab, FormActions
 from crispy_forms.layout import Submit, Layout, Fieldset, Field
 from django import forms
+from inventory.models import Branch
 
 
 from django.shortcuts import reverse
@@ -11,7 +12,7 @@ from .models import Vente, Client, Paiement, CartItem
 class VenteCreateForm(forms.ModelForm):
     class Meta:
         model = Vente
-        fields = ('date', 'client', 'montant')
+        fields = ('branch', 'date', 'client', 'montant')
         widgets = {
             'date': forms.DateTimeInput(
                 attrs={'id': 'datetimepicker_vente'}
@@ -55,7 +56,7 @@ class CartItemCreateForm(forms.ModelForm):
 class VenteUpdateForm(forms.ModelForm):
     class Meta:
         model = Vente
-        fields = ('date', 'client', 'montant', 'reglement_termine')
+        fields = ('branch', 'date', 'client', 'montant', 'reglement_termine')
         widgets = {
             'date': forms.DateTimeInput(
                 attrs={'id': 'datetimepicker_vente'}
