@@ -57,7 +57,7 @@ class Vente(models.Model):
         ordering = ['-date']
 
     def __str__(self):
-        titre = "ID: %s / %s / %s" % (self.pk, self.date, self.montant)
+        titre = "ID: %s / %s / %s / Closed? %s " % (self.pk, self.date, self.montant, self.reglement_termine)
         return titre
 
     def get_absolute_url(self):

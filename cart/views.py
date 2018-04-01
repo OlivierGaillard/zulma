@@ -1,4 +1,4 @@
-from django.shortcuts import render, reverse
+from django.shortcuts import render, reverse, get_object_or_404
 import datetime
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
@@ -192,6 +192,7 @@ class CheckoutView(CreateView):
     form_class = VenteCreateForm
 
     def get_context_data(self, **kwargs):
+        logger.debug('In CheckoutView: get_context_data')
         ctx = super(CheckoutView, self).get_context_data(**kwargs)
 
         if is_cart_id_session_set(self.request):
@@ -204,12 +205,14 @@ class CheckoutView(CreateView):
             return ctx
 
     def get_initial(self):
+        logger.debug('In CheckoutView: get_initial')
         initial = super(CheckoutView, self).get_initial()
         session_id = get_cart_id_session(self.request)
         initial['montant'] = CartItem.get_total_of_cart(session_id)
         return  initial
 
     def form_valid(self, form):
+        logger.debug('In CheckoutView: form_valid')
         self.object = form.save()
         cart_items = get_cart_items(request=self.request)
         for cart in cart_items:
@@ -300,40 +303,59 @@ def add_paiement(request, vente_pk):
     return render(request, 'polls/detail.html', {'question': question})
 
     return HttpResponseRedirect(reverse('polls:results', args=(question.id,)))
-    """
-    template_name = 'cart/paiement_add.html'
-    if request.method == 'POST':
-        form = PaiementCreateForm(request.POST)
-        montant = float(request.POST.get('montant', ''))
-        vente = Vente.objects.get(pk=vente_pk)
 
+    """
+    # TODO: add validation for selling balance: montant paiement pas superieur au montant de la vente
+    logger.debug('In add_paiement')
+    template_name = 'cart/paiement_add.html'
+    vente = get_object_or_404(Vente, pk=vente_pk)
+    logger.debug('Vente instance retrieved.')
+    logger.debug('Amount of this "Vente": ', vente.montant)
+
+    if request.method == 'POST':
+        logger.debug('in POST')
+        form = PaiementCreateForm(request.POST)
+        logger.debug('before calling form.is_valid()')
         if form.is_valid():
-            form.save()
+            logger.debug('IS valid.')
+            logger.debug('Setting the "Vente" instance to the payment...')
+            montant = form.cleaned_data['montant']
+            p = Paiement.objects.create(montant=montant, date=form.cleaned_data['date'], vente=vente,
+                                        payment_mode=form.cleaned_data['payment_mode'])
+            logger.debug('Payment-ID [%s] created.' % p.pk)
+            logger.debug('Payment amount: [%s]' % p.montant)
+            logger.debug('Saved. Will update selling.')
             if vente.solde_paiements() == 0:
                 vente.reglement_termine = True
             else:
                 vente.reglement_termine = False
             vente.save()
+            logger.debug('Vente: %s' % vente)
             url_redirect = reverse('cart:vente', args=[vente.pk])
             return HttpResponseRedirect(url_redirect)
         else:
+            logger.debug('IS NOT valid.')
+            logger.debug(form.errors.as_data())
             return render(request=request, template_name=template_name, context={'form': form,
                                                                              'solde': vente.solde_paiements()})
     else:
-        # initial data = vente.pk
-        vente = Vente.objects.get(pk=vente_pk)
+        logger.debug('in GET.')
+        logger.debug('Vente ID: %s' % vente.pk)
         vente_solde = vente.solde_paiements()
-
+        logger.debug('Solde: [%s}' % vente_solde)
         date_vente = datetime.datetime(year=vente.date.year, month=vente.date.month, day=vente.date.day,
                                        hour=vente.date.hour, minute=vente.date.minute)
-        form = PaiementCreateForm(initial={'vente': vente, 'date' : date_vente, 'montant' : vente_solde, 'payment_mode' : 'C'})
+        form = PaiementCreateForm(initial={'date' : date_vente, 'montant' : vente_solde, 'payment_mode' : 'C'})
+        # form = PaiementCreateForm(
+        #     initial={'vente': vente, 'date': date_vente, 'payment_mode': 'C'})
         # add prepended text here
-        form.helper.layout.append(PrependedText('montant', 'Max: ' + str(vente_solde)))
-        form.helper.layout.append(
-            FormActions(
-                Submit('save', 'Submit'),
-            )
-        )
+        #form.helper.layout.append(PrependedText('montant', 'Max: ' + str(vente_solde)))
+
+        # form.helper.layout.append(
+        #     FormActions(
+        #         Submit('save', 'Submit'),
+        #     )
+        # )
 
         return render(request=request, template_name=template_name, context={'form': form,
                                                                              'solde': vente_solde})
