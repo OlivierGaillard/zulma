@@ -31,10 +31,10 @@ class TestDashboard(TestCase):
         response = c.get(reverse('dashboard:main'))
         self.assertEqual(200, response.status_code)
         html = response.content.decode()
-        self.assertInHTML('210,00', html)
-        self.assertInHTML('-190,00', html)
-        self.assertInHTML('20,00', html)
-        self.assertInHTML('200,00', html)
+        self.assertInHTML('210.00', html)
+        self.assertInHTML('-190.00', html)
+        self.assertInHTML('20.00', html)
+        self.assertInHTML('200.00', html)
         c.logout()
 
     def test_sellings_with_branches(self):
@@ -133,6 +133,9 @@ class TestDashboard(TestCase):
         self.assertEqual(410, Dashboard.costs_grand_total(branch=b1))
 
         self.assertEqual(20-400-10, Dashboard.get_balance(b1))
+
+
+
 
 
 

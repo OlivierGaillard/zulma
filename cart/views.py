@@ -198,7 +198,6 @@ class CheckoutView(CreateView):
         if is_cart_id_session_set(self.request):
             cart_id = get_cart_id_session(self.request)
             ctx['cart_total'] = CartItem.get_total_of_cart(cart_id)
-            #ctx['vente_pk'] = CartItem.get_vente_id(cart_id)
             ctx['cart'] = get_cart_items(self.request)
             return ctx
         else:
@@ -209,6 +208,14 @@ class CheckoutView(CreateView):
         initial = super(CheckoutView, self).get_initial()
         session_id = get_cart_id_session(self.request)
         initial['montant'] = CartItem.get_total_of_cart(session_id)
+        # trying to get branch from article, if any
+        try:
+            items = get_cart_items(self.request)
+            cart_item  = items[0]
+            logger.debug('Article Name: %s / Branch: [%s]' % (cart_item.article.name, cart_item.article.branch))
+            initial['branch'] = cart_item.article.branch
+        except IndexError:
+            logger.info("No branch defined for article in cart.")
         return  initial
 
     def form_valid(self, form):
