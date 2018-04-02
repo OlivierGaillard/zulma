@@ -1,8 +1,8 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
-from .models import Article, Arrivage, Branch
-from .forms import ArticleUpdateForm, ArticleLossesForm, BranchCreateForm
+from .models import Article, Arrivage, Branch, Category
+from .forms import ArticleUpdateForm, ArticleLossesForm, BranchCreateForm, HandlePicturesForm
 from datetime import date
 
 class TestInventoryForms(TestCase):
@@ -44,6 +44,25 @@ class TestInventoryForms(TestCase):
         form = BranchCreateForm(data=data)
         self.assertTrue(form.is_valid(), form.errors.as_data())
 
+    def test_handlepictures(self):
+        bra = Branch.objects.create(name='Boutique')
+        cat = Category.objects.create(name='Chaussures')
+        arr = Arrivage.objects.create(nom="test", date_arrivee=date.today())
+        data = {'branch' : bra.pk, 'arrival' : arr.pk, 'category' : cat.pk}
+        form = HandlePicturesForm(data=data)
+        self.assertTrue(form.is_valid(), form.errors.as_data())
+
+    def test_handlepictures_no_branch(self):
+        cat = Category.objects.create(name='Chaussures')
+        arr = Arrivage.objects.create(nom="test", date_arrivee=date.today())
+        data = {'arrival' : arr.pk, 'category' : cat.pk}
+        form = HandlePicturesForm(data=data)
+        self.assertTrue(form.is_valid(), form.errors.as_data())
+        self.assertIsNone(form.cleaned_data['branch'])
+        art = Article.objects.create(name='a1', quantity=10, photo='a1', arrival=form.cleaned_data['arrival'],
+                                     category=form.cleaned_data['category'],
+                                     branch=form.cleaned_data['branch'])
+        self.assertIsNotNone(art)
 
 
 

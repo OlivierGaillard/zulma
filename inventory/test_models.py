@@ -14,6 +14,10 @@ class TestInventoryViews(TestCase):
         d = self.a1.date_added
         self.assertIsNotNone(d)
 
+    def test_print_article(self):
+        s = self.a1.__str__()
+        print(s)
+
     def test_article_initial_quantity(self):
         self.assertEqual(self.a1.initial_quantity, 1)
 

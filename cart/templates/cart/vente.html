@@ -5,7 +5,6 @@
 {% load i18n %}
 {% block content %}
 
-<p>
 <div class="container">
 
 
@@ -39,6 +38,7 @@
   <form method="GET" action="{% url "cart:paiement_add" vente.pk  %}">
   {% csrf_token %}
   <input type="submit" class="btn btn-warning" value="{% trans "Ajouter un paiement" %}"/>
+  </form>
 
   {% elif vente.paiement_set.all|length > 0 and vente.reglement_termine == False %}
   <form method="GET" action="{% url "cart:paiement_add" vente.pk  %}">
@@ -144,12 +144,12 @@
 
 <h3>{% trans "Modifier la vente" %}</h3>
 
-  <p>
+
   <form method="GET" action="{% url "cart:vente_update" vente.pk  %}">
        {% csrf_token %}
        <input type="submit" class="btn btn-danger" value="{% trans 'Modifier la vente' %}"/>
     </form>
-</p>
+
 
 </div>
 

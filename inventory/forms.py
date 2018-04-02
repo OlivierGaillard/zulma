@@ -110,6 +110,7 @@ class UploadPicturesZipForm(forms.Form):
 
 class HandlePicturesForm(forms.Form):
 
+    branch   = forms.ModelChoiceField(label=_('Branch'), required=False, queryset=Branch.objects.all())
     arrival  = forms.ModelChoiceField(label=_('Arrival'), queryset=Arrivage.objects.all())
     category = forms.ModelChoiceField(label=_('Category'), required=False, queryset=Category.objects.all())
 

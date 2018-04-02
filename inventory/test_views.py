@@ -4,6 +4,7 @@ from django.shortcuts import reverse
 from datetime import date
 from .models import Article, Arrivage, Branch
 from .forms import ArticleUpdateForm
+from .views import get_extension, get_extension_error, image_extension_fails
 from costs.models import Costs, Category
 #from .views import ArticleDeleteView
 
@@ -251,6 +252,29 @@ class TestInventoryViews(TestCase):
         self.assertEqual('Chance', b2.name)
         self.assertInHTML('Chance', r.content.decode())
 
+    def test_get_extension(self):
+        img_path = "/temp/truc/pic.jpg"
+        self.assertEqual('.JPG', get_extension(img_path))
+        img_path = "/temp/truc/pic.JPG"
+        self.assertEqual('.JPG', get_extension(img_path))
+
+    def test_get_extension_error(self):
+        img_path = "/temp/truc/pic2.jpg"
+        msg = "Image extension is not .JPG (.jpg) or .JPEG (.jpeg): [{0}".format(img_path)
+        self.assertEqual(msg, get_extension_error(img_path))
+
+    def test_img_extension_fail(self):
+        img_path = "/temp/truc/pic2.png"
+        self.assertTrue((image_extension_fails(img_path), img_path))
+
+    def test_img_extension_valid(self):
+        self.assertFalse(image_extension_fails("/temp/truc/pic2.jpg"), "/temp/truc/pic2.jpg" )
+        self.assertFalse(image_extension_fails("/temp/truc/pic2.jpeg"))
+        self.assertFalse(image_extension_fails("/temp/truc/pic2.JPG"))
+        self.assertFalse(image_extension_fails("/temp/truc/pic2.JPEG"))
+        self.assertFalse(image_extension_fails("pic2.jpg"))
+        self.assertFalse(image_extension_fails("pic2.jpeg"))
+        self.assertTrue(image_extension_fails("/temp/turc.png"), "turc.png")
 
 
 

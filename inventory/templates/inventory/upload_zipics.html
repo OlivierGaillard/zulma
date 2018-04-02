@@ -4,7 +4,16 @@
 {% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
-  <h4>{% trans "Upload only a ZIP file." %}</h4>
+  <div class="jumbotron alert alert-warning">
+    <h3>Warnings!</h3>
+    <ul>
+      <li>{% trans "Upload only <code>ZIP</code> files." %}</li>
+      <li>Upload only <code>.JPG</code> or <code>.JPEG</code> images. PNG images are
+    not handled.</li>
+    </ul>
+
+
+  </div>
 {% crispy form %}
 </div>
 {% endblock %}

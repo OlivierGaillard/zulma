@@ -53,7 +53,22 @@ def resize_pics():
         logger.warning('resize failed')
         logger.warning('cleaning temporary folder')
 
-def handle_pics_zip(f):
+
+def get_extension(img):
+    return os.path.splitext(img)[1].upper()
+
+def get_extension_error(img):
+    return "Image extension is not .JPG (.jpg) or .JPEG (.jpeg): [{0}".format(img)
+
+
+def image_extension_fails(img):
+    ext = get_extension(img)
+    return not ext in ['.JPG', '.JPEG']
+
+
+
+def handle_pics_zip(request):
+    f = request.FILES['pictures_zip']
     logger.debug('in handle_pics_zip.')
     pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
     file_name = os.path.join(pictures_dir, f.name)
@@ -73,15 +88,17 @@ def handle_pics_zip(f):
             for filename in filenames:
                 filepath = os.path.join(dirpath, filename)
                 logger.debug('handling %s...' % filepath)
-                file, ext = os.path.splitext(filepath)
-                if ext.upper() == ".JPG" or ext.upper() == ".JPEG":
-                    logger.debug('mv %s into tmp.' % filepath)
-                    shutil.move(filepath, pictures_dir)
-                else:
-                    logger.debug('not moved file %s' % filepath)
+                if image_extension_fails(filepath):
+                    extension_error = get_extension_error(filepath)
+                    logger.warning(extension_error)
+                    messages.warning(request, extension_error)
+                    logger.warning('not moved file %s.' % filepath)
+                    os.unlink(filepath)
+                    logger.warning('deleted file {0}'.format(filepath))
+                    continue
+                logger.debug('mv %s into tmp.' % filepath)
+                shutil.move(filepath, pictures_dir)
                 logger.debug('end.')
-    #logger.debug('rmdir %s' % zipped_dir)
-     #       os.rmdir(zipped_dir)
     logger.debug('rm zip file %s' % file_name)
     os.unlink(file_name)
     logger.debug('zip file deleted. Will resize pics now.')
@@ -95,13 +112,14 @@ def upload_pictures_zip(request):
         form = UploadPicturesZipForm(request.POST, request.FILES)
         if form.is_valid():
             logger.debug('form is valid. handle_pics_zip will be called...')
-            handle_pics_zip(request.FILES['pictures_zip'])
+            handle_pics_zip(request)
             return HttpResponseRedirect("/inventory/handle_pics/")
         else:
             return render(request, "inventory/upload_zipics.html", {'form': form})
     else:
         form = UploadPicturesZipForm()
         return render(request, "inventory/upload_zipics.html", {'form': form})
+
 
 
 def handle_pictures(request):
@@ -113,21 +131,16 @@ def handle_pictures(request):
     if request.method == 'POST':
         form = HandlePicturesForm(request.POST)
         if form.is_valid():
-            arrival = form.cleaned_data['arrival']
-            logger.debug('Arrival: %s' % arrival)
-            category = form.cleaned_data['category']
-            logger.debug('Category: %s' % category)
             nb = 0
             for f in files:
                 nb += 1
                 source_path = os.path.join(pictures_dir, f)
+
                 target_path = os.path.join(target_dir, f)
-                a = Article(photo=os.path.join('articles', f), arrival=arrival)
-                if category:
-                    logger.debug('saving category %s' % category)
-                    a.category = category
-                else:
-                    logger.debug('no category selected.')
+                a = Article(photo=os.path.join('articles', f),
+                            branch=form.cleaned_data['branch'],
+                            arrival=form.cleaned_data['arrival'],
+                            category=form.cleaned_data['category'])
                 try:
                     logger.debug('creating article with pic %s' % f)
                     a.save()
@@ -135,6 +148,7 @@ def handle_pictures(request):
                     logger.debug('moving the pic from "tmp" into "articles" directory.')
                     messages.info(request, 'Article with pic %s created.' % f)
                     os.rename(source_path, target_path)
+                    logger.info("Article [%s] created." % a)
                 except IntegrityError:
                     msg = 'The pic %s already exists and was deleted.' % f
                     logger.warning(msg)

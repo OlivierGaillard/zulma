@@ -185,6 +185,18 @@ class Article(models.Model):
         """Check if the article has losses or not."""
         return self.losses > 0
 
+    def __str__(self):
+        s = "Name: {0}\n Branch: {1}\n Arrival: {2}\n Category: {3}\n Quantity: {4}\n Purch. price: {5}\n Selling price: {6}".format(
+            self.name,
+            self.branch,
+            self.arrival,
+            self.category,
+            self.quantity,
+            self.purchasing_price,
+            self.selling_price
+        )
+        return s
+
 
 
 
