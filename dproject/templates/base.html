@@ -57,20 +57,20 @@
             {% if request.user.is_authenticated %}
                 <li class="dropdown">
                     <a class="dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                      {% trans "Setup" %}
+                      {% trans "First Steps" %}
                        <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url "inventory:arrival_create" %}" title="{% trans 'Create an arrival' %}">(1) {% trans 'Create one arrival' %}</a></li>
-                        <li><a href="{% url "inventory:arrivals" %}" title="{% trans 'Arrivals List' %}">{% trans 'Arrivals' %}</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{% url "inventory:branches" %}">{% trans 'Branches' %}</a> </li>
+                        <li class="dropdown-header">Preparation</li>
                         <li><a href="{% url "inventory:branch_create" %}">{% trans 'Create Branch' %}</a> </li>
+                        <li><a href="{% url "inventory:category_create" %}" title="{% trans 'Create category' %}">{% trans 'Create one Category' %}</a></li>
+                        <li><a href="{% url "inventory:arrival_create" %}" title="{% trans 'Create  Arrival' %}">{% trans 'Create one Arrival' %}</a></li>
+                        <li><a href="{% url "inventory:upload_zipics" %}" title="{% trans 'Upload pictures ZIP' %}">{% trans 'Upload ZIP pictures' %}</a></li>
+                        <li><a href="{% url "inventory:handle_pics" %}" title="{% trans 'Generate articles from pictures' %}">{% trans 'Generate Articles' %}</a></li>
                         <li class="divider"></li>
-                        <li><a href="{% url "inventory:upload_zipics" %}" title="{% trans 'Upload pictures ZIP' %}">(2) {% trans 'Upload ZIP pictures' %}</a></li>
-                        <li><a href="{% url "inventory:handle_pics" %}" title="{% trans 'Generate articles from pictures' %}">(3) {% trans 'Generate Articles' %}</a></li>
-                        <li class="divider"></li>
-                        <li><a href="{% url "inventory:category_create" %}" title="{% trans 'Create category' %}">(4) {% trans 'Create one Category' %}</a></li>
+                        <li class="dropdown-header">{% trans 'Your Basic Data'%}</li>
+                        <li><a href="{% url "inventory:branches" %}">{% trans 'Branches' %}</a> </li>
+                        <li><a href="{% url "inventory:arrivals" %}" title="{% trans 'Arrivals List' %}">{% trans 'Arrivals' %}</a></li>
                         <li><a href="{% url "inventory:categories" %}" title="{% trans 'List the categories' %}">{% trans 'Categories' %}</a></li>
                     </ul>
                 </li>
