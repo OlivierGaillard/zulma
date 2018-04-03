@@ -6,14 +6,12 @@ from costs.models import Costs, Category
 from inventory.models import Article, Arrivage, Branch
 from .models import Dashboard
 import datetime
+from inventory.views import articleDeleteView
 
 class TestDashboard(TestCase):
 
     def setUp(self):
         self.arrival = Arrivage.objects.create(nom="test", date_arrivee=datetime.date.today())
-        # a1 = Article.objects.create(name='a1', quantity=10, photo='a1', arrival=self.arrival, purchasing_price=100)
-        # a2 = Article.objects.create(name='a2', quantity=5, photo='a2', arrival=self.arrival,  purchasing_price=100)
-
         self.user_oga = User.objects.create_user(username='golivier', password='mikacherie')
 
     def test_balance_view(self):
@@ -133,6 +131,51 @@ class TestDashboard(TestCase):
         self.assertEqual(410, Dashboard.costs_grand_total(branch=b1))
 
         self.assertEqual(20-400-10, Dashboard.get_balance(b1))
+
+
+    def test_delete_article_check_costs_purchases_are_ok(self):
+        """If one article has a purchasing price it could be deleted from
+        the inventory but its purchasing price does need to be added
+        to the costs. When to add the purchase cost to costs?
+        Right after the price is saved? Bad idea because the total costs
+        should then be updated to not include the request for articles.
+
+        Then the price could be added during the deletion of the article.
+        I will include a message on the form that the purchasing price
+        will be included. If the article was a doublon the user has to
+        reset the purchasing price to zero. The delete form will include
+        a field to assert that it is or not a doublon. If doublon.
+        """
+        b1 = Branch.objects.create(name='B1')
+        b2 = Branch.objects.create(name='B2')
+        a1b1 = Article.objects.create(name='a1b1', quantity=1, photo='a1b1', arrival=self.arrival, purchasing_price=200,
+                                      branch=b1)
+        a2b1 = Article.objects.create(name='a2b1', quantity=1, photo='a2b1', arrival=self.arrival, purchasing_price=200,
+                                      branch=b1)
+        a1b2 = Article.objects.create(name='a1b2', quantity=1, photo='a1b2', arrival=self.arrival, purchasing_price=400,
+                                      branch=b2)
+        # without branch
+        a3 = Article.objects.create(name='a3', quantity=1, photo='a3', arrival=self.arrival, purchasing_price=600)
+
+
+        self.assertEqual(400, Dashboard.total_purchasing_prices(branch=b1))
+        self.assertEqual(1400, Dashboard.total_purchasing_prices())
+
+        # total purchasing prices = 1400
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        data = {'delete_purchasing_costs': 'False'}
+        c.post(reverse('inventory:article_delete', args=[a1b1.pk]), data)
+
+        # costs_grand_total: costs with purchasing prices.
+        # if article is deleted a new cost is created with the purchasing price.
+        self.assertEqual(400, Dashboard.costs_grand_total(branch=b1))
+
+
+
+
+
+
 
 
 

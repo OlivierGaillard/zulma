@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from .models import Article, Arrivage, Branch, Category
-from .forms import ArticleUpdateForm, ArticleLossesForm, BranchCreateForm, HandlePicturesForm
+from .forms import ArticleUpdateForm, ArticleLossesForm, BranchCreateForm, HandlePicturesForm, ArticleDeleteForm
 from datetime import date
 
 class TestInventoryForms(TestCase):
@@ -65,16 +65,11 @@ class TestInventoryForms(TestCase):
         self.assertIsNotNone(art)
 
 
+    def test_delete_article_form_with_doublon_checkbox_checked(self):
+        f = ArticleDeleteForm(data={'delete_purchasing_costs' : True})
+        self.assertTrue(f.is_valid())
 
-
-
-
-
-
-
-
-
-
-
-
+    def test_delete_article_form_with_doublon_checkbox_unchecked(self):
+        f = ArticleDeleteForm(data={'delete_purchasing_costs': False})
+        self.assertTrue(f.is_valid())
 

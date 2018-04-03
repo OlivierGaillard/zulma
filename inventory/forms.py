@@ -271,6 +271,22 @@ class BranchUpdateForm(forms.ModelForm):
             )
         )
 
+class ArticleDeleteForm(forms.Form):
+    delete_purchasing_costs = forms.BooleanField(required=False, label=_("Delete Purchasing Costs too?"))
+
+    def __init__(self, *args, **kwargs):
+        super(ArticleDeleteForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
 
 
 class AddPhotoForm(forms.Form):

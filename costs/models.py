@@ -75,7 +75,7 @@ class Costs(models.Model):
     billing_date = models.DateField(blank=True, null=True, help_text=_('when the bill was created'))
     billing_number = models.CharField(blank=True, null=True, max_length=200, help_text=_('the bill reference number'))
     article_link = models.URLField(_('Article link'), null=True, blank=True)
-    article_id   = models.ForeignKey(Article, null=True, on_delete=models.CASCADE)
+    article_id   = models.ForeignKey(Article, null=True, on_delete=models.SET_NULL)
     objects = CostsManager()
 
     def __str__(self):

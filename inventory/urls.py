@@ -15,8 +15,8 @@ Including another URLconf
 """
 
 from django.conf.urls import url
-from .views import ArticleDetailView, articles, ArticleUpdateView, ArticleDeleteView
-from .views import ArrivalListView, ArrivalUpdateView, ArrivalCreateView, ArrivalDetailView
+from .views import ArticleDetailView, articles, ArticleUpdateView, articleDeleteView
+from .views import ArrivalListView, ArrivalUpdateView, ArrivalCreateView, ArrivalDetailView, ArrivalDeleteView
 from .views import handle_pictures, upload_pictures_zip, CategoryCreateView, CategoryUpdateView, CategoryListView
 from .views import CategoryDetailView, CategoryDeleteView
 from .views import add_one_loss, AddOneLossView, BranchCreateView, BranchDetailView, BranchDeleteView
@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^arrival_create/$', ArrivalCreateView.as_view(), name='arrival_create'),
     url(r'^arrival_detail/(?P<pk>[0-9]+)$', ArrivalDetailView.as_view(), name='arrival_detail'),
     url(r'^arrival_update/(?P<pk>[0-9]+)$', ArrivalUpdateView.as_view(), name='arrival_update'),
+    url(r'^arrival_delete/(?P<pk>[0-9]+)$', ArrivalDeleteView.as_view(), name='arrival_delete'),
     url(r'^arrivals/$', ArrivalListView.as_view(), name='arrivals'),
     url(r'^categories/$', CategoryListView.as_view(), name='categories'),
     url(r'^category_update/(?P<pk>[0-9]+)$', CategoryUpdateView.as_view(), name='category_update'),
@@ -48,7 +49,7 @@ urlpatterns = [
     url(r'article_losses/(?P<pk>[0-9]+)$', add_one_loss, name='article_losses'),
     url(r'add_one_loss/(?P<pk>[0-9]+)$', AddOneLossView.as_view(), name='add_one_loss'),
     url(r'^article_detail/(?P<pk>[0-9]+)$', ArticleDetailView.as_view(), name='article_detail'),
-    url(r'^article_delete/(?P<pk>[0-9]+)$', ArticleDeleteView.as_view(), name='article_delete'),
+    url(r'^article_delete/(?P<pk>[0-9]+)$', articleDeleteView, name='article_delete'),
     #url(r'^upload_pic/(?P<pk>[0-9]+)$', upload_pic, name='upload_pic'),
     url(r'^handle_pics/$', handle_pictures, name='handle_pics'),
     url(r'^upload_zipics/$', upload_pictures_zip, name='upload_zipics'),

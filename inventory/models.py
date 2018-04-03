@@ -173,6 +173,7 @@ class Article(models.Model):
             os.unlink(self.photo.path)
         except (ValueError, FileNotFoundError):
             logger.warning('No deletion of photo because no photo file found. (delete method within model Article).')
+
         super(Article, self).delete()
 
 

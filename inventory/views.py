@@ -17,10 +17,11 @@ from django_filters.widgets import BooleanWidget
 from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView, DeleteView, View, FormView
 from django.contrib.auth.models import User
 from .models import Article, Employee, Arrivage, Category, Branch
-from .forms import  ArticleUpdateForm, ArrivalCreateForm, HandlePicturesForm, ArrivalUpdateForm
+from .forms import  ArticleUpdateForm, ArrivalCreateForm, HandlePicturesForm, ArrivalUpdateForm, ArticleDeleteForm
 from .forms import UploadPicturesZipForm, CategoryFormCreate, CategoryFormUpdate, CategoryFormDelete
 from .forms import ArticleLossesForm, BranchCreateForm, BranchUpdateForm
 import costs.models
+from costs.models import Category as CostsCategory, Costs
 from cart.cartutils import article_already_in_cart, get_cart_items
 from django.conf import settings
 import os
@@ -445,12 +446,53 @@ class ArticlesListView(ListView):
         qs = Article.objects.all()
         return qs
 
-@method_decorator(login_required, name='dispatch')
-class ArticleDeleteView(DeleteView):
-    context_object_name = 'article'
-    template_name = 'inventory/article_delete.html'
-    model = Article
-    success_url = 'inventory/articles/'
+
+@login_required()
+def articleDeleteView(request, pk):
+
+    article = get_object_or_404(Article, pk=pk)
+    if request.method == 'POST':
+        form = ArticleDeleteForm(request.POST)
+        if form.is_valid():
+            if not form.cleaned_data['delete_purchasing_costs']:
+                logger.debug('Deleting article without its purchasing price.')
+                # The purchasing price of the article will be saved in a Costs.
+                # Create a Cost with the purchasing price
+                cat = None
+                if len(Category.objects.filter(name='Purchasing Price')) == 0:
+                    cat =  CostsCategory.objects.create(name='Purchasing Price')
+                else:
+                    cat = CostsCategory.objects.filter(name='Purchasing Price')[0]
+                logger.debug('Costs Category {0} created or used.'.format(cat.name))
+                cost = Costs.objects.create(category=cat,
+                                     amount=article.purchasing_price,
+                                     name='Generated when article was deleted',
+                                            branch=article.branch,
+                                      )
+                logger.info('Purchasing price {0} saved in  Cost-ID {1}.'.format(article.purchasing_price, cost.pk))
+            else:
+                logger.info('Deleting article without saving its purchasing price.')
+
+            article.delete()
+            return HttpResponseRedirect(reverse('inventory:articles'))
+        else:
+            return render(request, context={'article': article, 'form': form},
+                          template_name='inventory/article_delete.html')
+
+    else:
+        form = ArticleDeleteForm()
+        return render(request, context={'article': article, 'form': form},
+                      template_name='inventory/article_delete.html')
+
+
+
+
+
+# class ArticleDeleteView(DeleteView):
+#     context_object_name = 'article'
+#     template_name = 'inventory/article_delete.html'
+#     model = Article
+#     success_url = 'inventory/articles/'
 
 @method_decorator(login_required, name='dispatch')
 class BranchListView(ListView):
@@ -486,3 +528,9 @@ class BranchEditView(UpdateView):
     form_class = BranchUpdateForm
 
 
+@method_decorator(login_required, name='dispatch')
+class ArrivalDeleteView(DeleteView):
+    model = Arrivage
+    template_name = 'inventory/arrival_delete.html'
+    success_url = '/inventory/arrivals'
+    context_object_name = 'arrival'

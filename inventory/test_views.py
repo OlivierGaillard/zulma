@@ -1,11 +1,15 @@
 from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
+from django.core.exceptions import ObjectDoesNotExist
 from datetime import date
 from .models import Article, Arrivage, Branch
+from .models import Category as ArticleCategory
 from .forms import ArticleUpdateForm
 from .views import get_extension, get_extension_error, image_extension_fails
 from costs.models import Costs, Category
+
+
 #from .views import ArticleDeleteView
 
 class TestInventoryViews(TestCase):
@@ -20,7 +24,7 @@ class TestInventoryViews(TestCase):
         self.assertEqual(2, Article.objects.count())
         c = Client()
         response = c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
-        response = c.post(reverse('inventory:article_delete', args=[self.a1.pk]), follow=False)
+        response = c.post(reverse('inventory:article_delete', args=[self.a1.pk]), {'delete_purchasing_costs' : False}, follow=False)
         c.logout()
         self.assertEqual(1, Article.objects.count())
 
@@ -35,7 +39,7 @@ class TestInventoryViews(TestCase):
         self.assertEqual(0, self.a1.losses)
         self.assertEqual(10, self.a1.quantity)
         c = Client()
-        response = c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
         data = {'losses' : 1, 'amount_losses' : 20}
         response = c.post(reverse('inventory:article_losses', args=[self.a1.pk]), data=data, follow=True)
         self.assertEqual(200, response.status_code)
@@ -140,7 +144,11 @@ class TestInventoryViews(TestCase):
         self.assertEqual(0, a1_updated.amount_losses)
 
 
-    def test_delete_article_implies_delete_losses_too(self):
+    def test_delete_article_does_NOT_imply_delete_losses_too(self):
+        """The Costs model has a foreign key with on_delete SET_TO_NULL.
+        Deleting the article will generate a new cost if the purchasing
+        price must be saved.
+        """
         self.assertEqual(2, Article.objects.count())
         c = Client()
         c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
@@ -148,9 +156,9 @@ class TestInventoryViews(TestCase):
         c.post(reverse('inventory:article_losses', args=[self.a1.pk]), data=data, follow=True)
         self.assertEqual(1, Costs.objects.count())
         # Deleting article with costs
-        c.post(reverse('inventory:article_delete', args=[self.a1.pk]), follow=False)
+        c.post(reverse('inventory:article_delete', args=[self.a1.pk]), {'delete_purchasing_costs' : True}, follow=False)
         c.logout()
-        self.assertEqual(0, Costs.objects.count())
+        self.assertEqual(1, Costs.objects.count())
 
 
     def test_add_oneLoss_on_article_where_stock_is_zero(self):
@@ -276,25 +284,34 @@ class TestInventoryViews(TestCase):
         self.assertFalse(image_extension_fails("pic2.jpeg"))
         self.assertTrue(image_extension_fails("/temp/turc.png"), "turc.png")
 
+    def test_arrival_delete(self):
+        arr = Arrivage.objects.create(nom='Torture', date_arrivee=date.today())
+        self.assertIsNotNone(arr)
+        self.assertEqual(Arrivage.objects.count(), 2)
+        c = Client()
+        c.post('/login/', {'username' : 'golivier', 'password' : 'mikacherie'})
+        c.post(reverse('inventory:arrival_delete', args=[arr.pk]))
+        self.assertEqual(1, Arrivage.objects.count())
 
+    def test_article_delete_without_deleting_PurchasingPrice(self):
+        bra = Branch.objects.create(name='Boutique')
+        cat = ArticleCategory.objects.create(name='Chaussures')
+        arr = Arrivage.objects.create(nom="testd", date_arrivee=date.today())
+        art = Article.objects.create(name='a11234', quantity=10, photo='a1asdf', arrival=arr, category=cat, branch=bra)
+        self.assertEqual(Costs.objects.count(), 0)
+        c = Client()
+        c.post('/login/', {'username' : 'golivier', 'password' : 'mikacherie'})
+        data = {'delete_purchasing_costs' : 'False'}
+        c.post(reverse('inventory:article_delete', args=[art.pk]), data)
+        self.assertEqual(Costs.objects.count(), 1)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    def test_article_delete_without_deleting_PurchasingPrice_noBranch(self):
+        cat = ArticleCategory.objects.create(name='Chaussures')
+        arr = Arrivage.objects.create(nom="testd", date_arrivee=date.today())
+        art = Article.objects.create(name='a11234', quantity=10, photo='a1asdf', arrival=arr, category=cat)
+        self.assertEqual(Costs.objects.count(), 0)
+        c = Client()
+        c.post('/login/', {'username' : 'golivier', 'password' : 'mikacherie'})
+        data = {'delete_purchasing_costs' : 'False'}
+        c.post(reverse('inventory:article_delete', args=[art.pk]), data)
+        self.assertEqual(Costs.objects.count(), 1)
