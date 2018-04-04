@@ -38,6 +38,7 @@ def add_cart_item(request, pk):
                 logger.debug(msg)
                 cart_item.article = article
                 cart_item.quantity = 1
+                cart_item.prix = article.selling_price
                 cart_item.save()
             else:
                 return HttpResponse("Quantite en stock insuffisante!")
