@@ -141,7 +141,7 @@ class Article(models.Model):
         ('S', _('en solde')),
     )
 
-    branch = models.ForeignKey(Branch, null=True, blank=True)
+    branch = models.ForeignKey(Branch, null=True, blank=True, on_delete=models.SET_NULL)
     photo = models.ImageField(upload_to='articles', null=True, blank=True, unique=True)
     purchasing_price = models.DecimalField(_('Purchasing price'), max_digits=10, decimal_places=2, null=True, blank=True,
                                            default=0)
@@ -158,7 +158,7 @@ class Article(models.Model):
     amount_losses = models.DecimalField(_('Money lost'), max_digits=10, decimal_places=2, null=True, blank=True,
                                            default=0)
     solde = models.CharField(_("en solde"), max_length=1, choices=solde_choices, default='N')
-    arrival = models.ForeignKey(Arrivage, null=True)
+    arrival = models.ForeignKey(Arrivage, null=True, on_delete=models.SET_NULL)
     notes = models.TextField(_("Notes"), null=True, blank=True, default=_('n.d.'))
 
     objects = ArticleManager()

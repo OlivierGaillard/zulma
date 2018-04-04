@@ -1,7 +1,8 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
-from .models import Article, Branch
+from .models import Article, Branch, Arrivage
+from datetime import date
 #from .views import ArticleDeleteView
 class TestInventoryViews(TestCase):
 
@@ -56,6 +57,16 @@ class TestInventoryViews(TestCase):
         a1 = Article.objects.create(branch=atelier, name='aa1', quantity=10, purchasing_price=20, photo='aa')
         a2 = Article.objects.create(branch=boutique, name='aa1', quantity=10, purchasing_price=20, photo='aaa' )
         self.assertIsNotNone(a2)
+
+    def test_delete_arrival_or_branch_does_not_delete_its_articles(self):
+        arr = Arrivage.objects.create(nom='test', date_arrivee=date.today())
+        atelier = Branch.objects.create(name="Atelier")
+        a1 = Article.objects.create(branch=atelier, name='aa1', quantity=10, purchasing_price=20, photo='aaaa',
+                                    arrival=arr)
+        self.assertEqual(3, Article.objects.count())
+        arr.delete()
+        atelier.delete()
+        self.assertEqual(3, Article.objects.count())
 
 
 
