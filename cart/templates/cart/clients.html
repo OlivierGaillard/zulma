@@ -11,6 +11,7 @@
           <th>{% trans 'Prénom' %}</th>
           <th>{% trans 'Téléphone' %}</th>
           <th>{% trans 'Modifier' %}</th>
+          <th>{% trans 'Delete' %}</th>
       </tr>
       </thead>
 
@@ -20,8 +21,12 @@
           <td><a href="{% url "cart:client" a.pk %}">{{a.pk}}</a></td>
           <td>{{ a.name }}</td>
           <td>{{ a.first_name }}</td>
-          <td>{{ a.tel }}</td>
+          <td>{{ a.tel|default_if_none:"&mdash;" }}</td>
           <td><a href="{% url "cart:client_update" a.pk %}">{% trans 'Modifier'%}</a> </td>
+          <td>
+            <a href="{% url "cart:client_delete" a.pk %}">{% trans 'Delete' %}</a>
+          </td>
+
       </tr>
       {% endfor %}
     </table>

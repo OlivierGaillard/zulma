@@ -22,6 +22,7 @@ urlpatterns = [
     url(r'^clients/$', views.ClientListView.as_view(), name='clients'),
     url(r'^client/(?P<pk>[0-9]+)$', views.ClientDetailView.as_view(), name='client'),
     url(r'^client_update/(?P<pk>[0-9]+)$', views.ClientUpdateView.as_view(), name='client_update'),
+    url(r'^client_delete/(?P<pk>[0-9]+)$', views.ClientDeleteView.as_view(), name='client_delete'),
     url(r'^client_create/$', views.ClientCreateView.as_view(), name='client_create'),
     url(r'^paiements/$', views.PaiementListView.as_view(), name='paiements'),
     url(r'^paiement_add/(?P<vente_pk>[0-9]+)$', views.add_paiement, name='paiement_add'),

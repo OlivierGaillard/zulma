@@ -131,6 +131,8 @@ class ClientUpdateForm(forms.ModelForm):
             )
         )
 
+
+
 class PaiementUpdateForm(forms.ModelForm):
     class Meta:
         model = Paiement

@@ -288,6 +288,12 @@ class ClientCreateView(CreateView):
     template_name = 'cart/client_create.html'
     form_class = ClientCreateForm
 
+class ClientDeleteView(DeleteView):
+    model = Client
+    template_name = 'cart/client_delete.html'
+    #form_class = ClientDeleteForm
+    success_url = '/cart/clients'
+
 
 class ClientUpdateView(UpdateView):
     model = Client

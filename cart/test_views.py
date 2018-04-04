@@ -1,7 +1,7 @@
 from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
-from .models import CartItem, Vente, Paiement
+from .models import CartItem, Vente, Paiement, Client as Customer
 from inventory.models import Article
 from datetime import date
 
@@ -51,6 +51,13 @@ class TestInventoryViews(TestCase):
         v = Vente.objects.get(pk=v.pk)
         self.assertTrue(v.reglement_termine)
 
+    def test_delete_customer(self):
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        cust = Customer.objects.create(name='Gaillard', first_name='Olivier')
+        self.assertEqual(1, Customer.objects.count())
+        c.post(reverse('cart:client_delete', args=[cust.pk]))
+        self.assertEqual(0, Customer.objects.count())
 
 
 
