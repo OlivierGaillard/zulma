@@ -16,6 +16,7 @@ class MainBalanceView(TemplateView):
                    'total_sellings' : Vente.objects.total_sellings(),
                    'balance' : Costs.objects.get_balance(),
                    'branches' : Branch.objects.all(),
+                   'articles_count': Article.objects.count()
                    }
         return render(request=request, template_name='dashboard/main.html', context=context)
 
@@ -29,5 +30,6 @@ def branch_dashboard(request, pk):
                'total_sellings': Vente.objects.total_sellings(branch=branch),
                'balance': Costs.objects.get_balance(branch=branch),
                'branch' : branch,
+               'articles_count' : Article.objects.filter(branch=branch).count()
                }
     return render(request=request, template_name=template_name, context=context)
