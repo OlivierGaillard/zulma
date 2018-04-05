@@ -4,6 +4,10 @@ from django.shortcuts import reverse
 from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
 from inventory.models import Branch, Article
+import logging
+
+logger = logging.getLogger('django')
+
 
 
 
@@ -111,7 +115,9 @@ class CartItem(models.Model):
         return self.quantity * self.prix
 
     def update_article_quantity(self):
+        logger.info("CartItem.update_article_quantity: Article quantity before update {0}".format(self.article.quantity))
         self.article.quantity = self.article.quantity - self.quantity
+        logger.info("After update: {0}".format(self.article.quantity))
         self.article.save()
 
     @property

@@ -2,7 +2,7 @@ from django.test import TestCase, Client, RequestFactory
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from .models import CartItem, Vente, Paiement, Client as Customer
-from inventory.models import Article
+from inventory.models import Article, Branch
 from datetime import date
 
 from .cartutils import get_cart_id_session
@@ -11,7 +11,8 @@ from .cartutils import get_cart_id_session
 class TestInventoryViews(TestCase):
 
     def setUp(self):
-        self.a1 = Article.objects.create(name='a1', quantity=10)
+        self.b1 = Branch.objects.create(name='branch1')
+        self.a1 = Article.objects.create(name='a1', quantity=10, branch=self.b1)
         self.user_oga = User.objects.create_user(username='golivier', password='mikacherie')
 
     def btest_add_to_cart_view(self):
@@ -32,7 +33,7 @@ class TestInventoryViews(TestCase):
         c = Client()
         c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
         c.post(reverse('cart:add_item', args=[self.a1.pk]))
-        data = {'new_quantity': "1", 'new_price': "50"}
+        data = {'new_quantity': "2", 'new_price': "50"}
         cart_item = CartItem.objects.all()[0]
         c.post(reverse('cart:save_cart_item', args=[cart_item.pk]), data=data)
         # Cart item is updated and ready to checkout: i.e. create a selling
@@ -50,6 +51,11 @@ class TestInventoryViews(TestCase):
         self.assertEqual(p.montant, 50)
         v = Vente.objects.get(pk=v.pk)
         self.assertTrue(v.reglement_termine)
+
+        # Check quantity of article is updated
+        self.assertEqual(1, Article.objects.count())
+        a1 = Article.objects.get(pk=self.a1.pk)
+        self.assertEqual(8, a1.quantity)
 
     def test_delete_customer(self):
         c = Client()
