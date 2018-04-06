@@ -30,21 +30,25 @@ def add_cart_item(request, pk):
             cart_item = get_cart_item_of_book(cart_items, article)
             cart_item.augment_quantity(1)
             cart_item.save()
+            logger.info('add_cart_item: another one item of article {0}'.format(article))
         else:
             if article.quantity > 0:
                 cart_item = CartItem()
                 cart_item.cart_id = _set_or_get_session_id(request)
-                msg = 'Session-ID: %s' % cart_item.cart_id
-                logger.debug(msg)
+                msg = 'add_cart_item: Session-ID: {0}'.format(cart_item.cart_id)
+                logger.info(msg)
                 cart_item.article = article
                 cart_item.quantity = 1
                 cart_item.prix = article.selling_price
                 cart_item.save()
+                logger.info('add_cart_item: Article {0} added to the cart.'.format(article))
             else:
+                logger.warning('add_cart_item: out of stock for article {0}'.format(article))
                 return HttpResponse("Quantite en stock insuffisante!")
         url_redirect = reverse('cart:cart_content')
         return HttpResponseRedirect(url_redirect)
     else:
+        logger.warning('add_cart_item called with method GET. Not normal!')
         print('not a POST?')
         pass
 
@@ -63,11 +67,15 @@ def remove_cart_item(request, pk):
 def remove_article_from_vente_and_update_article_quantity(request, pk):
     """pk is the one of cart_item, its ID."""
     if request.method == 'GET':
+        logger.info('remove_article_from_vente_and_update_article_quantity:...')
         cart_item = CartItem.objects.get(pk=pk)
         vente = cart_item.vente
         article = Article.objects.get(pk=cart_item.article.pk)
+        logger.debug('Article: {0}'.format(article))
         article.quantity += cart_item.quantity
         article.save()
+        logger.debug('Article quantity: {0}'.format(article.quantity))
+        logger.debug('Quantity of article will be added by {0}. END of remove...'.format(cart_item.quantity))
         cart_item.delete()
 #        url_redirect = reverse('cart:vente_update', kwargs={'pk':vente.pk})
         return HttpResponseRedirect("/cart/vente_update/%s" % vente.pk)
@@ -77,26 +85,25 @@ def save_cart_item(request, pk):
         cart_item = CartItem.objects.get(pk=pk)
         new_quantity = request.POST.get('new_quantity', '')
         new_quantity = int(new_quantity)
-        logger.debug('new quantity: %s' % str(new_quantity))
+        logger.debug('save_cart_item: new quantity: %s' % str(new_quantity))
         msg = cart_item.set_quantity(new_quantity)
         if msg:
             logger.warning('msg: %s' % msg)
         price = request.POST.get('new_price', '')
-        logger.debug('new_price: %s' % price)
+        logger.debug('save_cart_item: new_price: %s' % price)
         if len(price) == 0:
             # assuming zero
             price = "0"
-        logger.debug('converting in float..')
         cart_item.prix = float(price)
 
         if cart_item.prix == 0:
-            logger.warning("Le montant de l'article est zéro!")
+            logger.warning("save_cart_item: Le montant de l'article est zéro!")
             return render(request, 'cart/cart_content.html',
                           {'error_message': "Le montant de l'article est zéro!",
                            'cart': get_cart_items(request), 'new_price': price,
                            })
         cart_item.save()
-        logger.debug('Item saved.')
+        logger.debug('save_cart_item: Item saved.')
         url_redirect = reverse('cart:cart_content')
         return HttpResponseRedirect(url_redirect)
     else:
@@ -193,7 +200,7 @@ class CheckoutView(CreateView):
     form_class = VenteCreateForm
 
     def get_context_data(self, **kwargs):
-        logger.debug('In CheckoutView: get_context_data')
+        logger.debug('CheckoutView: get_context_data')
         ctx = super(CheckoutView, self).get_context_data(**kwargs)
 
         if is_cart_id_session_set(self.request):
@@ -205,18 +212,19 @@ class CheckoutView(CreateView):
             return ctx
 
     def get_initial(self):
-        logger.debug('In CheckoutView: get_initial')
+        logger.debug('CheckoutView: get_initial')
         initial = super(CheckoutView, self).get_initial()
         session_id = get_cart_id_session(self.request)
+        logger.info('get_initial: Session-ID: {0}'.format(session_id))
         initial['montant'] = CartItem.get_total_of_cart(session_id)
         # trying to get branch from article, if any
         try:
             items = get_cart_items(self.request)
             cart_item  = items[0]
-            logger.debug('Article Name: %s / Branch: [%s]' % (cart_item.article.name, cart_item.article.branch))
+            logger.debug('CheckoutView: Article Name: %s / Branch: [%s]' % (cart_item.article.name, cart_item.article.branch))
             initial['branch'] = cart_item.article.branch
         except IndexError:
-            logger.info("No branch defined for article in cart.")
+            logger.info("CheckoutView: No branch defined for article in cart.")
         return  initial
 
     def form_valid(self, form):
@@ -229,6 +237,7 @@ class CheckoutView(CreateView):
             cart.save()
             cart.update_article_quantity()
         remove_cart_id_from_session(self.request)
+        logger.info('cart_id removed from session. End of form_valid of CheckoutView.')
         return super(CheckoutView, self).form_valid(form)
 
 
