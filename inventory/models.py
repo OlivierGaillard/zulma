@@ -4,6 +4,8 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 import logging
 import os
+from datetime import date
+from dashboard.utils import TimeSliceHelper
 
 
 logger = logging.getLogger('django')
@@ -114,21 +116,13 @@ class Branch(models.Model):
         ordering = ['name']
 
 
-
-
-
-
 class ArticleManager(models.Manager):
 
-    def total_purchasing_price(self, branch=None):
+    def total_purchasing_price(self, branch=None, year=None, start_date=None, end_date=None):
         total = 0
-        articles = None
-        if branch != None:
-            articles = self.model.objects.all().filter(branch=branch)
-        else:
-            articles = self.model.objects.all()
-        for a in articles:
-            total += a.purchasing_price
+        helper = TimeSliceHelper(Article)
+        articles = helper.get_objects(year=year, branch=branch, start_date=start_date, end_date=end_date)
+        total = sum(a.purchasing_price for a in articles)
         return total
 
 
@@ -150,7 +144,7 @@ class Article(models.Model):
     name  = models.CharField(_('Name'), max_length=100, null=True, blank=True, default=_('n.d.'))
     category = models.ForeignKey(Category, null=True, blank=True, verbose_name=_('Category'))
     description = models.TextField(_('Description'), null=True, blank=True, default=_('n.d.'))
-    date_added  = models.DateField(auto_now_add=True, null=True)
+    date_added  = models.DateField(default=date.today, null=True)
     # initial quantity when article is added to the inventory
     initial_quantity = models.IntegerField(_('Initial quantity'), default=1, null=True)
     quantity = models.PositiveSmallIntegerField(_('Quantity'), default=1)
@@ -187,14 +181,15 @@ class Article(models.Model):
         return self.losses > 0
 
     def __str__(self):
-        s = "Name: {0}\n Branch: {1}\n Arrival: {2}\n Category: {3}\n Quantity: {4}\n Purch. price: {5}\n Selling price: {6}".format(
+        s = "Name: {0}\n Branch: {1}\n Arrival: {2}\n Category: {3}\n Quantity: {4}\n Purch. price: {5}\n Selling price: {6}\n Date added: {7}".format(
             self.name,
             self.branch,
             self.arrival,
             self.category,
             self.quantity,
             self.purchasing_price,
-            self.selling_price
+            self.selling_price,
+            self.date_added
         )
         return s
 

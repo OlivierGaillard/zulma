@@ -7,7 +7,13 @@
 
 <h3>{% trans "Main Dashboard"%}</h3>
 
+  <form action="{% url 'dashboard:main' %}" method="get">
+    {{ form }}
+    <input type="submit" value="Envoyer">
+  </form>
   <div class="row">
+
+
 
     <div class="col-md-6">
     <table class="table">
@@ -34,7 +40,7 @@
         <td align="right">{{ balance|intcomma }}</td>
       </tr>
       <tr>
-        <th>{% trans 'Total articles:' %}</th>
+        <th title="{% trans 'Not depending of the date interval' %}">{% trans 'Total articles:' %}</th>
         <td align="right">{{articles_count}}</td>
       </tr>
       </tbody>

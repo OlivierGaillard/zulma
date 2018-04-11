@@ -5,13 +5,16 @@ from cart.models import Vente
 from costs.models import Costs, Category
 from inventory.models import Article, Arrivage, Branch
 from .models import Dashboard
-import datetime
+from datetime import date, timedelta
+from django.utils import timezone
+#from django.utils.timezone import datetime, timedelta, localdate
 from inventory.views import articleDeleteView
 
 class TestDashboard(TestCase):
 
     def setUp(self):
-        self.arrival = Arrivage.objects.create(nom="test", date_arrivee=datetime.date.today())
+        dnow = timezone.localdate().today()
+        self.arrival = Arrivage.objects.create(nom="test", date_arrivee=dnow)
         self.user_oga = User.objects.create_user(username='golivier', password='mikacherie')
 
     def test_balance_view(self):
@@ -35,14 +38,7 @@ class TestDashboard(TestCase):
         self.assertInHTML('200.00', html)
         c.logout()
 
-    def test_sellings_with_branches(self):
-        b1 = Branch.objects.create(name='B1')
-        b2 = Branch.objects.create(name='B2')
-        Vente.objects.create(montant=20, reglement_termine=True, branch=b1)
-        Vente.objects.create(montant=10, reglement_termine=True, branch=b2)
-        self.assertEqual(20, Vente.objects.total_sellings(branch=b1))
-        self.assertEqual(10, Vente.objects.total_sellings(branch=b2))
-        self.assertEqual(30, Vente.objects.total_sellings())
+
 
     def test_costs_with_branch(self):
         b1 = Branch.objects.create(name='B1')
@@ -56,27 +52,47 @@ class TestDashboard(TestCase):
         self.assertEqual(15, Costs.objects.total_costs(branch=b2))
         self.assertEqual(25, Costs.objects.total_costs())
 
-    def test_purchasing_price_branch_None(self):
-        # without branch
-        a3 = Article.objects.create(name='a3', quantity=1, photo='a3', arrival=self.arrival, purchasing_price=600)
-        # Article without branch
-        self.assertEqual(600.00, Article.objects.total_purchasing_price())
-
-    def test_purchasing_price_per_branch(self):
+    def test_costs_date_interval(self):
         b1 = Branch.objects.create(name='B1')
         b2 = Branch.objects.create(name='B2')
-        a1b1 = Article.objects.create(name='a1b1', quantity=1, photo='a1b1', arrival=self.arrival, purchasing_price=200,
-                                     branch=b1)
-        a2b1 = Article.objects.create(name='a2b1', quantity=1, photo='a2b1', arrival=self.arrival, purchasing_price=200,
-                                      branch=b1)
-        a1b2 = Article.objects.create(name='a1b2', quantity=1, photo='a1b2', arrival=self.arrival, purchasing_price=400,
-                                     branch=b2)
-        # without branch
-        a3 = Article.objects.create(name='a3', quantity=1, photo='a3', arrival=self.arrival, purchasing_price=600)
-        # Article without branch
-        self.assertEqual(1400.00, Article.objects.total_purchasing_price())
-        self.assertEqual(400.00, Article.objects.total_purchasing_price(branch=b1))
-        self.assertEqual(400.00, Article.objects.total_purchasing_price(branch=b2))
+        d1mars  = date(year=2018, month=3, day=1)
+        d31mars = date(year=2018, month=3, day=31)
+        dfevrier = d1mars - timedelta(days=20)
+        d3mars = d1mars + timedelta(days=2)
+        # Out of range: in february
+        Article.objects.create(name='alast', photo='alast', arrival=self.arrival, purchasing_price=200,
+                               date_added=dfevrier, branch=b1)
+        self.assertEqual(0, Article.objects.total_purchasing_price(start_date=d1mars))
+        self.assertEqual(0, Costs.objects.get_balance(start_date=d1mars, end_date=d31mars))
+        # In mars (1)
+        Article.objects.create(name='alast1', photo='alast1', arrival=self.arrival, purchasing_price=200,
+                       date_added=d1mars, branch=b2)
+        self.assertEqual(200, Article.objects.total_purchasing_price(start_date=d1mars))
+        self.assertEqual(-200, Costs.objects.get_balance(start_date=d1mars, end_date=d31mars))
+
+        # Testing with branch
+        self.assertEqual(0, Costs.objects.get_balance(branch=b1, start_date=d1mars, end_date=d31mars))
+        self.assertEqual(0, Costs.objects.get_balance(branch=b1, start_date=d1mars, end_date=d31mars))
+        self.assertEqual(-200, Costs.objects.get_balance(branch=b2, start_date=dfevrier, end_date=d31mars))
+
+    def test_costs_last_year(self):
+        cost_catego = Category.objects.create(name='Divers')
+        b1 = Branch.objects.create(name='B1')
+        b2 = Branch.objects.create(name='B2')
+        dnow = timezone.localdate().today()
+        lastyear = dnow - timedelta(days=365)
+        # Costs for this year
+        Costs.objects.create(category=cost_catego, amount=10, branch=b1)
+        Costs.objects.create(category=cost_catego, amount=15, branch=b2)
+        # Testing still zero costs amount for last year
+        self.assertEqual(0, Costs.objects.total_costs(year=lastyear.year))
+        # Testing costs amount for this year
+        self.assertEqual(25, Costs.objects.total_costs(year=dnow.year))
+        # Creating costs for last year
+        Costs.objects.create(category=cost_catego, amount=10, branch=b1, creation_date=lastyear)
+        Costs.objects.create(category=cost_catego, amount=15, branch=b2, creation_date=lastyear)
+        self.assertEqual(25, Costs.objects.total_costs(year=lastyear.year))
+
 
     def test_balance_with_branches(self):
         b1 = Branch.objects.create(name='B1')

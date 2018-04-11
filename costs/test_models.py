@@ -1,8 +1,9 @@
 from django.test import TestCase
 from .models import Enterprise, Category, Costs
 from cart.models import Vente
-from inventory.models import Article
-from datetime import date
+from inventory.models import Article, Arrivage
+from datetime import date, timedelta
+from django.utils import timezone
 
 class TestModels(TestCase):
 
@@ -74,4 +75,30 @@ class TestModels(TestCase):
         Costs.objects.create(category=self.c1, amount=5.50)
         # 31 - 15.50 = 25.5
         self.assertEqual(10.0, Costs.objects.get_balance())
+
+
+
+    def test_grand_total_last_year(self):
+        last_year = date.today()-timedelta(days=365)
+        Article.objects.create(name='a', purchasing_price=10, photo='a', date_added=last_year)
+        Costs.objects.create(category=self.c1, creation_date=last_year, amount=10)
+        Article.objects.create(name='b', purchasing_price=10, photo='b', date_added=date.today())
+        self.assertEqual(20, Costs.objects.grand_total(year=last_year.year))
+        self.assertEqual(10, Costs.objects.grand_total(year=date.today().year))
+
+
+    def test_costs_date_interval(self):
+
+        dnow = timezone.localdate().today()
+        arrival = Arrivage.objects.create(nom="test", date_arrivee=dnow)
+        d1mars = date(year=2018, month=3, day=1)
+        d31mars = date(year=2018, month=3, day=31)
+        dfevrier = d1mars - timedelta(days=20)
+        # Out of range: in february
+
+        Article.objects.create(name='alast', photo='alast', arrival=arrival, purchasing_price=200,
+                               date_added=dfevrier)
+        self.assertEqual(0, Article.objects.total_purchasing_price(start_date=d1mars))
+        self.assertEqual(0, Costs.objects.get_balance(start_date=d1mars, end_date=d31mars))
+
 

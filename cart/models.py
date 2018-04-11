@@ -4,6 +4,7 @@ from django.shortcuts import reverse
 from django.core.validators import RegexValidator
 from django.utils.translation import ugettext_lazy as _
 from inventory.models import Branch, Article
+from dashboard.utils import TimeSliceHelper
 import logging
 
 logger = logging.getLogger('django')
@@ -29,18 +30,13 @@ class Client(models.Model):
     def get_absolute_url(self):
         return reverse('cart:client', kwargs={'pk': self.pk})
 
+
 class VenteManager(models.Manager):
 
-    def total_sellings(self, branch=None):
-        total = 0
-        ventes = None
-        if branch != None:
-            ventes = self.model.objects.all().filter(branch=branch)
-        else:
-            ventes = self.model.objects.all()
-        for v in ventes:
-            if v.reglement_termine:
-                total += v.montant
+    def total_sellings(self, year=None, branch=None, start_date=None, end_date=None):
+        helper = TimeSliceHelper(self.model)
+        ventes = helper.get_objects(year=year, branch=branch, start_date=start_date, end_date=end_date)
+        total = sum(v.montant for v in ventes if v.reglement_termine)
         return total
 
 
