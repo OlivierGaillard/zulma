@@ -2,19 +2,14 @@
 {% load static %}
 {% load i18n %}
 {% load humanize %}
+{% load crispy_forms_tags %}
 {% block content %}
 <div class="container">
+{% crispy form %}
 
   <h3>{% trans "Dashboard of Branch "%}<code>{{branch.name}}</code></h3>
 
-  <div class="row">
-    <div class="col-md-6">
-        <form class="well" action="{% url 'dashboard:branch' branch.pk %}" method="get">
-        {{ form }}
-        <input type="submit" value="Envoyer">
-      </form>
-    </div>
-  </div>
+
 
   <div class="row">
 
