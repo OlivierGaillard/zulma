@@ -15,6 +15,7 @@
         <th>{% trans "Creation Date" %}</th><td>{{costs.creation_date}}</td>
         <th>{% trans "Amount" %}</th><td>{{costs.amount}}</td>
         <th>{% trans "Category" %}</th><td>{{costs.category.name}}</td>
+        <th>{% trans "Branch" %}</th><td>{{ costs.branch.name|default_if_none:"n.d." }}</td>
       </tr>
       <tr>
         <th>{% trans "Name" %}</th><td>{{costs.name|default_if_none:"n.d."}}</td>

@@ -31,9 +31,12 @@ class CostsCreateForm(forms.ModelForm):
 class CostsUpdateForm(forms.ModelForm):
     class Meta:
         model = Costs
-        fields = ('branch', 'name', 'amount', 'category', 'note', 'enterprise', 'billing_date', 'billing_number' )
+        fields = ('creation_date', 'branch', 'name', 'amount', 'category', 'note', 'enterprise', 'billing_date', 'billing_number' )
         widgets = {
             'billing_date': forms.DateInput(
+                attrs={'id': 'datetimepicker_es'}
+            ),
+            'creation_date': forms.DateInput(
                 attrs={'id': 'datetimepicker_es'}
             ),
         }

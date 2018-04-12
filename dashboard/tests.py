@@ -38,6 +38,23 @@ class TestDashboard(TestCase):
         self.assertInHTML('200.00', html)
         c.logout()
 
+    def test_branch_balance_view(self):
+        b1 = Branch.objects.create(name='B1')
+        b2 = Branch.objects.create(name='B2')
+        Vente.objects.create(montant=20, reglement_termine=True, branch=b1)
+        cost_catego = Category.objects.create(name='Divers')
+        Costs.objects.create(category=cost_catego, amount=10, branch=b1)
+        a1 = Article.objects.create(name='a1', branch=b1, quantity=10, photo='a1', arrival=self.arrival, purchasing_price=100)
+        a2 = Article.objects.create(name='a2', branch=b2, quantity=5, photo='a2', arrival=self.arrival, purchasing_price=100)
+        balance = 20-10-100
+        self.assertEqual(balance, Costs.objects.get_balance(branch=b1))
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        response = c.get(reverse('dashboard:branch', args=[b1.pk]))
+        self.assertEqual(200, response.status_code)
+        html = response.content.decode()
+        self.assertInHTML('-90.00', html)
+        c.logout()
 
 
     def test_costs_with_branch(self):

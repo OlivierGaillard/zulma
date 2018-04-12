@@ -66,7 +66,7 @@ class CostsManager(models.Manager):
 
 class Costs(models.Model):
     branch = models.ForeignKey(Branch, null=True, blank=True)
-    creation_date = models.DateField(_('Creation date'), default=date.today)
+    creation_date = models.DateField(_('Creation date'), default=date.today, blank=True)
     category = models.ForeignKey(Category)
     amount = models.DecimalField(_('Amount'), max_digits=20, decimal_places=2)
     name   = models.CharField(_('Name'), max_length=200, help_text=_('short description'), blank=True, null=True)

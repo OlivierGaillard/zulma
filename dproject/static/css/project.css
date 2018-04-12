@@ -9,6 +9,10 @@ body
     margin: auto;
 }
 
+.well {
+    background-color burlywood;
+}
+
 #submit-id-submit {
     margin-top: 10pt;
 }

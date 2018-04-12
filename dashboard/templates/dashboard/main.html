@@ -7,14 +7,16 @@
 
 <h3>{% trans "Main Dashboard"%}</h3>
 
-  <form action="{% url 'dashboard:main' %}" method="get">
-    {{ form }}
-    <input type="submit" value="Envoyer">
-  </form>
   <div class="row">
+    <div class="col-md-6">
+      <form class="well" action="{% url 'dashboard:main' %}" method="get">
+        {{ form }}
+        <input class="btn btn-default btn-sm" type="submit" value="Envoyer">
+      </form>
+    </div>
+  </div>
 
-
-
+  <div class="row">
     <div class="col-md-6">
     <table class="table">
       <tbody>
