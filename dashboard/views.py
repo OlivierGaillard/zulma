@@ -4,42 +4,51 @@ from costs.models import Costs
 from cart.models import Vente
 from inventory.models import Article, Branch
 from .forms import DateForm
+from .charts import BarChart
 
 
 class MainBalanceView(TemplateView):
     template_name = 'dashboard/main.html'
 
 
-    def get_context_data(self, **kwargs):
+    def get_context_data(self, start_date=None, end_date=None):
         #context = super().get_context_data(**kwargs)
-        context = {'grand_total_costs': Costs.objects.grand_total(),
-                   'purchases': Article.objects.total_purchasing_price(),
-                   'costs': Costs.objects.total_costs(),
-                   'total_sellings': Vente.objects.total_sellings(),
-                   'balance': Costs.objects.get_balance(),
+        grand_total_costs =  Costs.objects.grand_total(start_date=start_date, end_date=end_date)
+        purchases = Article.objects.total_purchasing_price(start_date=start_date, end_date=end_date)
+        costs = Costs.objects.total_costs(start_date=start_date, end_date=end_date)
+        sellings = Vente.objects.total_sellings(start_date=start_date, end_date=end_date)
+        balance  = Costs.objects.get_balance(start_date=start_date, end_date=end_date)
+
+        barchart = BarChart()
+        barchart.grand_total_costs = -(grand_total_costs)
+        barchart.purchases = -(purchases)
+        barchart.costs = costs
+        barchart.sellings = sellings
+        barchart.balance = balance
+
+        context = {'grand_total_costs': grand_total_costs,
+                   'purchases': purchases,
+                   'costs': costs,
+                   'total_sellings': sellings,
+                   'balance': balance,
                    'branches': Branch.objects.all(),
                    'articles_count': Article.objects.count(),
-
+                   'barchart': barchart,
                    }
         return context
 
     def get(self, request, start_date=None, end_date=None):
         d1 = request.GET.get('start_date')
         d2 = request.GET.get('end_date')
-        context = self.get_context_data()
         if d1 or d2:
-            context['form'] = form = DateForm(request.GET)
+            form = DateForm(request.GET)
             if form.is_valid():
-                d1 = form.cleaned_data['start_date']
-                d2 = form.cleaned_data['end_date']
-                context['grand_total_costs'] = Costs.objects.grand_total(start_date=d1, end_date=d2)
-                context['purchases'] = Article.objects.total_purchasing_price(start_date=d1, end_date=d2)
-                context['costs'] = Costs.objects.total_costs(start_date=d1, end_date=d2)
-                context['total_sellings'] = Vente.objects.total_sellings(start_date=d1, end_date=d2)
-                context['balance'] = Costs.objects.get_balance(start_date=d1, end_date=d2)
-                context['branches'] = Branch.objects.all()
-                context['articles_count'] = Article.objects.count()
+                start_date = form.cleaned_data['start_date']
+                end_date = form.cleaned_data['end_date']
+                context = self.get_context_data(start_date, end_date)
+                context['form'] = form
         else:
+            context = self.get_context_data()
             context['form'] = DateForm()
         return render(request=request, template_name='dashboard/main.html', context=context)
 
