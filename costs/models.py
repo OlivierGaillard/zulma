@@ -72,7 +72,7 @@ class Costs(models.Model):
     name   = models.CharField(_('Name'), max_length=200, help_text=_('short description'), blank=True, null=True)
     note   = models.TextField(_('Note'), blank=True, null=True)
     enterprise = models.ForeignKey(Enterprise, blank=True, null=True)
-    billing_date = models.DateField(blank=True, null=True, help_text=_('when the bill was created'))
+    billing_date = models.DateField(default=date.today, blank=True, null=True, help_text=_('when the bill was created'))
     billing_number = models.CharField(blank=True, null=True, max_length=200, help_text=_('the bill reference number'))
     article_link = models.URLField(_('Article link'), null=True, blank=True)
     article_id   = models.ForeignKey(Article, null=True, on_delete=models.SET_NULL)

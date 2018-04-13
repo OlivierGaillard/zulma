@@ -106,8 +106,8 @@ class TestDashboard(TestCase):
         # Testing costs amount for this year
         self.assertEqual(25, Costs.objects.total_costs(year=dnow.year))
         # Creating costs for last year
-        Costs.objects.create(category=cost_catego, amount=10, branch=b1, creation_date=lastyear)
-        Costs.objects.create(category=cost_catego, amount=15, branch=b2, creation_date=lastyear)
+        Costs.objects.create(category=cost_catego, amount=10, branch=b1, billing_date=lastyear)
+        Costs.objects.create(category=cost_catego, amount=15, branch=b2, billing_date=lastyear)
         self.assertEqual(25, Costs.objects.total_costs(year=lastyear.year))
 
 

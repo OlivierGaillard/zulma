@@ -12,7 +12,7 @@ class TimeSliceHelper:
         if self.model._meta.model_name == 'vente':
             self.qs = self.qs.filter(date__year=year)
         elif self.model._meta.model_name == 'costs':
-            self.qs = self.qs.filter(creation_date__year=year)
+            self.qs = self.qs.filter(billing_date__year=year)
         elif self.model._meta.model_name == 'article':
             self.qs = self.qs.filter(date_added__year=year)
         else:
@@ -23,7 +23,7 @@ class TimeSliceHelper:
         if self.model._meta.model_name == 'vente':
             self.qs = self.qs.filter(date__range= (start_date, end_date))
         elif self.model._meta.model_name == 'costs':
-            self.qs = self.qs.filter(creation_date__range=(start_date, end_date))
+            self.qs = self.qs.filter(billing_date__range=(start_date, end_date))
         elif self.model._meta.model_name == 'article':
             self.qs = self.qs.filter(date_added__range=(start_date, end_date))
         else:
@@ -34,7 +34,7 @@ class TimeSliceHelper:
         if self.model._meta.model_name == 'vente':
             self.qs = self.qs.filter(date__gte=start_date)
         elif self.model._meta.model_name == 'costs':
-            self.qs = self.qs.filter(creation_date__gte=start_date)
+            self.qs = self.qs.filter(billing_date__gte=start_date)
         elif self.model._meta.model_name == 'article':
             self.qs = self.qs.filter(date_added__gte=start_date)
         else:
@@ -45,7 +45,7 @@ class TimeSliceHelper:
         if self.model._meta.model_name == 'vente':
             self.qs = self.qs.filter(date__lte=end_date)
         elif self.model._meta.model_name == 'costs':
-            self.qs = self.qs.filter(creation_date__lte=end_date)
+            self.qs = self.qs.filter(billing_date__lte=end_date)
         elif self.model._meta.model_name == 'article':
             self.qs = self.qs.filter(date_added__lte=end_date)
         else:

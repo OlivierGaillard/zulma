@@ -81,7 +81,7 @@ class TestModels(TestCase):
     def test_grand_total_last_year(self):
         last_year = date.today()-timedelta(days=365)
         Article.objects.create(name='a', purchasing_price=10, photo='a', date_added=last_year)
-        Costs.objects.create(category=self.c1, creation_date=last_year, amount=10)
+        Costs.objects.create(category=self.c1, billing_date=last_year, amount=10)
         Article.objects.create(name='b', purchasing_price=10, photo='b', date_added=date.today())
         self.assertEqual(20, Costs.objects.grand_total(year=last_year.year))
         self.assertEqual(10, Costs.objects.grand_total(year=date.today().year))
