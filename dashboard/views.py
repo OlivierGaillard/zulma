@@ -22,7 +22,7 @@ class MainBalanceView(TemplateView):
         barchart = BarChart()
         barchart.grand_total_costs = -(grand_total_costs)
         barchart.purchases = -(purchases)
-        barchart.costs = costs
+        barchart.costs = -(costs)
         barchart.sellings = sellings
         barchart.balance = balance
 
