@@ -38,6 +38,47 @@ class TestDashboard(TestCase):
         self.assertInHTML('200.00', html)
         c.logout()
 
+
+    def test_balance_view_bad_dates_order(self):
+        Vente.objects.create(montant=20, reglement_termine=True)
+        cost_catego = Category.objects.create(name='Divers')
+        Costs.objects.create(category=cost_catego, amount=10)
+        self.assertEqual(10, Costs.objects.total_costs())
+        a1 = Article.objects.create(name='a1', quantity=10, photo='a1', arrival=self.arrival, purchasing_price=100)
+        a2 = Article.objects.create(name='a2', quantity=5, photo='a2', arrival=self.arrival,  purchasing_price=100)
+        self.assertEqual(200, Article.objects.total_purchasing_price())
+        self.assertEqual(20-210, Costs.objects.get_balance())
+        self.assertEqual(20, Vente.objects.total_sellings())
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        data = {'start_date': '2018-02-01', 'end_date': '2018-01-31'}
+        response = c.get(reverse('dashboard:main'), data=data)
+        self.assertEqual(200, response.status_code)
+        self.assertInHTML('<li>start and end dates order mismatch</li>', response.content.decode())
+
+    def test_main_balance_view_start_end_dates(self):
+        d1mars = date(year=2018, month=3, day=1)
+        d28mars = date(year=2018, month=3, day=28)
+        d31mars = date(year=2018, month=3, day=31)
+        d3mars = d1mars + timedelta(days=2)
+        Vente.objects.create(montant=20, reglement_termine=True, date=d28mars)
+        cost_catego = Category.objects.create(name='Divers')
+        Costs.objects.create(category=cost_catego, amount=10, billing_date=d1mars)
+        self.assertEqual(10, Costs.objects.total_costs())
+        a1 = Article.objects.create(name='a1', quantity=10, photo='a1', arrival=self.arrival, purchasing_price=100,
+                                    date_added=d3mars)
+        a2 = Article.objects.create(name='a2', quantity=5, photo='a2', arrival=self.arrival, purchasing_price=100,
+                                    date_added=d3mars)
+        self.assertEqual(200, Article.objects.total_purchasing_price(start_date=d1mars, end_date=d31mars))
+        self.assertEqual(20 - 210, Costs.objects.get_balance())
+        self.assertEqual(20, Vente.objects.total_sellings())
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        data = {'start_date': '2018-02-01', 'end_date': '2018-03-31'}
+        response = c.get(reverse('dashboard:main'), data=data)
+        self.assertEqual(200, response.status_code)
+        self.assertInHTML('-190.00', response.content.decode())
+
     def test_branch_balance_view(self):
         b1 = Branch.objects.create(name='B1')
         b2 = Branch.objects.create(name='B2')

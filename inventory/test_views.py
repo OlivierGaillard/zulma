@@ -204,11 +204,6 @@ class TestInventoryViews(TestCase):
         # Now the crucial test
         self.assertEqual(3, a_updated.losses)
 
-    def btest_get_add_one_loss_view(self):
-        c = Client()
-        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
-        r = c.get(reverse('inventory:add_one_loss', args=[self.a1.pk]))
-        self.assertEqual(200, r.status_code)
 
     def test_grand_total_costs(self):
         """The grand total is the sum of all costs and the total of purchasing prices."""
