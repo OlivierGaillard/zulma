@@ -90,7 +90,7 @@ class CostsListView(ListView):
     context_object_name = 'costs'
 
     def get_context_data(self, **kwargs):
-        ctx = super(CostsListView, self).get_context_data(kwargs)
+        ctx = super(CostsListView, self).get_context_data()
         ctx['total'] = Costs.objects.total_costs()
         return ctx
 
