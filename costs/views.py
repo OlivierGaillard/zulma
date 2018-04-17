@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
-from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView
+from django.views.generic import CreateView, DetailView, ListView, UpdateView, DeleteView, TemplateView
 from .models import Category, Enterprise, Costs
 from .forms import CategoryCreateForm, CategoryUpdateForm, EnterpriseCreateForm, EnterpriseUpdateForm, CostsCreateForm, CostsUpdateForm
 
@@ -90,9 +90,26 @@ class CostsListView(ListView):
     context_object_name = 'costs'
 
     def get_context_data(self, **kwargs):
-        ctx = super(CostsListView, self).get_context_data(**kwargs)
+        ctx = super(CostsListView, self).get_context_data(kwargs)
         ctx['total'] = Costs.objects.total_costs()
         return ctx
+
+class CostsPerBranch(TemplateView):
+    template_name = 'costs/costs.html'
+    context_object_name = 'costs'
+
+    def get_context_data(self, pk=None):
+        if pk:
+            costs = Costs.objects.filter(branch=pk)
+        else:
+            costs = Costs.objects.all()
+        context = {'costs' : costs}
+        return context
+
+    def get(self, request, pk=None):
+        context = self.get_context_data(pk=pk)
+        return render(request=request, template_name='costs/costs.html', context=context)
+
 
 
 class CostsDetailView(DetailView):

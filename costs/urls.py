@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^enterprises/$', views.EnterpriseListView.as_view(), name='enterprises'),
     url(r'^costs_create/$', views.CostsCreateView.as_view(), name='costs_create'),
     url(r'^costs/$', views.CostsListView.as_view(), name='costs'),
+    url(r'^costs_branch/(?P<pk>[0-9]+)$', views.CostsPerBranch.as_view(), name='costs_branch'),
     url(r'^costs_details/(?P<pk>[0-9]+)$', views.CostsDetailView.as_view(), name='costs_details'),
     url(r'^costs_update/(?P<pk>[0-9]+)$', views.CostsUpdateView.as_view(), name='costs_update'),
     url(r'^costs_delete/(?P<pk>[0-9]+)$', views.CostsDeleteView.as_view(), name='costs_delete'),

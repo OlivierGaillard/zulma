@@ -10,41 +10,46 @@
   <h3>{% trans "Dashboard of Branch "%}<code>{{branch.name}}</code></h3>
 
 
-
   <div class="row">
+    <div class="col-md-4">
+        <table class="table">
+          <tbody>
+          <tr>
+            <th>{% trans "Purchases" %}</th>
+            <td align="right">{{ purchases|intcomma }}</td>
+          </tr>
+          <tr>
+            <th>{% trans "Costs" %}</th>
+            <td align="right"><a href="{% url 'costs:costs_branch' branch.pk %}">{{ costs|intcomma }}</a> </td>
+          </tr>
 
-    <div class="col-md-6">
-    <table class="table">
-      <tbody>
-      <tr>
-        <th>{% trans "Purchases" %}</th>
-        <td align="right">{{ purchases|intcomma }}</td>
-      </tr>
-      <tr>
-        <th>{% trans "Costs" %}</th>
-        <td align="right">{{ costs|intcomma }}</td>
-      </tr>
+          <tr>
+            <th>{% trans "Total costs:" %}</th>
+            <td align="right">{{ grand_total_costs|intcomma }}</td>
+          </tr>
+          <tr>
+            <th>{% trans "Total incomes:" %}</th>
+            <td align="right">{{ total_sellings|intcomma }}</td>
+          </tr>
+          <tr>
+            <th>{% trans "Balance:" %}</th>
+            <td align="right">{{ balance|intcomma }}</td>
+          </tr>
+          <tr>
+            <th title="{% trans 'Not depending of the date interval' %}">{% trans 'Total articles:' %}</th>
+            <td align="right">{{articles_count}}</td>
+          </tr>
+          </tbody>
+        </table>
+    </div>
 
-      <tr>
-        <th>{% trans "Total costs:" %}</th>
-        <td align="right">{{ grand_total_costs|intcomma }}</td>
-      </tr>
-      <tr>
-        <th>{% trans "Total incomes:" %}</th>
-        <td align="right">{{ total_sellings|intcomma }}</td>
-      </tr>
-      <tr>
-        <th>{% trans "Balance:" %}</th>
-        <td align="right">{{ balance|intcomma }}</td>
-      </tr>
-      <tr>
-        <th>{% trans 'Total articles:' %}</th>
-        <td align="right">{{articles_count}}</td>
-      </tr>
-      </tbody>
-    </table>
-      </div>
+    <div class="col-md-8">
+          {{ barchart.as_html }}
+    </div>
+
   </div>
+
+
 </div>
 {% endblock %}
 

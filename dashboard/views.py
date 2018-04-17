@@ -7,11 +7,11 @@ from .forms import DateForm
 from .charts import BarChart
 
 def build_context_data(branch=None, start_date=None, end_date=None):
-    grand_total_costs = Costs.objects.grand_total(start_date=start_date, end_date=end_date)
-    purchases = Article.objects.total_purchasing_price(start_date=start_date, end_date=end_date)
-    costs = Costs.objects.total_costs(start_date=start_date, end_date=end_date)
-    sellings = Vente.objects.total_sellings(start_date=start_date, end_date=end_date)
-    balance = Costs.objects.get_balance(start_date=start_date, end_date=end_date)
+    grand_total_costs = Costs.objects.grand_total(branch=branch, start_date=start_date, end_date=end_date)
+    purchases = Article.objects.total_purchasing_price(branch=branch, start_date=start_date, end_date=end_date)
+    costs = Costs.objects.total_costs(branch=branch, start_date=start_date, end_date=end_date)
+    sellings = Vente.objects.total_sellings(branch=branch, start_date=start_date, end_date=end_date)
+    balance = Costs.objects.get_balance(branch=branch, start_date=start_date, end_date=end_date)
 
     barchart = BarChart()
     barchart.grand_total_costs = -(grand_total_costs)
@@ -68,15 +68,14 @@ def branch_dashboard(request, pk, start_date=None, end_date=None):
         if form.is_valid():
             d1 = form.cleaned_data['start_date']
             d2 = form.cleaned_data['end_date']
+            context = build_context_data(branch=branch, start_date=d1, end_date=d2)
+            context['form'] = form
+        else:
+            context = {'form': form}
+            render(request=request, template_name='dashboard/branch.html', context=context)
     else:
         form = DateForm()
-    context = {'grand_total_costs': Costs.objects.grand_total(branch=branch, start_date=d1, end_date=d2),
-               'purchases': Article.objects.total_purchasing_price(branch=branch, start_date=d1, end_date=d2),
-               'costs': Costs.objects.total_costs(branch=branch, start_date=d1, end_date=d2),
-               'total_sellings': Vente.objects.total_sellings(branch=branch, start_date=d1, end_date=d2),
-               'balance': Costs.objects.get_balance(branch=branch, start_date=d1, end_date=d2),
-               'branch' : branch,
-               'articles_count' : Article.objects.filter(branch=branch).count(),
-               'form' : form
-               }
+        context = build_context_data(branch=branch)
+        context['form'] = form
+    context['branch'] = branch
     return render(request=request, template_name=template_name, context=context)

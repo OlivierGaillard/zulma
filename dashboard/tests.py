@@ -64,17 +64,26 @@ class TestDashboard(TestCase):
         Vente.objects.create(montant=20, reglement_termine=True, date=d28mars)
         cost_catego = Category.objects.create(name='Divers')
         Costs.objects.create(category=cost_catego, amount=10, billing_date=d1mars)
-        self.assertEqual(10, Costs.objects.total_costs())
         a1 = Article.objects.create(name='a1', quantity=10, photo='a1', arrival=self.arrival, purchasing_price=100,
                                     date_added=d3mars)
         a2 = Article.objects.create(name='a2', quantity=5, photo='a2', arrival=self.arrival, purchasing_price=100,
                                     date_added=d3mars)
+
+
         self.assertEqual(200, Article.objects.total_purchasing_price(start_date=d1mars, end_date=d31mars))
         self.assertEqual(20 - 210, Costs.objects.get_balance())
         self.assertEqual(20, Vente.objects.total_sellings())
         c = Client()
         c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
         data = {'start_date': '2018-02-01', 'end_date': '2018-03-31'}
+        response = c.get(reverse('dashboard:main'), data=data)
+        self.assertEqual(200, response.status_code)
+        self.assertInHTML('-190.00', response.content.decode())
+
+
+        # Only the start_date
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        data = {'start_date': '2018-02-01'}
         response = c.get(reverse('dashboard:main'), data=data)
         self.assertEqual(200, response.status_code)
         self.assertInHTML('-190.00', response.content.decode())

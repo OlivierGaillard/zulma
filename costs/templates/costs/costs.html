@@ -24,7 +24,8 @@
           <td>{{forloop.counter}}</td>
           <td>{{ a.creation_date }}</td>
           <td>{{ a.billing_date }}</td>
-          <td>{{ a.branch|default_if_none:"n.d." }}</td>
+         {% trans 'Main' as default_branch %}
+          <td>{{ a.branch|default_if_none:default_branch }}</td>
           <td><a href="{% url "costs:costs_details" a.pk %}" title="{% trans "Click to see details" %}">
             {{a.name|default_if_none:"&mdash;" }}</a></td>
           <td>{{ a.category }}</td>
