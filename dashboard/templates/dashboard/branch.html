@@ -20,7 +20,7 @@
           </tr>
           <tr>
             <th>{% trans "Costs" %}</th>
-            <td align="right"><a href="{% url 'costs:costs_branch' branch.pk %}">{{ costs|intcomma }}</a> </td>
+            <td align="right"><a title="{% trans "Link to its costs" %}" href="{% url "costs:costs" %}?q={{branch.name}}">{{ costs|intcomma }}</a></td>
           </tr>
 
           <tr>

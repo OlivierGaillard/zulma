@@ -9,8 +9,9 @@ body
     margin: auto;
 }
 
-.well {
-    background-color burlywood;
+#costs-filter {
+    background-color: BurlyWood;
+    opacity: 1.0;
 }
 
 #submit-id-submit {

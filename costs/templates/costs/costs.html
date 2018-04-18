@@ -1,8 +1,32 @@
 {% extends "base.html" %}
 {% load static %}
 {% load i18n %}
+
 {% block content %}
 <div class="container">
+
+  <div class="rows">
+      <div class="col-xs-8">
+         <form id="costs-filter" class="well" action="{% url "costs:costs" %}" method="GET">
+           <div class="form-group">
+             <label for="select">Name: </label>
+             <select id="select" class="form-control" name="q">
+               {% for b in branchs %}
+                   {% if option == b %}
+                   <option selected>{{ b }}</option>
+                   {% else %}
+                   <option>{{ b }}</option>
+                   {% endif %}
+               {% endfor %}
+             </select>
+           </div>
+          <div class="form-group">
+            <button class="btn btn-primary" type="submit" >{% trans "Filter" %}</button>
+          </div>
+         </form>
+      </div>
+    </div>
+
     <table class="table table-light">
       <thead class="thead-light">
       <tr>
@@ -39,6 +63,6 @@
         <td colspan="4"><b>{{total}}</b></td>
       </tr>
     </table>
-
 </div>
 {% endblock %}
+
