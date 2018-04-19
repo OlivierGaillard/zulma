@@ -66,8 +66,10 @@ class TimeSliceHelper:
             self._set_end_date_qs(end_date)
 
 
-        if branch != None:
+        if branch != None and not branch == 'MAIN' :
             objects = self.qs.filter(branch=branch)
+        elif branch == 'MAIN':
+            objects = self.qs.filter(branch=None)
         else:
             objects = self.qs.all()
         return objects

@@ -1,7 +1,7 @@
 from django.test import TestCase
 from .models import Enterprise, Category, Costs
 from cart.models import Vente
-from inventory.models import Article, Arrivage
+from inventory.models import Article, Arrivage, Branch
 from datetime import date, timedelta
 from django.utils import timezone
 
@@ -52,6 +52,21 @@ class TestModels(TestCase):
     def test_total_costs_for_one_cost(self):
         c = Costs.objects.create(category=self.c1, amount=100)
         self.assertEqual(100, Costs.objects.total_costs())
+        self.assertEqual(100, Costs.objects.total_costs(branch='MAIN'))
+
+    def test_total_costs_for_one_cost_with_dates(self):
+        today = date.today()
+        yesterday = today - timedelta(days=2)
+        c = Costs.objects.create(category=self.c1, amount=100, billing_date=today)
+        c2 = Costs.objects.create(category=self.c1, amount=50, billing_date=yesterday)
+        self.assertEqual(150, Costs.objects.total_costs())
+        self.assertEqual(150, Costs.objects.total_costs(branch='MAIN'))
+        self.assertEqual(50, Costs.objects.total_costs(branch='MAIN', end_date=yesterday))
+        self.assertEqual(50, Costs.objects.total_costs(end_date=yesterday))
+        b1 = Branch.objects.create(name='b1')
+        c2 = Costs.objects.create(category=self.c1, amount=10, billing_date=yesterday, branch=b1)
+        self.assertEqual(10, Costs.objects.total_costs(end_date=yesterday, branch=b1))
+        self.assertEqual(60, Costs.objects.total_costs(end_date=yesterday))
 
     def test_total_costs_for_two_costs(self):
         Costs.objects.create(category=self.c1, amount=100)

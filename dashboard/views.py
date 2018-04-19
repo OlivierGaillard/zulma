@@ -10,6 +10,7 @@ def build_context_data(branch=None, start_date=None, end_date=None):
     grand_total_costs = Costs.objects.grand_total(branch=branch, start_date=start_date, end_date=end_date)
     purchases = Article.objects.total_purchasing_price(branch=branch, start_date=start_date, end_date=end_date)
     costs = Costs.objects.total_costs(branch=branch, start_date=start_date, end_date=end_date)
+    costs_main = Costs.objects.total_costs(branch="MAIN", start_date=start_date, end_date=end_date)
     sellings = Vente.objects.total_sellings(branch=branch, start_date=start_date, end_date=end_date)
     balance = Costs.objects.get_balance(branch=branch, start_date=start_date, end_date=end_date)
 
@@ -23,6 +24,7 @@ def build_context_data(branch=None, start_date=None, end_date=None):
     context = {'grand_total_costs': grand_total_costs,
                'purchases': purchases,
                'costs': costs,
+               'costs_main' : costs_main,
                'total_sellings': sellings,
                'balance': balance,
                'branches': Branch.objects.all(),

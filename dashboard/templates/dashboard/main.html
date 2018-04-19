@@ -23,14 +23,24 @@
             <td align="right">{{ purchases|intcomma }}</td>
           </tr>
           <tr>
-            <th>{% trans "Costs" %}</th>
-            <td align="right">{{ costs|intcomma }}</td>
+            <th title="{% trans 'Costs bound to a branch or without' %}">{% trans "All Costs (with or without branch)" %}</th>
+            <!--<td align="right">{{ costs|intcomma }}</td>-->
+            <td align="right"><a title="{% trans "All costs" %}"
+              href="{% url "costs:costs" %}?q=All">{{ costs|intcomma }}</a></td>
           </tr>
+
+          <tr>
+            <th title="{% trans 'Costs without a branch defined are named "Main"' %}">Costs without Branch (Main)</th>
+            <td align="right"><a title="{% trans "Main costs" %}"
+              href="{% url "costs:costs" %}?q=Main">{{ costs_main|intcomma }}</a></td>
+          </tr>
+
 
           <tr>
             <th>{% trans "Total costs:" %}</th>
             <td align="right">{{ grand_total_costs|intcomma }}</td>
           </tr>
+
           <tr>
             <th>{% trans "Total incomes:" %}</th>
             <td align="right">{{ total_sellings|intcomma }}</td>

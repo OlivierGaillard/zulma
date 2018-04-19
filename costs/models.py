@@ -41,9 +41,6 @@ class Category(models.Model):
 class CostsManager(models.Manager):
 
     def total_costs(self, year=None, branch=None, start_date = None, end_date=None):
-        if not year and not start_date and not end_date and branch == 'MAIN': # for costs view filter
-            costs = Costs.objects.filter(branch=None)
-            return sum(c.amount for c in costs)
         helper = TimeSliceHelper(self.model)
         costs = helper.get_objects(year=year, branch=branch, start_date=start_date, end_date=end_date)
         total = sum(c.amount for c in costs)
