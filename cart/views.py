@@ -1,4 +1,6 @@
 from django.shortcuts import render, reverse, get_object_or_404
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 import datetime
 from django.http import HttpResponse, HttpResponseRedirect
 from django.views.generic import ListView, CreateView, DetailView, UpdateView, DeleteView
@@ -240,19 +242,21 @@ class CheckoutView(CreateView):
         logger.info('cart_id removed from session. End of form_valid of CheckoutView.')
         return super(CheckoutView, self).form_valid(form)
 
-
+@method_decorator(login_required, name='dispatch')
 class VenteDetail(DetailView):
     model = Vente
     template_name = 'cart/vente.html'
     context_object_name = 'vente'
 
+
+@method_decorator(login_required, name='dispatch')
 class VenteUpdateView(UpdateView):
     model = Vente
     template_name = 'cart/vente_update.html'
     context_object_name = 'vente'
     form_class = VenteUpdateForm
 
-
+@method_decorator(login_required, name='dispatch')
 class VenteListView(ListView):
     model = Vente
     template_name = 'cart/ventes.html'
@@ -282,22 +286,26 @@ def vente_delete(request, pk):
         print('POST? strange')
 
 
-
+@method_decorator(login_required, name='dispatch')
 class ClientListView(ListView):
     model = Client
     template_name = 'cart/clients.html'
     context_object_name = 'clients'
 
+@method_decorator(login_required, name='dispatch')
 class ClientDetailView(DetailView):
     model = Client
     template_name = 'cart/client.html'
     context_object_name = 'client'
 
+@method_decorator(login_required, name='dispatch')
 class ClientCreateView(CreateView):
     model = Client
     template_name = 'cart/client_create.html'
     form_class = ClientCreateForm
 
+
+@method_decorator(login_required, name='dispatch')
 class ClientDeleteView(DeleteView):
     model = Client
     template_name = 'cart/client_delete.html'
@@ -305,22 +313,27 @@ class ClientDeleteView(DeleteView):
     success_url = '/cart/clients'
 
 
+@method_decorator(login_required, name='dispatch')
 class ClientUpdateView(UpdateView):
     model = Client
     template_name = 'cart/client_update.html'
     form_class = ClientUpdateForm
 
 
+@method_decorator(login_required, name='dispatch')
 class PaiementListView(ListView):
     model = Paiement
     template_name = 'cart/paiements.html'
     context_object_name = 'paiements'
 
+
+@method_decorator(login_required, name='dispatch')
 class PaiementCreateView(CreateView):
     model = Paiement
     template_name = 'cart/paiement_create.html'
     form_class = PaiementCreateForm
 
+login_required()
 def add_paiement(request, vente_pk):
     """Add a paiement to a vente.
     return render(request, 'polls/detail.html', {'question': question})
@@ -384,12 +397,13 @@ def add_paiement(request, vente_pk):
                                                                              'solde': vente_solde})
 
 
-
+@method_decorator(login_required, name='dispatch')
 class PaiementDetailView(DetailView):
     model = Paiement
     template_name = 'cart/paiement.html'
     context_object_name = 'paiement'
 
+@method_decorator(login_required, name='dispatch')
 class PaiementUpdateView(UpdateView):
     model = Paiement
     template_name = 'cart/paiement_update.html'

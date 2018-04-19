@@ -1,5 +1,7 @@
 from django.shortcuts import render, reverse, get_object_or_404
 from django.views.generic import TemplateView
+from django.contrib.auth.decorators import login_required
+from django.utils.decorators import method_decorator
 from costs.models import Costs
 from cart.models import Vente
 from inventory.models import Article, Branch
@@ -33,6 +35,7 @@ def build_context_data(branch=None, start_date=None, end_date=None):
                }
     return context
 
+@method_decorator(login_required, name='dispatch')
 class MainBalanceView(TemplateView):
     template_name = 'dashboard/main.html'
 
@@ -59,7 +62,7 @@ class MainBalanceView(TemplateView):
             context['form'] = DateForm()
         return render(request=request, template_name='dashboard/main.html', context=context)
 
-
+login_required()
 def branch_dashboard(request, pk, start_date=None, end_date=None):
     template_name = 'dashboard/branch.html'
     branch = get_object_or_404(Branch, pk=pk)

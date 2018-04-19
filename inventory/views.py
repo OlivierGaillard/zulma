@@ -169,53 +169,60 @@ def handle_pictures(request):
         logger.debug('%s pictures to handle.' % str(len(files)))
         return render(request, "inventory/handle_pics.html", {'form': form, 'pics_count' : len(files)})
 
+@method_decorator(login_required, name='dispatch')
 class CategoryCreateView(CreateView):
     model = Category
     template_name = 'inventory/category_create.html'
     form_class = CategoryFormCreate
     context_object_name = 'category'
 
+@method_decorator(login_required, name='dispatch')
 class CategoryDetailView(DetailView):
     model = Category
     template_name = 'inventory/category_detail.html'
     context_object_name = 'category'
 
-
+@method_decorator(login_required, name='dispatch')
 class CategoryUpdateView(UpdateView):
     model = Category
     template_name = 'inventory/category_update.html'
     form_class = CategoryFormUpdate
     context_object_name = 'category'
 
+@method_decorator(login_required, name='dispatch')
 class CategoryListView(ListView):
     model = Category
     template_name = 'inventory/categories.html'
     context_object_name = 'categories'
 
+@method_decorator(login_required, name='dispatch')
 class CategoryDeleteView(DeleteView):
     model = Category
     template_name = 'inventory/category_delete.html'
     context_object_name = 'category'
     success_url = reverse_lazy('inventory:categories')
 
+@method_decorator(login_required, name='dispatch')
 class ArrivalCreateView(CreateView):
     model = Arrivage
     template_name = 'inventory/arrival_create.html'
     form_class = ArrivalCreateForm
     context_object_name = 'arrival'
 
+@method_decorator(login_required, name='dispatch')
 class ArrivalDetailView(DetailView):
     model = Arrivage
     template_name = 'inventory/arrival_detail.html'
     context_object_name = 'arrival'
 
+@method_decorator(login_required, name='dispatch')
 class ArrivalUpdateView(UpdateView):
     model = Arrivage
     template_name = 'inventory/arrival_update.html'
     context_object_name = 'arrival'
     form_class = ArrivalUpdateForm
 
-
+@method_decorator(login_required, name='dispatch')
 class ArrivalListView(ListView):
     model = Arrivage
     template_name = 'inventory/arrivals.html'
@@ -414,7 +421,7 @@ def add_one_loss(request, pk):
     return render(request, "inventory/losses_form.html", {'form' : form, 'previous_losses' : article.losses,
                                                               'amount_losses' : article.amount_losses})
 
-
+@method_decorator(login_required, name='dispatch')
 class AddOneLossView(View):
 
     template_name = "inventory/losses_form.html"
