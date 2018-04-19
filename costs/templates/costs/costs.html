@@ -9,7 +9,7 @@
       <div class="col-xs-8">
          <form id="costs-filter" class="well" action="{% url "costs:costs" %}" method="GET">
            <div class="form-group">
-             <label for="select">Name: </label>
+             <label for="select">{% trans "Branch" %}: </label>
              <select id="select" class="form-control" name="q">
                {% for b in branchs %}
                    {% if option == b %}

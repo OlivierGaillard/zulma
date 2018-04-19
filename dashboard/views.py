@@ -23,6 +23,11 @@ def build_context_data(branch=None, start_date=None, end_date=None):
     barchart.sellings = sellings
     barchart.balance = balance
 
+    if branch:
+        articles_count = Article.objects.filter(branch=branch).count()
+    else:
+        articles_count = Article.objects.all().count()
+
     context = {'grand_total_costs': grand_total_costs,
                'purchases': purchases,
                'costs': costs,
@@ -30,7 +35,8 @@ def build_context_data(branch=None, start_date=None, end_date=None):
                'total_sellings': sellings,
                'balance': balance,
                'branches': Branch.objects.all(),
-               'articles_count': Article.objects.count(),
+
+               'articles_count': articles_count,
                'barchart': barchart,
                }
     return context
