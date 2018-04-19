@@ -31,7 +31,6 @@
       <thead class="thead-light">
       <tr>
           <th>{% trans 'Nr' %}</th>
-          <th>{% trans 'Creation Date' %}</th>
           <th>{% trans 'Billing Date' %}</th>
           <th>{% trans 'Branch' %}</th>
           <th>{% trans 'Name' %}</th>
@@ -46,7 +45,6 @@
       {% for a in costs %}
       <tr>
           <td>{{forloop.counter}}</td>
-          <td>{{ a.creation_date }}</td>
           <td>{{ a.billing_date }}</td>
          {% trans 'Main' as default_branch %}
           <td>{{ a.branch|default_if_none:default_branch }}</td>
