@@ -83,13 +83,14 @@
                        <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li><a href="{% url "inventory:articles" %}" title="{% trans 'Liste des articles' %}">{% trans 'Liste des articles' %}</a></li>
-                        <li><a href="{% url "inventory:articles_by_pictures" %}">Articles by pics<a/></li>
+                        <li><a href="{% url "inventory:articles" %}" title="{% trans 'Liste des articles' %}"><span class="glyphicon glyphicon-list-alt"></span>  {% trans 'Liste des articles' %}</a></li>
+                        <li><a href="{% url "inventory:articles_by_pictures" %}"><span class="glyphicon glyphicon-camera"></span>  {% trans "Articles by pics" %}<a/></li>
+                        <li class="divider"></li>
                         <li><a href="{% url "cart:cart_content" %}">{%trans 'Contenu du panier' %}</a></li>
                         <li><a href="{% url "cart:ventes"  %}">{% trans 'Ventes' %}</a></li>
                         <li><a href="{% url "cart:paiements"  %}">{% trans 'Payments' %}</a></li>
                         <li class="divider"></li>
-                        <li><a href="{% url "cart:clients" %}">{% trans 'Clients' %}</a></li>
+                        <li><a href="{% url "cart:clients" %}"><span class="glyphicon glyphicon-user"></span>  {% trans 'Clients' %}</a></li>
                         <li><a href="{% url "cart:client_create" %}">{% trans 'Ajouter un client' %}</a></li>
                     </ul>
                 </li>

@@ -14,7 +14,7 @@
           {% thumbnail a.photo  "100x100" crop="center" as im %}
          <p>
           <a href="/inventory/article_detail/{{a.pk}}" alt="image de {{a.name}}-ID: {{a.pk}}"
-          title="Quantity: {{a.quantity}}" data-toggle="tooltip" >
+          title="{{a.name|default_if_none:"n.d."}} - Quantity: {{a.quantity}}" data-toggle="tooltip" >
               <img class="thumbnail" src="{{ im.url }}" alt="The thumbnail" style="width: {{ im.width }}">
           </a>
          </p>
