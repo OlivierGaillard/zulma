@@ -459,9 +459,32 @@ class ArticlesByPicturesView(ListView):
     context_object_name = 'articles'
     template_name = 'inventory/articles_by_pictures.html'
 
+    def get_context_data(self, **kwargs):
+        ctx = super(ArticlesByPicturesView, self).get_context_data()
+        q = self.request.GET.get('q')
+        if q:
+            ctx['option'] = q
+        li = [b.name for b in Branch.objects.all()] + ['All', 'Main']
+        li.sort()
+        ctx['branchs'] = li
+        return ctx
+
     def get_queryset(self):
-        qs = Article.objects.filter(quantity__gte=1)
+        qs = super(ArticlesByPicturesView, self).get_queryset()
+        qs = qs.filter(quantity__gte=1)
+        q = self.request.GET.get('q')
+        if q:
+            if q.upper() == 'MAIN':
+                qs = qs.filter(branch=None)
+            elif q.upper() == 'ALL':
+                pass
+            else:
+                qs = qs.filter(branch__name__icontains=q)
         return qs
+
+
+
+
 
 
 @login_required()

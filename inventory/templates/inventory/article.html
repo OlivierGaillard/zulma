@@ -32,8 +32,9 @@
       </tr>
 
       <tr>
+        {% trans 'Main' as default_branch %}
         <th>{% trans "Branch" %}</th>
-        <td>{{article.branch|default_if_none:"n.d."}}</td>
+        <td>{{article.branch|default_if_none:default_branch}}</td>
       </tr>
 
 
@@ -139,8 +140,13 @@
 
     <td>
       <a href="{% url 'inventory:articles' %}"><button class="btn btn-info" >{% trans "Back to articles's list" %}</button></a>
+
     </td>
 
+      <td>
+
+      <a href="{% url 'inventory:articles_by_pictures' %}?q={{article.branch|default_if_none:default_branch}}"><button class="btn btn-info" >{% trans "Back to photos" %}</button></a>
+      </td>
     </tr>
 
 </table>
@@ -178,5 +184,6 @@
 
 {% block footernav %}
 <p><a href="{% url 'inventory:articles' %}"><button class="btn btn-info" >{% trans "Back to articles's list" %}</button></a> </p>
+
 
 {% endblock %}
