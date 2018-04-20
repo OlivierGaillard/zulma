@@ -84,6 +84,7 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li><a href="{% url "inventory:articles" %}" title="{% trans 'Liste des articles' %}">{% trans 'Liste des articles' %}</a></li>
+                        <li><a href="{% url "inventory:articles_by_pictures" %}">Articles by pics<a/></li>
                         <li><a href="{% url "cart:cart_content" %}">{%trans 'Contenu du panier' %}</a></li>
                         <li><a href="{% url "cart:ventes"  %}">{% trans 'Ventes' %}</a></li>
                         <li><a href="{% url "cart:paiements"  %}">{% trans 'Payments' %}</a></li>

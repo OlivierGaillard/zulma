@@ -15,7 +15,7 @@ Including another URLconf
 """
 
 from django.conf.urls import url
-from .views import ArticleDetailView, articles, ArticleUpdateView, articleDeleteView
+from .views import ArticleDetailView, articles, ArticleUpdateView, articleDeleteView, ArticlesByPicturesView
 from .views import ArrivalListView, ArrivalUpdateView, ArrivalCreateView, ArrivalDetailView, ArrivalDeleteView
 from .views import handle_pictures, upload_pictures_zip, CategoryCreateView, CategoryUpdateView, CategoryListView
 from .views import CategoryDetailView, CategoryDeleteView
@@ -38,6 +38,7 @@ urlpatterns = [
     url(r'^category_detail/(?P<pk>[0-9]+)$', CategoryDetailView.as_view(), name='category_detail'),
     url(r'^category_delete/(?P<pk>[0-9]+)$', CategoryDeleteView.as_view(), name='category_delete'),
     url('articles/', articles, name='articles'),
+    url(r'articles_by_pictures/$', ArticlesByPicturesView.as_view(), name='articles_by_pictures'),
 
     url('branches/', BranchListView.as_view(), name='branches'),
     url('branch_create/$', BranchCreateView.as_view(), name='branch_create'),

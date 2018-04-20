@@ -453,6 +453,16 @@ class ArticlesListView(ListView):
         qs = Article.objects.all()
         return qs
 
+@method_decorator(login_required, name='dispatch')
+class ArticlesByPicturesView(ListView):
+    model = Article
+    context_object_name = 'articles'
+    template_name = 'inventory/articles_by_pictures.html'
+
+    def get_queryset(self):
+        qs = Article.objects.filter(quantity__gte=1)
+        return qs
+
 
 @login_required()
 def articleDeleteView(request, pk):

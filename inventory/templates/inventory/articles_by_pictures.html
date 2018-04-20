@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    {% for a in articles %}
+    <div class="col-md-3 col-sm-4 col-xs-6">
+          {% thumbnail a.photo  "100x100" crop="center" as im %}
+         <p>
+          <a href="/inventory/article_detail/{{a.pk}}" alt="image de {{a.name}}-ID: {{a.pk}}"
+          title="Quantity: {{a.quantity}}" data-toggle="tooltip" >
+              <img class="thumbnail" src="{{ im.url }}" alt="The thumbnail" style="width: {{ im.width }}">
+          </a>
+         </p>
+         <p>
+          {% empty %}
+          {% trans "no pic found" %}
+          {% endthumbnail %}
+         </p>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+{% endblock %}
+{% block javascript %}
+<script type="text/javascript">
+$( function () {
+     $("a").tooltip();
+}
+);
+</script>
+{% endblock javascript %}
+
+{% block footer %}
+{% endblock %}
+
+

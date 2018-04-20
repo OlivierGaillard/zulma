@@ -310,3 +310,9 @@ class TestInventoryViews(TestCase):
         data = {'delete_purchasing_costs' : 'False'}
         c.post(reverse('inventory:article_delete', args=[art.pk]), data)
         self.assertEqual(Costs.objects.count(), 1)
+
+    def test_get_articles_by_pictures(self):
+        c = Client()
+        c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
+        r = c.get(reverse('inventory:articles_by_pictures'))
+        self.assertEqual(200, r.status_code)
