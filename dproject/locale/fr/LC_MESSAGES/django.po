@@ -7,167 +7,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-30 02:22-0600\n"
-"PO-Revision-Date: 2017-10-11 08:40+0000\n"
+"POT-Creation-Date: 2018-04-25 00:32+0200\n"
+"PO-Revision-Date: 2018-04-23 15:22+0200\n"
 "Last-Translator: Pascal Bader <info@wservices.ch>\n"
 "Language-Team: LANGUAGE <info@wservices.ch>\n"
-"Language: \n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-
-#: costs/models.py:12 costs/models.py:25
-msgid "name"
-msgstr ""
-
-#: costs/models.py:35 dproject/templates/base.html:73
-#: dproject/templates/base.html:100
-msgid "Categories"
-msgstr ""
-
-#: costs/models.py:64
-msgid "Creation date"
-msgstr ""
-
-#: costs/models.py:66 costs/templates/costs/costs.html:13
-#: costs/templates/costs/costs_details.html:16
-msgid "Amount"
-msgstr ""
-
-#: costs/models.py:67 costs/templates/costs/categories.html:9
-#: costs/templates/costs/category_details.html:16
-#: costs/templates/costs/costs.html:11
-#: costs/templates/costs/costs_details.html:20
-#: costs/templates/costs/enterprise_details.html:16
-#: costs/templates/costs/enterprises.html:9
-msgid "Name"
-msgstr ""
-
-#: costs/models.py:67
-msgid "short description"
-msgstr ""
-
-#: costs/models.py:68 costs/templates/costs/costs_details.html:21
-msgid "Note"
-msgstr ""
-
-#: costs/models.py:70
-msgid "when the bill was created"
-msgstr ""
-
-#: costs/models.py:71
-msgid "the bill reference number"
-msgstr ""
-
-#: costs/models.py:72 costs/templates/costs/costs_details.html:23
-msgid "Article link"
-msgstr ""
-
-#: costs/models.py:80 dashboard/templates/dashboard/main.html:20
-#: dproject/templates/base.html:93 dproject/templates/base.html:97
-msgid "Costs"
-msgstr ""
-
-#: costs/templates/costs/categories.html:10
-#: costs/templates/costs/categories.html:19 costs/templates/costs/costs.html:14
-#: costs/templates/costs/costs.html:28
-#: costs/templates/costs/enterprises.html:10
-#: costs/templates/costs/enterprises.html:19
-msgid "Edit"
-msgstr ""
-
-#: costs/templates/costs/categories.html:11
-#: costs/templates/costs/categories.html:20 costs/templates/costs/costs.html:15
-#: costs/templates/costs/costs.html:29
-#: costs/templates/costs/enterprises.html:11
-#: costs/templates/costs/enterprises.html:20
-msgid "Delete"
-msgstr ""
-
-#: costs/templates/costs/category_delete.html:7
-msgid "Category:"
-msgstr ""
-
-#: costs/templates/costs/category_delete.html:14
-#: costs/templates/costs/costs_delete.html:14
-#: costs/templates/costs/enterprise_delete.html:14
-msgid "Effacer"
-msgstr ""
-
-#: costs/templates/costs/category_details.html:10
-msgid "Details of the costs' category"
-msgstr ""
-
-#: costs/templates/costs/costs.html:9
-msgid "Nr"
-msgstr ""
-
-#: costs/templates/costs/costs.html:10
-#: costs/templates/costs/costs_details.html:29
-msgid "Billing Date"
-msgstr ""
-
-#: costs/templates/costs/costs.html:12
-#: costs/templates/costs/costs_details.html:17
-msgid "Category"
-msgstr ""
-
-#: costs/templates/costs/costs.html:24
-msgid "Click to see details"
-msgstr ""
-
-#: costs/templates/costs/costs_delete.html:7
-msgid "Costs:"
-msgstr ""
-
-#: costs/templates/costs/costs_details.html:9
-msgid "Details of the costs"
-msgstr ""
-
-#: costs/templates/costs/costs_details.html:15
-msgid "Creation Date"
-msgstr ""
-
-#: costs/templates/costs/costs_details.html:24
-msgid "Link to article"
-msgstr ""
-
-#: costs/templates/costs/costs_details.html:28
-msgid "Enterprise"
-msgstr ""
-
-#: costs/templates/costs/costs_details.html:30
-msgid "Billing Nr"
-msgstr ""
-
-#: costs/templates/costs/enterprise_delete.html:7
-msgid "Enterprise:"
-msgstr ""
-
-#: costs/templates/costs/enterprise_details.html:10
-msgid "Details of the enterprise"
-msgstr ""
-
-#: dashboard/templates/dashboard/main.html:8
-msgid "Main Dashboard"
-msgstr ""
-
-#: dashboard/templates/dashboard/main.html:16
-msgid "Purchases"
-msgstr ""
-
-#: dashboard/templates/dashboard/main.html:25
-msgid "Total costs:"
-msgstr ""
-
-#: dashboard/templates/dashboard/main.html:29
-msgid "Total incomes:"
-msgstr ""
-
-#: dashboard/templates/dashboard/main.html:33
-msgid "Balance:"
-msgstr ""
+"X-Generator: Poedit 2.0.6\n"
 
 #: dproject/templates/403.html:4 dproject/templates/403.html:10
 msgid "Permission denied"
@@ -179,7 +28,7 @@ msgstr ""
 
 #: dproject/templates/404.html:4 dproject/templates/404.html:10
 msgid "Page not found"
-msgstr ""
+msgstr "Page non trouvée"
 
 #: dproject/templates/404.html:11
 msgid "We're sorry, but the requested page could not be found."
@@ -203,154 +52,164 @@ msgstr ""
 msgid "Imprint"
 msgstr "Imprimer"
 
-#: dproject/templates/base.html:40
+#: dproject/templates/base.html:49
 msgid "About"
 msgstr "À propos de nous"
 
-#: dproject/templates/base.html:59
-msgid "Setup"
-msgstr ""
+#: dproject/templates/base.html:68
+msgid "First Steps"
+msgstr "Premiers pas"
 
-#: dproject/templates/base.html:63
-msgid "Create an arrival"
-msgstr ""
+#: dproject/templates/base.html:73
+msgid "Create Branch"
+msgstr "Créer une branche"
 
-#: dproject/templates/base.html:63
-msgid "Create one arrival"
-msgstr ""
+#: dproject/templates/base.html:74
+msgid "Create category"
+msgstr "Créer une catégorie"
 
-#: dproject/templates/base.html:64
-msgid "Arrivals List"
-msgstr ""
+#: dproject/templates/base.html:74
+msgid "Create one Category"
+msgstr "Créer une catégorie"
 
-#: dproject/templates/base.html:64
-msgid "Arrivals"
-msgstr ""
+#: dproject/templates/base.html:75
+msgid "Create  Arrival"
+msgstr "Créer un arrivage"
 
-#: dproject/templates/base.html:66
+#: dproject/templates/base.html:75
+msgid "Create one Arrival"
+msgstr "Créer un arrivage"
+
+#: dproject/templates/base.html:76
+msgid "Upload pictures ZIP"
+msgstr "Téléverser un ZIP d'images"
+
+#: dproject/templates/base.html:76
+msgid "Upload ZIP pictures"
+msgstr "Téléverser un ZIP d'images"
+
+#: dproject/templates/base.html:77
+msgid "Generate articles from pictures"
+msgstr "Générer des articles à partir des images"
+
+#: dproject/templates/base.html:77
+msgid "Generate Articles"
+msgstr "Générer des articles"
+
+#: dproject/templates/base.html:79
+msgid "Your Basic Data"
+msgstr "Vos informations de base"
+
+#: dproject/templates/base.html:80
 msgid "Branches"
 msgstr ""
 
-#: dproject/templates/base.html:67
-msgid "Create Branch"
-msgstr ""
+#: dproject/templates/base.html:81
+msgid "Arrivals List"
+msgstr "Arrivages"
 
-#: dproject/templates/base.html:69
-msgid "Upload pictures ZIP"
-msgstr ""
+#: dproject/templates/base.html:81
+msgid "Arrivals"
+msgstr "Arrivages"
 
-#: dproject/templates/base.html:69
-msgid "Upload ZIP pictures"
-msgstr ""
-
-#: dproject/templates/base.html:70
-msgid "Generate articles from pictures"
-msgstr ""
-
-#: dproject/templates/base.html:70
-msgid "Generate Articles"
-msgstr ""
-
-#: dproject/templates/base.html:72
-msgid "Create category"
-msgstr ""
-
-#: dproject/templates/base.html:72
-msgid "Create one Category"
-msgstr ""
-
-#: dproject/templates/base.html:73
+#: dproject/templates/base.html:82
 msgid "List the categories"
-msgstr ""
+msgstr "Lister les catégories"
 
-#: dproject/templates/base.html:79
+#: dproject/templates/base.html:82 dproject/templates/base.html:111
+msgid "Categories"
+msgstr "Catégories"
+
+#: dproject/templates/base.html:88
 msgid "Caisse"
-msgstr ""
+msgstr "Caisse"
 
-#: dproject/templates/base.html:83
+#: dproject/templates/base.html:92
 msgid "Liste des articles"
 msgstr ""
 
-#: dproject/templates/base.html:84
-msgid "Contenu du panier"
-msgstr ""
+#: dproject/templates/base.html:93
+msgid "Articles by pics"
+msgstr "Images des articles"
 
-#: dproject/templates/base.html:85
+#: dproject/templates/base.html:95
+msgid "Contenu du panier"
+msgstr "Contenu du panier"
+
+#: dproject/templates/base.html:96
 msgid "Ventes"
 msgstr ""
 
-#: dproject/templates/base.html:86
+#: dproject/templates/base.html:97
 msgid "Payments"
-msgstr ""
+msgstr "Paiements"
 
-#: dproject/templates/base.html:88
+#: dproject/templates/base.html:99
 msgid "Clients"
-msgstr ""
+msgstr "Clients"
 
-#: dproject/templates/base.html:89
+#: dproject/templates/base.html:100
 msgid "Ajouter un client"
 msgstr ""
 
-#: dproject/templates/base.html:98
+#: dproject/templates/base.html:104 dproject/templates/base.html:108
+msgid "Costs"
+msgstr "Coûts"
+
+#: dproject/templates/base.html:109
 msgid "Add one Cost"
-msgstr ""
+msgstr "Ajouter un coût"
 
-#: dproject/templates/base.html:101
+#: dproject/templates/base.html:112
 msgid "Create a category"
-msgstr ""
+msgstr "Créer une catégorie"
 
-#: dproject/templates/base.html:103
+#: dproject/templates/base.html:114
 msgid "Enterprises"
-msgstr ""
+msgstr "Entreprises"
 
-#: dproject/templates/base.html:105
+#: dproject/templates/base.html:116
 msgid "an enterprise or provider which occurs regularly in your costs"
 msgstr ""
+"une entreprise ou un fournisseur se service qui se présente régulièrement "
+"dans vos coûts"
 
-#: dproject/templates/base.html:105
+#: dproject/templates/base.html:116
 msgid "Create an enterprise"
-msgstr ""
+msgstr "Créer une entreprise"
 
-#: dproject/templates/base.html:118 dproject/templates/base.html:147
+#: dproject/templates/base.html:130
 msgid "Log out"
-msgstr ""
+msgstr "Quitter"
 
-#: dproject/templates/base.html:121 dproject/templates/base.html:149
+#: dproject/templates/base.html:133
 #: dproject/templates/registration/login.html:5
 #: dproject/templates/registration/login.html:12
 #: dproject/templates/registration/login.html:18
 msgid "Log in"
-msgstr ""
+msgstr "S'annoncer"
 
-#: dproject/templates/base.html:131 dproject/templates/base.html:146
-msgid "Admin"
-msgstr ""
-
-#: dproject/templates/base.html:145
-msgid "Profile"
-msgstr "Profil"
-
-#: dproject/templates/base.html:185
+#: dproject/templates/base.html:168
 msgid "créé par"
 msgstr ""
 
 #: dproject/templates/email/base.html:68 dproject/templates/email/base.txt:4
 #: dproject/templates/email/base.txt:5
 msgid "Dear "
-msgstr ""
+msgstr "Cher/Chère"
 
 #: dproject/templates/email/base.html:73 dproject/templates/email/base.txt:11
 msgid "Yours sincerely"
-msgstr ""
+msgstr "Cordiales salutations"
 
 #: dproject/templates/email/base.html:74 dproject/templates/email/base.txt:12
 #, python-format
 msgid "The %(site_name)s team"
-msgstr ""
+msgstr "L'équipe %(site_name)s "
 
 #: dproject/templates/email/base.txt:5
 msgid "Dear ladies and gentlemen"
-msgstr ""
+msgstr "Mesdames, Messieurs"
 
 #: dproject/templates/index.html:14
 msgid "Bienvenue"
@@ -358,55 +217,64 @@ msgstr ""
 
 #: dproject/templates/index.html:17
 msgid "First steps to enter your articles"
-msgstr ""
+msgstr "Premiers pas pour saisir vos articles"
 
 #: dproject/templates/index.html:20
 #, python-format
 msgid ""
 "\n"
-"          <p>Please follow the enemerated list of the menu <em>Arrival</"
-"em>:\n"
+"          <p>Please follow the <em>Preparation</em> part of the menu "
+"<em>First Steps</em>:\n"
 "          <ol>\n"
+"        <li>If you have more than one branch, add it <a href=\"/inventory/"
+"branch_create\">here.</a></li>\n"
 "          <li>Create one <a href=\"/inventory/arrival_create/\">arrival</a></"
 "li>\n"
-"            <small><em>Or <a href=\"/inventor/arrivals/\">rename</a> the one "
-"I created</em></small></li>\n"
+"            <small><em>Or <a href=\"/inventory/arrivals/\">rename</a> the "
+"one I created</em></small></li>\n"
 "            <li><a href=\"/inventory/upload_zipics/\">Upload</a> the "
-"pictures as a .zip file. <small><em>Done</em></small></li>\n"
+"pictures as a .zip file.</li>\n"
 "          <li><a href=\"/inventory/handle_pics/\" %%}\">Generate </a> the "
-"articles <small><em>Done</em></small></li></li>\n"
+"articles</li></li>\n"
 "        </ol>\n"
 "          </p>\n"
+"        "
+msgstr ""
 "\n"
-"        <p>Afterwards you can create the <em>categories</em> to classify "
-"your stuff.</p>\n"
-"      </div>\n"
-"      <h4>Alternative way</h4>\n"
-"      <p>To facilitate your work it will be better to create the categories "
-"at the very first beginning. Then you could\n"
-"        make one upload of pictures for each category and you select the "
-"category in the\n"
-"        <em>(3) Generate Articles</em> step.</p>\n"
-"      "
-msgstr ""
+"          <p>Veuillez suivre les étapes du menu <em>Préparation</em> part of "
+"the menu <em>First Steps</em>:\n"
+"          <ol>\n"
+"        <li>If you have more than one branch, add it <a href=\"/inventory/"
+"branch_create\">here.</a></li>\n"
+"          <li>Create one <a href=\"/inventory/arrival_create/\">arrival</a></"
+"li>\n"
+"            <small><em>Or <a href=\"/inventory/arrivals/\">rename</a> the "
+"one I created</em></small></li>\n"
+"            <li><a href=\"/inventory/upload_zipics/\">Upload</a> the "
+"pictures as a .zip file.</li>\n"
+"          <li><a href=\"/inventory/handle_pics/\" %%}\">Generate </a> the "
+"articles</li></li>\n"
+"        </ol>\n"
+"          </p>\n"
+"        "
 
-#: dproject/templates/index.html:39
+#: dproject/templates/index.html:47
 msgid "Comment saisir une vente"
-msgstr ""
+msgstr "Comment saisir une vente"
 
-#: dproject/templates/index.html:39
+#: dproject/templates/index.html:47
 msgid "step-by-step guide"
-msgstr ""
+msgstr "Guide pas à pas"
 
-#: dproject/templates/index.html:41
+#: dproject/templates/index.html:49
 msgid "Allez à la "
 msgstr ""
 
-#: dproject/templates/index.html:42
+#: dproject/templates/index.html:50
 msgid "1ère étape"
 msgstr ""
 
-#: dproject/templates/index.html:46
+#: dproject/templates/index.html:54
 msgid "de la vente achevée"
 msgstr ""
 
@@ -425,6 +293,9 @@ msgstr ""
 #: dproject/templates/registration/logged_out.html:12
 msgid "Log in again"
 msgstr ""
+
+#~ msgid "Profile"
+#~ msgstr "Profil"
 
 #~ msgid "Search on the site"
 #~ msgstr "Rechercher sur le site"

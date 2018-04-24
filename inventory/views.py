@@ -363,7 +363,8 @@ def quantities_of_article_and_form_are_valid(article, form):
     else:
         if article.quantity < new_losses:
             logger.debug("Article quantity < new losses. We add error msg: %s < %s" % (article.quantity, new_losses))
-            error = ValidationError(_("Losses (%s) cannot exceed quantity (%s).") % (new_losses, article.quantity))
+            error = ValidationError(_("Losses %(losse)s cannot exceed quantity %(quantity)s."),
+                    params={'losse' : new_losses, 'quantity' : article.quantity})
             form.add_error(error=error, field='losses')
         return False
 

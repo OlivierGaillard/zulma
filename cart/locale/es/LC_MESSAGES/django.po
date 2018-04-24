@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-03-30 02:22-0600\n"
+"POT-Creation-Date: 2018-04-25 00:32+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,57 +18,57 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: cart/models.py:10
+#: cart/models.py:16
 msgid "Name"
 msgstr ""
 
-#: cart/models.py:11
+#: cart/models.py:17
 msgid "First name"
 msgstr ""
 
-#: cart/models.py:14
+#: cart/models.py:20
 msgid "Tél."
 msgstr ""
 
-#: cart/models.py:14
+#: cart/models.py:20
 msgid "pas d'espaces entre les chiffres svp"
 msgstr ""
 
-#: cart/models.py:44
+#: cart/models.py:51
 msgid "montant"
 msgstr ""
 
-#: cart/models.py:45 cart/templates/cart/vente.html:62
+#: cart/models.py:52 cart/templates/cart/vente.html:62
 #: cart/templates/cart/ventes.html:13
 msgid "Client"
 msgstr ""
 
-#: cart/models.py:45
+#: cart/models.py:52
 msgid "Laisser le champ vide (---) si le client n'est pas enregistré."
 msgstr ""
 
-#: cart/models.py:46
+#: cart/models.py:53
 msgid "Règlement terminé"
 msgstr ""
 
-#: cart/models.py:77 cart/templates/cart/paiement.html:21
+#: cart/models.py:84 cart/templates/cart/paiement.html:21
 #: cart/templates/cart/paiements.html:13 cart/templates/cart/vente.html:71
 #: cart/templates/cart/vente.html:122
 msgid "Montant"
 msgstr ""
 
-#: cart/models.py:78 cart/models.py:94 cart/templates/cart/paiement.html:17
+#: cart/models.py:85 cart/models.py:101 cart/templates/cart/paiement.html:17
 #: cart/templates/cart/paiements.html:15
 msgid "Vente"
 msgstr ""
 
-#: cart/models.py:93 cart/templates/cart/cart_content2.html:40
+#: cart/models.py:100 cart/templates/cart/cart_content2.html:40
 #: cart/templates/cart/checkout.html:46 cart/templates/cart/vente.html:82
-#: cart/templates/cart/vente_update.html:17
+#: cart/templates/cart/vente_update.html:19
 msgid "Prix"
 msgstr ""
 
-#: cart/models.py:97
+#: cart/models.py:104
 msgid "Panier validé"
 msgstr ""
 
@@ -80,7 +80,7 @@ msgstr ""
 #: cart/templates/cart/cart_content.html:7
 #: cart/templates/cart/cart_content2.html:7
 #: cart/templates/cart/checkout.html:10 cart/templates/cart/paiement_add.html:9
-#: cart/templates/cart/vente.html:14
+#: cart/templates/cart/vente.html:13
 msgid "step-by-step guide"
 msgstr ""
 
@@ -115,8 +115,8 @@ msgstr ""
 #: cart/templates/cart/cart_content2.html:22
 #: cart/templates/cart/checkout.html:25
 #: cart/templates/cart/paiement_add.html:23
-#: cart/templates/cart/paiement_add.html:28 cart/templates/cart/vente.html:22
-#: cart/templates/cart/vente.html:32
+#: cart/templates/cart/paiement_add.html:28 cart/templates/cart/vente.html:21
+#: cart/templates/cart/vente.html:31
 msgid "de la vente achevée"
 msgstr ""
 
@@ -188,7 +188,7 @@ msgstr ""
 #: cart/templates/cart/cart_content2.html:41
 #: cart/templates/cart/cart_content2.html:72
 #: cart/templates/cart/cart_content2.html:87
-#: cart/templates/cart/clients.html:13 cart/templates/cart/clients.html:24
+#: cart/templates/cart/clients.html:13 cart/templates/cart/clients.html:25
 msgid "Modifier"
 msgstr ""
 
@@ -230,17 +230,17 @@ msgid ""
 "\n"
 "    Si votre client n'est pas enregistré vous pourrez modifier la vente plus "
 "tard,\n"
-"    une fois que vous l'aurez enregistré.\n"
+"    une fois les paiements effectués.\n"
 "    "
 msgstr ""
 
 #: cart/templates/cart/checkout.html:45 cart/templates/cart/vente.html:83
-#: cart/templates/cart/vente_update.html:18
+#: cart/templates/cart/vente_update.html:20
 msgid "Quantité"
 msgstr ""
 
 #: cart/templates/cart/clients.html:10 cart/templates/cart/vente.html:80
-#: cart/templates/cart/vente_update.html:15
+#: cart/templates/cart/vente_update.html:17
 msgid "Nom"
 msgstr ""
 
@@ -250,6 +250,10 @@ msgstr ""
 
 #: cart/templates/cart/clients.html:12
 msgid "Téléphone"
+msgstr ""
+
+#: cart/templates/cart/clients.html:14 cart/templates/cart/clients.html:27
+msgid "Delete"
 msgstr ""
 
 #: cart/templates/cart/paiement.html:25 cart/templates/cart/paiements.html:14
@@ -291,19 +295,19 @@ msgstr ""
 msgid "Click to see details of selling"
 msgstr ""
 
-#: cart/templates/cart/vente.html:14
+#: cart/templates/cart/vente.html:13
 msgid "Etape 5"
 msgstr ""
 
-#: cart/templates/cart/vente.html:15
+#: cart/templates/cart/vente.html:14
 msgid "Ajoutez un paiement (avance ou paiement complet) à la vente"
 msgstr ""
 
-#: cart/templates/cart/vente.html:27
+#: cart/templates/cart/vente.html:26
 msgid "vente terminée"
 msgstr ""
 
-#: cart/templates/cart/vente.html:41 cart/templates/cart/vente.html:46
+#: cart/templates/cart/vente.html:40 cart/templates/cart/vente.html:46
 #: cart/templates/cart/ventes.html:53
 msgid "Ajouter un paiement"
 msgstr ""
@@ -316,15 +320,15 @@ msgstr ""
 msgid "Selling ID"
 msgstr ""
 
-#: cart/templates/cart/vente.html:81 cart/templates/cart/vente_update.html:16
+#: cart/templates/cart/vente.html:81 cart/templates/cart/vente_update.html:18
 msgid "Aperçu"
 msgstr ""
 
-#: cart/templates/cart/vente.html:89 cart/templates/cart/vente_update.html:25
+#: cart/templates/cart/vente.html:89 cart/templates/cart/vente_update.html:27
 msgid "Cliquer pour voir les détails"
 msgstr ""
 
-#: cart/templates/cart/vente.html:99 cart/templates/cart/vente_update.html:35
+#: cart/templates/cart/vente.html:99 cart/templates/cart/vente_update.html:37
 msgid "pas d'aperçu"
 msgstr ""
 
@@ -344,21 +348,33 @@ msgstr ""
 msgid "Modifier la vente"
 msgstr ""
 
-#: cart/templates/cart/vente_update.html:14
+#: cart/templates/cart/vente_update.html:10
+msgid "Edit the Selling-ID "
+msgstr ""
+
+#: cart/templates/cart/vente_update.html:16
 msgid "Article-ID"
 msgstr ""
 
-#: cart/templates/cart/vente_update.html:19
-#: cart/templates/cart/vente_update.html:39
+#: cart/templates/cart/vente_update.html:21
+#: cart/templates/cart/vente_update.html:41
 msgid "Supprimer"
 msgstr ""
 
-#: cart/templates/cart/vente_update.html:48
+#: cart/templates/cart/vente_update.html:50
 msgid "Supprimer la vente ID"
 msgstr ""
 
-#: cart/templates/cart/vente_update.html:53
+#: cart/templates/cart/vente_update.html:55
 msgid "Effacer la vente"
+msgstr ""
+
+#: cart/templates/cart/ventes.html:12
+msgid "Only the first article of the selling is shown."
+msgstr ""
+
+#: cart/templates/cart/ventes.html:12
+msgid "First Article"
 msgstr ""
 
 #: cart/templates/cart/ventes.html:14
