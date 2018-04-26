@@ -11,7 +11,7 @@
       <form action="{% url "costs:costs_delete" costs.pk  %}" method="post">
         {% csrf_token %}
         {{ form }}
-        <input class="btn btn-danger" type="submit" value="Delete"{% trans "Effacer" %}</input>
+        <input class="btn btn-danger" type="submit" value="{% trans "Effacer" %}"</input>
       </form>
       </div>
   </div>

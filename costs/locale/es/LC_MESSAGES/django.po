@@ -1,0 +1,186 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-04-26 14:23+0200\n"
+"PO-Revision-Date: 2018-04-26 14:22+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: es_GT\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.0.6\n"
+
+#: costs/models.py:14 costs/models.py:28
+msgid "name"
+msgstr "nome"
+
+#: costs/models.py:24 costs/models.py:76
+#: costs/templates/costs/costs_details.html:29
+msgid "Enterprise"
+msgstr "Empresa"
+
+#: costs/models.py:38
+msgid "Categories"
+msgstr "Categorías"
+
+#: costs/models.py:39 costs/models.py:72 costs/templates/costs/costs.html:37
+#: costs/templates/costs/costs_details.html:17
+msgid "Category"
+msgstr "Categoría"
+
+#: costs/models.py:70 costs/templates/costs/costs.html:12
+#: costs/templates/costs/costs.html:35
+#: costs/templates/costs/costs_details.html:18
+msgid "Branch"
+msgstr "Sucursal"
+
+#: costs/models.py:71
+msgid "Creation date"
+msgstr "Fecha de creación"
+
+#: costs/models.py:73 costs/templates/costs/costs.html:38
+#: costs/templates/costs/costs_details.html:16
+msgid "Amount"
+msgstr "Pago"
+
+#: costs/models.py:74 costs/templates/costs/categories.html:9
+#: costs/templates/costs/category_details.html:16
+#: costs/templates/costs/costs.html:36
+#: costs/templates/costs/costs_details.html:21
+#: costs/templates/costs/enterprise_details.html:16
+#: costs/templates/costs/enterprises.html:9
+msgid "Name"
+msgstr "Nome"
+
+#: costs/models.py:74
+msgid "short description"
+msgstr "breve descripción"
+
+#: costs/models.py:75 costs/templates/costs/costs_details.html:22
+msgid "Note"
+msgstr "Nota"
+
+#: costs/models.py:77 costs/templates/costs/costs.html:34
+#: costs/templates/costs/costs_details.html:30
+msgid "Billing Date"
+msgstr "Fecha de facturación"
+
+#: costs/models.py:77
+msgid "when the bill was created"
+msgstr "fecha de facturación"
+
+#: costs/models.py:78 costs/templates/costs/costs_details.html:31
+msgid "Billing Nr"
+msgstr "No. de factura"
+
+#: costs/models.py:79
+msgid "the bill reference number"
+msgstr "número de factura"
+
+#: costs/models.py:80 costs/templates/costs/costs_details.html:24
+msgid "Article link"
+msgstr "Enlace al producto"
+
+#: costs/models.py:89
+msgid "Costs"
+msgstr "Costos"
+
+#: costs/templates/costs/categories.html:10
+#: costs/templates/costs/categories.html:19 costs/templates/costs/costs.html:39
+#: costs/templates/costs/costs.html:55
+#: costs/templates/costs/enterprises.html:10
+#: costs/templates/costs/enterprises.html:19
+msgid "Edit"
+msgstr "Editar"
+
+#: costs/templates/costs/categories.html:11
+#: costs/templates/costs/categories.html:20 costs/templates/costs/costs.html:40
+#: costs/templates/costs/costs.html:56
+#: costs/templates/costs/enterprises.html:11
+#: costs/templates/costs/enterprises.html:20
+msgid "Delete"
+msgstr "Borrar"
+
+#: costs/templates/costs/category_delete.html:7
+msgid "Category:"
+msgstr "Categoría:"
+
+#: costs/templates/costs/category_delete.html:14
+#: costs/templates/costs/costs_delete.html:14
+#: costs/templates/costs/enterprise_delete.html:14
+msgid "Effacer"
+msgstr "Borrar"
+
+#: costs/templates/costs/category_details.html:10
+msgid "Details of the costs' category"
+msgstr "Detalle de la categoría de costos"
+
+#: costs/templates/costs/costs.html:24
+msgid "Filter"
+msgstr "Filtro"
+
+#: costs/templates/costs/costs.html:33
+msgid "Nr"
+msgstr ""
+
+#: costs/templates/costs/costs.html:49
+msgid "Main"
+msgstr "Principal"
+
+#: costs/templates/costs/costs.html:51
+msgid "Click to see details"
+msgstr "Hacer click  para ver los detalles"
+
+#: costs/templates/costs/costs_delete.html:7
+msgid "Costs:"
+msgstr "Costos:"
+
+#: costs/templates/costs/costs_details.html:9
+msgid "Details of the costs"
+msgstr "Detalles de los costos"
+
+#: costs/templates/costs/costs_details.html:15
+msgid "Creation Date"
+msgstr "Fecha de creación"
+
+#: costs/templates/costs/costs_details.html:25
+msgid "Link to article"
+msgstr "Enlace al  producto"
+
+#: costs/templates/costs/enterprise_create.html:7
+msgid "Adding one Enterprise or Provider"
+msgstr "Agregar una empresa o proveedor"
+
+#: costs/templates/costs/enterprise_create.html:8
+msgid ""
+"\n"
+"  <p>An enterprise you pay for a service: cleaning, electricity, and so on,  "
+"<em>provides</em>\n"
+"  you a service.</p>\n"
+"  "
+msgstr ""
+"\n"
+" <p>Una empresa... etc, <em>provides</em>\n"
+"  you uno servicio.</p>\n"
+"  "
+
+#: costs/templates/costs/enterprise_delete.html:7
+msgid "Enterprise:"
+msgstr "Empresa:"
+
+#: costs/templates/costs/enterprise_details.html:10
+msgid "Details of the enterprise"
+msgstr "Detalles de la empresa"
+
+#, fuzzy
+#~| msgid "Enterprise"
+#~ msgid "An enterprise"
+#~ msgstr "Empresa"

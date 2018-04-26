@@ -5,9 +5,10 @@
 {% block content %}
 <div class="container">
   <h2>{% trans 'Adding one Enterprise or Provider'%}</h2>
+  {% blocktrans %}
   <p>An enterprise you pay for a service: cleaning, electricity, and so on,  <em>provides</em>
   you a service.</p>
-
+  {% endblocktrans %}
 {% crispy form %}
 </div>
 {% endblock %}

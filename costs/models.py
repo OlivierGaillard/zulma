@@ -21,6 +21,7 @@ class Enterprise(models.Model):
 
     class Meta:
         ordering = ['name']
+        verbose_name = _('Enterprise')
 
 
 class Category(models.Model):
@@ -35,6 +36,7 @@ class Category(models.Model):
 
     class Meta:
         verbose_name_plural = _('Categories')
+        verbose_name = _('Category')
         ordering = ['name']
 
 
@@ -65,15 +67,16 @@ class CostsManager(models.Manager):
 
 
 class Costs(models.Model):
-    branch = models.ForeignKey(Branch, null=True, blank=True)
+    branch = models.ForeignKey(Branch, null=True, blank=True, verbose_name=_('Branch'))
     creation_date = models.DateField(_('Creation date'), default=date.today, blank=True)
-    category = models.ForeignKey(Category)
+    category = models.ForeignKey(Category, verbose_name=_('Category'))
     amount = models.DecimalField(_('Amount'), max_digits=20, decimal_places=2)
     name   = models.CharField(_('Name'), max_length=200, help_text=_('short description'), blank=True, null=True)
     note   = models.TextField(_('Note'), blank=True, null=True)
-    enterprise = models.ForeignKey(Enterprise, blank=True, null=True)
-    billing_date = models.DateField(default=date.today, blank=True, null=True, help_text=_('when the bill was created'))
-    billing_number = models.CharField(blank=True, null=True, max_length=200, help_text=_('the bill reference number'))
+    enterprise = models.ForeignKey(Enterprise, blank=True, null=True, verbose_name=_('Enterprise'))
+    billing_date = models.DateField(_('Billing Date'), default=date.today, blank=True, null=True, help_text=_('when the bill was created'))
+    billing_number = models.CharField(_('Billing Nr'), blank=True, null=True, max_length=200,
+                                      help_text=_('the bill reference number'))
     article_link = models.URLField(_('Article link'), null=True, blank=True)
     article_id   = models.ForeignKey(Article, null=True, on_delete=models.SET_NULL)
     objects = CostsManager()
