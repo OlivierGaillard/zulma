@@ -14,7 +14,7 @@
           {% thumbnail article.photo  "150x150" crop="center" as thumbnail %}
         <div class="pic">
           <p>
-              <a href="{{ article.photo.url }}" alt="{% trans 'image de ' %}{{article.name}}-ID: {{article.pk}}">
+              <a href="{{ article.photo.url }}" alt="{% trans 'picture of' %} {{article.name}}-ID: {{article.pk}}">
               <img src="{{ thumbnail.url }}" alt="The thumbnail" style="width: {{ thumbnail.width }}">
               </a>
           </p>

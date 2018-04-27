@@ -114,6 +114,7 @@ class Branch(models.Model):
 
     class Meta:
         ordering = ['name']
+        verbose_name = _('Branch')
 
 
 class ArticleManager(models.Manager):

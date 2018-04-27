@@ -21,7 +21,7 @@
       <tbody>
       {% for a in categories %}
       <tr>
-        <td><a title="{% trans 'Cliquer pour éditer' %}" href="/inventory/category_update/{{a.pk}}"> {{ forloop.counter}}</a></td>
+        <td><a title="{% trans 'Click to edit' %}" href="/inventory/category_update/{{a.pk}}"> {{ forloop.counter}}</a></td>
           <td>{{ a.name}}</td>
       </tr>
       {% endfor %}

@@ -80,13 +80,14 @@ class UploadPicturesZipForm(forms.Form):
         pictures_dir = os.path.join(settings.MEDIA_ROOT, 'tmp')
         li = os.listdir(pictures_dir)
         if len(li) > 0:
+            msg = _('They are already uploaded pictures. Please generate the articles before uploading new ones.')
             self.helper.layout = Layout(
-                HTML("<div class='alert alert-warning'>They are already uploaded pictures. Please generate the articles before uploading new ones.</div>")
+                HTML("<div class='alert alert-warning'>{0}</div>".format(msg))
             )
         else:
             self.helper.layout.append(
                 FormActions(
-                    Submit('save', 'Upload'),
+                    Submit('save', _('Upload')),
                 )
             )
 
@@ -96,14 +97,6 @@ class UploadPicturesZipForm(forms.Form):
         zip_file = cleaned_data['pictures_zip']
         if not zip_file.name.split('.')[1] == 'zip':
             self.add_error('pictures_zip', _("File ends not with extension '.zip'."))
-        # print('clean zip file:', zip_file)
-        # print('clean', zip_file.temporary_file_path())
-        # print('clean', zip_file.name)
-        # print('clean', zip_file.size)
-        # if zip_file.multiple_chunks():
-        #     print('multiple chunks required.')
-        # else:
-        #     print('no multiple chunks required')
         return cleaned_data
 
 
@@ -123,7 +116,7 @@ class HandlePicturesForm(forms.Form):
         self.helper.field_class = 'col-sm-4'
         self.helper.layout.append(
             FormActions(
-                Submit('save', 'Generate'),
+                Submit('save', _('Generate')),
             )
         )
 
@@ -148,25 +141,6 @@ class ArticleUpdateForm(forms.ModelForm):
             )
         )
 
-# class ArticleLossesForm(forms.ModelForm):
-#
-#     class Meta:
-#         model = Article
-#         fields = ('losses', 'amount_losses',)
-#         #fields = ('losses', 'amount_losses',)
-#
-#     def __init__(self, *args, **kwargs):
-#         super(ArticleLossesForm, self).__init__(*args, **kwargs)
-#         self.helper = FormHelper(self)
-#         self.helper.form_method = "POST"
-#         self.helper.form_class = 'form-horizontal'
-#         self.helper.label_class = 'col-sm-2'
-#         self.helper.field_class = 'col-sm-4'
-#         self.helper.layout.append(
-#             FormActions(
-#                 Submit('save', 'Submit'),
-#             )
-#         )
 
 class ArticleLossesForm(forms.Form):
     losses = forms.IntegerField(required=True, min_value=1)

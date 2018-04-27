@@ -4,25 +4,25 @@
 {% load thumbnail %}
 {% block content %}
 <div class="container">
-  <h3>{% trans "2ème étape" %}  <small>{% trans "step-by-step guide" %}</small></h3>
-  <h4>{% trans "Ajouter l'article au panier" %}</h4>
+  <h3>{% trans "2nd step" %}  <small>{% trans "step-by-step guide" %}</small></h3>
+  <h4>{% trans "Add article to cart" %}</h4>
 
 
   <ol>
-    <li>{% trans "Est-ce le bon article" %}? {% trans "Au besoin cliquez sur l'image pour l'agrandir" %}</li>
-    <li>{% trans "Ensuite ajoutez le au panier d'achat" %}</li>
+    <li>{% trans "Is-it the right article" %}? {% trans "You can click to see more detials" %}</li>
+    <li>{% trans "Then add the article to the cart" %}</li>
   </ol>
 
     <div class="progress">
       <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
          style="width:40%">
-    40% {% trans "de la vente achevée" %}
+    40% {% trans "of the selling progression" %}
       </div>
     </div>
 
 
 
-  <h2>{% trans "Détails de l'article" %}</h2>
+  <h2>{% trans "Article's Details" %}</h2>
 
   <table class="table">
     <tbody>
@@ -39,11 +39,11 @@
 
 
       <tr>
-        <th>{% trans "Date d'arrivage" %}</th><td>{{article.arrival.date_arrivee|date:"d.m.Y"}}</td>
+        <th>{% trans "Arrival Date" %}</th><td>{{article.arrival.date_arrivee|date:"d.m.Y"}}</td>
       </tr>
 
       <tr>
-          <th>{% trans "Nom de l'arrivage" %}</th>
+          <th>{% trans "Arrival Name" %}</th>
         <td>{{article.arrival.nom}}</td>
       </tr>
 
@@ -53,37 +53,37 @@
       </tr>
 
       <tr>
-        <th>{% trans "Nom" %}</th>
+        <th>{% trans "Article Name" %}</th>
         <td>{{article.name|default_if_none:"n.d."}}</td>
       </tr>
       <tr>
-        <th>{% trans "Creation date" %}</th>
+        <th>{% trans "Creation Date" %}</th>
         <td>{{article.date_added|default_if_none:"n.d."}}</td>
       </th>
       <tr>
-          <th>{% trans "Soldé?" %}</th>
+          <th>{% trans "Reduced Price?" %}</th>
           <td>{{article.get_solde_display}}</td>
       </tr>
 
       <tr>
-        <th>{% trans "Quantité en stock" %}</th>
+        <th>{% trans "Available stock quantity" %}</th>
         <td>{{article.quantity}}</td>
       </tr>
       <tr>
-        <th>{% trans "Pertes" %}</th>
+        <th>{% trans "Losses" %}</th>
         <td>{{article.losses}}</td>
       </tr>
       <tr>
-        <th>{% trans "Montant des pertes" %}</th>
+        <th>{% trans "Amount of losses" %}</th>
         <td>{{article.amount_losses}}</td>
       </tr>
 
       <tr>
-        <th>{% trans "Prix d'achat" %}</th>
+        <th>{% trans "Purchasing Price" %}</th>
         <td>{{article.purchasing_price|default_if_none:"n.d."}}</td>
       </tr>
       <tr>
-        <th>{% trans "Prix de vente" %}</th>
+        <th>{% trans "Selling Price" %}</th>
         <td>{{article.selling_price|default_if_none:"n.d."}}</td>
       </tr>
       <tr>
@@ -104,9 +104,9 @@
     <form method="POST" action="{% url "cart:add_item" article.pk  %}">
        {% csrf_token %}
             {% if article.quantity > 0 %}
-            <input type="submit" class="btn btn-primary" value="{% trans "Ajouter au panier" %}"/>
+            <input type="submit" class="btn btn-primary" value="{% trans "Add to cart" %}"/>
             {% else %}
-            <input type="text" class="btn btn-danger disabled" value="{% trans 'Stock épuisé!' %}"/>
+            <input type="text" class="btn btn-danger disabled" value="{% trans 'Out of stock!' %}"/>
             {% endif %}
     </form>
         </td>
@@ -115,27 +115,27 @@
     <td>
     <form method="POST" action="{% url "cart:remove_item" article.pk  %}">
        {% csrf_token %}
-       <input type="submit" class="btn btn-warning" value="{% trans 'Supprimer du panier' %}"/>
+       <input type="submit" class="btn btn-warning" value="{% trans 'Delete from cart' %}"/>
     </form>
 
     </td>
     {% endif %}
 
     <td>
-      <a href="/inventory/article_update/{{article.pk}}"><button class="btn btn-warning" >{% trans "Modifier" %}</button></a>
+      <a href="/inventory/article_update/{{article.pk}}"><button class="btn btn-warning" >{% trans "Edit" %}</button></a>
     </td>
 
     <td>
       {% if article.quantity > 0 %}
-      <a href="/inventory/article_losses/{{article.pk}}"><button class="btn btn-warning" >{% trans "Pertes" %}</button></a>
+      <a href="/inventory/article_losses/{{article.pk}}"><button class="btn btn-warning" >{% trans "Losses" %}</button></a>
       {% else %}
-      <a href="/inventory/article_losses/{{article.pk}}"><button class="btn btn-warning disabled" >{% trans "Pertes" %}</button></a>
+      <a href="/inventory/article_losses/{{article.pk}}"><button class="btn btn-warning disabled" >{% trans "Losses" %}</button></a>
       {% endif %}
     </td>
 
 
     <td>
-      <a href="/inventory/article_delete/{{article.pk}}"><button class="btn btn-danger" >{% trans "Effacer" %}</button></a>
+      <a href="/inventory/article_delete/{{article.pk}}"><button class="btn btn-danger" >{% trans "Delete" %}</button></a>
     </td>
 
     <td>
@@ -151,13 +151,13 @@
 
 </table>
 
-<h3>{% trans "Illustration" %}</h3>
+<h3>{% trans "Picture" %}</h3>
 
 <div class="pic_container row">
     {% thumbnail article.photo  "450x450" crop="center" as thumbnail %}
   <div class="pic col-md-4 col-md-offset-4">
     <p>
-        <a href="{{ article.photo.url }}" alt="{% trans 'image de ' %}{{article.name}}-ID: {{article.pk}}">
+        <a href="{{ article.photo.url }}" alt="{% trans 'picture of ' %}{{article.name}}-ID: {{article.pk}}">
         <img src="{{ thumbnail.url }}" alt="The thumbnail" style="width: {{ thumbnail.width }}">
         </a>
 
