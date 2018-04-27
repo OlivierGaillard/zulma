@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 14:23+0200\n"
+"POT-Creation-Date: 2018-04-26 15:16+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,22 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: dashboard/forms.py:9
+msgid "Start Date"
+msgstr ""
+
+#: dashboard/forms.py:10
+msgid "End Date"
+msgstr ""
+
+#: dashboard/forms.py:32
+msgid "start and end dates order mismatch"
+msgstr ""
+
+#: dashboard/forms.py:34
+msgid "At least one date is required"
+msgstr ""
 
 #: dashboard/templates/dashboard/branch.html:10
 msgid "Dashboard of Branch "

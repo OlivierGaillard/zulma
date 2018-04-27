@@ -3,66 +3,82 @@
 # This file is distributed under the same license as the PACKAGE package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-26 14:23+0200\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"POT-Creation-Date: 2018-04-26 15:16+0200\n"
+"PO-Revision-Date: 2018-04-26 15:41-0600\n"
+"Language: es_GT\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"X-Generator: Poedit 2.0.7\n"
+
+#: dashboard/forms.py:9
+msgid "Start Date"
+msgstr "Fecha de inicio"
+
+#: dashboard/forms.py:10
+msgid "End Date"
+msgstr "Fecha de cierre"
+
+#: dashboard/forms.py:32
+msgid "start and end dates order mismatch"
+msgstr "Desajuste entre la fecha de inicio y cierre"
+
+#: dashboard/forms.py:34
+msgid "At least one date is required"
+msgstr "Al menos una fecha es requerida"
 
 #: dashboard/templates/dashboard/branch.html:10
 msgid "Dashboard of Branch "
-msgstr ""
+msgstr "Tablero de sucursal "
 
 #: dashboard/templates/dashboard/branch.html:18
 #: dashboard/templates/dashboard/main.html:22
 msgid "Purchases"
-msgstr ""
+msgstr "Compras"
 
 #: dashboard/templates/dashboard/branch.html:22
 msgid "Costs"
-msgstr ""
+msgstr "Costos"
 
 #: dashboard/templates/dashboard/branch.html:23
 msgid "Link to its costs"
-msgstr ""
+msgstr "Enlace a sus costos"
 
 #: dashboard/templates/dashboard/branch.html:27
 #: dashboard/templates/dashboard/main.html:40
 msgid "Total costs:"
-msgstr ""
+msgstr "Total de gastos:"
 
 #: dashboard/templates/dashboard/branch.html:31
 #: dashboard/templates/dashboard/main.html:45
 msgid "Total incomes:"
-msgstr ""
+msgstr "Total de ingresos:"
 
 #: dashboard/templates/dashboard/branch.html:35
 #: dashboard/templates/dashboard/main.html:49
 msgid "Balance:"
-msgstr ""
+msgstr "Balance:"
 
 #: dashboard/templates/dashboard/branch.html:39
 #: dashboard/templates/dashboard/main.html:53
 msgid "Not depending of the date interval"
-msgstr ""
+msgstr "No depende del intervalo de la fecha"
 
 #: dashboard/templates/dashboard/branch.html:39
 #: dashboard/templates/dashboard/main.html:53
 msgid "Total articles:"
-msgstr ""
+msgstr "Total de artículos:"
 
 #: dashboard/templates/dashboard/main.html:11
 msgid "Main Dashboard"
-msgstr ""
+msgstr "Tablero principal"
 
 #: dashboard/templates/dashboard/main.html:26
 msgid "Costs bound to a branch or without"
@@ -70,16 +86,16 @@ msgstr ""
 
 #: dashboard/templates/dashboard/main.html:26
 msgid "All Costs (with or without branch)"
-msgstr ""
+msgstr "Todos los costos (Con o sin sucursal)"
 
 #: dashboard/templates/dashboard/main.html:28
 msgid "All costs"
-msgstr ""
+msgstr "Todos los costos"
 
 #: dashboard/templates/dashboard/main.html:33
 msgid "Costs without a branch defined are named \"Main\""
-msgstr ""
+msgstr "Costos sin una sucursal definida es llamada  \"Principal\""
 
 #: dashboard/templates/dashboard/main.html:34
 msgid "Main costs"
-msgstr ""
+msgstr "Costos principales"
