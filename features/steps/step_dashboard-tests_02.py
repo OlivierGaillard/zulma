@@ -77,6 +77,29 @@ def step_impl(context, quantity):
 
 
 
+@given(u'a set of articles')
+def step_impl(context):
+    photo_template = "photo_{0}"
+    photo_nb = 0
+    for row in context.table:
+        photo_nb += 1
+        photo = photo_template.format(photo_nb)
+        Article.objects.create(name=row['name'], purchasing_price=float(row['purchasing_price']),
+                               selling_price=float(row['selling_price']), quantity=int(row['quantity']),
+                               photo=photo)
+    assert_that(Article.objects.count(), equal_to(2))
+
+
+@when(u'the user visits the dashboard')
+def step_impl(context):
+    pass
+
+@then(u'she can see the total purchasing price is "{total}"')
+def step_impl(context, total):
+    assert_that(total, Article.objects.total_purchasing_price())
+
+
+
 
 
 

@@ -33,3 +33,12 @@ Feature: Total of sellings and balance
         And This user adds the article to its cart by visiting "/cart/add_item" with quantity "2"
         Then There exists one cart-item with quantity "2"
 
+    Scenario: Purchasing Costs
+        Given a set of articles
+           | name              | purchasing_price | quantity | selling_price |
+           | Norman Rockwell   | 15               | 1        | 50            |
+           | Florero cristal   | 65               | 1        | 200           |
+        When the user visits the dashboard
+        Then she can see the total purchasing price is "80"
+
+
