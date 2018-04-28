@@ -82,7 +82,7 @@ class UploadPicturesZipForm(forms.Form):
         if len(li) > 0:
             msg = _('They are already uploaded pictures. Please generate the articles before uploading new ones.')
             self.helper.layout = Layout(
-                HTML("<div class='alert alert-warning'>{0}</div>".format(msg))
+                HTML("<div class='alert alert-warning'>%s</div>" % msg)
             )
         else:
             self.helper.layout.append(
