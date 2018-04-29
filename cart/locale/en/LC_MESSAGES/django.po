@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-29 02:17+0200\n"
+"POT-Creation-Date: 2018-04-29 03:41+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,7 +17,8 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: cart/models.py:16
+#: cart/models.py:16 cart/templates/cart/clients.html:10
+#: cart/templates/cart/vente.html:80 cart/templates/cart/vente_update.html:17
 msgid "Name"
 msgstr ""
 
@@ -26,12 +27,12 @@ msgid "First name"
 msgstr ""
 
 #: cart/models.py:20
-msgid "Tél."
-msgstr "Phone"
+msgid "Phone."
+msgstr ""
 
 #: cart/models.py:20
-msgid "pas d'espaces entre les chiffres svp"
-msgstr "no spaces between numbers please"
+msgid "no spaces between digits please"
+msgstr ""
 
 #: cart/models.py:51
 msgid "montant"
@@ -43,163 +44,132 @@ msgid "Client"
 msgstr "Customer"
 
 #: cart/models.py:52
-msgid "Laisser le champ vide (---) si le client n'est pas enregistré."
-msgstr "Keep the field empty (---) if the customer is not registered."
+msgid "Make the field empty (---) if the customer is not registered."
+msgstr ""
 
 #: cart/models.py:53
-msgid "Règlement terminé"
-msgstr "Selling closed"
+msgid "Selling closed"
+msgstr ""
 
 #: cart/models.py:84 cart/templates/cart/paiement.html:21
 #: cart/templates/cart/paiements.html:13 cart/templates/cart/vente.html:71
 #: cart/templates/cart/vente.html:122
-msgid "Montant"
-msgstr "Amount"
+msgid "Amount"
+msgstr ""
 
 #: cart/models.py:85 cart/models.py:101 cart/templates/cart/paiement.html:17
 #: cart/templates/cart/paiements.html:15
-msgid "Vente"
-msgstr "Selling"
+msgid "Selling"
+msgstr ""
 
-#: cart/models.py:100 cart/templates/cart/cart_content2.html:40
+#: cart/models.py:100 cart/templates/cart/cart_content.html:40
 #: cart/templates/cart/checkout.html:46 cart/templates/cart/vente.html:82
 #: cart/templates/cart/vente_update.html:19
-msgid "Prix"
-msgstr "Price"
+msgid "Price"
+msgstr ""
 
 #: cart/models.py:104
-msgid "Panier validé"
-msgstr "Cart validated"
+msgid "Cart validated"
+msgstr ""
+
+#: cart/models.py:141
+msgid "Warning: quantity set to max stock available."
+msgstr ""
 
 #: cart/templates/cart/cart_content.html:7
-#: cart/templates/cart/cart_content2.html:7
-msgid "3ème étape"
-msgstr "Step 3"
+msgid "3th step"
+msgstr ""
 
-#: cart/templates/cart/cart_content.html:7
-#: cart/templates/cart/cart_content2.html:7
-#: cart/templates/cart/checkout.html:10 cart/templates/cart/paiement_add.html:9
-#: cart/templates/cart/vente.html:13
+#: cart/templates/cart/cart_content.html:7 cart/templates/cart/checkout.html:10
+#: cart/templates/cart/paiement_add.html:9 cart/templates/cart/vente.html:13
 msgid "step-by-step guide"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:8
-#: cart/templates/cart/cart_content2.html:8
-msgid "Saisir le prix de vente de l'article"
-msgstr "Enter the selling price"
+msgid "Enter the selling price"
+msgstr ""
 
 #: cart/templates/cart/cart_content.html:12
-#: cart/templates/cart/cart_content2.html:12
-msgid "Entrez le prix en éditant le champ de la colonne 'Modifier'"
-msgstr "Enter the price by editing the field of the column 'Edit'"
+msgid "Enter the price by editing the field 'Edit'"
+msgstr ""
 
 #: cart/templates/cart/cart_content.html:13
-#: cart/templates/cart/cart_content2.html:13
-msgid "Validez en cliquant sur le bouton 'Modifier'"
+#, fuzzy
+#| msgid "Validez en cliquant sur le bouton 'Modifier'"
+msgid "Validate by clicking on the button 'Edit'"
 msgstr "Confirm by clicking on the 'Edit' button"
 
 #: cart/templates/cart/cart_content.html:14
-#: cart/templates/cart/cart_content2.html:14
 msgid ""
-"S'il y a d'autres articles à ajouter au panier, recommencez à chercher ces "
-"articles."
+"If there are other article to add to the cart, search again for articles."
 msgstr ""
-"If there are other articles to add, please start again with the articles' "
-"list"
 
 #: cart/templates/cart/cart_content.html:15
-#: cart/templates/cart/cart_content2.html:15
-#, fuzzy
-#| msgid "Préparez la vente en cliquant sur le bouton"
-msgid "Allez au formulaire de vente en cliquant sur le bouton"
-msgstr "Go to the selling step by clicking on the button"
+msgid "Got to the selling form by clicking on the button"
+msgstr ""
 
 #: cart/templates/cart/cart_content.html:22
-#: cart/templates/cart/cart_content2.html:22
-#: cart/templates/cart/checkout.html:25
 #: cart/templates/cart/paiement_add.html:23
 #: cart/templates/cart/paiement_add.html:28 cart/templates/cart/vente.html:21
 #: cart/templates/cart/vente.html:31
-msgid "de la vente achevée"
-msgstr "of the selling process"
+msgid "of the selling process"
+msgstr ""
 
 #: cart/templates/cart/cart_content.html:34
-#: cart/templates/cart/cart_content2.html:34
-#: cart/templates/cart/checkout.html:42
-msgid "No"
+#: cart/templates/cart/checkout.html:42 cart/templates/cart/paiements.html:10
+#: cart/templates/cart/vente.html:120
+msgid "Nr"
 msgstr "Nb"
 
 #: cart/templates/cart/cart_content.html:35
-#: cart/templates/cart/cart_content2.html:35
 #: cart/templates/cart/checkout.html:43
-msgid "Date d'ajout"
-msgstr "Date added"
+msgid "Date added"
+msgstr ""
 
 #: cart/templates/cart/cart_content.html:36
-#: cart/templates/cart/cart_content2.html:36
 msgid "Action"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:37
-#: cart/templates/cart/cart_content2.html:37
 #: cart/templates/cart/checkout.html:44
-msgid "Titre"
-msgstr "Title"
+msgid "Title"
+msgstr ""
 
 #: cart/templates/cart/cart_content.html:38
-#: cart/templates/cart/cart_content2.html:38
-msgid "Quantité disponible en stock"
-msgstr "Quantity available"
+#, fuzzy
+#| msgid "available quantity"
+msgid "Available stock quantity"
+msgstr "Available quantity"
 
 #: cart/templates/cart/cart_content.html:39
+#: cart/templates/cart/checkout.html:45 cart/templates/cart/vente.html:83
+#: cart/templates/cart/vente_update.html:20
 #, fuzzy
 #| msgid "Quantité"
 msgid "Quantity"
 msgstr "Quantity"
 
-#: cart/templates/cart/cart_content.html:40
-msgid "Price"
+#: cart/templates/cart/cart_content.html:52
+msgid "Remove from cart"
 msgstr ""
 
-#: cart/templates/cart/cart_content.html:52
-#: cart/templates/cart/cart_content2.html:53
-msgid "Supprimer du panier"
-msgstr "Remove from cart"
-
 #: cart/templates/cart/cart_content.html:56
-#: cart/templates/cart/cart_content2.html:57
 msgid "available quantity"
 msgstr "Available quantity"
 
 #: cart/templates/cart/cart_content.html:66
-msgid "Sauvegarder"
+msgid "Save"
 msgstr ""
 
 #: cart/templates/cart/cart_content.html:72
-#: cart/templates/cart/cart_content2.html:94
 #: cart/templates/cart/checkout.html:62
-msgid "Total de votre panier:"
+#, fuzzy
+#| msgid "Total de votre panier:"
+msgid "Total of your cart:"
 msgstr "Cart total"
 
 #: cart/templates/cart/cart_content.html:83
-#: cart/templates/cart/cart_content2.html:103
-msgid "Aller à la vente"
-msgstr "Go to the selling step"
-
-#: cart/templates/cart/cart_content2.html:39
-msgid "Modifier la quantité"
-msgstr "Edit the quantity"
-
-#: cart/templates/cart/cart_content2.html:41
-#: cart/templates/cart/cart_content2.html:72
-#: cart/templates/cart/cart_content2.html:87
-#: cart/templates/cart/clients.html:13 cart/templates/cart/clients.html:25
-msgid "Modifier"
-msgstr "Edit"
-
-#: cart/templates/cart/cart_content2.html:42
-#: cart/templates/cart/checkout.html:47
-msgid "Total"
+msgid "To the selling"
 msgstr ""
 
 #: cart/templates/cart/checkout.html:10
@@ -211,9 +181,8 @@ msgid "Création de la vente"
 msgstr "Selling creation"
 
 #: cart/templates/cart/checkout.html:14
-msgid "Au besoin ajustez le prix de vente global en éditant le champ 'Montant'"
+msgid "If needed change the sellig price by editing the field 'Amount'"
 msgstr ""
-"If needed adjust the global selling price by editing the field 'Amount'"
 
 #: cart/templates/cart/checkout.html:15
 msgid "Au besoin ajustez la date de vente"
@@ -228,6 +197,10 @@ msgstr ""
 #: cart/templates/cart/checkout.html:17
 msgid "Préparez la vente en cliquant sur le bouton"
 msgstr "Go to the selling step by clicking on the button"
+
+#: cart/templates/cart/checkout.html:25
+msgid "de la vente achevée"
+msgstr "of the selling process"
 
 #: cart/templates/cart/checkout.html:31
 msgid "Client pas enregistré"
@@ -253,60 +226,56 @@ msgstr ""
 " once you have entered its coordinates.\n"
 "    "
 
-#: cart/templates/cart/checkout.html:45 cart/templates/cart/vente.html:83
-#: cart/templates/cart/vente_update.html:20
-msgid "Quantité"
-msgstr "Quantity"
-
-#: cart/templates/cart/clients.html:10 cart/templates/cart/vente.html:80
-#: cart/templates/cart/vente_update.html:17
-msgid "Nom"
-msgstr "Last name"
+#: cart/templates/cart/checkout.html:47
+msgid "Total"
+msgstr ""
 
 #: cart/templates/cart/clients.html:11
-msgid "Prénom"
-msgstr "First name"
+msgid "First Name"
+msgstr ""
 
 #: cart/templates/cart/clients.html:12
-msgid "Téléphone"
-msgstr "Phone"
+msgid "Phone"
+msgstr ""
+
+#: cart/templates/cart/clients.html:13 cart/templates/cart/clients.html:25
+msgid "Edit"
+msgstr ""
 
 #: cart/templates/cart/clients.html:14 cart/templates/cart/clients.html:27
+#: cart/templates/cart/vente_update.html:21
 msgid "Delete"
 msgstr ""
 
 #: cart/templates/cart/paiement.html:25 cart/templates/cart/paiements.html:14
 #: cart/templates/cart/vente.html:123
-msgid "Mode"
+msgid "Type"
 msgstr ""
 
 #: cart/templates/cart/paiement_add.html:9
-msgid "Etape 6"
-msgstr "Step 6"
+msgid "Step 6"
+msgstr ""
 
 #: cart/templates/cart/paiement_add.html:12
-msgid "Ajoutez un paiement"
-msgstr "Add a payment"
+msgid "Add one selling"
+msgstr ""
 
 #: cart/templates/cart/paiement_add.html:12
 #: cart/templates/cart/paiement_add.html:14
-msgid "solde restant"
-msgstr "remaining balance"
+msgid "remaining balance"
+msgstr ""
 
 #: cart/templates/cart/paiement_add.html:14
-msgid "Vente terminée!"
-msgstr "Selling closed"
-
-#: cart/templates/cart/paiements.html:10 cart/templates/cart/vente.html:120
-msgid "Nr"
-msgstr "Nb"
+msgid "Selling closed!"
+msgstr ""
 
 #: cart/templates/cart/paiements.html:12 cart/templates/cart/vente.html:68
 #: cart/templates/cart/vente.html:121
 msgid "Date"
 msgstr ""
 
-#: cart/templates/cart/paiements.html:23
+#: cart/templates/cart/paiements.html:23 cart/templates/cart/vente.html:89
+#: cart/templates/cart/vente_update.html:27
 msgid "Click to see details"
 msgstr ""
 
@@ -315,57 +284,53 @@ msgid "Click to see details of selling"
 msgstr ""
 
 #: cart/templates/cart/vente.html:13
-msgid "Etape 5"
-msgstr "Step 5"
+msgid "Step 5"
+msgstr ""
 
 #: cart/templates/cart/vente.html:14
-msgid "Ajoutez un paiement (avance ou paiement complet) à la vente"
-msgstr "Add a payment (full or partial) to the selling-ID"
+msgid "Add a payment (provision or full payment) to the selling"
+msgstr ""
 
 #: cart/templates/cart/vente.html:26
-msgid "vente terminée"
-msgstr "Selling closed"
+msgid "selling closed"
+msgstr ""
 
 #: cart/templates/cart/vente.html:40 cart/templates/cart/vente.html:46
 #: cart/templates/cart/ventes.html:53
-msgid "Ajouter un paiement"
-msgstr "Add a payment"
+msgid "Add a payment"
+msgstr ""
 
 #: cart/templates/cart/vente.html:50
-msgid "Résumé de la vente"
-msgstr "Selling summary"
+msgid "Selling Summary"
+msgstr ""
 
 #: cart/templates/cart/vente.html:55
 msgid "Selling ID"
 msgstr ""
 
 #: cart/templates/cart/vente.html:81 cart/templates/cart/vente_update.html:18
-msgid "Aperçu"
-msgstr "Thumbnail"
-
-#: cart/templates/cart/vente.html:89 cart/templates/cart/vente_update.html:27
-msgid "Cliquer pour voir les détails"
-msgstr "Click to see details"
+msgid "Thumbnail"
+msgstr ""
 
 #: cart/templates/cart/vente.html:99 cart/templates/cart/vente_update.html:37
-msgid "pas d'aperçu"
-msgstr "no thumbnail"
+msgid "no thumbnail available"
+msgstr ""
 
 #: cart/templates/cart/vente.html:108
-msgid "Liste des paiements"
-msgstr "Payments' list"
+msgid "Payments' List"
+msgstr ""
 
 #: cart/templates/cart/vente.html:111
-msgid "Pas de paiements enregistré"
-msgstr "There are no saved payments"
+msgid "No saved payment"
+msgstr ""
 
 #: cart/templates/cart/vente.html:137
-msgid "Solde"
-msgstr "Balance"
+msgid "Reduced price"
+msgstr ""
 
 #: cart/templates/cart/vente.html:145 cart/templates/cart/vente.html:150
-msgid "Modifier la vente"
-msgstr "Edit the selling"
+msgid "Edit the selling"
+msgstr ""
 
 #: cart/templates/cart/vente_update.html:10
 msgid "Edit the Selling-ID "
@@ -375,20 +340,17 @@ msgstr ""
 msgid "Article-ID"
 msgstr ""
 
-#: cart/templates/cart/vente_update.html:21
 #: cart/templates/cart/vente_update.html:41
-#, fuzzy
-#| msgid "Supprimer du panier"
-msgid "Supprimer"
-msgstr "Remove from cart"
+msgid "Remove article"
+msgstr ""
 
 #: cart/templates/cart/vente_update.html:50
-msgid "Supprimer la vente ID"
-msgstr "Delete the selling"
+msgid "Delete the selling ID"
+msgstr ""
 
 #: cart/templates/cart/vente_update.html:55
-msgid "Effacer la vente"
-msgstr "Delete the selling"
+msgid "Delete the selling"
+msgstr ""
 
 #: cart/templates/cart/ventes.html:12
 msgid "Only the first article of the selling is shown."
@@ -399,24 +361,190 @@ msgid "First Article"
 msgstr ""
 
 #: cart/templates/cart/ventes.html:14
-msgid "Montant total"
-msgstr "Total Amount"
+msgid "Total amount"
+msgstr ""
 
 #: cart/templates/cart/ventes.html:15
-msgid "Solde à payer"
-msgstr "Balance"
+msgid "Remaining balance"
+msgstr ""
 
 #: cart/templates/cart/ventes.html:16
-msgid "Règlement terminé?"
-msgstr "Selling closed"
+msgid "Selling closed?"
+msgstr ""
 
 #: cart/templates/cart/ventes.html:23
-msgid "Cliquer pour ajouter un paiement ou voir les détails de la vente"
-msgstr "Click to add a payment or see the details"
+msgid "Click to add a payment or see selling's details"
+msgstr ""
 
 #: cart/templates/cart/ventes.html:54
-msgid "solde"
-msgstr "balance"
+msgid "balance"
+msgstr ""
+
+#~ msgid ""
+#~ "Au besoin ajustez le prix de vente global en éditant le champ 'Montant'"
+#~ msgstr ""
+#~ "If needed adjust the global selling price by editing the field 'Amount'"
+
+#~ msgid "3ème étape"
+#~ msgstr "Step 3"
+
+#~ msgid "Saisir le prix de vente de l'article"
+#~ msgstr "Enter the selling price"
+
+#~ msgid "Entrez le prix en éditant le champ de la colonne 'Modifier'"
+#~ msgstr "Enter the price by editing the field of the column 'Edit'"
+
+#~ msgid "Validez en cliquant sur le bouton 'Modifier'"
+#~ msgstr "Confirm by clicking on the 'Edit' button"
+
+#~ msgid ""
+#~ "S'il y a d'autres articles à ajouter au panier, recommencez à chercher "
+#~ "ces articles."
+#~ msgstr ""
+#~ "If there are other articles to add, please start again with the articles' "
+#~ "list"
+
+#, fuzzy
+#~| msgid "Préparez la vente en cliquant sur le bouton"
+#~ msgid "Allez au formulaire de vente en cliquant sur le bouton"
+#~ msgstr "Go to the selling step by clicking on the button"
+
+#~ msgid "No"
+#~ msgstr "Nb"
+
+#~ msgid "Date d'ajout"
+#~ msgstr "Date added"
+
+#~ msgid "Titre"
+#~ msgstr "Title"
+
+#~ msgid "Quantité disponible en stock"
+#~ msgstr "Quantity available"
+
+#~ msgid "Modifier la quantité"
+#~ msgstr "Edit the quantity"
+
+#~ msgid "Prix"
+#~ msgstr "Price"
+
+#~ msgid "Modifier"
+#~ msgstr "Edit"
+
+#~ msgid "Supprimer du panier"
+#~ msgstr "Remove from cart"
+
+#~ msgid "Total de votre panier:"
+#~ msgstr "Cart total"
+
+#~ msgid "Aller à la vente"
+#~ msgstr "Go to the selling step"
+
+#~ msgid "Ajouter un paiement"
+#~ msgstr "Add a payment"
+
+#~ msgid "Tél."
+#~ msgstr "Phone"
+
+#~ msgid "pas d'espaces entre les chiffres svp"
+#~ msgstr "no spaces between numbers please"
+
+#~ msgid "Laisser le champ vide (---) si le client n'est pas enregistré."
+#~ msgstr "Keep the field empty (---) if the customer is not registered."
+
+#~ msgid "Règlement terminé"
+#~ msgstr "Selling closed"
+
+#~ msgid "Montant"
+#~ msgstr "Amount"
+
+#~ msgid "Vente"
+#~ msgstr "Selling"
+
+#~ msgid "Panier validé"
+#~ msgstr "Cart validated"
+
+#~ msgid "Quantité"
+#~ msgstr "Quantity"
+
+#~ msgid "Nom"
+#~ msgstr "Last name"
+
+#~ msgid "Prénom"
+#~ msgstr "First name"
+
+#~ msgid "Téléphone"
+#~ msgstr "Phone"
+
+#~ msgid "Etape 6"
+#~ msgstr "Step 6"
+
+#~ msgid "Ajoutez un paiement"
+#~ msgstr "Add a payment"
+
+#~ msgid "solde restant"
+#~ msgstr "remaining balance"
+
+#~ msgid "Vente terminée!"
+#~ msgstr "Selling closed"
+
+#~ msgid "Etape 5"
+#~ msgstr "Step 5"
+
+#~ msgid "Ajoutez un paiement (avance ou paiement complet) à la vente"
+#~ msgstr "Add a payment (full or partial) to the selling-ID"
+
+#~ msgid "vente terminée"
+#~ msgstr "Selling closed"
+
+#~ msgid "Résumé de la vente"
+#~ msgstr "Selling summary"
+
+#~ msgid "Aperçu"
+#~ msgstr "Thumbnail"
+
+#~ msgid "Cliquer pour voir les détails"
+#~ msgstr "Click to see details"
+
+#~ msgid "pas d'aperçu"
+#~ msgstr "no thumbnail"
+
+#~ msgid "Liste des paiements"
+#~ msgstr "Payments' list"
+
+#~ msgid "Pas de paiements enregistré"
+#~ msgstr "There are no saved payments"
+
+#~ msgid "Solde"
+#~ msgstr "Balance"
+
+#~ msgid "Modifier la vente"
+#~ msgstr "Edit the selling"
+
+#, fuzzy
+#~| msgid "Supprimer du panier"
+#~ msgid "Supprimer"
+#~ msgstr "Remove from cart"
+
+#~ msgid "Supprimer la vente ID"
+#~ msgstr "Delete the selling"
+
+#~ msgid "Effacer la vente"
+#~ msgstr "Delete the selling"
+
+#~ msgid "Montant total"
+#~ msgstr "Total Amount"
+
+#~ msgid "Solde à payer"
+#~ msgstr "Balance"
+
+#~ msgid "Règlement terminé?"
+#~ msgstr "Selling closed"
+
+#~ msgid "Cliquer pour ajouter un paiement ou voir les détails de la vente"
+#~ msgstr "Click to add a payment or see the details"
+
+#~ msgid "solde"
+#~ msgstr "balance"
 
 #~ msgid "No-de vente"
 #~ msgstr "Selling Nb"

@@ -6,12 +6,12 @@
 {% block content %}
 <div class="container">
 
-<h3>{% trans "Etape 6" %}  <small>{% trans "step-by-step guide" %}</small></h3>
+<h3>{% trans "Step 6" %}  <small>{% trans "step-by-step guide" %}</small></h3>
 
   {% if solde > 0 %}
-  <h4>{% trans "Ajoutez un paiement" %} <small>{% trans "solde restant"%}: {{solde|intcomma}}</small></h4>
+  <h4>{% trans "Add one selling" %} <small>{% trans "remaining balance"%}: {{solde|intcomma}}</small></h4>
   {% else %}
-  <h4>{% trans "Vente terminée!" %} <small>{% trans "solde restant"%}: {{solde|intcomma}}</small></h4>
+  <h4>{% trans "Selling closed!" %} <small>{% trans "remaining balance"%}: {{solde|intcomma}}</small></h4>
 
   {% endif %}
 
@@ -20,19 +20,19 @@
     {% if solde > 0 %}
     <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
          style="width:90%">
-    90% {% trans "de la vente achevée" %}
+    90% {% trans "of the selling process" %}
     </div>
     {% else %}
     <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
          style="width:100%">
-    100% {% trans "de la vente achevée" %}
+    100% {% trans "of the selling process" %}
    {% endif %}
  </div>
 
 {% if solde > 0 %}
    {% crispy form %}
 {% else %}
-   <h3>Vente terminée</h3>
+   <h3>Selling closed!</h3>
 {% endif %}
 
 {% block javascript %}

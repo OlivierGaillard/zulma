@@ -17,7 +17,7 @@ class Client(models.Model):
     first_name = models.CharField(_('First name'), max_length=80)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,20}$',
                                  message="Format: '+999999999'. Maximum 20 chiffres.")
-    tel = models.CharField(_('Tél.'), max_length=20, validators=[phone_regex], help_text=_("pas d'espaces entre les chiffres svp"),
+    tel = models.CharField(_('Phone.'), max_length=20, validators=[phone_regex], help_text=_("no spaces between digits please"),
                            null=True, blank=True)
 
     class Meta:
@@ -49,8 +49,8 @@ class Vente(models.Model):
     branch = models.ForeignKey(Branch, null=True, blank=True)
     date = models.DateTimeField(default=timezone.now)
     montant = models.DecimalField(_('montant'), max_digits=20, decimal_places=2, default=0)
-    client  = models.ForeignKey(Client, null=True, blank=True, verbose_name=_('Client'), help_text=_("Laisser le champ vide (---) si le client n'est pas enregistré."))
-    reglement_termine = models.BooleanField(_('Règlement terminé'), default=False)
+    client  = models.ForeignKey(Client, null=True, blank=True, verbose_name=_('Client'), help_text=_("Make the field empty (---) if the customer is not registered."))
+    reglement_termine = models.BooleanField(_('Selling closed'), default=False)
     objects = VenteManager()
 
     class Meta:
@@ -81,8 +81,8 @@ class Paiement(models.Model):
     )
 
     date    = models.DateTimeField(default=timezone.now)
-    montant = models.DecimalField(_('Montant'), max_digits=20, decimal_places=0, default=0)
-    vente   = models.ForeignKey(Vente, verbose_name=_('Vente'))
+    montant = models.DecimalField(_('Amount'), max_digits=20, decimal_places=0, default=0)
+    vente   = models.ForeignKey(Vente, verbose_name=_('Selling'))
     payment_mode = models.CharField(max_length=1, choices=PAYMENT_MODE, null=True, blank=True)
 
     def __str__(self):
@@ -97,11 +97,11 @@ class CartItem(models.Model):
     date_added = models.DateTimeField(auto_now_add=True)
     quantity   = models.IntegerField(default=1)
     article    = models.ForeignKey(Article, unique=False)
-    prix       = models.DecimalField(_('Prix'), max_digits=20, decimal_places=0, default=25000)
-    vente      = models.ForeignKey(Vente, null=True, verbose_name=_('Vente')) # par défaut si une vente est effacée, ses cart_item aussi
+    prix       = models.DecimalField(_('Price'), max_digits=20, decimal_places=0, default=25000)
+    vente      = models.ForeignKey(Vente, null=True, verbose_name=_('Selling')) # par défaut si une vente est effacée, ses cart_item aussi
     # Si le panier est validé pour une vente, ce dernier est vidé. (session_id effacé)
     # Pour retrouver les éléments il faut utiliser Vente-ID
-    cart_complete = models.BooleanField(default=False, verbose_name=_('Panier validé'))
+    cart_complete = models.BooleanField(default=False, verbose_name=_('Cart validated'))
 
     class Meta:
         db_table = 'cart_items'
@@ -138,7 +138,7 @@ class CartItem(models.Model):
         else:
             #print('quantity exceed stock total.')
             self.quantity = self.article.quantity
-            msg = "Warning: quantity set to max stock available."
+            msg = _("Warning: quantity set to max stock available.")
             #print('quantity set to maximum available stock')
             return msg
 

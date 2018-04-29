@@ -14,17 +14,17 @@
       <thead>
       <tr>
           <th>{% trans 'Article-ID' %}</th>
-          <th>{% trans 'Nom' %}</th>
-          <th>{% trans 'Aperçu' %}</th>
-          <th>{% trans 'Prix' %}</th>
-          <th>{% trans 'Quantité' %}</th>
-          <th>{% trans 'Supprimer' %}</th>
+          <th>{% trans 'Name' %}</th>
+          <th>{% trans 'Thumbnail' %}</th>
+          <th>{% trans 'Price' %}</th>
+          <th>{% trans 'Quantity' %}</th>
+          <th>{% trans 'Delete' %}</th>
       </tr>
       </thead>
       <tbody>
           {% for a in vente.cartitem_set.all %}
           <tr>
-              <td><a title="{% trans 'Cliquer pour voir les détails' %}" href="/inventory/article_detail/{{a.article.pk}}">{{ a.article.pk }}</td>
+              <td><a title="{% trans 'Click to see details' %}" href="/inventory/article_detail/{{a.article.pk}}">{{ a.article.pk }}</td>
               <td>{{a.article.name}}</td>
               {% if a.article.photo %}
               {% thumbnail a.article.photo.path  "50x50" crop="center" as thumbnail %}
@@ -34,11 +34,11 @@
               </td>
               {% endthumbnail %}
               {% else %}
-              <td>{% trans "pas d'aperçu" %}</td>
+              <td>{% trans "no thumbnail available" %}</td>
               {% endif %}
               <td>{{a.prix|intcomma}}</td>
               <td>{{a.quantity}}</td>
-              <td><a href="{% url "cart:remove_article_from_vente" a.pk %}">{% trans 'Supprimer' %}</a> </td>
+              <td><a href="{% url "cart:remove_article_from_vente" a.pk %}">{% trans 'Remove article' %}</a> </td>
           </tr>
           {% endfor %}
       </tbody>
@@ -47,12 +47,12 @@
   {% if vente.cartitem_set.all|length == 0 %}
 
 
-  <h3>{% trans "Supprimer la vente ID" %} {{vente.pk}}</h3>
+  <h3>{% trans "Delete the selling ID" %} {{vente.pk}}</h3>
 
   <p>
   <form method="GET" action="{% url "cart:vente_delete" vente.pk  %}">
        {% csrf_token %}
-       <input type="submit" class="btn btn-danger" value="{% trans 'Effacer la vente' %}"/>
+       <input type="submit" class="btn btn-danger" value="{% trans 'Delete the selling' %}"/>
     </form>
 </p>
   {% endif %}

@@ -14,15 +14,15 @@
           <td>{{ paiement.date }}</td>
       </tr>
       <tr>
-          <th>{% trans "Vente" %}</th>
+          <th>{% trans "Selling" %}</th>
           <td>{{ paiement.vente.pk }}</td>
       </tr>
       <tr>
-          <th>{% trans "Montant" %}</th>
+          <th>{% trans "Amount" %}</th>
           <td>{{ paiement.montant }}</td>
       </tr>
       <tr>
-          <th>{% trans "Mode" %}</th>
+          <th>{% trans "Type" %}</th>
           <td>{{ paiement.get_payment_mode_display|default_if_none:"&mdash;" }}</td>
       </tr>
       </tbody>

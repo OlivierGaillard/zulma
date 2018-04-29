@@ -99,9 +99,9 @@ def save_cart_item(request, pk):
         cart_item.prix = float(price)
 
         if cart_item.prix == 0:
-            logger.warning("save_cart_item: Le montant de l'article est zéro!")
+            logger.warning("save_cart_item: The amount of article is zero!")
             return render(request, 'cart/cart_content.html',
-                          {'error_message': "Le montant de l'article est zéro!",
+                          {'error_message': "The amount of article is zero!",
                            'cart': get_cart_items(request), 'new_price': price,
                            })
         cart_item.save()
@@ -126,7 +126,7 @@ def edit_price(request, pk):
         cart_item.save()
         if cart_item.prix == 0:
             return render(request, 'cart/cart_content.html',
-                          {'error_message' : "Le montant de l'article est zéro!",
+                          {'error_message' : "The amount is zero!",
                            'cart' : get_cart_items(request), 'new_price' : price,
                            })
         cart_item.save()

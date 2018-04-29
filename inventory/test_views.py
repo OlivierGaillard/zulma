@@ -110,7 +110,7 @@ class TestInventoryViews(TestCase):
         c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
         data = {'losses': 12, 'amount_losses': 20} # article a1 quantity = 10
         response = c.post(reverse('inventory:article_losses', args=[self.a1.pk]), data=data, follow=True)
-        msg = "Losses (12) cannot exceed quantity (10)."
+        msg = "Losses cannot exceed quantity."
         self.assertInHTML(msg, response.content.decode())
 
     def test_losses_form_display_previous_losses_info(self):
