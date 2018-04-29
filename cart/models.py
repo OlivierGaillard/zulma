@@ -85,6 +85,10 @@ class Paiement(models.Model):
     vente   = models.ForeignKey(Vente, verbose_name=_('Selling'))
     payment_mode = models.CharField(max_length=1, choices=PAYMENT_MODE, null=True, blank=True)
 
+    class Meta:
+        ordering = ['-date']
+
+
     def __str__(self):
         return "Montant: %s / Vente-ID: %s" % (self.montant, self.vente.pk)
 

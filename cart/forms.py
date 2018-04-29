@@ -2,6 +2,7 @@ from crispy_forms.helper import FormHelper
 from crispy_forms.bootstrap import TabHolder, Tab, FormActions
 from crispy_forms.layout import Submit, Layout, Fieldset, Field
 from django import forms
+from django.utils.translation import ugettext_lazy as _
 from inventory.models import Branch
 
 
@@ -171,9 +172,9 @@ class PaiementCreateForm(forms.Form):
     date = forms.DateTimeField(required=True, widget=forms.DateTimeInput(
         attrs={'id': 'datetimepicker_vente'}
     ))
-    montant = forms.DecimalField(required=True)
+    montant = forms.DecimalField(required=True, label=_("Amount"))
     # todo: add payment_mode
-    payment_mode = forms.ChoiceField(choices=(Paiement.PAYMENT_MODE), required=False)
+    payment_mode = forms.ChoiceField(choices=(Paiement.PAYMENT_MODE), required=False, label=_("Payment mode"))
 
 
     def __init__(self, *args, **kwargs):
