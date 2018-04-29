@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-28 18:43+0200\n"
+"POT-Creation-Date: 2018-04-29 02:17+0200\n"
 "PO-Revision-Date: 2018-04-28 18:44+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -53,10 +53,6 @@ msgstr "Categoria"
 #: inventory/forms.py:119
 msgid "Generate"
 msgstr "Generar"
-
-#: inventory/forms.py:168 inventory/forms.py:192
-msgid "date_arrivee"
-msgstr "fecha de arribo"
 
 #: inventory/forms.py:250
 msgid "Delete Purchasing Costs too?"
@@ -544,3 +540,6 @@ msgstr "Pérdidas iguales o superiores"
 #: inventory/views.py:366
 msgid "Losses cannot exceed quantity."
 msgstr "Pérdidas no pueden exceder a  la cantidad."
+
+#~ msgid "date_arrivee"
+#~ msgstr "fecha de arribo"

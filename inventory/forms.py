@@ -165,7 +165,7 @@ class ArticleLossesForm(forms.Form):
 class ArrivalUpdateForm(forms.ModelForm):
     class Meta:
         model = Arrivage
-        fields = ('nom', _('date_arrivee'))
+        fields = ('nom', 'date_arrivee')
         widgets = {
             'date_arrivee': forms.DateInput(format='%Y-%m-%d',
                 attrs={'id': 'datetimepicker_arrival'}
@@ -189,7 +189,7 @@ class ArrivalUpdateForm(forms.ModelForm):
 class ArrivalCreateForm(forms.ModelForm):
     class Meta:
         model = Arrivage
-        fields = ('nom', _('date_arrivee'))
+        fields = ('nom', 'date_arrivee')
         widgets = {
             'date_arrivee': forms.DateInput(format=settings.DATE_INPUT_FORMATS,
                                             attrs={'id': 'datetimepicker_arrival'}
