@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 08:10+0200\n"
-"PO-Revision-Date: 2018-05-01 09:08+0200\n"
+"POT-Creation-Date: 2018-05-01 09:14+0200\n"
+"PO-Revision-Date: 2018-05-01 09:18+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es_419\n"
@@ -29,10 +29,10 @@ msgstr "Cantidad"
 msgid "Payment mode"
 msgstr "Pago tipo"
 
-#: cart/models.py:16 cart/templates/cart/clients.html:10
-#: cart/templates/cart/vente.html:80 cart/templates/cart/vente_update.html:17
-msgid "Name"
-msgstr "Nombre"
+#: cart/models.py:16
+#, fuzzy
+msgid "Last name"
+msgstr "Appelido"
 
 #: cart/models.py:17
 msgid "First name"
@@ -221,6 +221,12 @@ msgstr ""
 msgid "Total"
 msgstr "Total"
 
+#: cart/templates/cart/clients.html:10
+#, fuzzy
+#| msgid "First Name"
+msgid "Last Name"
+msgstr "Primer nombre"
+
 #: cart/templates/cart/clients.html:11
 msgid "First Name"
 msgstr "Primer nombre"
@@ -298,6 +304,10 @@ msgstr "Resumen de ventas"
 #: cart/templates/cart/vente.html:55
 msgid "Selling ID"
 msgstr "Venta ID"
+
+#: cart/templates/cart/vente.html:80 cart/templates/cart/vente_update.html:17
+msgid "Name"
+msgstr "Nombre"
 
 #: cart/templates/cart/vente.html:81 cart/templates/cart/vente_update.html:18
 msgid "Thumbnail"

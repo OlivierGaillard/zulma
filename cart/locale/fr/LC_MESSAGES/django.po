@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 08:39+0200\n"
+"POT-Creation-Date: 2018-05-01 09:14+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -213,9 +213,8 @@ msgstr ""
 msgid "Total"
 msgstr ""
 
-#: cart/templates/cart/clients.html:10 cart/templates/cart/vente.html:80
-#: cart/templates/cart/vente_update.html:17
-msgid "Name"
+#: cart/templates/cart/clients.html:10
+msgid "Last Name"
 msgstr ""
 
 #: cart/templates/cart/clients.html:11
@@ -294,6 +293,10 @@ msgstr ""
 
 #: cart/templates/cart/vente.html:55
 msgid "Selling ID"
+msgstr ""
+
+#: cart/templates/cart/vente.html:80 cart/templates/cart/vente_update.html:17
+msgid "Name"
 msgstr ""
 
 #: cart/templates/cart/vente.html:81 cart/templates/cart/vente_update.html:18
