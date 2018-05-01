@@ -1,13 +1,10 @@
 from django.db import models
 from django.shortcuts import reverse
-from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from inventory.models import Article, Branch
 from cart.models import Vente
 from dashboard.utils import TimeSliceHelper
 from datetime import date
-
-# Create your models here.
 
 class Enterprise(models.Model):
     """Or a better name could be 'Provider'."""

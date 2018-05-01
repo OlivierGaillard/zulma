@@ -1,5 +1,7 @@
 from behave import given, when, then
 from cart.models import Vente, CartItem
+from costs.models import Category as CostsCategory
+from costs.models import Costs
 from inventory.models import Article
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
@@ -76,6 +78,17 @@ def step_impl(context, quantity):
     assert_that(int(quantity), equal_to(cart_item.quantity))
 
 
+@given(u'one category named "{catname}" exists')
+def step_impl(context, catname):
+    costs_category = CostsCategory.objects.create(name=catname)
+    assert_that(costs_category, is_not(None))
+
+@given(u'one new cost of this category "{catname}" with amount "{amount}" is added')
+def step_impl(context, catname, amount):
+    category = CostsCategory.objects.get(name=catname)
+    Costs.objects.create(category=category, amount=float(amount))
+
+
 
 @given(u'a set of articles')
 def step_impl(context):
@@ -87,16 +100,35 @@ def step_impl(context):
         Article.objects.create(name=row['name'], purchasing_price=float(row['purchasing_price']),
                                selling_price=float(row['selling_price']), quantity=int(row['quantity']),
                                photo=photo)
+        Vente.objects.create(reglement_termine=True, montant=row['selling_amount'])
     assert_that(Article.objects.count(), equal_to(2))
 
 
-@when(u'the user visits the dashboard')
-def step_impl(context):
-    pass
 
-@then(u'she can see the total purchasing price is "{total}"')
+@then(u'the total purchasing price is "{total:f}"')
 def step_impl(context, total):
     assert_that(total, Article.objects.total_purchasing_price())
+
+
+@then(u'the total of the sellings is "{total_selling:f}"')
+def step_impl(context, total_selling):
+    assert_that(total_selling, equal_to(Vente.objects.total_sellings()))
+
+
+
+
+@then(u'The total of costs is "{total:f}"')
+def step_impl(context, total):
+    assert_that(total, equal_to(Costs.objects.total_costs()))
+
+
+@then(u'The grand total with purchases is "{grand_total:f}"')
+def step_impl(context, grand_total):
+    assert_that(grand_total, equal_to(Costs.objects.grand_total()))
+
+@then(u'The balance is "{balance:f}"')
+def step_impl(context, balance):
+    assert_that(balance, equal_to(Costs.objects.get_balance()))
 
 
 

@@ -13,7 +13,7 @@ logger = logging.getLogger('django')
 
 
 class Client(models.Model):
-    name = models.CharField(_('Name'), max_length=80)
+    name = models.CharField(_('Last name'), max_length=80)
     first_name = models.CharField(_('First name'), max_length=80)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,20}$',
                                  message="Format: '+999999999'. Maximum 20 chiffres.")
@@ -140,10 +140,8 @@ class CartItem(models.Model):
             self.quantity = quantity
             self.save()
         else:
-            #print('quantity exceed stock total.')
             self.quantity = self.article.quantity
-            msg = _("Warning: quantity set to max stock available.")
-            #print('quantity set to maximum available stock')
+            msg = _("Warning: quantity is greater than stock quantity.")
             return msg
 
     def get_total_of_cart(session_id):

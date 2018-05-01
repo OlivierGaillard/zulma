@@ -33,7 +33,7 @@ class TestCartUtils(TestCase):
     def test_change_quantity_of_cart_item_edge_case_exceed_warning_msg(self):
         cart = CartItem.objects.create(cart_id=self.session_id, article=self.b, quantity=1)
         msg = cart.set_quantity(15)
-        self.assertEqual("Warning: quantity set to max stock available.", msg)
+        self.assertEqual("Warning: quantity is greater than stock quantity.", msg)
 
 
     def test_get_total_sellings(self):

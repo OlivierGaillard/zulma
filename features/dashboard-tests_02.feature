@@ -33,12 +33,19 @@ Feature: Total of sellings and balance
         And This user adds the article to its cart by visiting "/cart/add_item" with quantity "2"
         Then There exists one cart-item with quantity "2"
 
-    Scenario: Purchasing Costs
+    Scenario: Purchasing Costs and Sellings
+        Given one category named "rental" exists
+        Given one new cost of this category "rental" with amount "200" is added
         Given a set of articles
-           | name              | purchasing_price | quantity | selling_price |
-           | Norman Rockwell   | 15               | 1        | 50            |
-           | Florero cristal   | 65               | 1        | 200           |
-        When the user visits the dashboard
-        Then she can see the total purchasing price is "80"
+           | name              | purchasing_price | quantity | selling_price | selling_amount |
+           | Norman Rockwell   | 15               | 1        | 50            |  50            |
+           | Florero cristal   | 65               | 1        | 200           |  220           |
+        Then the total purchasing price is "80.00"
+        And the total of the sellings is "270.00"
+        And The total of costs is "200.00"
+        And The grand total with purchases is "280.00"
+        And The balance is "-10.00"
+
+
 
 

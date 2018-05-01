@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-04-29 03:41+0200\n"
+"POT-Creation-Date: 2018-05-01 08:39+0200\n"
 "PO-Revision-Date: 2018-04-29 10:05+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -18,40 +18,40 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 2.0.6\n"
 
-#: costs/models.py:14 costs/models.py:28
+#: costs/models.py:11 costs/models.py:25
 msgid "name"
 msgstr "nome"
 
-#: costs/models.py:24 costs/models.py:76
+#: costs/models.py:21 costs/models.py:73
 #: costs/templates/costs/costs_details.html:29
 msgid "Enterprise"
 msgstr "Empresa"
 
-#: costs/models.py:38
+#: costs/models.py:35
 msgid "Categories"
 msgstr "Categorías"
 
-#: costs/models.py:39 costs/models.py:72 costs/templates/costs/costs.html:37
+#: costs/models.py:36 costs/models.py:69 costs/templates/costs/costs.html:37
 #: costs/templates/costs/costs_details.html:17
 msgid "Category"
 msgstr "Categoría"
 
-#: costs/models.py:70 costs/templates/costs/costs.html:12
+#: costs/models.py:67 costs/templates/costs/costs.html:12
 #: costs/templates/costs/costs.html:35
 #: costs/templates/costs/costs_details.html:18
 msgid "Branch"
 msgstr "Sucursal"
 
-#: costs/models.py:71
+#: costs/models.py:68
 msgid "Creation date"
 msgstr "Fecha de creación"
 
-#: costs/models.py:73 costs/templates/costs/costs.html:38
+#: costs/models.py:70 costs/templates/costs/costs.html:38
 #: costs/templates/costs/costs_details.html:16
 msgid "Amount"
 msgstr "Pago"
 
-#: costs/models.py:74 costs/templates/costs/categories.html:9
+#: costs/models.py:71 costs/templates/costs/categories.html:9
 #: costs/templates/costs/category_details.html:16
 #: costs/templates/costs/costs.html:36
 #: costs/templates/costs/costs_details.html:21
@@ -60,36 +60,36 @@ msgstr "Pago"
 msgid "Name"
 msgstr "Nome"
 
-#: costs/models.py:74
+#: costs/models.py:71
 msgid "short description"
 msgstr "breve descripción"
 
-#: costs/models.py:75 costs/templates/costs/costs_details.html:22
+#: costs/models.py:72 costs/templates/costs/costs_details.html:22
 msgid "Note"
 msgstr "Nota"
 
-#: costs/models.py:77 costs/templates/costs/costs.html:34
+#: costs/models.py:74 costs/templates/costs/costs.html:34
 #: costs/templates/costs/costs_details.html:30
 msgid "Billing Date"
 msgstr "Fecha de facturación"
 
-#: costs/models.py:77
+#: costs/models.py:74
 msgid "when the bill was created"
 msgstr "fecha de facturación"
 
-#: costs/models.py:78 costs/templates/costs/costs_details.html:31
+#: costs/models.py:75 costs/templates/costs/costs_details.html:31
 msgid "Billing Nr"
 msgstr "No. de factura"
 
-#: costs/models.py:79
+#: costs/models.py:76
 msgid "the bill reference number"
 msgstr "número de factura"
 
-#: costs/models.py:80 costs/templates/costs/costs_details.html:24
+#: costs/models.py:77 costs/templates/costs/costs_details.html:24
 msgid "Article link"
 msgstr "Enlace al producto"
 
-#: costs/models.py:89
+#: costs/models.py:86
 msgid "Costs"
 msgstr "Costos"
 
