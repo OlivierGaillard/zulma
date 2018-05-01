@@ -228,6 +228,15 @@ class ArrivalListView(ListView):
     template_name = 'inventory/arrivals.html'
     context_object_name = 'arrivals'
 
+
+@method_decorator(login_required, name='dispatch')
+class ArrivalDeleteView(DeleteView):
+    model = Arrivage
+    template_name = 'inventory/arrival_delete.html'
+    success_url = '/inventory/arrivals'
+    context_object_name = 'arrival'
+
+
 def has_some_losses(queryset, name, value):
     return queryset.filter(losses__gt=0)
 
@@ -568,9 +577,3 @@ class BranchEditView(UpdateView):
     form_class = BranchUpdateForm
 
 
-@method_decorator(login_required, name='dispatch')
-class ArrivalDeleteView(DeleteView):
-    model = Arrivage
-    template_name = 'inventory/arrival_delete.html'
-    success_url = '/inventory/arrivals'
-    context_object_name = 'arrival'
