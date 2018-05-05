@@ -1,7 +1,7 @@
 from django.test import TestCase, Client
 from django.contrib.auth.models import User
 from django.shortcuts import reverse
-from .models import Article, Branch, Arrivage
+from .models import Article, Branch, Arrivage, Losses
 from datetime import date, timedelta
 from django.utils import timezone
 #from .views import ArticleDeleteView
@@ -25,7 +25,7 @@ class TestInventoryViews(TestCase):
     def test_get_losses(self):
         a1 = Article.objects.create(name='a1', quantity=10, purchasing_price=20, photo='a1')
         self.assertEqual(0, a1.losses)
-        a1.losses = 1
+        Losses.objects.create(article=a1, losses=1, amount_losses=20.50)
         a1.save()
         self.assertEqual(1, a1.losses)
 
@@ -35,7 +35,7 @@ class TestInventoryViews(TestCase):
         'losses'? """
         a1 = Article.objects.create(name='a1', quantity=10, purchasing_price=20, photo='a1')
         self.assertEqual(0, a1.losses)
-        a1.losses = 1
+        Losses.objects.create(article=a1, losses=1, amount_losses=20.50)
         a1.clean() # to call the validation and trigger the update as would form.is_valid()
         # which triggers: Model.clean_fields(), Model.clean() and Model.validate_unique().
         # See: https://docs.djangoproject.com/fr/2.0/ref/models/instances/#validating-objects

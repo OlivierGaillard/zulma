@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% block content %}
+<div class="container">
+  <h3>{% trans "Delete Loss-ID" %} {{loss.pk}} ?</h3>
+  <form action="/inventory/loss_delete/{{ loss.pk }}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <input type="submit" value="Delete" class="btn btn-danger"/>
+
+</form>
+</div>
+{% endblock %}

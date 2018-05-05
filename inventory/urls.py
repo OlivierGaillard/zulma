@@ -19,8 +19,9 @@ from .views import ArticleDetailView, articles, ArticleUpdateView, articleDelete
 from .views import ArrivalListView, ArrivalUpdateView, ArrivalCreateView, ArrivalDetailView, ArrivalDeleteView
 from .views import handle_pictures, upload_pictures_zip, CategoryCreateView, CategoryUpdateView, CategoryListView
 from .views import CategoryDetailView, CategoryDeleteView
-from .views import add_one_loss, AddOneLossView, BranchCreateView, BranchDetailView, BranchDeleteView
+from .views import add_one_loss, BranchCreateView, BranchDetailView, BranchDeleteView
 from .views import BranchListView, BranchEditView
+from .views import LossDeleteView, LossesListView, LossUpdateView, LossDetailView
 
 
 app_name = 'inventory'
@@ -40,6 +41,11 @@ urlpatterns = [
     url('articles/', articles, name='articles'),
     url(r'articles_by_pictures/$', ArticlesByPicturesView.as_view(), name='articles_by_pictures'),
 
+    url(r'^loss_delete/(?P<pk>[0-9]+)$', LossDeleteView.as_view(), name='loss_delete'),
+    url(r'^loss_update/(?P<pk>[0-9]+)$', LossUpdateView.as_view(), name='loss_update'),
+    url(r'^loss_detail/(?P<pk>[0-9]+)$', LossDetailView.as_view(), name='loss_detail'),
+    url(r'^losses/$', LossesListView.as_view(), name='losses'),
+
     url('branches/', BranchListView.as_view(), name='branches'),
     url('branch_create/$', BranchCreateView.as_view(), name='branch_create'),
     url('branch_detail/(?P<pk>[0-9]+)$', BranchDetailView.as_view(), name='branch_detail'),
@@ -48,7 +54,7 @@ urlpatterns = [
 
     url(r'article_update/(?P<pk>[0-9]+)$', ArticleUpdateView.as_view(), name='article_update'),
     url(r'article_losses/(?P<pk>[0-9]+)$', add_one_loss, name='article_losses'),
-    url(r'add_one_loss/(?P<pk>[0-9]+)$', AddOneLossView.as_view(), name='add_one_loss'),
+    #url(r'add_one_loss/(?P<pk>[0-9]+)$', AddOneLossView.as_view(), name='add_one_loss'),
     url(r'^article_detail/(?P<pk>[0-9]+)$', ArticleDetailView.as_view(), name='article_detail'),
     url(r'^article_delete/(?P<pk>[0-9]+)$', articleDeleteView, name='article_delete'),
     #url(r'^upload_pic/(?P<pk>[0-9]+)$', upload_pic, name='upload_pic'),

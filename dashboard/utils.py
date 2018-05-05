@@ -15,6 +15,8 @@ class TimeSliceHelper:
             self.qs = self.qs.filter(billing_date__year=year)
         elif self.model._meta.model_name == 'article':
             self.qs = self.qs.filter(date_added__year=year)
+        elif self.model._meta.model_name == 'losses':
+            self.qs = self.qs.filter(date__year=year)
         else:
             raise Exception("Model {0} not handled.".format(self.model._meta.model_name))
 
@@ -26,6 +28,8 @@ class TimeSliceHelper:
             self.qs = self.qs.filter(billing_date__range=(start_date, end_date))
         elif self.model._meta.model_name == 'article':
             self.qs = self.qs.filter(date_added__range=(start_date, end_date))
+        elif self.model._meta.model_name == 'losses':
+            self.qs = self.qs.filter(date__range= (start_date, end_date))
         else:
             raise Exception("Model {0} not handled.".format(self.model._meta.model_name))
 
@@ -37,6 +41,8 @@ class TimeSliceHelper:
             self.qs = self.qs.filter(billing_date__gte=start_date)
         elif self.model._meta.model_name == 'article':
             self.qs = self.qs.filter(date_added__gte=start_date)
+        elif self.model._meta.model_name == 'losses':
+            self.qs = self.qs.filter(date__gte=start_date)
         else:
             raise Exception("Model {0} not handled.".format(self.model._meta.model_name))
 
@@ -48,6 +54,8 @@ class TimeSliceHelper:
             self.qs = self.qs.filter(billing_date__lte=end_date)
         elif self.model._meta.model_name == 'article':
             self.qs = self.qs.filter(date_added__lte=end_date)
+        elif self.model._meta.model_name == 'losses':
+            self.qs = self.qs.filter(date__lte=end_date)
         else:
             raise Exception("Model {0} not handled.".format(self.model._meta.model_name))
 

@@ -15,7 +15,7 @@
 
 
   <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-4 table-responsive">
         <table class="table">
           <tbody>
           <tr>
@@ -35,9 +35,14 @@
               href="{% url "costs:costs" %}?q=Main">{{ costs_main|intcomma }}</a></td>
           </tr>
 
+          <tr>
+            <th>{% trans "Losses:" %}</th>
+            <td align="right">{{ losses|intcomma|default_if_none:0 }}</td>
+          </tr>
+
 
           <tr>
-            <th>{% trans "Total costs:" %}</th>
+            <th title="{% trans "costs + purchases + losses" %}">{% trans "Total costs:" %}</th>
             <td align="right">{{ grand_total_costs|intcomma }}</td>
           </tr>
 

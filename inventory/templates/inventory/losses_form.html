@@ -5,16 +5,17 @@
 {% block content %}
 <div class="container">
 
+<h2>{% trans 'Adding losses to article-ID ' %} {{article.pk}}</h2>
 <h3>{% trans "Previous Losses"%}</h3>
   <table class="table-condensed">
     <tbody>
     <tr>
       <th>{% trans "Previous losses:" %}</th>
-      <td>{{previous_losses}}</td>
+      <td>{{article.get_total_quantity_losses}}</td>
     </tr>
     <tr>
       <th>{% trans "Money lost:" %}</th>
-      <td>{{amount_losses}}</td>
+      <td>{{article.get_amount_losses}}</td>
     </tr>
     </tbody>
   </table>

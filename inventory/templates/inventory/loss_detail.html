@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load thumbnail %}
+{% block content %}
+
+<div class="container">
+  <h2>{% trans "Loss Details" %}</h2>
+
+  <div class="table-responsive">
+  <table class="table">
+    <tbody>
+
+      <tr>
+        <th>{% trans 'Branch' %}</th>
+        <td>{{ loss.branch|default_if_none:"Main"}}</td>
+      </tr>
+
+      <tr>
+        <th>{% trans "Date" %}</th><td>{{loss.date}}</td>
+      </tr>
+
+      <tr>
+        <th>{% trans 'Losses' %}</th>
+        <td>{{loss.losses}}</td>
+      </tr>
+
+      <tr>
+        <th>{% trans 'Money lost' %}</th>
+        <td>{{loss.amount_losses}}</td>
+      </tr>
+
+      <tr>
+        <th>{% trans 'Article-ID' %}</th>
+        <td><a title="{% trans 'Click to see article' %}" href="/inventory/article_detail/{{loss.article.pk}}">{{loss.article.pk}}</a></td>
+      </tr>
+
+      <tr>
+        <th>{% trans 'Loss Type' %}</th>
+        <td>{{loss.loss_type}}</td>
+      </tr>
+
+      <tr>
+        <th>{% trans 'Note' %}</th>
+        <td>{{ loss.note }}</td>
+      </tr>
+      <tr>
+        <th>{% trans 'Edit' %}</th>
+        <td><a href="/inventory/loss_update/{{loss.pk}}">{% trans 'Edit' %}</a></td>
+      </tr>
+
+      <tr>
+        <th>{% trans 'Thumbnail' %}</th>
+        {% thumbnail loss.article.photo  "50x50" crop="center" as im %}
+        <td><a href="{{ loss.article.photo.url }}" alt="picture of {{a.name}}-ID: {{loss.article.pk}}">
+                <img src="{{ im.url }}" alt="The thumbnail" style="width: {{ im.width }}">
+                </a>
+        </td>
+        {% empty %}
+        <td>{% trans "no pic found" %}</td>
+        {% endthumbnail %}
+      </tr>
+
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+{% endblock %}
+
+{% block footernav %}
+
+{% endblock %}

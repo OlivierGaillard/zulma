@@ -46,7 +46,8 @@ class CostsManager(models.Manager):
         return total
 
     def grand_total(self, branch=None, year=None, start_date = None, end_date=None):
-        """Sum of costs + sum of Articles' purchasing price."""
+        """Sum of costs + sum of Articles' purchasing price.
+        """
         helper = TimeSliceHelper(Article)
         articles = helper.get_objects(year=year, branch=branch, start_date=start_date, end_date=end_date)
         purchasing_price = sum(a.purchasing_price for a in articles)
@@ -54,7 +55,7 @@ class CostsManager(models.Manager):
 
     def get_balance(self, branch=None, year=None, start_date = None, end_date=None):
         """
-        Ventes minus (purchases + costs)
+        Ventes minus (purchases + costs). The losses are not taken in account.
         Purchases are taken from Article.objects.total_purchasing_price method.
         :return: Ventes - (purchases + costs)
         """
@@ -74,8 +75,8 @@ class Costs(models.Model):
     billing_date = models.DateField(_('Billing Date'), default=date.today, blank=True, null=True, help_text=_('when the bill was created'))
     billing_number = models.CharField(_('Billing Nr'), blank=True, null=True, max_length=200,
                                       help_text=_('the bill reference number'))
-    article_link = models.URLField(_('Article link'), null=True, blank=True)
-    article_id   = models.ForeignKey(Article, null=True, on_delete=models.SET_NULL)
+    # article_link = models.URLField(_('Article link'), null=True, blank=True)
+    # article_id   = models.ForeignKey(Article, null=True, on_delete=models.SET_NULL)
     objects = CostsManager()
 
     def __str__(self):
@@ -85,17 +86,4 @@ class Costs(models.Model):
     class Meta:
         verbose_name_plural = _('Costs')
         ordering = ['-billing_date']
-
-    def delete(self):
-        if self.article_id:
-            article = Article.objects.get(pk=self.article_id.pk)
-            if self.amount > 0:
-                article.losses -= 1
-                article.amount_losses -= self.amount
-                article.quantity += 1
-                article.save()
-        super(Costs, self).delete()
-
-
-
 

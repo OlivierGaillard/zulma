@@ -106,6 +106,7 @@
                   </a>
                   <ul class="dropdown-menu">
                     <li><a href="{% url "costs:costs" %}">{% trans "Costs" %}</a> </li>
+                    <li><a title="{% trans 'Adding a lost is possible in article details view' %}" href="{% url "inventory:losses" %}">{% trans "Losses" %}</a> </li>
                     <li><a href="{% url "costs:costs_create" %}">{% trans "Add one Cost" %}</a> </li>
                     <li class="divider"></li>
                     <li><a href="{% url "costs:categories" %}"><span class="glyphicon glyphicon-tags"></span>  {% trans "Categories" %}</a> </li>

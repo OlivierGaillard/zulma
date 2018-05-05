@@ -28,6 +28,14 @@
             <td align="right">{{ grand_total_costs|intcomma }}</td>
           </tr>
           <tr>
+
+          <tr>
+            <th>{% trans "Losses:" %}</th>
+            <td align="right">{{ losses|intcomma|default_if_none:0 }}</td>
+          </tr>
+
+
+
             <th>{% trans "Total incomes:" %}</th>
             <td align="right">{{ total_sellings|intcomma }}</td>
           </tr>

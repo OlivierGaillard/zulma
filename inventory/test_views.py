@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import date
-from .models import Article, Arrivage, Branch
+from .models import Article, Arrivage, Branch, Losses
 from .models import Category as ArticleCategory
 from .forms import ArticleUpdateForm
 from .views import get_extension, get_extension_error, image_extension_fails
@@ -16,7 +16,7 @@ class TestInventoryViews(TestCase):
 
     def setUp(self):
         self.arrival = Arrivage.objects.create(nom="test", date_arrivee=date.today())
-        self.a1 = Article.objects.create(name='a1', quantity=10, photo='a1', arrival=self.arrival)
+        self.a1 = Article.objects.create(name='a1', quantity=10, photo='a1photo', arrival=self.arrival)
         self.a2 = Article.objects.create(name='a2', quantity=5, photo='a2', arrival=self.arrival)
         self.user_oga = User.objects.create_user(username='golivier', password='mikacherie')
 
@@ -36,7 +36,7 @@ class TestInventoryViews(TestCase):
         self.assertInHTML('a1', response_str, count=1)
 
     def test_add_loss_quantity_one(self):
-        self.assertEqual(0, self.a1.losses)
+        self.assertEqual(0, self.a1.get_total_quantity_losses)
         self.assertEqual(10, self.a1.quantity)
         c = Client()
         c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
@@ -46,13 +46,12 @@ class TestInventoryViews(TestCase):
         c.logout()
         a1_upated = Article.objects.get(pk=self.a1.pk)
         self.assertEqual(9, a1_upated.quantity)
-        self.assertEqual(1, a1_upated.losses)
-        self.assertEqual(20, a1_upated.amount_losses)
-        self.assertTrue(Costs.objects.count() == 1)
-        self.assertEqual(Costs.objects.total_costs(), 20)
+        self.assertEqual(1, a1_upated.get_total_quantity_losses)
+        self.assertEqual(20, a1_upated.get_amount_losses)
+        self.assertEqual(Article.objects.total_losses(), 20)
 
     def test_add_loss_quantity_two(self):
-        self.assertEqual(0, self.a1.losses)
+        self.assertEqual(0, self.a1.get_total_quantity_losses)
         c = Client()
         c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
         data = {'losses' : 2, 'amount_losses' : 40}
@@ -60,10 +59,9 @@ class TestInventoryViews(TestCase):
         c.logout()
         a1_upated = Article.objects.get(pk=self.a1.pk)
         self.assertEqual(8, a1_upated.quantity)
-        self.assertEqual(2, a1_upated.losses)
-        self.assertEqual(40, a1_upated.amount_losses)
-        self.assertTrue(Costs.objects.count() == 1)
-        self.assertEqual(Costs.objects.total_costs(), 40)
+        self.assertEqual(2, a1_upated.get_total_quantity_losses)
+        self.assertEqual(40, a1_upated.get_amount_losses)
+        self.assertEqual(Article.objects.total_losses(), 40)
 
     def test_add_two_losses_and_check_total_costs(self):
         c = Client()
@@ -73,7 +71,7 @@ class TestInventoryViews(TestCase):
         data = {'losses': 1, 'amount_losses': 20}
         c.post(reverse('inventory:article_losses', args=[self.a2.pk]), data=data, follow=True)
         c.logout()
-        self.assertEqual(60, Costs.objects.total_costs())
+        self.assertEqual(60, Article.objects.total_losses())
 
 
     def test_add_two_losses_for_same_article_and_check_article_update(self):
@@ -84,9 +82,9 @@ class TestInventoryViews(TestCase):
         data = {'losses': 1, 'amount_losses': 20.50}
         c.post(reverse('inventory:article_losses', args=[self.a1.pk]), data=data, follow=True)
         article = Article.objects.get(pk=self.a1.pk)
-        self.assertEqual(41.0, article.amount_losses)
-        self.assertEqual(2, article.losses)
-        self.assertEqual(41, Costs.objects.total_costs())
+        self.assertEqual(41.0, article.get_amount_losses)
+        self.assertEqual(2, article.get_total_quantity_losses)
+        self.assertEqual(41, Article.objects.total_losses())
 
 
 
@@ -101,7 +99,7 @@ class TestInventoryViews(TestCase):
         data = {'losses': 1, 'amount_losses': 20}
         c.post(reverse('inventory:article_losses', args=[self.a2.pk]), data=data, follow=True)
         c.logout()
-        self.assertEqual(2060, Costs.objects.total_costs())
+        self.assertEqual(2060, Article.objects.total_losses() + Costs.objects.total_costs())
 
 
 
@@ -127,21 +125,23 @@ class TestInventoryViews(TestCase):
         c.post(reverse('inventory:article_losses', args=[self.a1.pk]), data=data, follow=True)
         a1_updated = Article.objects.get(pk=self.a1.pk)
         self.assertEqual(9, a1_updated.quantity)
-        self.assertEqual(1, a1_updated.losses)
-        self.assertEqual(20, a1_updated.amount_losses)
-        self.assertEqual(1, Costs.objects.count())
-        self.assertEqual(20, Costs.objects.total_costs())
-        # Now deleting this cost of category 'Losses'
+        self.assertEqual(1, a1_updated.get_total_quantity_losses)
+        self.assertEqual(20, a1_updated.get_amount_losses)
+        self.assertEqual(1, Losses.objects.count())
+        self.assertEqual(20, Losses.objects.total_costs())
+        loss = Losses.objects.all()[0]
+        self.assertEqual(self.a1.pk, loss.article.pk)
+        # Now deleting this loss
 
-        cost = Costs.objects.all()[0]
-        c.post(reverse('costs:costs_delete', args=[cost.pk]))
-        self.assertEqual(0, Costs.objects.total_costs())
+        loss = Losses.objects.all()[0]
+        c.post(reverse('inventory:loss_delete', args=[loss.pk]))
+        self.assertEqual(0, Losses.objects.total_costs())
         a1_updated = Article.objects.get(pk=self.a1.pk)
         self.assertIsNotNone(a1_updated)
-        self.assertEqual(a1_updated.losses, 0)
-        # update stock available too
+        self.assertEqual(a1_updated.get_total_quantity_losses, 0)
+        # # update stock available too
         self.assertEqual(10, a1_updated.quantity)
-        self.assertEqual(0, a1_updated.amount_losses)
+        self.assertEqual(0, a1_updated.get_amount_losses)
 
 
     def test_delete_article_does_NOT_imply_delete_losses_too(self):
@@ -153,12 +153,13 @@ class TestInventoryViews(TestCase):
         c = Client()
         c.post('/login/', {'username': 'golivier', 'password': 'mikacherie'})
         data = {'losses': 1, 'amount_losses': 20}
+        # adding one loss
         c.post(reverse('inventory:article_losses', args=[self.a1.pk]), data=data, follow=True)
-        self.assertEqual(1, Costs.objects.count())
+        self.assertEqual(1, Losses.objects.count())
         # Deleting article with costs
         c.post(reverse('inventory:article_delete', args=[self.a1.pk]), {'delete_purchasing_costs' : True}, follow=False)
         c.logout()
-        self.assertEqual(1, Costs.objects.count())
+        self.assertEqual(1, Losses.objects.count())
 
 
     def test_add_oneLoss_on_article_where_stock_is_zero(self):
@@ -185,6 +186,11 @@ class TestInventoryViews(TestCase):
 
 
     def test_that_updating_article_does_not_touch_losses(self):
+        """
+        A loss of quantity "3" with amount "30" is created for an article.
+        New infos are added during update:
+        :return:
+        """
         c = Client()
         c.post('/login/', {'username' : 'golivier', 'password' : 'mikacherie'})
         self.assertEqual(self.a1.quantity, 10)
@@ -192,7 +198,7 @@ class TestInventoryViews(TestCase):
                                                                        'amount_losses' : 30},
                follow=True)
         a_updated = Article.objects.get(pk=self.a1.pk)
-        self.assertEqual(3, a_updated.losses)
+        self.assertEqual(3, a_updated.get_total_quantity_losses)
         self.assertEqual(7, a_updated.quantity)
         new_data = {'name' : 'a1prime', 'solde' : 'N', 'initial_quantity' : 1, 'quantity' : a_updated.quantity,
                     'arrival' : self.arrival.pk}
@@ -202,7 +208,7 @@ class TestInventoryViews(TestCase):
         a_updated = Article.objects.get(pk=self.a1.pk)
         self.assertEqual('a1prime', a_updated.name)
         # Now the crucial test
-        self.assertEqual(3, a_updated.losses)
+        self.assertEqual(3, a_updated.get_total_quantity_losses)
 
 
     def test_grand_total_costs(self):
@@ -213,7 +219,7 @@ class TestInventoryViews(TestCase):
         Article.objects.create(name='a2', quantity=1, photo='a2a', purchasing_price=10.5)
         data = {'losses': 3, 'amount_losses': 10.5}
         c.post(reverse('inventory:article_losses', args=[a1.pk]), data=data)
-        self.assertEqual(31.0, Costs.objects.grand_total())
+        self.assertEqual(31.0, Costs.objects.grand_total() + Losses.objects.total_costs())
 
     def test_balance(self):
         c = Client()

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load static %}
+{% load i18n %}
+{% load humanize %}
+{% load thumbnail %}
+{% load crispy_forms_tags %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="container">
+  <h3>{% trans "Losses" %}</h3>
+
+ <div class="table-responsive">
+    <table class="table table-light">
+      <thead class="thead-light">
+      <tr>
+          <th>{% trans 'Nr.' %}</th>
+          <th>{% trans 'Branch' %}</th>
+          <th>{% trans 'Total losses' %}</th>
+          <th>{% trans 'Money lost' %}</th>
+          <th>{% trans 'Date' %}</th>
+          <th>{% trans 'Article' %}</th>
+          <th>{% trans 'Edit' %}</th>
+          <th>{% trans 'Details' %}</th>
+          <th>{% trans 'Delete' %}</th>
+      </tr>
+      </thead>
+
+
+      <tbody>
+      {% for a in losses %}
+      <tr>
+        <td>{{ forloop.counter}}</td>
+        <td>{{ a.branch|default_if_none:"Main"}}</td>
+        <td>{{ a.losses}}</td>
+        <td>{{ a.amount_losses}}</td>
+        <td>{{ a.date}}</td>
+        {% if a.article %}
+        <td><a title="{% trans 'Click to see article' %}" href="/inventory/article_detail/{{a.article.pk}}">{{a.article.name}}</a></td>
+        {% else %}
+        <td>n.d.</td>
+        {% endif %}
+        <td><a href="/inventory/loss_update/{{a.pk}}">{% trans 'Edit' %}</a></td>
+        <td><a href="/inventory/loss_detail/{{a.pk}}">{% trans 'Details' %}</a></td>
+        <td><a href="/inventory/loss_delete/{{a.pk}}">{% trans 'Delete' %}</a></td>
+      </tr>
+      {% endfor %}
+
+      <tr>
+        <th>Total</th>
+        <td></td>
+        <td><b>{{total_quantity}}</b></td>
+        <td><b>{{total_money}}</b></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+      </tr>
+
+
+
+      </tbody>
+    </table>
+ </div>
+</div>
+{% endblock %}
+{% block footer %}
+{% endblock %}
+

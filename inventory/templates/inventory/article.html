@@ -70,12 +70,12 @@
         <td>{{article.quantity}}</td>
       </tr>
       <tr>
-        <th>{% trans "Losses" %}</th>
-        <td>{{article.losses}}</td>
+        <th>{% trans "Losses Quantity" %}</th>
+        <td>{{article.get_total_quantity_losses}}</td>
       </tr>
       <tr>
-        <th>{% trans "Amount of losses" %}</th>
-        <td>{{article.amount_losses}}</td>
+        <th>{% trans "Amount of money lost in losses" %}</th>
+        <td>{{article.get_amount_losses}}</td>
       </tr>
 
       <tr>
@@ -106,7 +106,7 @@
             {% if article.quantity > 0 %}
             <input type="submit" class="btn btn-primary" value="{% trans "Add to cart" %}"/>
             {% else %}
-            <input type="text" class="btn btn-danger disabled" value="{% trans 'Out of stock!' %}"/>
+            <input type="text" class="btn btn-danger" disabled value="{% trans 'Out of stock!' %}"/>
             {% endif %}
     </form>
         </td>
@@ -127,9 +127,9 @@
 
     <td>
       {% if article.quantity > 0 %}
-      <a href="/inventory/article_losses/{{article.pk}}"><button class="btn btn-warning" >{% trans "Losses" %}</button></a>
+      <a href="/inventory/article_losses/{{article.pk}}"><button class="btn btn-warning" >{% trans "Add Losses" %}</button></a>
       {% else %}
-      <a href="/inventory/article_losses/{{article.pk}}"><button class="btn btn-warning disabled" >{% trans "Losses" %}</button></a>
+      <a href="/inventory/article_losses/{{article.pk}}"><button disabled class="btn btn-warning" >{% trans "Add Losses" %}</button></a>
       {% endif %}
     </td>
 

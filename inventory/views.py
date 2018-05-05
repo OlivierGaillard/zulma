@@ -16,10 +16,11 @@ from django_filters import FilterSet, CharFilter, ChoiceFilter, NumberFilter, Bo
 from django_filters.widgets import BooleanWidget
 from django.views.generic import ListView, TemplateView, CreateView, DetailView, UpdateView, DeleteView, View, FormView
 from django.contrib.auth.models import User
-from .models import Article, Employee, Arrivage, Category, Branch
+from .models import Article, Employee, Arrivage, Category, Branch, Losses
 from .forms import  ArticleUpdateForm, ArrivalCreateForm, HandlePicturesForm, ArrivalUpdateForm, ArticleDeleteForm
 from .forms import UploadPicturesZipForm, CategoryFormCreate, CategoryFormUpdate, CategoryFormDelete
 from .forms import ArticleLossesForm, BranchCreateForm, BranchUpdateForm
+from .forms import ArticleLossesUpdateForm
 import costs.models
 from costs.models import Category as CostsCategory, Costs
 from cart.cartutils import article_already_in_cart, get_cart_items
@@ -376,35 +377,25 @@ def quantities_of_article_and_form_are_valid(article, form):
             form.add_error(error=error, field='losses')
         return False
 
-def update_article_losses_and_quantity(article, form):
+def update_article_stock_quantity(article, form):
     """Add losses to article losses and substract to quantity."""
-    new_losses = form.cleaned_data['losses']
-    article.losses += new_losses
-    logger.debug("Updated losses of article: %s" % article.losses)
-    article.amount_losses += form.cleaned_data['amount_losses']
+    logger.debug("Updated stock quantity of article: %s" % article.quantity)
     article.quantity -= form.cleaned_data['losses']
     article.save()
-    logger.debug("Added [%s] losses." % form.cleaned_data['losses'])
-    logger.debug("Generating a Cost of category 'Losses'.")
 
 
-def generate_cost_of_category_lost(article, form):
+def create_lost(article, form):
     category_losses = None
-    try:
-        category_losses = costs.models.Category.objects.get(name='Losses')
-    except ObjectDoesNotExist:
-        category_losses = costs.models.Category.objects.create(name='Losses')
-    url_msg = "/inventory/article_detail/%s" % article.pk
+    #url_msg = "/inventory/article_detail/%s" % article.pk
     name = "Article-ID: %s " % article.pk
-    cost = costs.models.Costs.objects.create(category=category_losses,
-                                             amount=form.cleaned_data['amount_losses'],
-                                             name=name, billing_date=date.today(),
-                                             article_link=url_msg, article_id=article)
+    loss = Losses.objects.create(article=article, amount_losses=form.cleaned_data['amount_losses'],
+                                 losses=form.cleaned_data['losses'], branch=article.branch,
+                                 )
 
 
 @login_required()
 def add_one_loss(request, pk):
-    logger.debug("add_one_loss function.")
+    logger.warning("add_one_loss function.")
     article = get_object_or_404(Article, pk=pk)
     logger.debug("Article-ID [%s]. Losses: %s" % (article.pk, article.losses))
     if request.method == 'POST':
@@ -416,8 +407,8 @@ def add_one_loss(request, pk):
 
             if quantities_of_article_and_form_are_valid(article, form):
                 logger.debug('Losses and article values seem OK.')
-                update_article_losses_and_quantity(article, form)
-                generate_cost_of_category_lost(article, form)
+                update_article_stock_quantity(article, form)
+                create_lost(article, form)
                 return HttpResponseRedirect("/inventory/article_detail/%s" % article.pk)
             else:
                 logger.warning('Losses and articles values seem NOT ok.')
@@ -427,27 +418,41 @@ def add_one_loss(request, pk):
     else: # GET
         form = ArticleLossesForm()
 
-    return render(request, "inventory/losses_form.html", {'form' : form, 'previous_losses' : article.losses,
-                                                              'amount_losses' : article.amount_losses})
+    return render(request, "inventory/losses_form.html", {'form' : form, 'article' : article })
 
 @method_decorator(login_required, name='dispatch')
-class AddOneLossView(View):
+class LossesListView(ListView):
+    model = Losses
+    template_name = 'inventory/losses.html'
+    context_object_name = 'losses'
 
-    template_name = "inventory/losses_form.html"
-    form_class = ArticleLossesForm
+    def get_context_data(self, q=None):
+        ctx = super(LossesListView, self).get_context_data()
+        ctx['total_money'] = Losses.objects.total_costs()
+        ctx['total_quantity'] = Losses.objects.count()
+        return ctx
 
-    def get_context_data(self, **kwargs):
-        context = super(AddOneLossView, self).get_context_data(**kwargs)
-        article = get_object_or_404(Article, self.kwargs['pk'])
-        context['previous_losses'] = article.losses
-        context['amount_losses']   =  article.amount_losses
-        return context
-
-    def form_valid(self, form):
-        return super().form_valid(form)
+@method_decorator(login_required, name='dispatch')
+class LossDeleteView(DeleteView):
+    model = Losses
+    template_name = 'inventory/loss_delete.html'
+    context_object_name = 'loss'
+    success_url = reverse_lazy('inventory:losses')
 
 
+@method_decorator(login_required, name='dispatch')
+class LossUpdateView(UpdateView):
+    model = Losses
+    template_name = 'inventory/losses_update.html'
+    context_object_name = 'loss'
+    form_class = ArticleLossesUpdateForm
+    success_url = reverse_lazy('inventory:losses')
 
+@method_decorator(login_required, name='dispatch')
+class LossDetailView(DetailView):
+    model = Losses
+    template_name = 'inventory/loss_detail.html'
+    context_object_name = 'loss'
 
 
 @method_decorator(login_required, name='dispatch')

@@ -126,6 +126,15 @@ class ArticleManager(models.Manager):
         total = sum(a.purchasing_price for a in articles)
         return total
 
+    def total_losses(self, branch=None, year=None, start_date=None, end_date=None):
+        """Return how much money was lost because broken articles or other cause."""
+        helper = TimeSliceHelper(Article)
+        articles = helper.get_objects(year=year, branch=branch, start_date=start_date, end_date=end_date)
+        total = sum(a.get_amount_losses for a in articles)
+        return total
+
+
+
 
 
 class Article(models.Model):
@@ -149,9 +158,9 @@ class Article(models.Model):
     # initial quantity when article is added to the inventory
     initial_quantity = models.IntegerField(_('Initial quantity'), default=1, null=True)
     quantity = models.PositiveSmallIntegerField(_('Quantity'), default=1)
-    losses  = models.PositiveSmallIntegerField(_('Losses'), default=0)
-    amount_losses = models.DecimalField(_('Money lost'), max_digits=10, decimal_places=2, null=True, blank=True,
-                                           default=0)
+    # losses  = models.PositiveSmallIntegerField(_('Losses'), default=0)
+    # amount_losses = models.DecimalField(_('Money lost'), max_digits=10, decimal_places=2, null=True, blank=True,
+    #                                        default=0)
     solde = models.CharField(_("en solde"), max_length=1, choices=solde_choices, default='N')
     arrival = models.ForeignKey(Arrivage, null=True, on_delete=models.SET_NULL)
     notes = models.TextField(_("Notes"), null=True, blank=True, default=_('n.d.'))
@@ -177,9 +186,21 @@ class Article(models.Model):
         return reverse('inventory:article_detail', kwargs={'pk': self.pk})
 
     @property
-    def has_losses(self):
-        """Check if the article has losses or not."""
-        return self.losses > 0
+    def get_amount_losses(self):
+        """Return total money lost"""
+        return Losses.objects.total_losses_for_article(self)
+
+    @property
+    def losses(self):
+        """Return total quantity of losses for this article"""
+        return Losses.objects.total_losses_quantity_for_article(self)
+
+    @property
+    def get_total_quantity_losses(self):
+        """Return total quantity of losses for this article"""
+        return Losses.objects.total_losses_quantity_for_article(self)
+
+
 
     def __str__(self):
         s = "Name: {0}\n Branch: {1}\n Arrival: {2}\n Category: {3}\n Quantity: {4}\n Purch. price: {5}\n Selling price: {6}\n Date added: {7}".format(
@@ -195,6 +216,66 @@ class Article(models.Model):
         return s
 
 
+class LossesManager(models.Manager):
+
+    def total_costs(self, branch=None, year=None, start_date=None, end_date=None):
+        """Return how much money was lost because broken articles or other cause."""
+        helper = TimeSliceHelper(Losses)
+        losses = helper.get_objects(branch=branch, year=year, start_date=start_date, end_date=end_date)
+        total = sum(a.amount_losses for a in losses)
+        return total
+
+    def total_quantity(self, branch=None, year=None, start_date=None, end_date=None):
+        helper = TimeSliceHelper(Losses)
+        losses = helper.get_objects(branch=branch, year=year, start_date=start_date, end_date=end_date)
+        total = sum(a.losses for a in losses)
+        return total
+
+    def total_losses_for_article(self, article):
+        """
+        :param article:
+        :return: total of money lost in losses for this article
+        """
+        qs = Losses.objects.filter(article=article)
+        total = sum(a.amount_losses for a in qs)
+        return total
+
+    def total_losses_quantity_for_article(self, article):
+        """
+
+        :param article:
+        :return: total quantity of losses for this article
+        """
+        qs = Losses.objects.filter(article=article)
+        total = sum(a.losses for a in qs)
+        return total
+
+
+
+class Losses(models.Model):
+    """Losses of one article because article was broken, stolen or other cause, event not sold.
+    More: it can be losses not related to articles or even to a branch.
+    """
+    losses  = models.PositiveSmallIntegerField(_('Losses'), default=0)
+    amount_losses = models.DecimalField(_('Money lost'), max_digits=10, decimal_places=2, null=True, blank=True,
+                                           default=0)
+    date = models.DateField(default=date.today, null=True, blank=True)
+    article = models.ForeignKey(Article, on_delete=models.SET_NULL, null=True, related_name='Pertes')
+    loss_type    = models.CharField(_("Type of loss"), max_length=100, help_text=_("Cause of the loss: not sold, broken, etc."),
+                                    null=True, blank=True)
+
+    branch = models.ForeignKey(Branch, null=True, blank=True, on_delete=models.SET_NULL)
+    note = models.TextField(_('Note'), blank=True, null=True)
+    objects = LossesManager()
+
+    def delete(self):
+        if self.article:
+            self.article.quantity += self.losses
+            self.article.save()
+        super(Losses, self).delete()
+
+    class Meta:
+        ordering = ['-date']
 
 
 

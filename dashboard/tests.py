@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 from django.shortcuts import reverse
 from cart.models import Vente
 from costs.models import Costs, Category
-from inventory.models import Article, Arrivage, Branch
+from inventory.models import Article, Arrivage, Branch, Losses
 from .models import Dashboard
 from datetime import date, timedelta
 from django.utils import timezone
@@ -215,6 +215,21 @@ class TestDashboard(TestCase):
 
         self.assertEqual(20-400-10, Dashboard.get_balance(b1))
 
+    def test_dashboard_all_losses(self):
+        b1 = Branch.objects.create(name='B1')
+        Losses.objects.create(amount_losses=150, losses=1, branch=b1)
+        Losses.objects.create(amount_losses=150, losses=1)
+        self.assertEqual(300, Dashboard.total_losses())
+
+        dnow = timezone.localdate().today()
+        lastyear = dnow - timedelta(days=365)
+        Losses.objects.create(amount_losses=150, losses=1, date=lastyear)
+        self.assertEqual(300, Dashboard.total_losses(start_date=date(year=2018, month=1, day=1)))
+        self.assertEqual(450, Dashboard.total_losses())
+        self.assertEqual(150, Dashboard.total_losses(branch=b1))
+
+        # MAIN : implies the branch is set to None.
+        self.assertEqual(300, Dashboard.total_losses(branch='MAIN'))
 
     def test_delete_article_check_costs_purchases_are_ok(self):
         """If one article has a purchasing price it could be deleted from

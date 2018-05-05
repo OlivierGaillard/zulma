@@ -6,7 +6,7 @@ from crispy_forms.layout import Submit, Layout, Fieldset, Field, HTML
 from django import forms
 from django.conf import settings
 import os
-from .models import Article, Arrivage, Category, Branch
+from .models import Article, Arrivage, Category, Branch, Losses
 import logging
 logger = logging.getLogger('django')
 
@@ -143,12 +143,36 @@ class ArticleUpdateForm(forms.ModelForm):
 
 
 class ArticleLossesForm(forms.Form):
-    losses = forms.IntegerField(required=True, min_value=1)
-    amount_losses = forms.DecimalField(required=True, min_value=0.01)
+    losses = forms.IntegerField(required=True, min_value=1, help_text=_("Total of articles lost"))
+    amount_losses = forms.DecimalField(required=True, min_value=0.01, help_text=_("Total of money lost"))
 
 
     def __init__(self, *args, **kwargs):
         super(ArticleLossesForm, self).__init__(*args, **kwargs)
+        self.helper = FormHelper(self)
+        self.helper.form_method = "POST"
+        self.helper.form_class = 'form-horizontal'
+        self.helper.label_class = 'col-sm-2'
+        self.helper.field_class = 'col-sm-4'
+        self.helper.layout.append(
+            FormActions(
+                Submit('save', 'Submit'),
+            )
+        )
+
+class ArticleLossesUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Losses
+        fields = ('amount_losses', 'date', 'loss_type', 'note')
+        widgets = {
+            'date': forms.DateInput(
+                attrs={'id': 'datetimepicker_es'}
+            ),
+        }
+
+
+    def __init__(self, *args, **kwargs):
+        super(ArticleLossesUpdateForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
         self.helper.form_method = "POST"
         self.helper.form_class = 'form-horizontal'
