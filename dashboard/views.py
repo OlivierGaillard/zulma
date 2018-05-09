@@ -31,7 +31,7 @@ def build_context_data_for_main(start_date=None, end_date=None):
     barchart.purchases = -(purchases)
     barchart.costs = -(costs)
     barchart.losses = -(losses)
-    barchart.all_costs = grand_total_costs
+    barchart.all_costs = -(grand_total_costs)
     barchart.sellings = sellings
     barchart.balance = balance
 
@@ -73,6 +73,7 @@ def build_context_data_for_branch(branch=None, start_date=None, end_date=None):
     barchart.purchases = -(purchases)
     barchart.costs = -(costs)
     barchart.losses = -(losses)
+    barchart.all_costs = -(grand_total_costs)
     barchart.sellings = sellings
     barchart.balance = balance
 
