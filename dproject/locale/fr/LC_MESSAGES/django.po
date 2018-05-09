@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 09:14+0200\n"
+"POT-Creation-Date: 2018-05-08 15:46+0200\n"
 "PO-Revision-Date: 2018-04-23 15:22+0200\n"
 "Last-Translator: Pascal Bader <info@wservices.ch>\n"
 "Language-Team: LANGUAGE <info@wservices.ch>\n"
@@ -116,7 +116,7 @@ msgstr "Arrivages"
 msgid "List the categories"
 msgstr "Lister les catégories"
 
-#: dproject/templates/base.html:82 dproject/templates/base.html:111
+#: dproject/templates/base.html:82 dproject/templates/base.html:112
 msgid "Categories"
 msgstr "Catégories"
 
@@ -157,39 +157,47 @@ msgid "Costs"
 msgstr "Coûts"
 
 #: dproject/templates/base.html:109
+msgid "Adding a lost is possible in article details view"
+msgstr ""
+
+#: dproject/templates/base.html:109
+msgid "Losses"
+msgstr ""
+
+#: dproject/templates/base.html:110
 msgid "Add one Cost"
 msgstr "Ajouter un coût"
 
-#: dproject/templates/base.html:112
+#: dproject/templates/base.html:113
 msgid "Create a category"
 msgstr "Créer une catégorie"
 
-#: dproject/templates/base.html:114
+#: dproject/templates/base.html:115
 msgid "Enterprises"
 msgstr "Entreprises"
 
-#: dproject/templates/base.html:116
+#: dproject/templates/base.html:117
 msgid "an enterprise or provider which occurs regularly in your costs"
 msgstr ""
 "une entreprise ou un fournisseur se service qui se présente régulièrement "
 "dans vos coûts"
 
-#: dproject/templates/base.html:116
+#: dproject/templates/base.html:117
 msgid "Create an enterprise"
 msgstr "Créer une entreprise"
 
-#: dproject/templates/base.html:130
+#: dproject/templates/base.html:131
 msgid "Log out"
 msgstr "Quitter"
 
-#: dproject/templates/base.html:133
+#: dproject/templates/base.html:134
 #: dproject/templates/registration/login.html:5
 #: dproject/templates/registration/login.html:12
 #: dproject/templates/registration/login.html:18
 msgid "Log in"
 msgstr "S'annoncer"
 
-#: dproject/templates/base.html:168
+#: dproject/templates/base.html:169
 msgid "créé par"
 msgstr ""
 

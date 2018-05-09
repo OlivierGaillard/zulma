@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 09:14+0200\n"
+"POT-Creation-Date: 2018-05-08 15:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -117,7 +117,7 @@ msgstr ""
 msgid "List the categories"
 msgstr "Articles' list"
 
-#: dproject/templates/base.html:82 dproject/templates/base.html:111
+#: dproject/templates/base.html:82 dproject/templates/base.html:112
 msgid "Categories"
 msgstr ""
 
@@ -160,37 +160,45 @@ msgid "Costs"
 msgstr ""
 
 #: dproject/templates/base.html:109
+msgid "Adding a lost is possible in article details view"
+msgstr ""
+
+#: dproject/templates/base.html:109
+msgid "Losses"
+msgstr ""
+
+#: dproject/templates/base.html:110
 msgid "Add one Cost"
 msgstr ""
 
-#: dproject/templates/base.html:112
+#: dproject/templates/base.html:113
 msgid "Create a category"
 msgstr ""
 
-#: dproject/templates/base.html:114
+#: dproject/templates/base.html:115
 msgid "Enterprises"
 msgstr ""
 
-#: dproject/templates/base.html:116
+#: dproject/templates/base.html:117
 msgid "an enterprise or provider which occurs regularly in your costs"
 msgstr ""
 
-#: dproject/templates/base.html:116
+#: dproject/templates/base.html:117
 msgid "Create an enterprise"
 msgstr ""
 
-#: dproject/templates/base.html:130
+#: dproject/templates/base.html:131
 msgid "Log out"
 msgstr ""
 
-#: dproject/templates/base.html:133
+#: dproject/templates/base.html:134
 #: dproject/templates/registration/login.html:5
 #: dproject/templates/registration/login.html:12
 #: dproject/templates/registration/login.html:18
 msgid "Log in"
 msgstr ""
 
-#: dproject/templates/base.html:168
+#: dproject/templates/base.html:169
 msgid "créé par"
 msgstr "made by"
 

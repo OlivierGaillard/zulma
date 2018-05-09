@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: español\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 09:14+0200\n"
+"POT-Creation-Date: 2018-05-08 15:46+0200\n"
 "PO-Revision-Date: 2018-04-24 11:42-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -118,7 +118,7 @@ msgstr "Ingresos"
 msgid "List the categories"
 msgstr "Lista de categorías"
 
-#: dproject/templates/base.html:82 dproject/templates/base.html:111
+#: dproject/templates/base.html:82 dproject/templates/base.html:112
 msgid "Categories"
 msgstr "Categorías"
 
@@ -159,37 +159,45 @@ msgid "Costs"
 msgstr "Costos"
 
 #: dproject/templates/base.html:109
+msgid "Adding a lost is possible in article details view"
+msgstr ""
+
+#: dproject/templates/base.html:109
+msgid "Losses"
+msgstr ""
+
+#: dproject/templates/base.html:110
 msgid "Add one Cost"
 msgstr "Agregar un costo"
 
-#: dproject/templates/base.html:112
+#: dproject/templates/base.html:113
 msgid "Create a category"
 msgstr "Crear una categoría"
 
-#: dproject/templates/base.html:114
+#: dproject/templates/base.html:115
 msgid "Enterprises"
 msgstr "Empresa"
 
-#: dproject/templates/base.html:116
+#: dproject/templates/base.html:117
 msgid "an enterprise or provider which occurs regularly in your costs"
 msgstr "una emprea o proveedor que aparece regularmente en los costos"
 
-#: dproject/templates/base.html:116
+#: dproject/templates/base.html:117
 msgid "Create an enterprise"
 msgstr "Crear una empresa"
 
-#: dproject/templates/base.html:130
+#: dproject/templates/base.html:131
 msgid "Log out"
 msgstr "Cerrar sesión"
 
-#: dproject/templates/base.html:133
+#: dproject/templates/base.html:134
 #: dproject/templates/registration/login.html:5
 #: dproject/templates/registration/login.html:12
 #: dproject/templates/registration/login.html:18
 msgid "Log in"
 msgstr "Iniciar sesión"
 
-#: dproject/templates/base.html:168
+#: dproject/templates/base.html:169
 msgid "créé par"
 msgstr "creado por"
 

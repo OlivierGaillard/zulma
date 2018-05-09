@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-05-01 09:14+0200\n"
+"POT-Creation-Date: 2018-05-08 15:46+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -34,6 +34,8 @@ msgstr ""
 #: inventory/forms.py:106 inventory/models.py:117
 #: inventory/templates/inventory/article.html:36
 #: inventory/templates/inventory/articles_by_pictures.html:14
+#: inventory/templates/inventory/loss_detail.html:15
+#: inventory/templates/inventory/losses.html:18
 msgid "Branch"
 msgstr ""
 
@@ -43,7 +45,7 @@ msgstr ""
 msgid "Arrival"
 msgstr "Arrival's Date"
 
-#: inventory/forms.py:108 inventory/models.py:94 inventory/models.py:146
+#: inventory/forms.py:108 inventory/models.py:94 inventory/models.py:155
 #: inventory/templates/inventory/article.html:51
 #: inventory/templates/inventory/articles.html:207
 msgid "Category"
@@ -53,7 +55,17 @@ msgstr ""
 msgid "Generate"
 msgstr ""
 
-#: inventory/forms.py:250
+#: inventory/forms.py:146
+#, fuzzy
+#| msgid "Détails de l'article"
+msgid "Total of articles lost"
+msgstr "Article's details"
+
+#: inventory/forms.py:147
+msgid "Total of money lost"
+msgstr ""
+
+#: inventory/forms.py:274
 msgid "Delete Purchasing Costs too?"
 msgstr ""
 
@@ -63,7 +75,7 @@ msgstr ""
 msgid "Arrival Date"
 msgstr "Arrival's Date"
 
-#: inventory/models.py:107 inventory/models.py:145
+#: inventory/models.py:107 inventory/models.py:154
 #: inventory/templates/inventory/arrival_detail.html:21
 #: inventory/templates/inventory/arrivals.html:16
 #: inventory/templates/inventory/articles.html:206
@@ -74,88 +86,100 @@ msgstr "Arrival's Date"
 msgid "Name"
 msgstr ""
 
-#: inventory/models.py:135 inventory/models.py:253
+#: inventory/models.py:144 inventory/models.py:334
 msgid "-"
 msgstr "-"
 
-#: inventory/models.py:136 inventory/models.py:155 inventory/models.py:254
-#: inventory/models.py:280
+#: inventory/models.py:145 inventory/models.py:164 inventory/models.py:335
+#: inventory/models.py:361
 msgid "en solde"
 msgstr "price reduced"
 
-#: inventory/models.py:141 inventory/templates/inventory/articles.html:204
+#: inventory/models.py:150 inventory/templates/inventory/articles.html:204
 msgid "Purchasing price"
 msgstr ""
 
-#: inventory/models.py:143 inventory/templates/inventory/articles.html:205
+#: inventory/models.py:152 inventory/templates/inventory/articles.html:205
 msgid "Selling price"
 msgstr ""
 
-#: inventory/models.py:145 inventory/models.py:147 inventory/models.py:157
+#: inventory/models.py:154 inventory/models.py:156 inventory/models.py:166
 msgid "n.d."
 msgstr ""
 
-#: inventory/models.py:147 inventory/templates/inventory/article.html:90
+#: inventory/models.py:156 inventory/templates/inventory/article.html:90
 msgid "Description"
 msgstr ""
 
-#: inventory/models.py:150
+#: inventory/models.py:159
 msgid "Initial quantity"
 msgstr ""
 
-#: inventory/models.py:151 inventory/templates/inventory/articles.html:209
+#: inventory/models.py:160 inventory/templates/inventory/articles.html:209
 #, fuzzy
 #| msgid "Quantité"
 msgid "Quantity"
 msgstr "Quantity"
 
-#: inventory/models.py:152 inventory/templates/inventory/article.html:73
-#: inventory/templates/inventory/article.html:130
-#: inventory/templates/inventory/article.html:132
-msgid "Losses"
-msgstr ""
-
-#: inventory/models.py:153
-msgid "Money lost"
-msgstr ""
-
-#: inventory/models.py:157 inventory/templates/inventory/article.html:94
+#: inventory/models.py:166 inventory/templates/inventory/article.html:94
 msgid "Notes"
 msgstr ""
 
-#: inventory/models.py:162
+#: inventory/models.py:171
 msgid "Article with minimal data"
 msgstr ""
 
-#: inventory/models.py:227
+#: inventory/models.py:259 inventory/templates/inventory/loss_detail.html:24
+#: inventory/templates/inventory/losses.html:11
+msgid "Losses"
+msgstr ""
+
+#: inventory/models.py:260 inventory/templates/inventory/loss_detail.html:29
+#: inventory/templates/inventory/losses.html:20
+msgid "Money lost"
+msgstr ""
+
+#: inventory/models.py:264
+msgid "Type of loss"
+msgstr ""
+
+#: inventory/models.py:264
+msgid "Cause of the loss: not sold, broken, etc."
+msgstr ""
+
+#: inventory/models.py:268 inventory/templates/inventory/loss_detail.html:44
+msgid "Note"
+msgstr ""
+
+#: inventory/models.py:308
 msgid "Homme"
 msgstr "Man"
 
-#: inventory/models.py:228
+#: inventory/models.py:309
 msgid "Femme"
 msgstr "Woman"
 
-#: inventory/models.py:229
+#: inventory/models.py:310
 msgid "Mixte"
 msgstr "Unisex"
 
-#: inventory/models.py:230
+#: inventory/models.py:311
 msgid "Enfant"
 msgstr "Children"
 
-#: inventory/models.py:262
+#: inventory/models.py:343
 msgid "Type de client"
 msgstr "Client's type"
 
-#: inventory/models.py:263
+#: inventory/models.py:344
 msgid "Genre d'article"
 msgstr "Kind of article"
 
-#: inventory/models.py:264
+#: inventory/models.py:345
 msgid "Nom"
 msgstr "Name"
 
-#: inventory/models.py:272
+#: inventory/models.py:353
 #, fuzzy
 #| msgid "Date d'arrivage"
 msgid "Arrivage"
@@ -181,6 +205,8 @@ msgid "Arrival Details"
 msgstr "Arrival's Date"
 
 #: inventory/templates/inventory/arrival_detail.html:17
+#: inventory/templates/inventory/loss_detail.html:20
+#: inventory/templates/inventory/losses.html:21
 msgid "Date"
 msgstr ""
 
@@ -198,6 +224,7 @@ msgstr "Article's details"
 #: inventory/templates/inventory/articles.html:201
 #: inventory/templates/inventory/branches.html:10
 #: inventory/templates/inventory/categories.html:15
+#: inventory/templates/inventory/losses.html:17
 msgid "Nr."
 msgstr "Nb."
 
@@ -210,6 +237,8 @@ msgstr ""
 #: inventory/templates/inventory/arrivals.html:29
 #: inventory/templates/inventory/article.html:138
 #: inventory/templates/inventory/branches.html:21
+#: inventory/templates/inventory/losses.html:25
+#: inventory/templates/inventory/losses.html:45
 msgid "Delete"
 msgstr ""
 
@@ -281,8 +310,14 @@ msgstr ""
 msgid "Available stock quantity"
 msgstr ""
 
+#: inventory/templates/inventory/article.html:73
+#, fuzzy
+#| msgid "Quantité"
+msgid "Losses Quantity"
+msgstr "Quantity"
+
 #: inventory/templates/inventory/article.html:77
-msgid "Amount of losses"
+msgid "Amount of money lost in losses"
 msgstr ""
 
 #: inventory/templates/inventory/article.html:82
@@ -311,7 +346,16 @@ msgstr "Kind of article"
 
 #: inventory/templates/inventory/article.html:125
 #: inventory/templates/inventory/branch_detail.html:26
+#: inventory/templates/inventory/loss_detail.html:48
+#: inventory/templates/inventory/loss_detail.html:49
+#: inventory/templates/inventory/losses.html:23
+#: inventory/templates/inventory/losses.html:43
 msgid "Edit"
+msgstr ""
+
+#: inventory/templates/inventory/article.html:130
+#: inventory/templates/inventory/article.html:132
+msgid "Add Losses"
 msgstr ""
 
 #: inventory/templates/inventory/article.html:142
@@ -490,6 +534,7 @@ msgid "articles found"
 msgstr "articles found"
 
 #: inventory/templates/inventory/articles.html:203
+#: inventory/templates/inventory/loss_detail.html:53
 msgid "Thumbnail"
 msgstr ""
 
@@ -499,6 +544,7 @@ msgstr ""
 
 #: inventory/templates/inventory/articles.html:225
 #: inventory/templates/inventory/articles_by_pictures.html:43
+#: inventory/templates/inventory/loss_detail.html:60
 msgid "no pic found"
 msgstr ""
 
@@ -544,19 +590,67 @@ msgstr ""
 msgid " pictures to handle for generating articles."
 msgstr ""
 
+#: inventory/templates/inventory/loss_delete.html:6
+#, fuzzy
+#| msgid "Genre d'article"
+msgid "Delete Loss-ID"
+msgstr "Kind of article"
+
+#: inventory/templates/inventory/loss_detail.html:8
+msgid "Loss Details"
+msgstr ""
+
+#: inventory/templates/inventory/loss_detail.html:34
+#, fuzzy
+#| msgid "Genre d'article"
+msgid "Article-ID"
+msgstr "Kind of article"
+
+#: inventory/templates/inventory/loss_detail.html:35
+#: inventory/templates/inventory/losses.html:39
+msgid "Click to see article"
+msgstr ""
+
+#: inventory/templates/inventory/loss_detail.html:39
+msgid "Loss Type"
+msgstr ""
+
+#: inventory/templates/inventory/losses.html:19
+#, fuzzy
+#| msgid "Détails de l'article"
+msgid "Total losses"
+msgstr "Article's details"
+
+#: inventory/templates/inventory/losses.html:22
+msgid "Article"
+msgstr ""
+
+#: inventory/templates/inventory/losses.html:24
+#: inventory/templates/inventory/losses.html:44
+#, fuzzy
+#| msgid "Date d'arrivage"
+msgid "Details"
+msgstr "Arrival's Date"
+
 #: inventory/templates/inventory/losses_form.html:8
+#, fuzzy
+#| msgid "Genre d'article"
+msgid "Adding losses to article-ID "
+msgstr "Kind of article"
+
+#: inventory/templates/inventory/losses_form.html:9
 msgid "Previous Losses"
 msgstr ""
 
-#: inventory/templates/inventory/losses_form.html:12
+#: inventory/templates/inventory/losses_form.html:13
 msgid "Previous losses:"
 msgstr ""
 
-#: inventory/templates/inventory/losses_form.html:16
+#: inventory/templates/inventory/losses_form.html:17
 msgid "Money lost:"
 msgstr ""
 
-#: inventory/templates/inventory/losses_form.html:22
+#: inventory/templates/inventory/losses_form.html:23
 msgid "New Losses"
 msgstr ""
 
@@ -564,19 +658,19 @@ msgstr ""
 msgid "Upload only <code>ZIP</code> files."
 msgstr ""
 
-#: inventory/views.py:238
+#: inventory/views.py:248
 msgid "quantity greater than"
 msgstr ""
 
-#: inventory/views.py:240 inventory/views.py:242
+#: inventory/views.py:250 inventory/views.py:252
 msgid "greater than"
 msgstr ""
 
-#: inventory/views.py:243
+#: inventory/views.py:253
 msgid "Losses greater or equal"
 msgstr ""
 
-#: inventory/views.py:366
+#: inventory/views.py:376
 msgid "Losses cannot exceed quantity."
 msgstr ""
 
