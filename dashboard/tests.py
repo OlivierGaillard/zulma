@@ -7,8 +7,7 @@ from inventory.models import Article, Arrivage, Branch, Losses
 from .models import Dashboard
 from datetime import date, timedelta
 from django.utils import timezone
-#from django.utils.timezone import datetime, timedelta, localdate
-from inventory.views import articleDeleteView
+
 
 class TestDashboard(TestCase):
 

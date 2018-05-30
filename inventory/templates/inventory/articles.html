@@ -9,117 +9,135 @@
 {% block content %}
 <div class="container">
 
-      <h3>{% trans "Summary without filters" %}</h3>
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <a href="#summary" data-toggle="collapse">{% trans "Summary without filters" %}</a>
+    </div>
 
-      <table class="table">
-        <thead>
-        <tr>
-          <th colspan="2"></th>
-          <th>{% trans "Count" %}</th>
-          <th>&percnt;</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr class="row">
-          <th  class="col-xs-2">{% trans "Total articles" %}</th>
-          <td class="col-xs-1">{{summary.total}}</td>
-          <td class="col-xs-9">&ndash;</td>
-        </tr>
-        <tr class="row">
-          <th class="col-xs-2">{% trans "Out of stock" %}</th>
-          <td class="col-xs-1">{{summary.quantity_zero}}</td>
-          <td class="col-xs-9">
-            <div class='progress'>
-              <div class="progress-bar progress-bar-danger" role="progressbar"
-                   style="width: {{summary.quantity_zero_percent}}%;">
-                {{summary.quantity_zero_percent}} %
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr class="row">
-          <th class="col-xs-2">{% trans "Reduced price" %}</th>
-          <td class="col-xs-1">{{summary.reduced}} </td>
-          <td class="col-xs-9">
-            <div class='progress'>
-              <div title="{{summary.reduced_percent}} %" class="progress-bar progress-bar-info" role="progressbar"
-                   style="width: {{summary.reduced_percent}}%;">
-                {{summary.reduced_percent}} %
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr class="row">
-          <th class="col-xs-2">{% trans "Without category" %}</th>
-          <td class="col-xs-1">{{summary.no_category}}</td>
-          <td class="col-xs-9">
-            <div class='progress'>
-              <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{summary.no_category_percent}}%;">
-                {{summary.no_category_percent}}%
-              </div>
-            </div>
-          </td>
-        </tr>
-        <tr class="row">
-          <th class="col-xs-2">{% trans "Without name" %}</th>
-          <td class="col-xs-1">{{summary.no_name}}</td>
-          <td class="col-xs-9">
-            <div class='progress'>
-              <div title="{{summary.no_name}}" class="progress-bar progress-bar-warning" role="progressbar"
-                   style="width: {{summary.no_name_percent}}%;">
-                    {{summary.no_name_percent}}%
-              </div>
-          </div>
-          </td>
-        </tr>
-        <tr class="row">
-            <th class="col-xs-2">{% trans "Without selling price" %}</th>
-            <td class="col-xs-1">{{summary.selling_price_zero}}</td>
+    <div id="summary" class="panel-collapse collapse">
+      <div class="panel-body">
+        <table class="table">
+          <thead>
+          <tr>
+            <th colspan="2"></th>
+            <th>{% trans "Count" %}</th>
+            <th>&percnt;</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr class="row">
+            <th  class="col-xs-2">{% trans "Total articles" %}</th>
+            <td class="col-xs-1">{{summary.total}}</td>
+            <td class="col-xs-9">&ndash;</td>
+          </tr>
+          <tr class="row">
+            <th class="col-xs-2">{% trans "Out of stock" %}</th>
+            <td class="col-xs-1">{{summary.quantity_zero}}</td>
             <td class="col-xs-9">
               <div class='progress'>
-                <div title="{{summary.no_name}}" class="progress-bar progress-bar-warning" role="progressbar"
-                   style="width: {{summary.no_selling_price_percent}}%;">
-                    {{summary.no_selling_price_percent}}%
+                <div class="progress-bar progress-bar-danger" role="progressbar"
+                     style="width: {{summary.quantity_zero_percent}}%;">
+                  {{summary.quantity_zero_percent}} %
                 </div>
               </div>
             </td>
-        </tr>
-        <tr class="row">
-          <th class="col-xs-2">{% trans "Without purchasing price" %}</th>
-          <td class="col-xs-1">{{summary.purchasing_price_zero}}</td>
-          <td class="col-xs-9">
-            <div class='progress'>
-              <div title="{{summary.no_name}}" class="progress-bar progress-bar-warning" role="progressbar"
-                   style="width: {{summary.no_purchasing_price_percent}}%;">
-                {{summary.no_purchasing_price_percent}}%
+          </tr>
+          <tr class="row">
+            <th class="col-xs-2">{% trans "Reduced price" %}</th>
+            <td class="col-xs-1">{{summary.reduced}} </td>
+            <td class="col-xs-9">
+              <div class='progress'>
+                <div title="{{summary.reduced_percent}} %" class="progress-bar progress-bar-info" role="progressbar"
+                     style="width: {{summary.reduced_percent}}%;">
+                  {{summary.reduced_percent}} %
+                </div>
               </div>
+            </td>
+          </tr>
+          <tr class="row">
+            <th class="col-xs-2">{% trans "Without category" %}</th>
+            <td class="col-xs-1">{{summary.no_category}}</td>
+            <td class="col-xs-9">
+              <div class='progress'>
+                <div class="progress-bar progress-bar-warning" role="progressbar" style="width: {{summary.no_category_percent}}%;">
+                  {{summary.no_category_percent}}%
+                </div>
+              </div>
+            </td>
+          </tr>
+          <tr class="row">
+            <th class="col-xs-2">{% trans "Without name" %}</th>
+            <td class="col-xs-1">{{summary.no_name}}</td>
+            <td class="col-xs-9">
+              <div class='progress'>
+                <div title="{{summary.no_name}}" class="progress-bar progress-bar-warning" role="progressbar"
+                     style="width: {{summary.no_name_percent}}%;">
+                      {{summary.no_name_percent}}%
+                </div>
             </div>
-          </td>
-        </tr>
-        </tbody>
-      </table>
+            </td>
+          </tr>
+          <tr class="row">
+              <th class="col-xs-2">{% trans "Without selling price" %}</th>
+              <td class="col-xs-1">{{summary.selling_price_zero}}</td>
+              <td class="col-xs-9">
+                <div class='progress'>
+                  <div title="{{summary.no_name}}" class="progress-bar progress-bar-warning" role="progressbar"
+                     style="width: {{summary.no_selling_price_percent}}%;">
+                      {{summary.no_selling_price_percent}}%
+                  </div>
+                </div>
+              </td>
+          </tr>
+          <tr class="row">
+            <th class="col-xs-2">{% trans "Without purchasing price" %}</th>
+            <td class="col-xs-1">{{summary.purchasing_price_zero}}</td>
+            <td class="col-xs-9">
+              <div class='progress'>
+                <div title="{{summary.no_name}}" class="progress-bar progress-bar-warning" role="progressbar"
+                     style="width: {{summary.no_purchasing_price_percent}}%;">
+                  {{summary.no_purchasing_price_percent}}%
+                </div>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+        </div>
+      </div>
+  </div>
 
-
-
-
-
-<h3>{% trans "1st step" %}  <small>{% trans "step-by-step guide" %}</small></h3>
-  <h4>{% trans "Search one article to register a selling" %}</h4>
-  <ol>
-    <li>{% trans "Search the article with the filter" %}; ({% trans "enter your search criteria and click on the search button" %}
-      <strong>{% trans "Search" %}</strong>)</li>
-    <li>{% trans "Go to the article by clicking on the link <strong>Name</strong>"%};</li>
-  </ol>
-  <div class="progress">
-    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
-         style="width:20%">
-    20% {% trans "of the selling process" %}
+  <div class="panel panel-info">
+    <div class="panel-heading">
+      <a href="#selling_guide" data-toggle="collapse">{% trans "1st step" %}  <small>{% trans "step-by-step guide" %}</small></a>
+    </div>
+    <div id="selling_guide" class="panel-collapse collapse">
+      <div class="panel-body">
+        <h4>{% trans "Search one article to register a selling" %}</h4>
+        <ol>
+          <li>{% trans "Search the article with the filter" %}; ({% trans "enter your search criteria and click on the search button" %}
+            <strong>{% trans "Search" %}</strong>)</li>
+          <li>{% trans "Go to the article by clicking on the link <strong>Name</strong>"%};</li>
+        </ol>
+        <div class="progress">
+          <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="70" aria-valuemin="0" aria-valuemax="100"
+             style="width:20%">
+        20% {% trans "of the selling process" %}
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 
-  <form action="" method="get">
+  <div class="panel panel-warning">
+    <div class="panel-heading">
+      <a href="#filter" data-toggle="collapse">{% trans "Filter" %}</a>
+    </div>
+    <div id="filter" class="panel-collapse collapse">
+      <div class="panel-body">
+        <form action="" method="get">
         <div class="well well-md" id="filtre_articles">
-          <h4 style="margin-top: 0">{% trans "Filter" %}</h4>
+
           <div class="row">
             <div class="form-group col-xs-3 col-sm-3">
               {{filter.form.id.label_tag}}
@@ -190,6 +208,9 @@
           </div>
         </div>
   </form>
+      </div>
+    </div>
+  </div>
 
 <h3>{{count}} {% trans "articles found" %}.</h3>
 

@@ -110,7 +110,7 @@ class TestModels(TestCase):
         d31mars = date(year=2018, month=3, day=31)
         dfevrier = d1mars - timedelta(days=20)
         # Out of range: in february
-
+        # article created at 15th february
         Article.objects.create(name='alast', photo='alast', arrival=arrival, purchasing_price=200,
                                date_added=dfevrier)
         self.assertEqual(0, Article.objects.total_purchasing_price(start_date=d1mars))
