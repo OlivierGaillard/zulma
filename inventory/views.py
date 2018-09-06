@@ -333,9 +333,6 @@ def articles(request):
     return render(request, 'inventory/articles.html', context)
 
 
-
-
-
 @method_decorator(login_required, name='dispatch')
 class ArticleDetailView(DetailView):
     context_object_name = 'article'
@@ -345,12 +342,24 @@ class ArticleDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         ctx = super(ArticleDetailView, self).get_context_data(**kwargs)
-        #ctx = add_cart_counter_to_context(self.request, ctx)
-        #ctx = add_total_books(ctx)
+        meta = self.request.META  # voir https://docs.djangoproject.com/fr/1.11/ref/request-response/
+        try:
+            http_referer = meta['HTTP_REFERER']
+            logger.debug('REFERER: "%s" : ' % http_referer)
+            parse_result = urlparse(http_referer)
+            logger.debug('query: %s' % parse_result.query)
+            # If URL comes from articles list, then we store the page number. Otherwise not.
+            if '/inventory/articles/' in parse_result.path and ('page' in parse_result.query):
+                self.request.session['page'] = parse_result.query
+                ctx['page'] = parse_result.query
+            else:
+                ctx['page'] = self.request.session.get('page', '')
+        except KeyError:
+            logger.debug('HTTP_REFERER is empty')
         cart_items = get_cart_items(self.request)
         ctx['article_in_cart'] = article_already_in_cart(cart_items, self.object)
-        #return add_categories_to_context(ctx)
         return ctx
+
 
 @method_decorator(login_required, name='dispatch')
 class ArticleUpdateView(UpdateView):
@@ -360,7 +369,8 @@ class ArticleUpdateView(UpdateView):
     form_class = ArticleUpdateForm
 
     def get_success_url(self):
-        return reverse('inventory:articles')
+        return reverse('inventory:article_detail', args=[self.object.pk])
+
 
 def quantities_of_article_and_form_are_valid(article, form):
     """Check if article quantity and losses in form are valid."""
@@ -377,6 +387,7 @@ def quantities_of_article_and_form_are_valid(article, form):
             form.add_error(error=error, field='losses')
         return False
 
+
 def update_article_stock_quantity(article, form):
     """Add losses to article losses and substract to quantity."""
     logger.debug("Updated stock quantity of article: %s" % article.quantity)
@@ -386,7 +397,6 @@ def update_article_stock_quantity(article, form):
 
 def create_lost(article, form):
     category_losses = None
-    #url_msg = "/inventory/article_detail/%s" % article.pk
     name = "Article-ID: %s " % article.pk
     loss = Losses.objects.create(article=article, amount_losses=form.cleaned_data['amount_losses'],
                                  losses=form.cleaned_data['losses'], branch=article.branch,

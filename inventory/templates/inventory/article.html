@@ -139,8 +139,11 @@
     </td>
 
     <td>
+      {% if page %}
+      <a href="{% url 'inventory:articles' %}?{{page}}"><button class="btn btn-info" >{% trans "Back to articles's list" %}</button></a>
+      {% else %}
       <a href="{% url 'inventory:articles' %}"><button class="btn btn-info" >{% trans "Back to articles's list" %}</button></a>
-
+      {% endif %}
     </td>
 
       <td>

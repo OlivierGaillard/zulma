@@ -63,7 +63,6 @@ class CostsManager(models.Manager):
                self.grand_total(branch=branch, year=year, start_date = start_date, end_date=end_date)
 
 
-
 class Costs(models.Model):
     branch = models.ForeignKey(Branch, null=True, blank=True, verbose_name=_('Branch'))
     creation_date = models.DateField(_('Creation date'), default=date.today, blank=True)

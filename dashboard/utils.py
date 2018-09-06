@@ -20,7 +20,6 @@ class TimeSliceHelper:
         else:
             raise Exception("Model {0} not handled.".format(self.model._meta.model_name))
 
-
     def _set_start_end_date_qs(self, start_date, end_date):
         if self.model._meta.model_name == 'vente':
             self.qs = self.qs.filter(date__range= (start_date, end_date))
@@ -32,7 +31,6 @@ class TimeSliceHelper:
             self.qs = self.qs.filter(date__range= (start_date, end_date))
         else:
             raise Exception("Model {0} not handled.".format(self.model._meta.model_name))
-
 
     def _set_start_date_qs(self, start_date):
         if self.model._meta.model_name == 'vente':
@@ -46,7 +44,6 @@ class TimeSliceHelper:
         else:
             raise Exception("Model {0} not handled.".format(self.model._meta.model_name))
 
-
     def _set_end_date_qs(self, end_date):
         if self.model._meta.model_name == 'vente':
             self.qs = self.qs.filter(date__lte=end_date)
@@ -58,7 +55,6 @@ class TimeSliceHelper:
             self.qs = self.qs.filter(date__lte=end_date)
         else:
             raise Exception("Model {0} not handled.".format(self.model._meta.model_name))
-
 
     def get_objects(self,  year=None, branch=None, start_date=None, end_date=None):
         objects = []
@@ -72,7 +68,6 @@ class TimeSliceHelper:
 
         if not start_date and end_date:
             self._set_end_date_qs(end_date)
-
 
         if branch != None and not branch == 'MAIN' :
             objects = self.qs.filter(branch=branch)
