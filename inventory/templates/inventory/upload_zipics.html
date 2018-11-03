@@ -5,15 +5,45 @@
 {% block content %}
 <div class="container">
   <div class="jumbotron alert alert-warning">
-    <h3>Warnings!</h3>
-    <ul>
+    <h3 id="warning">Warnings!</h3>
+    <ul id="infos">
       <li>{% trans "Upload only <code>ZIP</code> files." %}</li>
-      <li>Upload only <code>.JPG</code> or <code>.JPEG</code> images. PNG images are
-    not handled.</li>
+      <li>Upload only <code>.JPG</code> or <code>.JPEG</code> images. PNG images are not handled.</li>
+      <li>Size limit: 50 Mb</li>
+      <li id="tooLarge"><b>Size limit exceeded!</b></li>
+      <li id="sizeInfo"></li>
     </ul>
-
-
   </div>
 {% crispy form %}
+
+{% block javascript %}
+<script type="text/javascript">
+$('#tooLarge').hide();
+$('#sizeInfo').hide();
+$('#id_pictures_zip').change(function() {
+  $('#tooLarge').hide();
+  var input = $('#id_pictures_zip');
+  var size = 0;
+  size = input[0].files[0].size;
+  mb = (size / 1024) / 1024;
+  mbStr = mb.toFixed(2);
+  var submitElement = $('#submit-id-save');
+  if (mb > 50) {
+     submitElement.attr('disabled', true);
+     $('#tooLarge').show();
+     $('#sizeInfo').text("Size of file: " + mbStr + " Mb");
+     $('#sizeInfo').show();
+  }
+  else {
+     submitElement.attr('disabled', false);
+     $('#tooLarge').hide();
+     $('#sizeInfo').text("Size of file: " + mbStr + " Mb");
+     $('#sizeInfo').show();
+  }
+});
+
+ </script>
+{% endblock %}
+
 </div>
 {% endblock %}

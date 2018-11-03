@@ -97,6 +97,11 @@ class UploadPicturesZipForm(forms.Form):
         zip_file = cleaned_data['pictures_zip']
         if not zip_file.name.split('.')[1] == 'zip':
             self.add_error('pictures_zip', _("File ends not with extension '.zip'."))
+        # checking size
+        size = zip_file._size
+        # logger.fatal("SIZE: %s" % size)
+        # if size >= 20971520:
+        #     self.add_error('pictures_zip', "ZIP file too big")
         return cleaned_data
 
 
